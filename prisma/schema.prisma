@@ -13,6 +13,8 @@ model User {
   ravenId            String               @unique
   triposPartId       Int?
   triposPart         TriposPart?          @relation(fields: [triposPartId], references: [id])
+  triposId           Int?
+  tripos             Tripos?              @relation(fields: [triposId], references: [id])
   UserQuestionAnswer UserQuestionAnswer[]
   Thread             Thread[]
   ThreadUpvote       ThreadVote[]
@@ -31,6 +33,7 @@ model Tripos {
   id         Int          @id @default(autoincrement())
   name       String
   TriposPart TriposPart[]
+  User       User[]
 }
 
 model TriposPart {
