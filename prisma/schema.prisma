@@ -1,0 +1,128 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 String               @id
+  crsid              String               @unique
+  ravenId            String               @unique
+  UserQuestionAnswer UserQuestionAnswer[]
+  Thread             Thread[]
+  ThreadUpvote       ThreadVote[]
+  Reply              Reply[]
+  sessions           UserSession[]
+}
+
+model UserSession {
+  id         String    @id
+  expires_at DateTime
+  user_id    String
+  user       User @relation(fields: [user_id], references: [id])
+}
+
+model Tripos {
+  id         Int          @id @default(autoincrement())
+  name       String
+  TriposPart TriposPart[]
+}
+
+model TriposPart {
+  id       Int      @id @default(autoincrement())
+  name     String
+  tripos   Tripos   @relation(fields: [triposId], references: [id])
+  triposId Int
+  Course   Course[]
+  Paper    Paper[]
+}
+
+model Course {
+  id           Int          @id @default(autoincrement())
+  code         String
+  name         String
+  courseUrl    String
+  triposPart   TriposPart   @relation(fields: [triposPartId], references: [id])
+  triposPartId Int
+  CourseYear   CourseYear[]
+}
+
+model CourseYear {
+  id            Int    @id @default(autoincrement())
+  course        Course @relation(fields: [courseId], references: [id])
+  courseId      Int
+  year          String
+  courseYearUrl String
+}
+
+model Paper {
+  id           Int         @id @default(autoincrement())
+  TriposPart   TriposPart  @relation(fields: [triposPartId], references: [id])
+  triposPartId Int
+  PaperYear    PaperYear[]
+}
+
+model PaperYear {
+  id           Int        @id @default(autoincrement())
+  paper        Paper      @relation(fields: [paperId], references: [id])
+  paperId      Int
+  year         String
+  paperYearUrl String
+  Question     Question[]
+}
+
+model Question {
+  id                 Int                  @id @default(autoincrement())
+  paperYear          PaperYear            @relation(fields: [paperYearId], references: [id])
+  paperYearId        Int
+  questionNumber     Int
+  questionUrl        String
+  solutionUrl        String
+  UserQuestionAnswer UserQuestionAnswer[]
+  Thread             Thread[]
+}
+
+model UserQuestionAnswer {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
+  timeTaken  Int?
+  createdAt  DateTime @default(now())
+  difficulty Int?
+}
+
+model Thread {
+  id           Int          @id @default(autoincrement())
+  author       User         @relation(fields: [authorId], references: [id])
+  authorId     String
+  question     Question     @relation(fields: [questionId], references: [id])
+  questionId   Int
+  content      String
+  createdAt    DateTime     @default(now())
+  ThreadUpvote ThreadVote[]
+  Reply        Reply[]
+}
+
+model ThreadVote {
+  id       Int     @id @default(autoincrement())
+  thread   Thread  @relation(fields: [threadId], references: [id])
+  threadId Int
+  user     User    @relation(fields: [userId], references: [id])
+  userId   String
+  positive Boolean
+}
+
+model Reply {
+  id        Int      @id @default(autoincrement())
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  thread    Thread   @relation(fields: [threadId], references: [id])
+  threadId  Int
+  content   String
+  createdAt DateTime @default(now())
+}
