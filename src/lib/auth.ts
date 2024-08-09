@@ -39,6 +39,8 @@ declare module "lucia" {
 
 interface DatabaseUserAttributes {
 	ravenId: string;
+	crsid: string;
+	picture: string;
 }
 
 export const raven = new Raven(process.env.RAVEN_CLIENT_ID, process.env.RAVEN_CLIENT_SECRET, baseURL + "/login/raven/callback");

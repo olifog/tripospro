@@ -2,7 +2,6 @@
 
 import { cookies } from "next/headers";
 import { lucia, validateRequest } from "./auth";
-import { redirect } from "next/navigation";
 
 interface ActionResult {
 	error: string | null;

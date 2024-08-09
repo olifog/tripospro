@@ -11,6 +11,7 @@ model User {
   id                 String               @id
   crsid              String               @unique
   ravenId            String               @unique
+  picture            String
   triposPartId       Int?
   triposPart         TriposPart?          @relation(fields: [triposPartId], references: [id])
   triposId           Int?

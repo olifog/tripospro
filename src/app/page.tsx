@@ -7,25 +7,7 @@ export default async function Home() {
 
   return (
     <div>
-      {user ? (
-        <>
-          <h1>Hi, {user.ravenId}!</h1>
-          <form action={logout}>
-            <button type="submit">Logout</button>
-          </form>
-        </>
-      ) : (
-        <>
-          <form
-            action={async () => {
-              "use server";
-              redirect("/login/raven");
-            }}
-          >
-            <button type="submit">Login</button>
-          </form>
-        </>
-      )}
+      Main page
     </div>
   );
 }

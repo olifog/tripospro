@@ -8,7 +8,6 @@ import { prisma } from "@/lib/prisma";
 import { crsidFromEmail } from "@/lib/utils";
 
 export async function GET(request: NextRequest): Promise<Response> {
-  console.log("CALLBACK", request.nextUrl.searchParams);
   const code = request.nextUrl.searchParams.get("code");
   const state = request.nextUrl.searchParams.get("state");
   const storedState = cookies().get("raven_oauth_state")?.value ?? null;
@@ -72,6 +71,7 @@ export async function GET(request: NextRequest): Promise<Response> {
 				id: userId,
 				ravenId: ravenUser.email,
 				crsid: crsid || '',
+        picture: ravenUser.picture,
 			},
 		});
 

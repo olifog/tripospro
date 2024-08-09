@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import { TrouteProvider } from '@olifog/troute'
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Header } from "@/components/Header";
 
 const inter = Lato({ weight: "400", subsets: ["latin"] });
 
@@ -18,9 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TrouteProvider>
-          {children}
-        </TrouteProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          <TrouteProvider>
+            <Header />
+            {children}
+          </TrouteProvider>
+        </ThemeProvider>
         </body>
     </html>
   );
