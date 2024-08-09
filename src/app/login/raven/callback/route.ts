@@ -44,6 +44,10 @@ export async function GET(request: NextRequest): Promise<Response> {
       where: {
         ravenId: ravenUser.email
       },
+      include: {
+        tripos: true,
+        triposPart: true,
+      }
     });
 
     if (existingUser) {
