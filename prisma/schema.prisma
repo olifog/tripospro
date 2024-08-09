@@ -33,6 +33,7 @@ model UserSession {
 model Tripos {
   id         Int          @id @default(autoincrement())
   name       String
+  code       String
   TriposPart TriposPart[]
   User       User[]
 }

@@ -1,13 +1,20 @@
-import { redirect } from "next/navigation";
 import { validateRequest } from "@/lib/auth";
-import { logout } from "@/lib/logout";
+import { getUser } from "@/lib/getUser";
+import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-  const { user } = await validateRequest();
+
+  const triposes = await prisma.tripos.findMany()
 
   return (
     <div>
-      Main page
+      <ul>
+        {triposes.map(tripos => (
+          <li key={tripos.id}>
+            {tripos.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

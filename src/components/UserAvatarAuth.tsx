@@ -11,9 +11,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SignOutButton } from "./SignOutButton";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { getUser } from "@/lib/getUser";
+import { Badge } from "./ui/badge";
 
 export const UserAvatarAuth = async () => {
-  const { user } = await validateRequest();
+  const user = await getUser();
 
   return user ? (
     <DropdownMenu>
@@ -25,6 +27,12 @@ export const UserAvatarAuth = async () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{user.ravenId}</DropdownMenuLabel>
+        {(user.tripos || user.triposPart) && (
+          <DropdownMenuLabel className="flex space-x-2">
+            {user.tripos && <Badge>{user.tripos.code}</Badge>}
+            {user.triposPart && <Badge>{user.triposPart.name}</Badge>}
+          </DropdownMenuLabel>
+        )}
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link href="/profile">Profile</Link>
