@@ -1,4 +1,3 @@
-import { validateRequest } from "@/lib/auth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,11 +10,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { SignOutButton } from "./SignOutButton";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { getUser } from "@/lib/getUser";
 import { Badge } from "./ui/badge";
+import { getCurrentUser } from "@/queries/user";
 
 export const UserAvatarAuth = async () => {
-  const user = await getUser();
+  const user = await getCurrentUser();
 
   return user ? (
     <DropdownMenu>

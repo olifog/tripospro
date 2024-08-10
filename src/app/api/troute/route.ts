@@ -1,2 +1,1 @@
-
-export { GET } from '@/troute'
+export { GET } from "@/troute";

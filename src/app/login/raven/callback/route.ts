@@ -31,23 +31,23 @@ export async function GET(request: NextRequest): Promise<Response> {
       storedCodeVerifier
     );
     const ravenUser = jwtDecode(tokens.idToken) as JwtPayload & {
-			email: string;
-			name: string;
-			picture: string;
-			given_name: string;
-			family_name: string;
-			email_verified: boolean;
-			hd: string;
-		};
+      email: string;
+      name: string;
+      picture: string;
+      given_name: string;
+      family_name: string;
+      email_verified: boolean;
+      hd: string;
+    };
 
     const existingUser = await prisma.user.findUnique({
       where: {
-        ravenId: ravenUser.email
+        ravenId: ravenUser.email,
       },
       include: {
         tripos: true,
         triposPart: true,
-      }
+      },
     });
 
     if (existingUser) {
@@ -68,16 +68,16 @@ export async function GET(request: NextRequest): Promise<Response> {
 
     const userId = generateIdFromEntropySize(10); // 16 characters long
 
-		const crsid = crsidFromEmail(ravenUser.email);
+    const crsid = crsidFromEmail(ravenUser.email);
 
     await prisma.user.create({
-			data: {
-				id: userId,
-				ravenId: ravenUser.email,
-				crsid: crsid || '',
+      data: {
+        id: userId,
+        ravenId: ravenUser.email,
+        crsid: crsid || "",
         picture: ravenUser.picture,
-			},
-		});
+      },
+    });
 
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);

@@ -1,18 +1,18 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export const crsidFromEmail = (email: string): string | undefined => {
   if (!email.includes("@")) {
-    return undefined
+    return undefined;
   }
 
   if (!email.endsWith("@cam.ac.uk")) {
-    return undefined
+    return undefined;
   }
 
   return email.split("@")[0];
-}
+};
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }

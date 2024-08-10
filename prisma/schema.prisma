@@ -12,6 +12,7 @@ model User {
   crsid              String               @unique
   ravenId            String               @unique
   picture            String
+  admin              Boolean              @default(false)
   triposPartId       Int?
   triposPart         TriposPart?          @relation(fields: [triposPartId], references: [id])
   triposId           Int?
