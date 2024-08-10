@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { getCurrentUser } from "@/queries/user";
+import { SignInButton } from "./SignInButton";
 
 export const UserAvatarAuth = async () => {
   const user = await getCurrentUser();
@@ -43,8 +44,6 @@ export const UserAvatarAuth = async () => {
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
-    <Button asChild>
-      <Link href="/login/raven">Sign in</Link>
-    </Button>
+    <SignInButton />
   );
 };

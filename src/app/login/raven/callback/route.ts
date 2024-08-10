@@ -89,7 +89,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/",
+        Location: "/onboarding",
       },
     });
   } catch (e) {

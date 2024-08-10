@@ -49,7 +49,7 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between w-28"
+          className="justify-between w-36"
         >
           <span className={cn(!value && "text-gray-500")}>
             {value
@@ -59,18 +59,18 @@ export function Combobox({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-28 p-0">
+      <PopoverContent className="w-36 p-0">
         <Command>
           <CommandInput placeholder={defaultText} />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>Nothing found.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => (
                 <CommandItem
                   key={option.value}
                   value={option.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setValue(currentValue);
                     setOpen(false);
                     if (onChange) onChange(currentValue);
                   }}

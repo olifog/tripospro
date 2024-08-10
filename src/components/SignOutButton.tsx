@@ -10,8 +10,8 @@ export const SignOutButton = () => {
 
   return (
     <DropdownMenuItem onClick={async () => {
-      setView(view => ({...view, autoSelected: false}));
       await logout()
+      setView(view => ({...view, autoSelected: false}));
     }}>
       Sign out
     </DropdownMenuItem>

@@ -64,7 +64,7 @@ export function LinkCombobox({
         <Command>
           <CommandInput placeholder={defaultText} />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>Nothing found.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => (
                 <CommandItem

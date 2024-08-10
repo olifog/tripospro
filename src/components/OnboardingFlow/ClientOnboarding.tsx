@@ -1,0 +1,86 @@
+"use client"
+
+import { getAllTriposes } from "@/queries/tripos";
+import { getCurrentUser } from "@/queries/user";
+import { troute } from "@/troute";
+import { useState } from "react";
+import { Combobox } from "../ui/combobox";
+import { Skeleton } from "../ui/skeleton";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { editUser } from "@/actions/user";
+import { useRouter } from "next/navigation";
+
+export const ClientOnboarding = ({
+  triposes,
+  user,
+}: {
+  triposes: Awaited<ReturnType<typeof getAllTriposes>>;
+  user: Awaited<ReturnType<typeof getCurrentUser>>;
+}) => {
+  const router = useRouter();
+
+  const [selectedTriposId, setSelectedTriposId] = useState<number>();
+  const [selectedTriposPartId, setSelectedTriposPartId] = useState<number>();
+
+  const selectedTripos = triposes.find((tripos) => tripos.id === selectedTriposId);
+
+  const { data: triposParts, isLoading } = troute.getTriposParts({
+    params: selectedTriposId,
+    enabled: !!selectedTripos,
+  });
+
+  const selectedTriposPart = triposParts?.find(
+    (triposPart) => triposPart.id === selectedTriposPartId
+  );
+
+  return (
+    <div className="flex flex-col space-y-2 items-center">
+      <Combobox
+        options={triposes.map((tripos) => ({
+          value: tripos.id.toString(),
+          label: tripos.code,
+        }))}
+        defaultText="Tripos..."
+        onChange={(value) => {
+          setSelectedTriposId(triposes.find((tripos) => tripos.id.toString() === value)?.id);
+        }}
+        startingValue={selectedTriposId?.toString()}
+      />
+      {
+        isLoading ? (
+          <Skeleton className="w-32 h-8" />
+        ) : triposParts && (
+          <Combobox
+            options={triposParts.map((triposPart) => ({
+              value: triposPart.id.toString(),
+              label: triposPart.name,
+            }))}
+            defaultText="Tripos Part..."
+            onChange={(value) => {
+              setSelectedTriposPartId(triposParts.find((triposPart) => triposPart.id.toString() === value)?.id);
+            }}
+            startingValue={selectedTriposPartId?.toString()}
+          />
+        )
+      }
+      <div className="flex items-center pt-8">
+        <Button disabled={!selectedTripos || !selectedTriposPart} onClick={async () => {
+          if (!user) return;
+          await editUser(user?.id, {
+            triposId: selectedTriposId,
+            triposPartId: selectedTriposPartId,
+          });
+          router.push(`/${selectedTripos?.code}/${selectedTriposPart?.name}`);
+        }}>
+          Continue
+        </Button>
+        <Link href="/">
+          <Button variant="link">
+            Not applicable
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
+}

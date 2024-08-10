@@ -22,7 +22,6 @@ export const ClientViewSelector = ({
   const pathname = usePathname();
   const [view, setView] = useRecoilState(viewState);
 
-
   const selectedTriposCode = pathname.split("/")[1];
   const selectedTripos = triposes.find(
     (tripos) => tripos.code === selectedTriposCode
@@ -49,7 +48,7 @@ export const ClientViewSelector = ({
       router.push(url);
       setView((view) => ({ ...view, autoSelected: true }));
     }
-  }, [router, user]);
+  }, [router, setView, user, view.autoSelected]);
 
   return (
     <div className="flex items-center space-x-2">
