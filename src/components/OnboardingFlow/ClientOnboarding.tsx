@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { editUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export const ClientOnboarding = ({
   triposes,
@@ -33,6 +34,8 @@ export const ClientOnboarding = ({
   const selectedTriposPart = triposParts?.find(
     (triposPart) => triposPart.id === selectedTriposPartId
   );
+
+  const [continuing, setContinuing] = useState(false);
 
   return (
     <div className="flex flex-col space-y-2 items-center">
@@ -65,14 +68,18 @@ export const ClientOnboarding = ({
         )
       }
       <div className="flex items-center pt-8">
-        <Button disabled={!selectedTripos || !selectedTriposPart} onClick={async () => {
+        <Button disabled={continuing || !selectedTripos || !selectedTriposPart} onClick={async () => {
           if (!user) return;
+          setContinuing(true);
           await editUser(user?.id, {
             triposId: selectedTriposId,
             triposPartId: selectedTriposPartId,
           });
           router.push(`/${selectedTripos?.code}/${selectedTriposPart?.name}`);
         }}>
+          {continuing && (
+            <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
+          )}
           Continue
         </Button>
         <Link href="/">
