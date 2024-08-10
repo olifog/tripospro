@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/Header";
 import { ClientRoot } from "@/components/ClientRoot";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Lato({ weight: "400", subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
             </ClientRoot>
           </TrouteProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
