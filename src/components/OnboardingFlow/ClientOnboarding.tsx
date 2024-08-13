@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
 import { getAllTriposes } from "@/queries/tripos";
-import { getCurrentUser } from "@/queries/user";
 import { troute } from "@/troute";
 import { useState } from "react";
 import { Combobox } from "../ui/combobox";
@@ -11,20 +10,23 @@ import Link from "next/link";
 import { editUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { User } from "lucia";
 
 export const ClientOnboarding = ({
   triposes,
   user,
 }: {
   triposes: Awaited<ReturnType<typeof getAllTriposes>>;
-  user: Awaited<ReturnType<typeof getCurrentUser>>;
+  user: User | null;
 }) => {
   const router = useRouter();
 
   const [selectedTriposId, setSelectedTriposId] = useState<number>();
   const [selectedTriposPartId, setSelectedTriposPartId] = useState<number>();
 
-  const selectedTripos = triposes.find((tripos) => tripos.id === selectedTriposId);
+  const selectedTripos = triposes.find(
+    (tripos) => tripos.id === selectedTriposId
+  );
 
   const { data: triposParts, isLoading } = troute.getTriposParts({
     params: selectedTriposId,
@@ -46,14 +48,16 @@ export const ClientOnboarding = ({
         }))}
         defaultText="Tripos..."
         onChange={(value) => {
-          setSelectedTriposId(triposes.find((tripos) => tripos.id.toString() === value)?.id);
+          setSelectedTriposId(
+            triposes.find((tripos) => tripos.id.toString() === value)?.id
+          );
         }}
         startingValue={selectedTriposId?.toString()}
       />
-      {
-        isLoading ? (
-          <Skeleton className="w-32 h-8" />
-        ) : triposParts && (
+      {isLoading ? (
+        <Skeleton className="w-32 h-8" />
+      ) : (
+        triposParts && (
           <Combobox
             options={triposParts.map((triposPart) => ({
               value: triposPart.id.toString(),
@@ -61,33 +65,36 @@ export const ClientOnboarding = ({
             }))}
             defaultText="Tripos Part..."
             onChange={(value) => {
-              setSelectedTriposPartId(triposParts.find((triposPart) => triposPart.id.toString() === value)?.id);
+              setSelectedTriposPartId(
+                triposParts.find(
+                  (triposPart) => triposPart.id.toString() === value
+                )?.id
+              );
             }}
             startingValue={selectedTriposPartId?.toString()}
           />
         )
-      }
+      )}
       <div className="flex items-center pt-8">
-        <Button disabled={continuing || !selectedTripos || !selectedTriposPart} onClick={async () => {
-          if (!user) return;
-          setContinuing(true);
-          await editUser(user?.id, {
-            triposId: selectedTriposId,
-            triposPartId: selectedTriposPartId,
-          });
-          router.push(`/${selectedTripos?.code}/${selectedTriposPart?.name}`);
-        }}>
-          {continuing && (
-            <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
-          )}
+        <Button
+          disabled={continuing || !selectedTripos || !selectedTriposPart}
+          onClick={async () => {
+            if (!user) return;
+            setContinuing(true);
+            await editUser(user?.id, {
+              triposId: selectedTriposId,
+              triposPartId: selectedTriposPartId,
+            });
+            router.push(`/${selectedTripos?.code}/${selectedTriposPart?.name}`);
+          }}
+        >
+          {continuing && <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />}
           Continue
         </Button>
         <Link href="/">
-          <Button variant="link">
-            Not applicable
-          </Button>
+          <Button variant="link">Not applicable</Button>
         </Link>
       </div>
     </div>
   );
-}
+};

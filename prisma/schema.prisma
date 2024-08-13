@@ -13,6 +13,7 @@ model User {
   ravenId            String               @unique
   picture            String
   admin              Boolean              @default(false)
+  lecturer           Boolean              @default(false)
   triposPartId       Int?
   triposPart         TriposPart?          @relation(fields: [triposPartId], references: [id])
   triposId           Int?
@@ -22,6 +23,8 @@ model User {
   ThreadUpvote       ThreadVote[]
   Reply              Reply[]
   sessions           UserSession[]
+  CourseYearLecturer CourseYearLecturer[]
+  Lecture            Lecture[]
 }
 
 model UserSession {
@@ -50,26 +53,88 @@ model TriposPart {
 }
 
 model Course {
-  id           Int          @id @default(autoincrement())
-  code         String
-  name         String
-  courseUrl    String
-  triposPart   TriposPart   @relation(fields: [triposPartId], references: [id])
-  triposPartId Int
-  CourseYear   CourseYear[]
+  id                 Int                  @id @default(autoincrement())
+  code               String
+  name               String
+  triposPart         TriposPart           @relation(fields: [triposPartId], references: [id])
+  triposPartId       Int
+  CourseYear         CourseYear[]
+  CourseYearLecturer CourseYearLecturer[]
 }
 
 model CourseYear {
+  id                       Int                      @id @default(autoincrement())
+  course                   Course                   @relation(fields: [courseId], references: [id])
+  courseId                 Int
+  year                     String
+  courseYearUrl            String
+  michaelmas               Boolean
+  lent                     Boolean
+  easter                   Boolean
+  lectures                 Int
+  suggestedSupervisions    Int
+  description              String
+  Question                 Question[]
+  CourseYearPrerequisite   CourseYearPrerequisite[] @relation(name: "CourseYearPrerequisite")
+  CourseYearPrerequisiteOf CourseYearPrerequisite[] @relation(name: "CourseYearPrerequisiteOf")
+  Lecture                  Lecture[]
+  Tick                     Tick[]
+}
+
+model Lecture {
   id            Int        @id @default(autoincrement())
-  course        Course     @relation(fields: [courseId], references: [id])
-  courseId      Int
-  year          String
-  courseYearUrl String
-  Question      Question[]
+  courseYear    CourseYear @relation(fields: [courseYearId], references: [id])
+  courseYearId  Int
+  lecturer      User       @relation(fields: [lecturerId], references: [id])
+  lecturerId    String
+  number        Int
+  time          DateTime
+  location      Location   @relation(fields: [locationId], references: [id])
+  locationId    Int
+  topic         String
+  slidesLink    String?
+  recordingLink String?
+  summary       String?
+}
+
+model Location {
+  id             Int        @id @default(autoincrement())
+  name           String
+  partOf         Location?  @relation(fields: [partOfId], references: [id], name: "LocationPartOf")
+  LocationPartOf Location[] @relation(name: "LocationPartOf")
+  partOfId       Int?
+  googleMapsURL  String?
+  Lecture        Lecture[]
+}
+
+model Tick {
+  id           Int        @id @default(autoincrement())
+  courseYear   CourseYear @relation(fields: [courseYearId], references: [id])
+  courseYearId Int
+  name         String
+  link         String
+  deadline     DateTime
+}
+
+model CourseYearPrerequisite {
+  id             Int        @id @default(autoincrement())
+  courseYear     CourseYear @relation(name: "CourseYearPrerequisite", fields: [courseYearId], references: [id])
+  courseYearId   Int
+  prerequisite   CourseYear @relation(name: "CourseYearPrerequisiteOf", fields: [prerequisiteId], references: [id])
+  prerequisiteId Int
+}
+
+model CourseYearLecturer {
+  id           Int    @id @default(autoincrement())
+  courseYear   Course @relation(fields: [courseYearId], references: [id])
+  courseYearId Int
+  lecturer     User   @relation(fields: [lecturerId], references: [id])
+  lecturerId   String
 }
 
 model Paper {
   id           Int         @id @default(autoincrement())
+  name         String
   TriposPart   TriposPart  @relation(fields: [triposPartId], references: [id])
   triposPartId Int
   PaperYear    PaperYear[]

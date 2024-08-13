@@ -24,11 +24,7 @@ export default async function Profile({
     <div>
       <div className="flex space-x-2 items-center">
         <h1 className="text-3xl">{user.crsid}</h1>
-        {
-          user.admin && (
-            <Badge variant="secondary">Admin</Badge>
-          )
-        }
+        {user.admin && <Badge variant="secondary">Admin</Badge>}
       </div>
       Profile page for user {user?.ravenId}
     </div>

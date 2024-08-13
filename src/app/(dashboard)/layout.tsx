@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 
-export default function DashboardLayout ({
-  children
+export default function DashboardLayout({
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -10,5 +10,5 @@ export default function DashboardLayout ({
       <Header viewSelector />
       {children}
     </>
-  )
+  );
 }

@@ -23,3 +23,8 @@ export const getUser = async (id?: string) => {
 };
 
 export const getCurrentUser = async () => await getUser();
+
+export const getCurrentUserId = async () => {
+  const { user: signedInUser } = await validateRequest();
+  return signedInUser?.id;
+};

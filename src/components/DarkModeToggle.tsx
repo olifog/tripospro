@@ -18,7 +18,7 @@ export function DarkModeToggle() {
     <Button
       variant="outline"
       size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "dark" ? (
         <SunIcon className="h-[1.2rem] w-[1.2rem]" />
