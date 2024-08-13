@@ -7,13 +7,10 @@ import { useRouter } from "next/navigation";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
-import Link from "next/link";
 import { LinkCombobox } from "./LinkCombobox";
-import { Skeleton } from "../ui/skeleton";
 
 export const ClientViewBreadcrumb = ({
   triposes,
@@ -73,12 +70,6 @@ export const ClientViewBreadcrumb = ({
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/" asChild>
-            <Link href="/">Home</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
           <LinkCombobox
             options={triposes.map((tripos) => ({
               value: tripos.id.toString(),
@@ -86,84 +77,81 @@ export const ClientViewBreadcrumb = ({
               link: `/${tripos.code}`,
             }))}
             defaultText="Tripos..."
+            fallbackName={selectedTriposCode}
             startingValue={selectedTripos?.id.toString()}
-            isFinalBreadcrumb={!selectedTriposPart}
+            isFinalBreadcrumb={!selectedTriposPartName}
           />
         </BreadcrumbItem>
-        {(triposPartsLoading || triposParts) && <BreadcrumbSeparator />}
-        {triposPartsLoading ? (
-          <Skeleton className="h-6 w-12" />
-        ) : (
-          triposParts && (
+        {selectedTriposCode && (
+          <>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <LinkCombobox
-                options={triposParts.map((triposPart) => ({
+                options={triposParts?.map((triposPart) => ({
                   value: triposPart.id.toString(),
                   label: triposPart.name,
                   link: `/${selectedTriposCode}/${triposPart.name}`,
                 }))}
                 defaultText="Part..."
+                fallbackName={selectedTriposPartName}
                 startingValue={selectedTriposPart?.id.toString()}
-                isFinalBreadcrumb={!selectedCourse}
+                isFinalBreadcrumb={!selectedCourseCode}
               />
             </BreadcrumbItem>
-          )
+          </>
         )}
-        {(coursesLoading || courses) && <BreadcrumbSeparator />}
-        {coursesLoading ? (
-          <Skeleton className="h-6 w-12" />
-        ) : (
-          courses && (
+        {selectedTriposPartName && (
+          <>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <LinkCombobox
-                options={courses.map((course) => ({
+                options={courses?.map((course) => ({
                   value: course.id.toString(),
                   label: course.code,
                   link: `/${selectedTriposCode}/${selectedTriposPartName}/${course.code}`,
                 }))}
                 defaultText="Course..."
+                fallbackName={selectedCourseCode}
                 startingValue={selectedCourse?.id.toString()}
                 isFinalBreadcrumb={!selectedCourseYear}
               />
             </BreadcrumbItem>
-          )
+          </>
         )}
-        {(courseYearsLoading || courseYears) && <BreadcrumbSeparator />}
-        {courseYearsLoading ? (
-          <Skeleton className="h-6 w-12" />
-        ) : (
-          courseYears && (
+        {selectedCourseCode && (
+          <>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <LinkCombobox
-                options={courseYears.map((courseYear) => ({
+                options={courseYears?.map((courseYear) => ({
                   value: courseYear.id.toString(),
                   label: courseYear.year.toString(),
                   link: `/${selectedTriposCode}/${selectedTriposPartName}/${selectedCourseCode}/${courseYear.year}`,
                 }))}
                 defaultText="Year..."
+                fallbackName={selectedYear}
                 startingValue={selectedCourseYear?.id.toString()}
-                isFinalBreadcrumb={!selectedQuestion}
+                isFinalBreadcrumb={!selectedQuestionNumber}
               />
             </BreadcrumbItem>
-          )
+          </>
         )}
-        {(questionsLoading || questions) && <BreadcrumbSeparator />}
-        {questionsLoading ? (
-          <Skeleton className="h-6 w-12" />
-        ) : (
-          questions && (
+        {selectedYear && (
+          <>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <LinkCombobox
-                options={questions.map((question) => ({
+                options={questions?.map((question) => ({
                   value: question.id.toString(),
                   label: question.questionNumber.toString(),
                   link: `/${selectedTriposCode}/${selectedTriposPartName}/${selectedCourseCode}/${selectedYear}/${question.questionNumber}`,
                 }))}
                 defaultText="Question..."
+                fallbackName={selectedQuestionNumber}
                 startingValue={selectedQuestion?.id.toString()}
               />
             </BreadcrumbItem>
-          )
+          </>
         )}
       </BreadcrumbList>
     </Breadcrumb>

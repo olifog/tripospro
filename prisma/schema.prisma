@@ -14,6 +14,7 @@ model User {
   picture            String
   admin              Boolean              @default(false)
   lecturer           Boolean              @default(false)
+  name               String?
   triposPartId       Int?
   triposPart         TriposPart?          @relation(fields: [triposPartId], references: [id])
   triposId           Int?
@@ -88,9 +89,9 @@ model Lecture {
   lecturer      User       @relation(fields: [lecturerId], references: [id])
   lecturerId    String
   number        Int
-  time          DateTime
-  location      Location   @relation(fields: [locationId], references: [id])
-  locationId    Int
+  time          DateTime?
+  location      Location?  @relation(fields: [locationId], references: [id])
+  locationId    Int?
   topic         String
   slidesLink    String?
   recordingLink String?

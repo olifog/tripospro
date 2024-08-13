@@ -3,7 +3,6 @@
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -18,8 +17,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
 
 export interface Option {
   value: string;
@@ -30,36 +29,43 @@ export interface Option {
 export function LinkCombobox({
   options,
   defaultText = "Select...",
+  fallbackName,
   startingValue = "",
   isFinalBreadcrumb = false,
 }: {
-  options: Option[];
+  options?: Option[];
   defaultText?: string;
+  fallbackName?: string;
   startingValue?: string;
   isFinalBreadcrumb?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
-  const currentOption = options.find((option) => option.value === value);
+  const currentOption = options?.find((option) => option.value === value);
 
   useEffect(() => {
     setValue(startingValue);
   }, [startingValue, options]);
 
+  if (!options && !fallbackName) {
+    return <Skeleton className="h-6 w-12" />;
+  }
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         {value && !isFinalBreadcrumb ? (
-          <div className="flex items-center">
+          <div className="flex items-center h-6">
             <Link href={currentOption?.link || "#"}>
               <span className={cn(!value && "text-gray-500")}>
-                {value ? currentOption?.label : defaultText}
+                {fallbackName || defaultText}
               </span>
             </Link>
             <button
               role="combobox"
               aria-expanded={open}
+              aria-controls="combobox"
               className="flex items-center"
             >
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -69,10 +75,11 @@ export function LinkCombobox({
           <button
             role="combobox"
             aria-expanded={open}
-            className="flex items-center"
+            aria-controls="combobox"
+            className="flex items-center h-6"
           >
             <span className={cn(!value && "text-gray-500")}>
-              {value ? currentOption?.label : defaultText}
+              {value ? currentOption?.label : fallbackName || defaultText}
             </span>
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </button>
@@ -80,33 +87,41 @@ export function LinkCombobox({
       </PopoverTrigger>
       <PopoverContent className="w-28 p-0">
         <Command>
-          <CommandInput placeholder={defaultText} />
-          <CommandList>
-            <CommandEmpty>Nothing found.</CommandEmpty>
-            <CommandGroup>
-              {options.map((option) => (
-                <CommandItem key={option.value} value={option.value}>
-                  <Link
-                    href={option.link}
-                    onClick={() => {
-                      setOpen(false);
-                    }}
-                    className="w-full"
-                  >
-                    <div className="flex">
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          value === option.value ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                      {option.label}
-                    </div>
-                  </Link>
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
+          {options ? (
+            <>
+              <CommandInput placeholder={defaultText} />
+              <CommandList>
+                <CommandEmpty>Nothing found.</CommandEmpty>
+                <CommandGroup>
+                  {options.map((option) => (
+                    <CommandItem key={option.value} value={option.value}>
+                      <Link
+                        href={option.link}
+                        onClick={() => {
+                          setOpen(false);
+                        }}
+                        className="w-full"
+                      >
+                        <div className="flex">
+                          <Check
+                            className={cn(
+                              "mr-2 h-4 w-4",
+                              value === option.value
+                                ? "opacity-100"
+                                : "opacity-0"
+                            )}
+                          />
+                          {option.label}
+                        </div>
+                      </Link>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </>
+          ) : (
+            <Skeleton className="h-16 w-full" />
+          )}
         </Command>
       </PopoverContent>
     </Popover>
