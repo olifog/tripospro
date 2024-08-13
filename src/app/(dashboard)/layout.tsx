@@ -7,7 +7,7 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <Header viewSelector />
+      <Header />
       {children}
     </>
   );
