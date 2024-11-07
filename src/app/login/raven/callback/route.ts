@@ -66,18 +66,16 @@ export async function GET(request: NextRequest): Promise<Response> {
       });
     }
 
-    const userId = generateIdFromEntropySize(10); // 16 characters long
-
     const crsid = crsidFromEmail(ravenUser.email);
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
-        id: userId,
         ravenId: ravenUser.email,
         crsid: crsid || "",
         picture: ravenUser.picture,
       },
     });
+    const userId = user.id;
 
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);

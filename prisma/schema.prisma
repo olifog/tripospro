@@ -8,12 +8,12 @@ generator client {
 }
 
 model User {
-  id                 String               @id
+  id                 String               @id @default(cuid())
   crsid              String               @unique
   ravenId            String               @unique
-  picture            String
   admin              Boolean              @default(false)
   lecturer           Boolean              @default(false)
+  picture            String?
   name               String?
   triposPartId       Int?
   triposPart         TriposPart?          @relation(fields: [triposPartId], references: [id])
@@ -54,13 +54,14 @@ model TriposPart {
 }
 
 model Course {
-  id                 Int                  @id @default(autoincrement())
-  code               String
-  name               String
-  triposPart         TriposPart           @relation(fields: [triposPartId], references: [id])
-  triposPartId       Int
-  CourseYear         CourseYear[]
-  CourseYearLecturer CourseYearLecturer[]
+  id           Int          @id @default(autoincrement())
+  code         String
+  name         String
+  triposPart   TriposPart   @relation(fields: [triposPartId], references: [id])
+  triposPartId Int
+  CourseYear   CourseYear[]
+
+  @@unique([code, triposPartId])
 }
 
 model CourseYear {
@@ -76,10 +77,13 @@ model CourseYear {
   suggestedSupervisions    Int
   description              String
   Question                 Question[]
+  CourseYearLecturer       CourseYearLecturer[]
   CourseYearPrerequisite   CourseYearPrerequisite[] @relation(name: "CourseYearPrerequisite")
   CourseYearPrerequisiteOf CourseYearPrerequisite[] @relation(name: "CourseYearPrerequisiteOf")
   Lecture                  Lecture[]
   Tick                     Tick[]
+
+  @@unique([courseId, year])
 }
 
 model Lecture {
@@ -126,11 +130,13 @@ model CourseYearPrerequisite {
 }
 
 model CourseYearLecturer {
-  id           Int    @id @default(autoincrement())
-  courseYear   Course @relation(fields: [courseYearId], references: [id])
+  id           Int        @id @default(autoincrement())
+  courseYear   CourseYear @relation(fields: [courseYearId], references: [id])
   courseYearId Int
-  lecturer     User   @relation(fields: [lecturerId], references: [id])
+  lecturer     User       @relation(fields: [lecturerId], references: [id])
   lecturerId   String
+
+  @@unique([courseYearId, lecturerId])
 }
 
 model Paper {
