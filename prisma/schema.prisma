@@ -77,7 +77,7 @@ model CourseYear {
   easter                   Boolean
   lectures                 Int
   suggestedSupervisions    Int
-  description              String
+  description              Bytes
   Question                 Question[]
   CourseYearLecturer       CourseYearLecturer[]
   CourseYearPrerequisite   CourseYearPrerequisite[] @relation(name: "CourseYearPrerequisite")

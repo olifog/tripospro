@@ -3,8 +3,9 @@ from dotenv import load_dotenv
 
 import json
 import asyncio
+import zlib
 
-from prisma import Prisma
+from prisma import Prisma, Base64
 from prisma.models import User, TriposPart
 
 load_dotenv()
@@ -116,20 +117,24 @@ async def main():
                             if course_data["supervisions"] is not None
                             else 0
                         ),
-                        "description": (
-                            course_data["description"]
-                            if course_data["description"] is not None
-                            else course.name
+                        "description": Base64.encode(
+                            zlib.compress(
+                                (course_data["description"]
+                                if course_data["description"] is not None
+                                else course.name).encode("utf-8")
+                            )
                         ),
                         "michaelmas": course_data["michaelmas"],
                         "lent": course_data["lent"],
                         "easter": course_data["easter"],
                     },
                     "update": {
-                        "description": (
-                            course_data["description"]
-                            if course_data["description"] is not None
-                            else course.name
+                        "description": Base64.encode(
+                            zlib.compress(
+                                (course_data["description"]
+                                if course_data["description"] is not None
+                                else course.name).encode("utf-8")
+                            )
                         ),
                     },
                 },
