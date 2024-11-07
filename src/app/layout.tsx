@@ -7,7 +7,10 @@ import { Header } from "@/components/Header";
 import { ClientRoot } from "@/components/ClientRoot";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Lato({ weight: "400", subsets: ["latin"] });
+const inter = Lato({ 
+  weight: ["300", "400", "700", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Tripos Pro",

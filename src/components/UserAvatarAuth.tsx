@@ -21,8 +21,12 @@ export const UserAvatarAuth = async () => {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src={user.picture} />
-          <AvatarFallback>{user.crsid}</AvatarFallback>
+          {user.picture && <AvatarImage src={user.picture} />}
+          <AvatarFallback>
+            <div className="flex flex-col items-center justify-center p-1">
+              <span className="text-xs">{user.crsid}</span>
+            </div>
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

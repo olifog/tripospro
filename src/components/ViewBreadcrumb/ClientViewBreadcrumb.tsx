@@ -11,6 +11,7 @@ import {
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 import { LinkCombobox } from "./LinkCombobox";
+import { triposPartToReadable } from "@/lib/utils";
 
 export const ClientViewBreadcrumb = ({
   triposes,
@@ -89,11 +90,11 @@ export const ClientViewBreadcrumb = ({
               <LinkCombobox
                 options={triposParts?.map((triposPart) => ({
                   value: triposPart.id.toString(),
-                  label: triposPart.name,
+                  label: triposPartToReadable(triposPart.name),
                   link: `/${selectedTriposCode}/${triposPart.name}`,
                 }))}
                 defaultText="Part..."
-                fallbackName={selectedTriposPartName}
+                fallbackName={triposPartToReadable(selectedTriposPartName)}
                 startingValue={selectedTriposPart?.id.toString()}
                 isFinalBreadcrumb={!selectedCourseCode}
               />

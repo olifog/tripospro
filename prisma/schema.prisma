@@ -51,6 +51,8 @@ model TriposPart {
   Course   Course[]
   Paper    Paper[]
   User     User[]
+
+  @@unique([name, triposId])
 }
 
 model Course {

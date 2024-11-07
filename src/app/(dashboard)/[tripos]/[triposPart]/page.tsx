@@ -26,16 +26,18 @@ export default async function TriposPart({
   const courses = await getTriposPartCourses(triposPartObject.id);
 
   return (
-    <div className="flex flex-wrap gap-4">
-      {courses.map((course) => (
-        <CourseCardWithSuspense
-          key={course.id}
-          name={course.code}
-          courseId={course.id}
-          tripos={params.tripos}
-          triposPart={params.triposPart}
-        />
-      ))}
+    <div className="flex flex-col w-full max-w-2xl items-center">
+      <div className="flex flex-wrap gap-2">
+        {courses.map((course) => (
+          <CourseCardWithSuspense
+            key={course.id}
+            name={course.code}
+            courseId={course.id}
+            tripos={params.tripos}
+            triposPart={params.triposPart}
+          />
+        ))}
+      </div>
     </div>
   );
 }

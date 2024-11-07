@@ -85,8 +85,16 @@ export function LinkCombobox({
           </button>
         )}
       </PopoverTrigger>
-      <PopoverContent className="w-28 p-0">
-        <Command>
+      <PopoverContent className="w-32 p-0">
+        <Command
+          filter={(value, search) => {
+            const option = options?.find((option) => option.value === value);
+            if (option?.label.toLowerCase().includes(search.toLowerCase())) {
+              return 1;
+            }
+            return 0;
+          }}
+        >
           {options ? (
             <>
               <CommandInput placeholder={defaultText} />
