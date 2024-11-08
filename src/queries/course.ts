@@ -38,5 +38,18 @@ export const getCourse = async (courseId: number, userId?: string) => {
     },
   });
 
-  return data;
+  // Next.js isn't doing branch detection correctly during webpack step
+  const { unzipSync } = await import("next/dist/compiled/browserify-zlib");
+
+  if (data) {
+    return {
+      ...data,
+      CourseYear: data.CourseYear.map((courseYear) => ({
+        ...courseYear,
+        description: unzipSync(courseYear.description).toString(),
+      })),
+    };
+  }
+
+  return null;
 };

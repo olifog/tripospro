@@ -1,10 +1,9 @@
 import { CourseCardWithSuspense } from "@/components/CourseCard";
-import { Skeleton } from "@/components/ui/skeleton";
+import { CourseFilterProvider } from "@/components/CourseFilter/CourseFilterProvider";
 import { getTriposPartCourses } from "@/queries/course";
 import { getAllTriposes } from "@/queries/tripos";
 import { getTriposParts } from "@/queries/triposPart";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 
 export default async function TriposPart({
   params,
@@ -26,18 +25,20 @@ export default async function TriposPart({
   const courses = await getTriposPartCourses(triposPartObject.id);
 
   return (
-    <div className="flex flex-col w-full max-w-2xl items-center">
-      <div className="flex flex-wrap gap-2">
-        {courses.map((course) => (
-          <CourseCardWithSuspense
-            key={course.id}
-            name={course.code}
-            courseId={course.id}
-            tripos={params.tripos}
-            triposPart={params.triposPart}
-          />
-        ))}
-      </div>
+    <div className="flex flex-col w-full max-w-4xl items-center">
+      <CourseFilterProvider>
+        <div className="flex flex-wrap gap-2 w-full">
+          {courses.map((course) => (
+            <CourseCardWithSuspense
+              key={course.id}
+              name={course.code}
+              courseId={course.id}
+              tripos={params.tripos}
+              triposPart={params.triposPart}
+            />
+          ))}
+        </div>
+      </CourseFilterProvider>
     </div>
   );
 }

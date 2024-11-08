@@ -12,22 +12,10 @@ load_dotenv()
 
 DB_URL = os.environ["DATABASE_URL"]
 SOURCE_URLS = [
-    "https://www.cl.cam.ac.uk/teaching/2021/part1a.html",
-    "https://www.cl.cam.ac.uk/teaching/2021/part1b-75.html",
-    "https://www.cl.cam.ac.uk/teaching/2021/part2-75.html",
-    "https://www.cl.cam.ac.uk/teaching/2021/part3.html",
-    "https://www.cl.cam.ac.uk/teaching/2122/part1a.html",
-    "https://www.cl.cam.ac.uk/teaching/2122/part1b.html",
-    "https://www.cl.cam.ac.uk/teaching/2122/part2-75.html",
-    "https://www.cl.cam.ac.uk/teaching/2122/part3.html",
-    "https://www.cl.cam.ac.uk/teaching/2223/part1a.html",
-    "https://www.cl.cam.ac.uk/teaching/2223/part1b.html",
-    "https://www.cl.cam.ac.uk/teaching/2223/part2.html",
-    "https://www.cl.cam.ac.uk/teaching/2223/part3.html",
-    "https://www.cl.cam.ac.uk/teaching/2324/part1a.html",
-    "https://www.cl.cam.ac.uk/teaching/2324/part1b.html",
-    "https://www.cl.cam.ac.uk/teaching/2324/part2.html",
-    "https://www.cl.cam.ac.uk/teaching/2324/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part1a.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part3.html",
 ]
 
 
@@ -108,19 +96,19 @@ async def main():
                         "year": year,
                         "courseYearUrl": course_data["course_url"],
                         "lectures": (
-                            course_data["lectures"]
-                            if course_data["lectures"] is not None
+                            course_data.get("lectures", None)
+                            if course_data.get("lectures", None) is not None
                             else 0
                         ),
                         "suggestedSupervisions": (
-                            course_data["supervisions"]
-                            if course_data["supervisions"] is not None
+                            course_data.get("supervisions", None)
+                            if course_data.get("supervisions", None) is not None
                             else 0
                         ),
                         "description": Base64.encode(
                             zlib.compress(
-                                (course_data["description"]
-                                if course_data["description"] is not None
+                                (course_data.get("description", None)
+                                if course_data.get("description", None) is not None
                                 else course.name).encode("utf-8")
                             )
                         ),
@@ -131,8 +119,8 @@ async def main():
                     "update": {
                         "description": Base64.encode(
                             zlib.compress(
-                                (course_data["description"]
-                                if course_data["description"] is not None
+                                (course_data.get("description", None)
+                                if course_data.get("description", None) is not None
                                 else course.name).encode("utf-8")
                             )
                         ),

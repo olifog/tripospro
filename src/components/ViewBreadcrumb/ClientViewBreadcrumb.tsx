@@ -133,6 +133,7 @@ export const ClientViewBreadcrumb = ({
                 fallbackName={selectedYear}
                 startingValue={selectedCourseYear?.id.toString()}
                 isFinalBreadcrumb={!selectedQuestionNumber}
+                sortNumeric
               />
             </BreadcrumbItem>
           </>

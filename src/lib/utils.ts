@@ -33,3 +33,23 @@ export const triposPartToReadable = (triposPart: string) => {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const getCurrentYear = (): string => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1; // Months are 0-based in JavaScript
+  const academicYearStartMonth = 9; // September
+
+  let startYear = year;
+  let endYear = year + 1;
+
+  if (month < academicYearStartMonth) {
+    startYear = year - 1;
+    endYear = year;
+  }
+
+  const startTwoDigits = String(startYear).slice(-2);
+  const endTwoDigits = String(endYear).slice(-2);
+
+  return `${startTwoDigits}${endTwoDigits}`;
+};

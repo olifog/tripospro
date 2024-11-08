@@ -1,39 +1,33 @@
-import { getCourse } from "@/queries/course";
-import { getCurrentUserId } from "@/queries/user";
-import { Skeleton } from "./ui/skeleton";
-import { Suspense } from "react";
-import Link from "next/link";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
+"use client";
 
-export const CourseCard = async ({
-  courseId,
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@radix-ui/react-tooltip";
+import Link from "next/link";
+import { getCourse } from "@/queries/course";
+import CourseFilterContext from "../CourseFilter/courseFilterContext";
+import { useContext } from "react";
+import { getCurrentYear } from "@/lib/utils";
+
+export const ClientCourseCard = ({
+  course,
   tripos,
   triposPart,
+  questions,
+  years,
 }: {
-  courseId: number;
+  course: NonNullable<Awaited<ReturnType<typeof getCourse>>>;
   tripos: string;
   triposPart: string;
+  questions: number[];
+  years: string[];
 }) => {
-  const userId = await getCurrentUserId();
-  const course = await getCourse(courseId, userId);
+  const { onlyCurrent, yearCutoff } = useContext(CourseFilterContext);
 
-  if (!course) return <div>Course not found.</div>;
+  console.log(years);
+  console.log(getCurrentYear());
 
-  const questions = Array.from(
-    course.CourseYear.reduce<Set<number>>((acc, year) => {
-      for (const question of year.Question) {
-        acc.add(question.id);
-      }
-      return acc;
-    }, new Set())
-  ).sort((a, b) => a - b);
+  if (onlyCurrent && years[0] !== getCurrentYear()) return null;
 
-  const years = course.CourseYear.map((year) => year.year);
+  const filteredYears = years.filter((year) => yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true);
 
   return (
     <div className="flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 dark:bg-slate-950 dark:border-slate-800">
@@ -64,7 +58,7 @@ export const CourseCard = async ({
             </span>
           ))}
         </div>
-        {years.map((year) => (
+        {filteredYears.map((year) => (
           <div key={year} className="flex flex-col space-y-1">
             <div className="relative w-5 h-10">
               <Link href={`/${tripos}/${triposPart}/${course.code}/${year}`}>
@@ -106,28 +100,5 @@ export const CourseCard = async ({
       </div>
     </div>
   );
-};
 
-export const CourseCardWithSuspense = ({
-  courseId,
-  tripos,
-  triposPart,
-  name,
-}: {
-  courseId: number;
-  tripos: string;
-  triposPart: string;
-  name: string;
-}) => {
-  return (
-    <Suspense
-      fallback={
-        <Skeleton className="w-32 h-32 rounded-md">
-          <h1 className="dark:text-white mt-1 ml-2">{name}</h1>
-        </Skeleton>
-      }
-    >
-      <CourseCard courseId={courseId} tripos={tripos} triposPart={triposPart} />
-    </Suspense>
-  );
-};
+}

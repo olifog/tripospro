@@ -20,6 +20,10 @@ SOURCE_URLS = [
     "https://www.cl.cam.ac.uk/teaching/2324/part1b.html",
     "https://www.cl.cam.ac.uk/teaching/2324/part2.html",
     "https://www.cl.cam.ac.uk/teaching/2324/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part1a.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/2425/part3.html",
 ]
 
 TERMS = {

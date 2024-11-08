@@ -32,12 +32,14 @@ export function LinkCombobox({
   fallbackName,
   startingValue = "",
   isFinalBreadcrumb = false,
+  sortNumeric = false,
 }: {
   options?: Option[];
   defaultText?: string;
   fallbackName?: string;
   startingValue?: string;
   isFinalBreadcrumb?: boolean;
+  sortNumeric?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -51,6 +53,10 @@ export function LinkCombobox({
   if (!options && !fallbackName) {
     return <Skeleton className="h-6 w-12" />;
   }
+
+  const sortedOptions = sortNumeric
+    ? options?.sort((a, b) => parseInt(b.label) - parseInt(a.label))
+    : options?.sort((a, b) => a.label.localeCompare(b.label));
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -95,13 +101,13 @@ export function LinkCombobox({
             return 0;
           }}
         >
-          {options ? (
+          {sortedOptions ? (
             <>
               <CommandInput placeholder={defaultText} />
               <CommandList>
                 <CommandEmpty>Nothing found.</CommandEmpty>
                 <CommandGroup>
-                  {options.map((option) => (
+                  {sortedOptions.map((option) => (
                     <CommandItem key={option.value} value={option.value}>
                       <Link
                         href={option.link}
