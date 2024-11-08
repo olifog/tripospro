@@ -3,10 +3,10 @@
 import { useContext, useState } from "react";
 import CourseFilterContext from "./courseFilterContext";
 import { Checkbox } from "../ui/checkbox";
-import { Combobox } from "../ui/combobox";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
 import { getCurrentYear } from "@/lib/utils";
+import { useStoredState } from "@/lib/useStoredState";
 
 const CurrentYearCheckbox = () => {
   const { onlyCurrent, setOnlyCurrent } = useContext(CourseFilterContext);
@@ -63,8 +63,8 @@ export const CourseFilterProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [onlyCurrent, setOnlyCurrent] = useState(true);
-  const [yearCutoff, setYearCutoff] = useState("2021");
+  const [onlyCurrent, setOnlyCurrent] = useStoredState("onlyCurrent", true);
+  const [yearCutoff, setYearCutoff] = useStoredState("yearCutoff", "2021");
 
   return (
     <CourseFilterContext.Provider
