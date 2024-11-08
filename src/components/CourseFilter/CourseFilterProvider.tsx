@@ -6,7 +6,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
 import { getCurrentYear } from "@/lib/utils";
-import { useStoredState } from "@/lib/useStoredState";
+import { useLocalStorage } from 'usehooks-ts'
 
 const CurrentYearCheckbox = () => {
   const { onlyCurrent, setOnlyCurrent } = useContext(CourseFilterContext);
@@ -63,8 +63,12 @@ export const CourseFilterProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [onlyCurrent, setOnlyCurrent] = useStoredState("onlyCurrent", true);
-  const [yearCutoff, setYearCutoff] = useStoredState("yearCutoff", "2021");
+  const [onlyCurrent, setOnlyCurrent] = useLocalStorage("onlyCurrent", true, {
+    initializeWithValue: false,
+  });
+  const [yearCutoff, setYearCutoff] = useLocalStorage("yearCutoff", "2021", {
+    initializeWithValue: false,
+  });
 
   return (
     <CourseFilterContext.Provider
