@@ -3,15 +3,23 @@ import { createContext } from "react";
 type CourseFilterContextType = {
   onlyCurrent: boolean;
   setOnlyCurrent: (onlyCurrent: boolean) => void;
-  yearCutoff?: string;
+  yearCutoff: string;
   setYearCutoff: (yearCutoff: string) => void;
+  onlyExamined: boolean;
+  setOnlyExamined: (onlyExamined: boolean) => void;
+  hideCurrentYear: boolean;
+  setHideCurrentYear: (hideCurrentYear: boolean) => void;
 };
 
 const CourseFilterContext = createContext<CourseFilterContextType>({
   onlyCurrent: true,
   setOnlyCurrent: () => {},
-  yearCutoff: "2020",
+  yearCutoff: "2019",
   setYearCutoff: () => {},
+  onlyExamined: true,
+  setOnlyExamined: () => {},
+  hideCurrentYear: true,
+  setHideCurrentYear: () => {},
 });
 
 export default CourseFilterContext;

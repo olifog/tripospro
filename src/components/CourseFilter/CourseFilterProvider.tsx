@@ -7,24 +7,46 @@ import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
 import { getCurrentYear } from "@/lib/utils";
 import { useLocalStorage } from 'usehooks-ts'
+import { ChevronDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
-const CurrentYearCheckbox = () => {
-  const { onlyCurrent, setOnlyCurrent } = useContext(CourseFilterContext);
+const CheckboxWithLabel = ({
+  id,
+  checked,
+  onCheckedChange,
+  label,
+}: {
+  id: string;
+  checked: boolean;
+  onCheckedChange: (checked: boolean) => void;
+  label: string;
+}) => {
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox
-        id="currentYear"
-        checked={onlyCurrent}
-        onCheckedChange={setOnlyCurrent}
-      />
+      <Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} />
       <label
-        htmlFor="currentYear"
+        htmlFor={id}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
-        Only show currently taught courses
+        {label}
       </label>
     </div>
   );
+};
+
+const HideCurrentYearCheckbox = () => {
+  const { hideCurrentYear, setHideCurrentYear } = useContext(CourseFilterContext);
+  return <CheckboxWithLabel id="hideCurrentYear" checked={hideCurrentYear} onCheckedChange={setHideCurrentYear} label="Hide current year" />;
+};
+
+const CurrentYearCheckbox = () => {
+  const { onlyCurrent, setOnlyCurrent } = useContext(CourseFilterContext);
+  return <CheckboxWithLabel id="onlyCurrent" checked={onlyCurrent} onCheckedChange={setOnlyCurrent} label="Only show currently taught courses" />;
+};
+
+const OnlyExaminedCheckbox = () => {
+  const { onlyExamined, setOnlyExamined } = useContext(CourseFilterContext);
+  return <CheckboxWithLabel id="onlyExamined" checked={onlyExamined} onCheckedChange={setOnlyExamined} label="Only show examined courses" />;
 };
 
 const YearCutoffInput = () => {
@@ -68,14 +90,34 @@ export const CourseFilterProvider = ({
   const [yearCutoff, setYearCutoff] = useLocalStorage("yearCutoff", "2020", {
     initializeWithValue: false,
   });
+  const [onlyExamined, setOnlyExamined] = useLocalStorage("onlyExamined", true, {
+    initializeWithValue: false,
+  });
+  const [hideCurrentYear, setHideCurrentYear] = useLocalStorage("hideCurrentYear", true, {
+    initializeWithValue: false,
+  });
+
+  const [optionsOpen, setOptionsOpen] = useState(false);
 
   return (
     <CourseFilterContext.Provider
-      value={{ onlyCurrent, setOnlyCurrent, yearCutoff, setYearCutoff }}
+      value={{ onlyCurrent, setOnlyCurrent, yearCutoff, setYearCutoff, onlyExamined, setOnlyExamined, hideCurrentYear, setHideCurrentYear }}
     >
-      <div className="flex space-x-12 mb-2">
-        <CurrentYearCheckbox />
-        <YearCutoffInput />
+      <div className="w-full flex flex-col space-y-1 mb-3 items-start">
+        <button onClick={() => setOptionsOpen(!optionsOpen)} className="flex items-center space-x-2">
+          Options
+          {optionsOpen ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+        </button>
+        <div className={`flex space-x-12 w-full pl-2 ${optionsOpen ? "block" : "hidden"}`}>
+          <div className="flex flex-col space-y-2">
+            <HideCurrentYearCheckbox />
+          </div>
+          <div className="flex flex-col space-y-2">
+            <CurrentYearCheckbox />
+            <OnlyExaminedCheckbox />
+          </div>
+          <YearCutoffInput />
+        </div>
       </div>
       {children}
     </CourseFilterContext.Provider>

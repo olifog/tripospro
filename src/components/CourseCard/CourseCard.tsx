@@ -25,13 +25,14 @@ export const ClientCourseCard = ({
   questions: number[];
   years: string[];
 }) => {
-  const { onlyCurrent, yearCutoff } = useContext(CourseFilterContext);
+  const { onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear } = useContext(CourseFilterContext);
   const filteredYears = useMemo(
     () =>
       years.filter((year) =>
-        yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true
+        (yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true) &&
+        (!hideCurrentYear || year !== getCurrentYear())
       ),
-    [years, yearCutoff]
+    [years, yearCutoff, hideCurrentYear]
   );
 
   const filteredQuestions = useMemo(
@@ -52,6 +53,7 @@ export const ClientCourseCard = ({
 
   if (onlyCurrent && years[0] !== getCurrentYear()) return null;
   if (filteredYears.length === 0) return null;
+  if (onlyExamined && filteredQuestions.length === 0) return null;
 
   return (
     <div className="flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 dark:bg-slate-950 dark:border-slate-800">
