@@ -56,7 +56,7 @@ export const CourseCardWithSuspense = ({
   return (
     <Suspense
       fallback={
-        <Skeleton className="w-32 h-32 rounded-md">
+        <Skeleton className="m-1 w-32 h-32 rounded-md absolute">
           <h1 className="dark:text-white mt-1 ml-2">{name}</h1>
         </Skeleton>
       }

@@ -4,7 +4,10 @@ import { DismissableWarning } from "@/components/DismissableWarning";
 import { getTriposPartCourses } from "@/queries/course";
 import { getAllTriposes } from "@/queries/tripos";
 import { getTriposParts } from "@/queries/triposPart";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+
+const MuuriGrid = dynamic(() => import('@/components/MuuriGrid').then((mod) => mod.MuuriGrid), { ssr: false });  
 
 export default async function TriposPart({
   params,
@@ -31,16 +34,18 @@ export default async function TriposPart({
         Warning: the web scraper is still in development, so some courses may be missing/incomplete!
       </DismissableWarning>
       <CourseFilterProvider>
-        <div className="flex flex-wrap gap-2 w-full">
-          {courses.map((course) => (
-            <CourseCardWithSuspense
-              key={course.id}
-              name={course.code}
-              courseId={course.id}
-              tripos={params.tripos}
-              triposPart={params.triposPart}
-            />
-          ))}
+        <div className="w-full relative">
+          <MuuriGrid>
+            {courses.map((course) => (
+              <CourseCardWithSuspense
+                key={course.id}
+                name={course.code}
+                courseId={course.id}
+                tripos={params.tripos}
+                triposPart={params.triposPart}
+              />
+            ))}
+          </MuuriGrid>
         </div>
       </CourseFilterProvider>
     </div>
