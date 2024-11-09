@@ -26,8 +26,6 @@ export const getQuestionByPath = async ({
 }) => {
   const courseYear = await getCourseYearByPath({ tripos, triposPart, course, year });
 
-  console.log(questionNumber)
-
   const question = await prisma.question.findFirst({
     where: {
       courseYearId: courseYear?.id,

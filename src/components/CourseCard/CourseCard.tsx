@@ -34,9 +34,6 @@ export const ClientCourseCard = ({
     [years, yearCutoff]
   );
 
-  console.log(course.CourseYear);
-  console.log(questions)
-
   const filteredQuestions = useMemo(
     () =>
       questions.filter((question) => {

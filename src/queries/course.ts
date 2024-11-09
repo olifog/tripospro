@@ -22,13 +22,11 @@ export const getCourse = async (courseId: number, userId?: string) => {
             include: {
               _count: {
                 select: {
-                  UserQuestionAnswer: userId
-                    ? {
-                        where: {
-                          userId: userId,
-                        },
-                      }
-                    : true,
+                  UserQuestionAnswer: {
+                    where: {
+                      userId: userId || "",
+                    },
+                  }
                 },
               },
             },
