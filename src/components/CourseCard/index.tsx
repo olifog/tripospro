@@ -21,7 +21,7 @@ export const CourseCard = async ({
   const questions = Array.from(
     course.CourseYear.reduce<Set<number>>((acc, year) => {
       for (const question of year.Question) {
-        acc.add(question.id);
+        acc.add(question.questionNumber);
       }
       return acc;
     }, new Set())

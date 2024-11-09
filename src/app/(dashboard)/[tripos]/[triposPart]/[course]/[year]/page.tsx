@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { academicYearToReadable, triposPartToReadable } from "@/lib/utils";
+import { academicYearToReadable, triposPartToReadable, yearToAcademicYear } from "@/lib/utils";
 import { getCourseYearByPath } from "@/queries/courseYear";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export default async function CourseYear({
     <div className="flex flex-col space-y-4 w-full max-w-xl mb-12">
       <div className="flex flex-col space-y-1">
         <h1 className="text-2xl font-bold">
-          {triposPartToReadable(params.triposPart)} {courseName} {academicYearToReadable(params.year)}
+          {triposPartToReadable(params.triposPart)} {courseName} {academicYearToReadable(yearToAcademicYear(params.year))}
         </h1>
         <div className="flex space-x-2">
           {michaelmas && <Badge>Michaelmas</Badge>}

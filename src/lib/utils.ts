@@ -13,9 +13,37 @@ export const crsidFromEmail = (email: string): string | undefined => {
   return email.split("@")[0];
 };
 
-export const academicYearToReadable = (year: string) => {
-  return `20${year.slice(0, 2)}-${year.slice(2, 4)}`;
+
+// def academic_year_to_second_year(year):
+//     tmp = int(year[2:])
+//     if tmp < 90:
+//         return f"20{year[2:]}"
+//     else:
+//         return f"19{year[2:]}"
+
+export const academicYearToSecondYear = (academicYear: string) => {
+  const tmp = parseInt(academicYear.slice(2));
+  if (tmp < 90) {
+    return `20${academicYear.slice(2)}`;
+  } else {
+    return `19${academicYear.slice(2)}`;
+  }
 };
+
+export const academicYearToReadable = (academicYear: string) => {
+  const tmp = parseInt(academicYear.slice(2));
+  if (tmp < 90) {
+    return `20${academicYear.slice(0, 2)}-${academicYear.slice(2)}`;
+  } else {
+    return `19${academicYear.slice(0, 2)}-${academicYear.slice(2)}`;
+  }
+};
+
+export const yearToAcademicYear = (year: string) => {
+  const first = (parseInt(year) - 1).toString();
+
+  return `${first.slice(2)}${year.slice(2)}`;
+}
 
 const triposPartToReadableMap = {
   "1a": "IA",
@@ -40,16 +68,9 @@ export const getCurrentYear = (): string => {
   const month = now.getMonth() + 1; // Months are 0-based in JavaScript
   const academicYearStartMonth = 9; // September
 
-  let startYear = year;
-  let endYear = year + 1;
-
   if (month < academicYearStartMonth) {
-    startYear = year - 1;
-    endYear = year;
+    return year.toString()
+  } else {
+    return (year + 1).toString();
   }
-
-  const startTwoDigits = String(startYear).slice(-2);
-  const endTwoDigits = String(endYear).slice(-2);
-
-  return `${startTwoDigits}${endTwoDigits}`;
 };

@@ -38,20 +38,19 @@ const YearCutoffInput = () => {
       >
         Year cutoff:{" "}
         <span className="text-slate-900 dark:text-slate-100">
-          {yearCutoff?.slice(0, 2) + "-" + yearCutoff?.slice(2, 4)}
+          {yearCutoff}
         </span>
       </Label>
       <Slider
         id="yearCutoff"
-        value={yearCutoff ? [parseInt(yearCutoff.slice(0, 2))] : [1]}
+        value={yearCutoff ? [parseInt(yearCutoff)] : [1993]}
         onValueChange={([value]) =>
           setYearCutoff(
-            value.toString().padStart(2, "0") +
-              (value + 1).toString().padStart(2, "0")
+            value.toString()
           )
         }
-        min={1}
-        max={parseInt(getCurrentYear().slice(0, 2))}
+        min={1993}
+        max={parseInt(getCurrentYear())}
         step={1}
       />
     </div>
@@ -66,7 +65,7 @@ export const CourseFilterProvider = ({
   const [onlyCurrent, setOnlyCurrent] = useLocalStorage("onlyCurrent", true, {
     initializeWithValue: false,
   });
-  const [yearCutoff, setYearCutoff] = useLocalStorage("yearCutoff", "2021", {
+  const [yearCutoff, setYearCutoff] = useLocalStorage("yearCutoff", "2020", {
     initializeWithValue: false,
   });
 

@@ -147,6 +147,8 @@ model Paper {
   TriposPart   TriposPart  @relation(fields: [triposPartId], references: [id])
   triposPartId Int
   PaperYear    PaperYear[]
+
+  @@unique([name, triposPartId])
 }
 
 model PaperYear {
@@ -156,6 +158,8 @@ model PaperYear {
   year         String
   paperYearUrl String
   Question     Question[]
+
+  @@unique([paperId, year])
 }
 
 model Question {
@@ -169,6 +173,9 @@ model Question {
   solutionUrl        String
   UserQuestionAnswer UserQuestionAnswer[]
   Thread             Thread[]
+
+  @@unique([courseYearId, questionNumber])
+  @@unique([paperYearId, questionNumber])
 }
 
 model UserQuestionAnswer {

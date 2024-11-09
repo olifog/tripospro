@@ -1,10 +1,15 @@
 "use client";
 
-import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@radix-ui/react-tooltip";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@radix-ui/react-tooltip";
 import Link from "next/link";
 import { getCourse } from "@/queries/course";
 import CourseFilterContext from "../CourseFilter/courseFilterContext";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { getCurrentYear } from "@/lib/utils";
 
 export const ClientCourseCard = ({
@@ -21,13 +26,35 @@ export const ClientCourseCard = ({
   years: string[];
 }) => {
   const { onlyCurrent, yearCutoff } = useContext(CourseFilterContext);
+  const filteredYears = useMemo(
+    () =>
+      years.filter((year) =>
+        yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true
+      ),
+    [years, yearCutoff]
+  );
 
-  console.log(years);
-  console.log(getCurrentYear());
+  console.log(course.CourseYear);
+  console.log(questions)
+
+  const filteredQuestions = useMemo(
+    () =>
+      questions.filter((question) => {
+        return course.CourseYear.some(
+          (courseYear) =>
+            (typeof yearCutoff === "undefined" ||
+              parseInt(courseYear.year) >= parseInt(yearCutoff)) &&
+            courseYear.Question.some(
+              (q) =>
+                q.questionNumber === question
+            )
+        );
+      }),
+    [questions, course.CourseYear, yearCutoff]
+  );
 
   if (onlyCurrent && years[0] !== getCurrentYear()) return null;
-
-  const filteredYears = years.filter((year) => yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true);
+  if (filteredYears.length === 0) return null;
 
   return (
     <div className="flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 dark:bg-slate-950 dark:border-slate-800">
@@ -49,7 +76,7 @@ export const ClientCourseCard = ({
       </div>
       <div className="flex space-x-1">
         <div className="flex flex-col pt-[44px] space-y-1 mr-1">
-          {questions.map((question) => (
+          {filteredQuestions.map((question) => (
             <span
               className="w-4 h-5 flex justify-end items-center text-sm text-white hover:text-slate-300"
               key={question}
@@ -67,7 +94,7 @@ export const ClientCourseCard = ({
                 </span>
               </Link>
             </div>
-            {questions.map((questionNumber) => {
+            {filteredQuestions.map((questionNumber) => {
               const questionYear = course.CourseYear.find(
                 (courseYear) => courseYear.year === year
               );
@@ -100,5 +127,4 @@ export const ClientCourseCard = ({
       </div>
     </div>
   );
-
-}
+};

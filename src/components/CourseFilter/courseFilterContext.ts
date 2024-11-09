@@ -10,7 +10,7 @@ type CourseFilterContextType = {
 const CourseFilterContext = createContext<CourseFilterContextType>({
   onlyCurrent: true,
   setOnlyCurrent: () => {},
-  yearCutoff: "2021",
+  yearCutoff: "2020",
   setYearCutoff: () => {},
 });
 

@@ -12,11 +12,71 @@ load_dotenv()
 
 DB_URL = os.environ["DATABASE_URL"]
 SOURCE_URLS = [
+    "https://www.cl.cam.ac.uk/teaching/1112/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1617/part1a-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1617/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1617/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1617/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1718/part1a-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1718/part1b-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1718/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1718/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1819/part1a-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1819/part1b-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1819/part2-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1819/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1920/part1a-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1920/part1b-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1920/part2-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1920/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/2021/part1a.html",
+    "https://www.cl.cam.ac.uk/teaching/2021/part1b-75.html",
+    "https://www.cl.cam.ac.uk/teaching/2021/part2-75.html",
+    "https://www.cl.cam.ac.uk/teaching/2021/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/2122/part1a.html",
+    "https://www.cl.cam.ac.uk/teaching/2122/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/2122/part2-75.html",
+    "https://www.cl.cam.ac.uk/teaching/2122/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/2223/part1a.html",
+    "https://www.cl.cam.ac.uk/teaching/2223/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/2223/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/2223/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/2324/part1a.html",
+    "https://www.cl.cam.ac.uk/teaching/2324/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/2324/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/2324/part3.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part1a.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part1b.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part2.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part3.html",
 ]
+
+
+def academic_year_to_second_year(year):
+    tmp = int(year[2:])
+    if tmp < 90:
+        return f"20{year[2:]}"
+    else:
+        return f"19{year[2:]}"
 
 
 async def main():
@@ -30,7 +90,8 @@ async def main():
     print(cst_tripos)
 
     for url in SOURCE_URLS:
-        year = url.split("/")[-2]
+        year = academic_year_to_second_year(url.split("/")[-2])
+
         tripos_part = url.split("/")[-1].split(".")[0].split("-")[0][4:]
 
         tripos_part = next(
@@ -41,8 +102,8 @@ async def main():
             print(f"Tripos part {tripos_part} not found")
             continue
 
-        courses = json.load(open(f"./data/courses_{year}_{tripos_part.name}.json"))
-        lecturers = json.load(open(f"./data/lecturers_{year}_{tripos_part.name}.json"))
+        courses = json.load(open(f"./data/courses_{url.split('/')[-2]}_{tripos_part.name}.json"))
+        lecturers = json.load(open(f"./data/lecturers_{url.split('/')[-2]}_{tripos_part.name}.json"))
 
         for crsid, name in lecturers.items():
             await db.user.upsert(
