@@ -9,6 +9,8 @@ type CourseFilterContextType = {
   setOnlyExamined: (onlyExamined: boolean) => void;
   hideCurrentYear: boolean;
   setHideCurrentYear: (hideCurrentYear: boolean) => void;
+  searchQuery: string;
+  setSearchQuery: (searchQuery: string) => void;
 };
 
 const CourseFilterContext = createContext<CourseFilterContextType>({
@@ -20,6 +22,8 @@ const CourseFilterContext = createContext<CourseFilterContextType>({
   setOnlyExamined: () => {},
   hideCurrentYear: true,
   setHideCurrentYear: () => {},
+  searchQuery: "",
+  setSearchQuery: () => {},
 });
 
 export default CourseFilterContext;

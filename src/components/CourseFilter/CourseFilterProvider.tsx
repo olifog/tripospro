@@ -9,6 +9,7 @@ import { getCurrentYear } from "@/lib/utils";
 import { useLocalStorage } from "usehooks-ts";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
+import { Input } from "../ui/input";
 
 const CheckboxWithLabel = ({
   id,
@@ -95,6 +96,17 @@ const YearCutoffInput = () => {
   );
 };
 
+const SearchInput = () => {
+  const { searchQuery, setSearchQuery } = useContext(CourseFilterContext);
+  return (
+    <Input
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      placeholder="Search"
+    />
+  );
+};
+
 export const CourseFilterProvider = ({
   children,
 }: {
@@ -121,6 +133,7 @@ export const CourseFilterProvider = ({
     }
   );
 
+  const [searchQuery, setSearchQuery] = useState("");
   const [optionsOpen, setOptionsOpen] = useState(false);
 
   return (
@@ -134,20 +147,25 @@ export const CourseFilterProvider = ({
         setOnlyExamined,
         hideCurrentYear,
         setHideCurrentYear,
+        searchQuery,
+        setSearchQuery,
       }}
     >
-      <div className="w-full flex flex-col space-y-1 mb-3 items-start">
-        <button
-          onClick={() => setOptionsOpen(!optionsOpen)}
-          className="flex items-center space-x-2"
-        >
-          Options
-          {optionsOpen ? (
-            <ChevronDown className="w-5 h-5" />
-          ) : (
-            <ChevronRight className="w-5 h-5" />
-          )}
-        </button>
+      <div className="w-full flex flex-col space-y-3 mb-3 items-start">
+        <div className="flex items-center space-x-16">
+          <button
+            onClick={() => setOptionsOpen(!optionsOpen)}
+            className="flex items-center space-x-2"
+          >
+            Options
+            {optionsOpen ? (
+              <ChevronDown className="w-5 h-5" />
+            ) : (
+              <ChevronRight className="w-5 h-5" />
+            )}
+          </button>
+          <SearchInput />
+        </div>
         <div
           className={`flex space-x-12 w-full pl-2 ${
             optionsOpen ? "block" : "hidden"
