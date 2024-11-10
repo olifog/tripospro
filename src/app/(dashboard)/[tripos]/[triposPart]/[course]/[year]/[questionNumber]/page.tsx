@@ -1,10 +1,12 @@
 import { createAnswer } from "@/actions/question";
 import { MarkDoneButton } from "@/components/MarkDoneButton";
 import PdfViewer from "@/components/PdfViewer";
+import { QuestionPage } from "@/components/QuestionPage";
 import { Button } from "@/components/ui/button";
 
-import { getQuestionByPath } from "@/queries/question";
+import { getQuestionAnswers, getQuestionByPath } from "@/queries/question";
 import { getCurrentUser } from "@/queries/user";
+import { notFound } from "next/navigation";
 
 export default async function Question({
   params,
@@ -25,24 +27,11 @@ export default async function Question({
     questionNumber: params.questionNumber,
   });
 
+  if (!question) return notFound();
+
   const user = await getCurrentUser();
 
-  return (
-    <div className="w-full max-w-3xl h-[80vh] flex flex-col items-center space-y-2">
-      <div className="flex items-center space-x-12">
-        <h1>
-          {params.tripos} {params.triposPart} {params.course} {params.year}{" "}
-          {params.questionNumber}
-        </h1>
-        <MarkDoneButton questionId={question?.id} userId={user?.id} />
-      </div>
-      <div className="relative w-full h-full">
-        {question?.questionUrl && (
-          <PdfViewer
-            url={`https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.questionUrl}`}
-          />
-        )}
-      </div>
-    </div>
-  );
+  const answers = user ? await getQuestionAnswers(question.id, user.id) : undefined;
+
+  return <QuestionPage user={user} question={question} answers={answers} />;
 }

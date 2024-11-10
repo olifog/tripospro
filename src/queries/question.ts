@@ -31,12 +31,30 @@ export const getQuestionByPath = async ({
     year,
   });
 
-  const question = await prisma.question.findFirst({
+  const data = await prisma.question.findFirst({
     where: {
       courseYearId: courseYear?.id,
       questionNumber: parseInt(questionNumber),
     },
   });
 
-  return question;
+  if (data) {
+    return {
+      ...data,
+      courseYear,
+    }
+  }
+  
+  return null;
+};
+
+export const getQuestionAnswers = async (questionId: number, userId: string) => {
+  const data = await prisma.userQuestionAnswer.findMany({
+    where: {
+      questionId,
+      userId,
+    },
+  });
+
+  return data;
 };

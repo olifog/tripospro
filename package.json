@@ -43,6 +43,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-resizable-panels": "^2.1.6",
     "recoil": "^0.7.7",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
