@@ -3,15 +3,18 @@ import { getCurrentUserId } from "@/queries/user";
 import { Skeleton } from "../ui/skeleton";
 import { Suspense } from "react";
 import { ClientCourseCard } from "./CourseCard";
+import { cn } from "@/lib/utils";
 
 export const CourseCard = async ({
   courseId,
   tripos,
   triposPart,
+  absolute = true,
 }: {
   courseId: number;
   tripos: string;
   triposPart: string;
+  absolute?: boolean;
 }) => {
   const userId = await getCurrentUserId();
   const course = await getCourse(courseId, userId);
@@ -38,6 +41,7 @@ export const CourseCard = async ({
       triposPart={triposPart}
       questions={questions}
       years={years}
+      absolute={absolute}
     />
   );
 };
@@ -47,21 +51,30 @@ export const CourseCardWithSuspense = ({
   tripos,
   triposPart,
   name,
+  absolute = true,
 }: {
   courseId: number;
   tripos: string;
   triposPart: string;
   name: string;
+  absolute?: boolean;
 }) => {
   return (
     <Suspense
       fallback={
-        <Skeleton className="m-1 w-32 h-32 rounded-md absolute">
+        <Skeleton
+          className={cn("m-1 w-32 h-32 rounded-md", absolute && "absolute")}
+        >
           <h1 className="dark:text-white mt-1 ml-2">{name}</h1>
         </Skeleton>
       }
     >
-      <CourseCard courseId={courseId} tripos={tripos} triposPart={triposPart} />
+      <CourseCard
+        courseId={courseId}
+        tripos={tripos}
+        triposPart={triposPart}
+        absolute={absolute}
+      />
     </Suspense>
   );
 };

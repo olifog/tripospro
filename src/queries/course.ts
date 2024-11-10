@@ -24,7 +24,7 @@ export const getCourse = async (courseId: number, userId?: string) => {
                 select: {
                   UserQuestionAnswer: {
                     where: {
-                      userId: userId || "",
+                      userId,
                     },
                   },
                 },
@@ -50,4 +50,31 @@ export const getCourse = async (courseId: number, userId?: string) => {
   }
 
   return null;
+};
+
+export const getCourseByPath = async ({
+  tripos,
+  triposPart,
+  course,
+}: {
+  tripos: string;
+  triposPart: string;
+  course: string;
+}) => {
+  const data = await prisma.course.findFirst({
+    where: {
+      code: course,
+      triposPart: {
+        name: triposPart,
+        tripos: {
+          code: tripos,
+        },
+      },
+    },
+    include: {
+      CourseYear: true,
+    },
+  });
+
+  return data;
 };

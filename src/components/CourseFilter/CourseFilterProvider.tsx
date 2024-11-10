@@ -107,6 +107,27 @@ const SearchInput = () => {
   );
 };
 
+export const NoFilterProvider = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <CourseFilterContext.Provider
+      value={{
+        onlyCurrent: false,
+        setOnlyCurrent: () => {},
+        yearCutoff: "1993",
+        setYearCutoff: () => {},
+        onlyExamined: false,
+        setOnlyExamined: () => {},
+        hideCurrentYear: false,
+        setHideCurrentYear: () => {},
+        searchQuery: "",
+        setSearchQuery: () => {},
+      }}
+    >
+      {children}
+    </CourseFilterContext.Provider>
+  );
+};
+
 export const CourseFilterProvider = ({
   children,
 }: {

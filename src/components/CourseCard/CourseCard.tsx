@@ -11,7 +11,7 @@ import Link from "next/link";
 import { getCourse } from "@/queries/course";
 import CourseFilterContext from "../CourseFilter/courseFilterContext";
 import { useContext, useMemo } from "react";
-import { getCurrentYear } from "@/lib/utils";
+import { cn, getCurrentYear } from "@/lib/utils";
 
 export const ClientCourseCard = ({
   course,
@@ -19,12 +19,14 @@ export const ClientCourseCard = ({
   triposPart,
   questions,
   years,
+  absolute = true,
 }: {
   course: NonNullable<Awaited<ReturnType<typeof getCourse>>>;
   tripos: string;
   triposPart: string;
   questions: number[];
   years: string[];
+  absolute?: boolean;
 }) => {
   const { onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear, searchQuery } =
     useContext(CourseFilterContext);
@@ -62,8 +64,13 @@ export const ClientCourseCard = ({
     return null;
 
   return (
-    <div className="absolute m-1 flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 dark:bg-slate-950 dark:border-slate-800">
-      <div className="flex w-full h-6">
+    <div
+      className={cn(
+        "m-1 flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 w-fit dark:bg-slate-950 dark:border-slate-800",
+        absolute && "absolute"
+      )}
+    >
+      <div className="flex h-6">
         <TooltipProvider>
           <Tooltip delayDuration={500}>
             <TooltipTrigger asChild>
