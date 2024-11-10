@@ -1,10 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import {
   academicYearToReadable,
+  cn,
   triposPartToReadable,
   yearToAcademicYear,
 } from "@/lib/utils";
-import { getCourseYearByPath } from "@/queries/courseYear";
+import { getCourseYearByPath, getCourseYearQuestions } from "@/queries/courseYear";
+import { getCurrentUser } from "@/queries/user";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,8 +18,11 @@ export default async function CourseYear({
   params: { tripos: string; triposPart: string; course: string; year: string };
 }) {
   const courseYear = await getCourseYearByPath(params);
+  const user = await getCurrentUser();
 
   if (courseYear === null) return notFound();
+
+  const questions = await getCourseYearQuestions(courseYear.id, user?.id);
 
   const {
     courseYearUrl,
@@ -82,6 +87,26 @@ export default async function CourseYear({
           <span>Course Page</span>
           <ArrowUpRight className="w-4 h-4 mb-[1px]" />
         </Link>
+        <div className="flex space-x-2 items-center">
+          <span className="text-sm text-slate-500 dark:text-slate-400">
+            Questions:
+          </span>
+          <div className="flex space-x-2 items-center">
+            {questions.map((question) => (
+              <Link
+                href={`/${params.tripos}/${params.triposPart}/${params.course}/${params.year}/${question.questionNumber}`}
+                key={question.id}
+                className={cn(
+                  "dark:bg-slate-800 bg-slate-700 text-slate-100 border text-xs border-slate-700 w-6 h-6 flex items-center justify-center rounded-md dark:hover:bg-slate-900 hover:bg-slate-800",
+                  question._count.UserQuestionAnswer > 0 &&
+                    "bg-green-800 dark:bg-green-800 border-green-700 hover:bg-green-900 dark:hover:bg-green-900",
+                )}
+              >
+                {question.questionNumber}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
       <div
         className="prose-sm max-w-xl prose-slate prose-ul:list-disc prose-li:my-0 dark:prose-invert"

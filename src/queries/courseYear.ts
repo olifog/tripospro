@@ -66,3 +66,22 @@ export const getCourseYearByPath = async ({
 
   return null;
 };
+
+export const getCourseYearQuestions = async (courseYearId: number, userId?: string) => {
+  const data = await prisma.question.findMany({
+    where: {
+      courseYearId,
+    },
+    include: {
+      _count: {
+        select: {
+          UserQuestionAnswer: {
+            where: { userId: userId ?? "" },
+          },
+        },
+      },
+    },
+  });
+
+  return data;
+};

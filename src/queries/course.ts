@@ -24,7 +24,7 @@ export const getCourse = async (courseId: number, userId?: string) => {
                 select: {
                   UserQuestionAnswer: {
                     where: {
-                      userId,
+                      userId: userId ?? "",
                     },
                   },
                 },
