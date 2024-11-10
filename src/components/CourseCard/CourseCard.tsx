@@ -5,7 +5,8 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from "@radix-ui/react-tooltip";
+} from "@/components/ui/tooltip";
+import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import Link from "next/link";
 import { getCourse } from "@/queries/course";
 import CourseFilterContext from "../CourseFilter/courseFilterContext";
@@ -59,7 +60,7 @@ export const ClientCourseCard = ({
     <div className="absolute m-1 flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 dark:bg-slate-950 dark:border-slate-800">
       <div className="flex w-full h-6">
         <TooltipProvider>
-          <Tooltip delayDuration={500}>
+          <Tooltip delayDuration={500} >
             <TooltipTrigger asChild>
               <Link href={`/${tripos}/${triposPart}/${course.code}`}>
                 <h1 className="hover:text-slate-300 text-white font-extrabold">
@@ -67,9 +68,12 @@ export const ClientCourseCard = ({
                 </h1>
               </Link>
             </TooltipTrigger>
-            <TooltipContent sideOffset={9} className="">
-              <p className="text-base">{course.name}</p>
-            </TooltipContent>
+            <TooltipPrimitive.Portal>
+
+              <TooltipContent sideOffset={9}>
+                <p className="text-base">{course.name}</p>
+              </TooltipContent>
+            </TooltipPrimitive.Portal>
           </Tooltip>
         </TooltipProvider>
       </div>
