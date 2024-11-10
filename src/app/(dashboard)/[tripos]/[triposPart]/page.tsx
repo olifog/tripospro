@@ -7,7 +7,10 @@ import { getTriposParts } from "@/queries/triposPart";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
-const MuuriGrid = dynamic(() => import('@/components/MuuriGrid').then((mod) => mod.MuuriGrid), { ssr: false });  
+const MuuriGrid = dynamic(
+  () => import("@/components/MuuriGrid").then((mod) => mod.MuuriGrid),
+  { ssr: false }
+);
 
 export default async function TriposPart({
   params,
@@ -31,7 +34,8 @@ export default async function TriposPart({
   return (
     <div className="flex flex-col w-full max-w-4xl items-center">
       <DismissableWarning>
-        Warning: the web scraper is still in development, so some courses may be missing/incomplete!
+        Warning: the web scraper is still in development, so some courses may be
+        missing/incomplete!
       </DismissableWarning>
       <CourseFilterProvider>
         <div className="w-full relative">

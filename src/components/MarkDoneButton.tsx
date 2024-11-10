@@ -10,7 +10,6 @@ export const MarkDoneButton = ({
   questionId?: number;
   userId?: string;
 }) => {
-
   return (
     <Button
       onClick={async () => {

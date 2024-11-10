@@ -29,7 +29,7 @@ export const CourseCard = async ({
 
   const years = course.CourseYear.map((year) => year.year).sort(
     (a, b) => parseInt(b) - parseInt(a)
-  )
+  );
 
   return (
     <ClientCourseCard

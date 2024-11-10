@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 import { ClientRoot } from "@/components/ClientRoot";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Lato({ 
+const inter = Lato({
   weight: ["300", "400", "700", "900"],
   subsets: ["latin"],
 });

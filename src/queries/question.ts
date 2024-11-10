@@ -24,7 +24,12 @@ export const getQuestionByPath = async ({
   year: string;
   questionNumber: string;
 }) => {
-  const courseYear = await getCourseYearByPath({ tripos, triposPart, course, year });
+  const courseYear = await getCourseYearByPath({
+    tripos,
+    triposPart,
+    course,
+    year,
+  });
 
   const question = await prisma.question.findFirst({
     where: {

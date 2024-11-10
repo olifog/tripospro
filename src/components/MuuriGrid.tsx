@@ -8,19 +8,27 @@ export const MuuriGrid = ({ children }: { children: React.ReactNode }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const muuriRef = useRef<Muuri | null>(null);
 
-  const {
-    onlyCurrent,
-    yearCutoff,
-    onlyExamined,
-    hideCurrentYear,
-  } = useContext(CourseFilterContext);
+  const { onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear } =
+    useContext(CourseFilterContext);
 
   const updateMuuri = () => {
     if (muuriRef.current) {
-      const newElements = Array.from(gridRef.current?.children || []) as HTMLElement[];
+      const newElements = Array.from(
+        gridRef.current?.children || []
+      ) as HTMLElement[];
       const oldElements = muuriRef.current.getItems();
-      const toAdd = newElements.filter((newElement) => !oldElements.some((oldElement) => oldElement.getElement() === newElement));
-      const toRemove = oldElements.filter((oldElement) => !newElements.some((newElement) => newElement === oldElement.getElement()));
+      const toAdd = newElements.filter(
+        (newElement) =>
+          !oldElements.some(
+            (oldElement) => oldElement.getElement() === newElement
+          )
+      );
+      const toRemove = oldElements.filter(
+        (oldElement) =>
+          !newElements.some(
+            (newElement) => newElement === oldElement.getElement()
+          )
+      );
 
       muuriRef.current.add(toAdd);
       muuriRef.current.remove(toRemove);
@@ -61,7 +69,7 @@ export const MuuriGrid = ({ children }: { children: React.ReactNode }) => {
       updateMuuri();
     }
   }, [onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear]);
-  
+
   return (
     <div className="w-full h-full">
       <div ref={gridRef} className="w-full h-full">

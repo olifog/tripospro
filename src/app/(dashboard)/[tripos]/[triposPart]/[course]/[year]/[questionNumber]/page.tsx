@@ -24,7 +24,7 @@ export default async function Question({
     year: params.year,
     questionNumber: params.questionNumber,
   });
-  
+
   const user = await getCurrentUser();
 
   return (
@@ -37,7 +37,11 @@ export default async function Question({
         <MarkDoneButton questionId={question?.id} userId={user?.id} />
       </div>
       <div className="relative w-full h-full">
-        {question?.questionUrl && <PdfViewer url={`https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.questionUrl}`} />}
+        {question?.questionUrl && (
+          <PdfViewer
+            url={`https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.questionUrl}`}
+          />
+        )}
       </div>
     </div>
   );

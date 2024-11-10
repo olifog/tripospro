@@ -26,7 +26,7 @@ export const getCourse = async (courseId: number, userId?: string) => {
                     where: {
                       userId: userId || "",
                     },
-                  }
+                  },
                 },
               },
             },

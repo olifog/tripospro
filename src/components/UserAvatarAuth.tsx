@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { getCurrentUser } from "@/queries/user";
 import { SignInButton } from "./SignInButton";
+import { triposPartToReadable } from "@/lib/utils";
 
 export const UserAvatarAuth = async () => {
   const user = await getCurrentUser();
@@ -34,7 +35,9 @@ export const UserAvatarAuth = async () => {
         {(user.tripos || user.triposPart) && (
           <DropdownMenuLabel className="flex space-x-2">
             {user.tripos && <Badge>{user.tripos.code}</Badge>}
-            {user.triposPart && <Badge>{user.triposPart.name}</Badge>}
+            {user.triposPart && (
+              <Badge>{triposPartToReadable(user.triposPart.name)}</Badge>
+            )}
           </DropdownMenuLabel>
         )}
         <DropdownMenuSeparator />

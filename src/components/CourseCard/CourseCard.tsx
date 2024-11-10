@@ -26,12 +26,14 @@ export const ClientCourseCard = ({
   questions: number[];
   years: string[];
 }) => {
-  const { onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear } = useContext(CourseFilterContext);
+  const { onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear } =
+    useContext(CourseFilterContext);
   const filteredYears = useMemo(
     () =>
-      years.filter((year) =>
-        (yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true) &&
-        (!hideCurrentYear || year !== getCurrentYear())
+      years.filter(
+        (year) =>
+          (yearCutoff ? parseInt(year) >= parseInt(yearCutoff) : true) &&
+          (!hideCurrentYear || year !== getCurrentYear())
       ),
     [years, yearCutoff, hideCurrentYear]
   );
@@ -43,10 +45,7 @@ export const ClientCourseCard = ({
           (courseYear) =>
             (typeof yearCutoff === "undefined" ||
               parseInt(courseYear.year) >= parseInt(yearCutoff)) &&
-            courseYear.Question.some(
-              (q) =>
-                q.questionNumber === question
-            )
+            courseYear.Question.some((q) => q.questionNumber === question)
         );
       }),
     [questions, course.CourseYear, yearCutoff]
@@ -60,7 +59,7 @@ export const ClientCourseCard = ({
     <div className="absolute m-1 flex flex-col bg-slate-800 border border-slate-700 rounded-md py-1 px-2 min-h-32 min-w-32 dark:bg-slate-950 dark:border-slate-800">
       <div className="flex w-full h-6">
         <TooltipProvider>
-          <Tooltip delayDuration={500} >
+          <Tooltip delayDuration={500}>
             <TooltipTrigger asChild>
               <Link href={`/${tripos}/${triposPart}/${course.code}`}>
                 <h1 className="hover:text-slate-300 text-white font-extrabold">
@@ -69,7 +68,6 @@ export const ClientCourseCard = ({
               </Link>
             </TooltipTrigger>
             <TooltipPrimitive.Portal>
-
               <TooltipContent sideOffset={9}>
                 <p className="text-base">{course.name}</p>
               </TooltipContent>

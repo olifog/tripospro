@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 export const createAnswer = async ({
   questionId,
-  userId
+  userId,
 }: {
   questionId: number;
   userId: string;

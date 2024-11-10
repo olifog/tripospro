@@ -11,6 +11,7 @@ import { editUser } from "@/actions/user";
 import { useRouter } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { User } from "lucia";
+import { triposPartToReadable } from "@/lib/utils";
 
 export const ClientOnboarding = ({
   triposes,
@@ -61,7 +62,7 @@ export const ClientOnboarding = ({
           <Combobox
             options={triposParts.map((triposPart) => ({
               value: triposPart.id.toString(),
-              label: triposPart.name,
+              label: triposPartToReadable(triposPart.name),
             }))}
             defaultText="Tripos Part..."
             onChange={(value) => {
