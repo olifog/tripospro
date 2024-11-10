@@ -44,8 +44,9 @@ export const MuuriGrid = ({ children }: { children: React.ReactNode }) => {
         const Grid = (await import("muuri")).default;
 
         try {
+          const isWideEnough = window.innerWidth > 512;
           muuriRef.current = new Grid(gridRef.current, {
-            dragEnabled: true,
+            dragEnabled: isWideEnough,
             layout: {
               fillGaps: true,
             },
