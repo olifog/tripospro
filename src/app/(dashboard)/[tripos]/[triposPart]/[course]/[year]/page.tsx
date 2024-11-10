@@ -8,6 +8,7 @@ import { getCourseYearByPath } from "@/queries/courseYear";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 
 export default async function CourseYear({
   params,
@@ -27,6 +28,7 @@ export default async function CourseYear({
     easter,
     lent,
     michaelmas,
+    CourseYearLecturer,
   } = courseYear;
 
   return (
@@ -51,6 +53,28 @@ export default async function CourseYear({
             supervisions
           </p>
         </div>
+        <div className="flex space-x-2 items-center">
+          <span className="text-sm text-slate-500 dark:text-slate-400">
+            Lectured by:
+          </span>
+          <div className="flex items-center">
+            {CourseYearLecturer.map(({ lecturer }, index) => (
+              <Fragment key={lecturer.id}>
+                <Link
+                  href={`/profile/${lecturer.crsid}`}
+                  className="hover:underline text-blue-500 text-sm"
+                >
+                  {lecturer.name ?? lecturer.crsid}
+                </Link>
+                {index < CourseYearLecturer.length - 1 && (
+                  <span className="text-sm pr-2 text-slate-500 dark:text-slate-400">
+                    ,
+                  </span>
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
         <Link
           href={courseYearUrl}
           className="text-sm text-slate-500 dark:text-slate-400 flex items-end hover:underline"
@@ -59,7 +83,6 @@ export default async function CourseYear({
           <ArrowUpRight className="w-4 h-4 mb-[1px]" />
         </Link>
       </div>
-
       <div
         className="prose-sm max-w-xl prose-slate prose-ul:list-disc prose-li:my-0 dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: description }}

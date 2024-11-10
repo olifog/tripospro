@@ -46,6 +46,11 @@ export const getCourseYearByPath = async ({
     },
     include: {
       course: true,
+      CourseYearLecturer: {
+        include: {
+          lecturer: true,
+        }
+      },
     },
   });
 

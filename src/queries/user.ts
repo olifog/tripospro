@@ -22,6 +22,12 @@ export const getUser = async (id?: string) => {
   });
 };
 
+export const getUserByCrsid = async (crsid: string) => {
+  return await prisma.user.findUnique({
+    where: { crsid },
+  });
+};
+
 export const getCurrentUser = async () => await getUser();
 
 export const getCurrentUserId = async () => {
