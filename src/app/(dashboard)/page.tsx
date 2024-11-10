@@ -11,7 +11,10 @@ export default async function Home() {
       <HomeRedirecter />
       <div className="flex flex-col space-y-4 items-center">
         {triposes.map((tripos) => (
-          <div className="dark:bg-slate-800 bg-slate-700 border dark:border-slate-700 border-slate-600 rounded-md shadow-lg py-1 px-2 min-w-48 text-center hover:bg-slate-600 hover:dark:bg-slate-700 text-slate-100">
+          <div
+            key={tripos.id}
+            className="dark:bg-slate-800 bg-slate-700 border dark:border-slate-700 border-slate-600 rounded-md shadow-lg py-1 px-2 min-w-48 text-center hover:bg-slate-600 hover:dark:bg-slate-700 text-slate-100"
+          >
             <Link href={`/${tripos.code}`}>{tripos.name}</Link>
           </div>
         ))}

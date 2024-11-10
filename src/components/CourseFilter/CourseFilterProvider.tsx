@@ -107,7 +107,11 @@ const SearchInput = () => {
   );
 };
 
-export const NoFilterProvider = ({ children }: { children: React.ReactNode }) => {
+export const NoFilterProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <CourseFilterContext.Provider
       value={{

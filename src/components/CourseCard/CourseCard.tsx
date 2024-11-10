@@ -28,8 +28,13 @@ export const ClientCourseCard = ({
   years: string[];
   absolute?: boolean;
 }) => {
-  const { onlyCurrent, yearCutoff, onlyExamined, hideCurrentYear, searchQuery } =
-    useContext(CourseFilterContext);
+  const {
+    onlyCurrent,
+    yearCutoff,
+    onlyExamined,
+    hideCurrentYear,
+    searchQuery,
+  } = useContext(CourseFilterContext);
   const filteredYears = useMemo(
     () =>
       years.filter(

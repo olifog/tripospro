@@ -14,7 +14,7 @@ export const ClientHomeRedirecter = ({
   useEffect(() => {
     if (!user || !user.tripos || !user.triposPart) return;
     router.replace(`/${user.tripos.code}/${user.triposPart.name}`);
-  }, []);
+  }, [user, router]);
 
   return null;
 };
