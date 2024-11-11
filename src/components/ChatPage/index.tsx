@@ -184,7 +184,7 @@ export const ChatPage = ({
 }: {
   user: Awaited<ReturnType<typeof getCurrentUser>>;
 }) => {
-  const { messages, input, handleInputChange, handleSubmit, addToolResult } =
+  const { messages, input, handleInputChange, handleSubmit } =
     useChat({
       api: "/api/chat",
       maxSteps: 5,

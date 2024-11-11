@@ -32,7 +32,7 @@ export default async function TriposPart({
   const courses = await getTriposPartCourses(triposPartObject.id);
 
   return (
-    <div className="flex flex-col w-full max-w-4xl items-center">
+    <div className="flex flex-col w-full max-w-4xl items-center space-y-2">
       <DismissableWarning>
         Warning: the web scraper is still in development, so some courses may be
         missing/incomplete!
