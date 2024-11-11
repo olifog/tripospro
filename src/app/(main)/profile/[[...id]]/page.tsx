@@ -9,14 +9,13 @@ export default async function Profile({
 }) {
   const signedInUser = await getCurrentUser();
 
-  if (!signedInUser || !params.id || params.id.length === 0) {
-    if (signedInUser) return redirect("/profile/" + signedInUser.crsid);
-    return redirect("/");
+  if (params.id?.[0]) {
+    const user = await getUserByCrsid(params.id[0]);
+    if (!user) return notFound();
+    return <ProfilePage user={user} />;
   }
 
-  const user = await getUserByCrsid(params.id[0]);
+  if (signedInUser) return redirect("/profile/" + signedInUser.crsid);
 
-  if (!user) return notFound();
-
-  return <ProfilePage user={user} />;
+  return redirect("/");
 }
