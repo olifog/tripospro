@@ -19,7 +19,9 @@ export const Header = async ({
             <h1 className="text-3xl font-bold">Tripos Pro</h1>
           </Link>
           <BackButton />
-          <nav className="flex items-center"></nav>
+          <nav className="flex items-center">
+            <Link href="/chat">Chat</Link>
+          </nav>
         </div>
         <div className="flex items-center space-x-4">
           <DarkModeToggle />

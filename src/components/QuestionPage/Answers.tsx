@@ -1,11 +1,22 @@
-import { getQuestionAnswers } from "@/queries/question";
+import { troute } from "@/troute";
 
 export const Answers = ({
-  answers,
+  questionId,
+  userId,
 }: {
-  answers?: Awaited<ReturnType<typeof getQuestionAnswers>>;
+  questionId: number;
+  userId: string;
 }) => {
-  const sortedAnswers = answers?.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  const { data: answers, isLoading } = troute.getQuestionAnswers({
+    params: { questionId: questionId, userId: userId },
+    enabled: !!userId,
+  });
+
+  if (isLoading) return null;
+
+  const sortedAnswers = answers?.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
 
   return (
     <div className="flex flex-col">
@@ -22,18 +33,26 @@ export const Answers = ({
             >
               <div className="flex justify-between items-center mb-2">
                 <p className="text-white font-semibold text-sm">
-                  {answer.createdAt.toLocaleDateString()}
+                  {new Date(answer.createdAt).toLocaleDateString()}
                 </p>
                 <span className="text-xs text-slate-400">
-                  {answer.createdAt.toLocaleTimeString()}
+                  {new Date(answer.createdAt).toLocaleTimeString()}
                 </span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">
-                  Difficulty: <span className="font-semibold text-slate-200 pl-1">{answer.difficulty}</span>/10
+                  Difficulty:{" "}
+                  <span className="font-semibold text-slate-200 pl-1">
+                    {answer.difficulty}
+                  </span>
+                  /10
                 </span>
                 <span className="text-xs text-slate-400">
-                  Time Taken: <span className="font-semibold text-slate-200 pl-1">{answer.timeTaken}</span> mins
+                  Time Taken:{" "}
+                  <span className="font-semibold text-slate-200 pl-1">
+                    {answer.timeTaken}
+                  </span>{" "}
+                  mins
                 </span>
               </div>
             </div>

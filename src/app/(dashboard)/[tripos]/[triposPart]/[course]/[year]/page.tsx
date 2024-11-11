@@ -5,7 +5,10 @@ import {
   triposPartToReadable,
   yearToAcademicYear,
 } from "@/lib/utils";
-import { getCourseYearByPath, getCourseYearQuestions } from "@/queries/courseYear";
+import {
+  getCourseYearByPath,
+  getCourseYearQuestions,
+} from "@/queries/courseYear";
 import { getCurrentUser } from "@/queries/user";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -99,7 +102,7 @@ export default async function CourseYear({
                 className={cn(
                   "dark:bg-slate-800 bg-slate-700 text-slate-100 border text-xs border-slate-700 w-6 h-6 flex items-center justify-center rounded-md dark:hover:bg-slate-900 hover:bg-slate-800",
                   question._count.UserQuestionAnswer > 0 &&
-                    "bg-green-800 dark:bg-green-800 border-green-700 hover:bg-green-900 dark:hover:bg-green-900",
+                    "bg-green-800 dark:bg-green-800 border-green-700 hover:bg-green-900 dark:hover:bg-green-900"
                 )}
               >
                 {question.questionNumber}

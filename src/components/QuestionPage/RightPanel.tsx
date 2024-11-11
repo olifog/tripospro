@@ -20,7 +20,6 @@ export const RightPanel = ({
   answers?: Awaited<ReturnType<typeof getQuestionAnswers>>;
   user: Awaited<ReturnType<typeof getCurrentUser>>;
 }) => {
-
   return (
     <div className="w-full h-full rounded-xl bg-slate-50 dark:bg-slate-950 ml-1 flex flex-col p-2 space-y-2">
       <div className="w-full h-6 flex justify-center items-center">
@@ -44,12 +43,17 @@ export const RightPanel = ({
           TODO: question statistics, revision tools, stopwatch, comments
         </p>
       </div>
-      { !user && <p className="text-sm text-slate-500">Please login to log your answers</p> }
-      { user && <>
-        <RecordDone questionId={question.id} userId={user.id} />
-        <Answers answers={answers} />
-      </> }
+      {!user && (
+        <p className="text-sm text-slate-500">
+          Please login to log your answers
+        </p>
+      )}
+      {user && (
+        <>
+          <RecordDone questionId={question.id} userId={user.id} />
+          <Answers questionId={question.id} userId={user.id} />
+        </>
+      )}
     </div>
-  )
+  );
 };
-

@@ -45,7 +45,6 @@ export const ProfilePage = async ({
           <li>Day-by-day heatmap</li>
         </ul>
       </div>
-      
     </div>
   );
 };

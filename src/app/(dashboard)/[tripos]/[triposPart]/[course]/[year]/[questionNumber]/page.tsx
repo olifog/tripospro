@@ -31,7 +31,9 @@ export default async function Question({
 
   const user = await getCurrentUser();
 
-  const answers = user ? await getQuestionAnswers(question.id, user.id) : undefined;
+  const answers = user
+    ? await getQuestionAnswers({ questionId: question.id, userId: user.id })
+    : undefined;
 
   return <QuestionPage user={user} question={question} answers={answers} />;
 }

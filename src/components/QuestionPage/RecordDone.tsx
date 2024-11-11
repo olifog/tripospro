@@ -36,8 +36,12 @@ export const RecordDone = ({
         onSubmit={async (e) => {
           e.preventDefault();
 
-          const timeTaken = ((e.target as HTMLFormElement)[0] as HTMLInputElement).value;
-          const difficulty = ((e.target as HTMLFormElement)[1] as HTMLInputElement).value;
+          const timeTaken = (
+            (e.target as HTMLFormElement)[0] as HTMLInputElement
+          ).value;
+          const difficulty = (
+            (e.target as HTMLFormElement)[1] as HTMLInputElement
+          ).value;
 
           console.log(timeTaken, difficulty);
 
@@ -87,7 +91,9 @@ export const RecordDone = ({
           </div>
         </div>
         <div>
-          <Button type="submit" disabled={isLoading}>{isLoading ? "Logging..." : "Log"}</Button>
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging..." : "Log"}
+          </Button>
         </div>
       </form>
     </div>

@@ -49,7 +49,7 @@ export const getCourseYearByPath = async ({
       CourseYearLecturer: {
         include: {
           lecturer: true,
-        }
+        },
       },
     },
   });
@@ -67,7 +67,10 @@ export const getCourseYearByPath = async ({
   return null;
 };
 
-export const getCourseYearQuestions = async (courseYearId: number, userId?: string) => {
+export const getCourseYearQuestions = async (
+  courseYearId: number,
+  userId?: string
+) => {
   const data = await prisma.question.findMany({
     where: {
       courseYearId,

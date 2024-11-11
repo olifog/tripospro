@@ -3,7 +3,11 @@ import { getAllTriposes } from "./queries/tripos";
 import { getTriposParts } from "./queries/triposPart";
 import { getTriposPartCourses } from "./queries/course";
 import { getCourseYears } from "./queries/courseYear";
-import { getCourseYearQuestions } from "./queries/question";
+import {
+  getCourseYearQuestions,
+  getQuestionAnswers,
+  getQuestionWithContextById,
+} from "./queries/question";
 
 export const { GET, troute } = createTroute({
   getAllTriposes,
@@ -11,4 +15,6 @@ export const { GET, troute } = createTroute({
   getTriposPartCourses,
   getCourseYears,
   getCourseYearQuestions,
+  getQuestionWithContextById,
+  getQuestionAnswers,
 });

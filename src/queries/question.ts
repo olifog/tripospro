@@ -42,17 +42,57 @@ export const getQuestionByPath = async ({
     return {
       ...data,
       courseYear,
-    }
+    };
   }
-  
+
   return null;
 };
 
-export const getQuestionAnswers = async (questionId: number, userId: string) => {
+export const getQuestionAnswers = async ({
+  questionId,
+  userId,
+}: {
+  questionId: number;
+  userId: string;
+}) => {
   const data = await prisma.userQuestionAnswer.findMany({
     where: {
       questionId,
       userId,
+    },
+  });
+
+  return data;
+};
+
+export const getQuestionWithContextById = async ({
+  questionId,
+}: {
+  questionId: number;
+}) => {
+  const data = await prisma.question.findUnique({
+    where: {
+      id: questionId,
+    },
+    include: {
+      courseYear: {
+        include: {
+          course: {
+            include: {
+              triposPart: {
+                include: {
+                  tripos: true,
+                },
+              },
+            },
+          },
+        },
+      },
+      paperYear: {
+        include: {
+          paper: true,
+        },
+      },
     },
   });
 
