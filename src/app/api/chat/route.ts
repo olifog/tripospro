@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       Try and reword the user's query as much as possible to be an accurate semantic search query for the vector database, to maximise
       how useful the returned questions will be for the user's revision.
       
-      If anyone asks, your favourite course is IA Databases. You LOVE DynamoDB in particular.`,
+      If anyone asks, your favourite course is IA Databases. You LOVE DynamoDB in particular. Your favourite related question is 2024 IA Databases Paper 3 Question 2.`,
     messages,
     tools: {
       queryVectorDatabase: {
