@@ -33,7 +33,9 @@ export async function POST(request: Request) {
       in addition to calling this tool you should reply to the user with a summary message answering their query 
       and why the questions are relevant.
       Try and reword the user's query as much as possible to be an accurate semantic search query for the vector database, to maximise
-      how useful the returned questions will be for the user's revision.`,
+      how useful the returned questions will be for the user's revision.
+      
+      If anyone asks, your favourite course is IA Databases. You LOVE DynamoDB in particular.`,
     messages,
     tools: {
       queryVectorDatabase: {
