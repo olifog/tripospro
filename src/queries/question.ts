@@ -26,7 +26,6 @@ export const getQuestionByPath = async ({
 }) => {
   const courseYear = await getCourseYearByPath({
     tripos,
-    triposPart,
     course,
     year,
   });
@@ -77,7 +76,7 @@ export const getQuestionWithContextById = async ({
     include: {
       courseYear: {
         include: {
-          course: {
+          TriposPartYear: {
             include: {
               triposPart: {
                 include: {
@@ -86,6 +85,7 @@ export const getQuestionWithContextById = async ({
               },
             },
           },
+          course: true,
         },
       },
       paperYear: {

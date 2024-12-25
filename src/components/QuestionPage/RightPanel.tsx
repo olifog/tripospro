@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 import { getQuestionAnswers, getQuestionByPath } from "@/queries/question";
 import { RecordDone } from "./RecordDone";

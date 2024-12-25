@@ -1,13 +1,17 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getTriposPartCourses(triposPartId: number) {
-  const data = await prisma.course.findMany({
+  return await prisma.course.findMany({
     where: {
-      triposPartId: triposPartId,
+      CourseYear: {
+        some: {
+          TriposPartYear: {
+            triposPartId,
+          },
+        },
+      },
     },
   });
-
-  return data;
 }
 
 export const getCourse = async (courseId: number, userId?: string) => {
@@ -64,10 +68,16 @@ export const getCourseByPath = async ({
   const data = await prisma.course.findFirst({
     where: {
       code: course,
-      triposPart: {
-        name: triposPart,
-        tripos: {
-          code: tripos,
+      CourseYear: {
+        some: {
+          TriposPartYear: {
+            triposPart: {
+              name: triposPart,
+              tripos: {
+                code: tripos,
+              },
+            },
+          },
         },
       },
     },

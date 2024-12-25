@@ -36,7 +36,11 @@ const QuestionCard = ({
     return <span className="text-sm text-gray-500">Failed to load.</span>;
   }
 
-  const questionUrl = `/${question.courseYear.course.triposPart.tripos.code}/${question.courseYear.course.triposPart.name}/${question.courseYear.course.code}/${question.courseYear.year}/${question.questionNumber}`;
+  const questionUrl = `/${question.courseYear.TriposPartYear.triposPart.tripos.code}` +
+  `/${question.courseYear.TriposPartYear.triposPart.name}` +
+  `/${question.courseYear.course.code}` +
+  `/${question.courseYear.year}` +
+  `/${question.questionNumber}`;
 
   return (
     <Link href={questionUrl} target="_blank" rel="noopener noreferrer">
@@ -44,7 +48,9 @@ const QuestionCard = ({
         <FileText className="w-8 h-8 text-gray-400" />
         <div className="flex flex-col flex-1">
           <span className="text-gray-400 text-xs">
-            {triposPartToReadable(question.courseYear.course.triposPart.name)}{" "}
+            {triposPartToReadable(
+              question.courseYear.TriposPartYear.triposPart.name
+            )}{" "}
             {question.courseYear.course.code}
           </span>
           <span className="text-gray-200 text-xs">
@@ -184,23 +190,22 @@ export const ChatPage = ({
 }: {
   user: Awaited<ReturnType<typeof getCurrentUser>>;
 }) => {
-  const { messages, input, handleInputChange, handleSubmit } =
-    useChat({
-      api: "/api/chat",
-      maxSteps: 5,
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    api: "/api/chat",
+    maxSteps: 5,
 
-      // run client-side tools that are automatically executed:
-      async onToolCall({ toolCall }) {
-        if (toolCall.toolName === "getTriposPart") {
-          return user?.triposPart?.name
-            ? triposPartToReadable(user.triposPart.name)
-            : "Unknown";
-        }
-        if (toolCall.toolName === "returnQuestions") {
-          return toolCall.args;
-        }
-      },
-    });
+    // run client-side tools that are automatically executed:
+    async onToolCall({ toolCall }) {
+      if (toolCall.toolName === "getTriposPart") {
+        return user?.triposPart?.name
+          ? triposPartToReadable(user.triposPart.name)
+          : "Unknown";
+      }
+      if (toolCall.toolName === "returnQuestions") {
+        return toolCall.args;
+      }
+    },
+  });
 
   return (
     <div className="flex flex-col w-full h-full max-w-screen-md mx-auto gap-4 items-center">

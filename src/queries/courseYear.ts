@@ -22,12 +22,10 @@ export const getCourseYears = async (courseId: number) => {
 
 export const getCourseYearByPath = async ({
   tripos,
-  triposPart,
   course,
   year,
 }: {
   tripos: string;
-  triposPart: string;
   course: string;
   year: string;
 }) => {
@@ -36,12 +34,9 @@ export const getCourseYearByPath = async ({
       year,
       course: {
         code: course,
-        triposPart: {
-          name: triposPart,
-          tripos: {
-            code: tripos,
-          },
-        },
+        tripos: {
+          code: tripos
+        }
       },
     },
     include: {

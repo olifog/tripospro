@@ -7,7 +7,7 @@ import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { answerQuestion } from "@/actions/question";
 import { useRouter } from "next/navigation";
-import { revalidatePath } from "next/cache";
+
 export const RecordDone = ({
   questionId,
   userId,
