@@ -24,7 +24,7 @@ SOURCE_URLS = [
     "https://www.cl.cam.ac.uk/teaching/2425/part1b.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part2.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part3.html",
-]
+][::-1]
 
 TERMS = {
     "michaelmas": "Michaelmas term",

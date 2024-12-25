@@ -12,27 +12,27 @@ client = OpenAI(
 )
 
 SOURCE_URLS = [
-    # "https://www.cl.cam.ac.uk/teaching/1112/part1a-cst.html",
-    # "https://www.cl.cam.ac.uk/teaching/1112/part1b.html",
-    # "https://www.cl.cam.ac.uk/teaching/1112/part2.html",
-    # "https://www.cl.cam.ac.uk/teaching/1112/part3.html",
-    # "https://www.cl.cam.ac.uk/teaching/1213/part1a-cst.html",
-    # "https://www.cl.cam.ac.uk/teaching/1213/part1b.html",
-    # "https://www.cl.cam.ac.uk/teaching/1213/part2.html",
-    # "https://www.cl.cam.ac.uk/teaching/1213/part3.html",
-    # "https://www.cl.cam.ac.uk/teaching/1314/part1a-cst.html",
-    # "https://www.cl.cam.ac.uk/teaching/1314/part1b.html",
-    # "https://www.cl.cam.ac.uk/teaching/1314/part2.html",
-    # "https://www.cl.cam.ac.uk/teaching/1314/part3.html",
-    # "https://www.cl.cam.ac.uk/teaching/1415/part1a-cst.html",
-    # "https://www.cl.cam.ac.uk/teaching/1415/part1b.html",
-    # "https://www.cl.cam.ac.uk/teaching/1415/part2.html",
-    # "https://www.cl.cam.ac.uk/teaching/1415/part3.html",
-    # "https://www.cl.cam.ac.uk/teaching/1516/part1a-cst.html",
-    # "https://www.cl.cam.ac.uk/teaching/1516/part1b.html",
-    # "https://www.cl.cam.ac.uk/teaching/1516/part2.html",
-    # "https://www.cl.cam.ac.uk/teaching/1516/part3.html",
-    # "https://www.cl.cam.ac.uk/teaching/1617/part1a-75.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1112/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1213/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1314/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1415/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part1a-cst.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part1b.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part2.html",
+    "https://www.cl.cam.ac.uk/teaching/1516/part3.html",
+    "https://www.cl.cam.ac.uk/teaching/1617/part1a-75.html",
     "https://www.cl.cam.ac.uk/teaching/1617/part1b.html",
     "https://www.cl.cam.ac.uk/teaching/1617/part2.html",
     "https://www.cl.cam.ac.uk/teaching/1617/part3.html",
@@ -48,7 +48,7 @@ SOURCE_URLS = [
     "https://www.cl.cam.ac.uk/teaching/1920/part1b-75.html",
     "https://www.cl.cam.ac.uk/teaching/1920/part2-75.html",
     "https://www.cl.cam.ac.uk/teaching/1920/part3.html",
-]
+][::-1]
 
 TERMS = {
     "michaelmas": "Michaelmas term",
@@ -82,7 +82,8 @@ def crawl_course(url):
     system_message = """
         You are a helpful assistant that extracts information from HTML.
         You are given a string of HTML content, and you need to extract the number of lectures,
-        the number of supervisions, and the URL of the past exam questions. Return the data in the
+        the number of supervisions, and the URL of the past exam questions. If there are multiple URLs, choose
+        the first one. Return the data in the
         JSON format: {"lectures": int | null, "supervisions": int | null, "past_exam_questions": str | null}.
         JUST return the JSON, nothing else, do not say anything else.
     """
