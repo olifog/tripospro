@@ -36,8 +36,8 @@ const QuestionCard = ({
     return <span className="text-sm text-gray-500">Failed to load.</span>;
   }
 
-  const questionUrl = `/${question.courseYear.TriposPartYear.triposPart.tripos.code}` +
-  `/${question.courseYear.TriposPartYear.triposPart.name}` +
+  const questionUrl = `/${question.courseYear.TriposPartYear?.triposPart.tripos.code ?? 'null'}` +
+  `/${question.courseYear.TriposPartYear?.triposPart.name ?? 'null'}` +
   `/${question.courseYear.course.code}` +
   `/${question.courseYear.year}` +
   `/${question.questionNumber}`;
@@ -49,7 +49,7 @@ const QuestionCard = ({
         <div className="flex flex-col flex-1">
           <span className="text-gray-400 text-xs">
             {triposPartToReadable(
-              question.courseYear.TriposPartYear.triposPart.name
+              question.courseYear.TriposPartYear?.triposPart.name ?? "null"
             )}{" "}
             {question.courseYear.course.code}
           </span>

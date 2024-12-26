@@ -61,7 +61,7 @@ SOURCE_URLS = [
     "https://www.cl.cam.ac.uk/teaching/2425/part1b.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part2.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part3.html",
-]
+][::-1]
 
 
 def get_questions(part_url, course_questions):
@@ -75,38 +75,41 @@ def get_questions(part_url, course_questions):
             continue
 
         if course_data["past_exam_questions"]:
-            response = requests.get(course_data["past_exam_questions"])
-            soup = BeautifulSoup(response.content, "html.parser")
+            try:
+                response = requests.get(course_data["past_exam_questions"])
+                soup = BeautifulSoup(response.content, "html.parser")
 
-            # class="campl-content-container"
-            main_content_div = soup.find("div", {"class": "campl-main-content"})
-            print(year, tripos_part, course_code)
+                # class="campl-content-container"
+                main_content_div = soup.find("div", {"class": "campl-main-content"})
+                print(year, tripos_part, course_code)
 
-            content_div = main_content_div.find("div", {"class": "campl-content-container"})
-            ul = content_div.find("ul")
-            for li in ul.find_all("li"):
-                # either there's 2 links - one question and one solution
-                # or there's 1 link - just the question
-                a_tags = li.find_all("a")
-                question_url = a_tags[0]["href"]
+                content_div = main_content_div.find("div", {"class": "campl-content-container"})
+                ul = content_div.find("ul")
+                for li in ul.find_all("li"):
+                    # either there's 2 links - one question and one solution
+                    # or there's 1 link - just the question
+                    a_tags = li.find_all("a")
+                    question_url = a_tags[0]["href"]
 
-                if len(a_tags) == 2:
-                    solution_url = a_tags[1]["href"]
-                else:
-                    solution_url = None
-                
-                # the first a tag's text is of the form:
-                # 2004 Paper 8 Question 7
-                question_parts = a_tags[0].text.split(" ")
-                question_year = question_parts[0]
-                question_paper = question_parts[2]
-                question_number = question_parts[4]
+                    if len(a_tags) == 2:
+                        solution_url = a_tags[1]["href"]
+                    else:
+                        solution_url = None
+                    
+                    # the first a tag's text is of the form:
+                    # 2004 Paper 8 Question 7
+                    question_parts = a_tags[0].text.split(" ")
+                    question_year = question_parts[0]
+                    question_paper = question_parts[2][0]
+                    question_number = question_parts[4]
 
-                course_questions[course_code][question_year][question_number] = {
-                    "question_url": question_url,
-                    "solution_url": solution_url,
-                    "paper": question_paper,
-                }
+                    course_questions[course_code][question_year][question_number] = {
+                        "question_url": question_url,
+                        "solution_url": solution_url,
+                        "paper": question_paper,
+                    }
+            except Exception as e:
+                print(e)
 
     return course_questions
 

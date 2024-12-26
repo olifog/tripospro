@@ -36,21 +36,21 @@ model UserSession {
 }
 
 model Tripos {
-  id         Int          @id @default(autoincrement())
-  name       String
-  code       String
+  id   Int    @id @default(autoincrement())
+  name String
+  code String
 
   TriposPart TriposPart[]
   User       User[]
   Course     Course[]
-  Paper Paper[]
+  Paper      Paper[]
 }
 
 model TriposPart {
-  id             Int              @id @default(autoincrement())
-  name           String
-  tripos         Tripos           @relation(fields: [triposId], references: [id])
-  triposId       Int
+  id       Int    @id @default(autoincrement())
+  name     String
+  tripos   Tripos @relation(fields: [triposId], references: [id])
+  triposId Int
 
   User           User[]
   TriposPartYear TriposPartYear[]
@@ -59,13 +59,13 @@ model TriposPart {
 }
 
 model TriposPartYear {
-  id           Int          @id @default(autoincrement())
-  triposPart   TriposPart   @relation(fields: [triposPartId], references: [id])
+  id           Int        @id @default(autoincrement())
+  triposPart   TriposPart @relation(fields: [triposPartId], references: [id])
   triposPartId Int
   year         String
 
-  CourseYear   CourseYear[]
-  PaperYear    PaperYear[]
+  CourseYear CourseYear[]
+  PaperYear  PaperYear[]
 
   @@unique([triposPartId, year])
 }
@@ -82,19 +82,19 @@ model Course {
 }
 
 model CourseYear {
-  id                       Int                      @id @default(autoincrement())
-  course                   Course                   @relation(fields: [courseId], references: [id])
-  courseId                 Int
-  year                     String
-  courseYearUrl            String
-  michaelmas               Boolean
-  lent                     Boolean
-  easter                   Boolean
-  lectures                 Int
-  suggestedSupervisions    Int
-  description              Bytes
-  TriposPartYear           TriposPartYear           @relation(fields: [triposPartYearId], references: [id])
-  triposPartYearId         Int
+  id                    Int             @id @default(autoincrement())
+  course                Course          @relation(fields: [courseId], references: [id])
+  courseId              Int
+  year                  String
+  courseYearUrl         String
+  michaelmas            Boolean
+  lent                  Boolean
+  easter                Boolean
+  lectures              Int
+  suggestedSupervisions Int
+  description           Bytes
+  TriposPartYear        TriposPartYear? @relation(fields: [triposPartYearId], references: [id])
+  triposPartYearId      Int?
 
   Question                 Question[]
   CourseYearLecturer       CourseYearLecturer[]
@@ -102,7 +102,7 @@ model CourseYear {
   CourseYearPrerequisiteOf CourseYearPrerequisite[] @relation(name: "CourseYearPrerequisiteOf")
   Lecture                  Lecture[]
   Tick                     Tick[]
-  
+
   @@unique([courseId, year])
 }
 
@@ -170,14 +170,14 @@ model Paper {
 }
 
 model PaperYear {
-  id               Int            @id @default(autoincrement())
-  paper            Paper          @relation(fields: [paperId], references: [id])
+  id               Int             @id @default(autoincrement())
+  paper            Paper           @relation(fields: [paperId], references: [id])
   paperId          Int
   year             String
   paperYearUrl     String
   Question         Question[]
-  triposPartYearId Int
-  triposPartYear   TriposPartYear @relation(fields: [triposPartYearId], references: [id])
+  triposPartYearId Int?
+  triposPartYear   TriposPartYear? @relation(fields: [triposPartYearId], references: [id])
 
   @@unique([paperId, year])
 }

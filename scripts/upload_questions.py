@@ -6,12 +6,13 @@ import os
 from dotenv import load_dotenv
 import zlib
 
+import sys
+
 load_dotenv()
 
 DB_URL = os.environ["DATABASE_URL"]
 
-DONE = {'CompDesign', 'MobSensSys', 'SWEng', 'Databases', 'Types', 'ArtIntII', 'ArtIntI', 'SecurityI', 'HoareLogic', 'SysOnChip', 'PrincComm', 'SecurityII', 'FPComp', 'Complexity', 'LogicProof', 'DigElec', 'QuantComp', 'DenotSem', 'OptComp', 'CompConstr', 'Prolog', 'ECommerce', 'NLP', 'Probabilty', 'CandC++', 'CompVision', 'TempLogic', 'ConcDisSys', 'ConceptsPL', 'Semantics', 'OpSystems', 'InfoRtrv', 'DiscMathII', 'SWDesign', 'OOProg', 'TopIssues', 'MathMforCS', 'AlgorithI', 'CompSysMod', 'EconLaw', 'CompNet', 'AdvGraph', 'CompTheory', 'RLFA', 'DiscMathI', 'FoundsCS', 'CompGraph', 'DSP', 'Bioinfo', 'Business', 'CompFunds', 'AlgorithII', 'CompArch', 'HCI', 'Algorithms', 'DiscMath', 'SWIDesign',
-        'TopConc', 'NumMethods', 'ProgJava', 'AdvAlgo', 'HLog+ModC', 'DatabasesA', 'Graphics', 'MLRD', 'IntDesign', 'SWSecEng'}
+DONE = set()
 
 def academic_year_to_second_year(year):
     tmp = int(year[2:])
@@ -33,7 +34,18 @@ async def main():
 
         course = await db.course.find_first(
             where={"code": course_code},
-            include={"triposPart": True}
+            include={
+                "tripos": True,
+                "CourseYear": {
+                    "include": {
+                        "TriposPartYear": {
+                            "include": {
+                                "triposPart": True
+                            }
+                        }
+                    }
+                }
+            }
         )
 
         if course is None:
@@ -42,46 +54,49 @@ async def main():
 
         for year, questions in course_years.items():
             print(course_code, year)
-            try:
-                course_year = await db.courseyear.upsert(
-                    where={"courseId_year": {"courseId": course.id, "year": year}},
-                    data={
-                        "create": {
-                            "courseYearUrl": "",
-                            "course": {"connect": {"id": course.id}},
-                            "year": year,
-                            "michaelmas": False,
-                            "lent": False,
-                            "easter": False,
-                            "lectures": 0,
-                            "suggestedSupervisions": 0,
-                            "description": Base64.encode(zlib.compress("<p>This year of this course hasn't been added to the database yet! :)</p>".encode("utf-8")))
-                        },
-                        "update": {},
+            course_year = await db.courseyear.upsert(
+                where={"courseId_year": {"courseId": course.id, "year": year}},
+                data={
+                    "create": {
+                        "courseYearUrl": "",
+                        "course": {"connect": {"id": course.id}},
+                        "year": year,
+                        "michaelmas": False,
+                        "lent": False,
+                        "easter": False,
+                        "lectures": 0,
+                        "suggestedSupervisions": 0,
+                        "description": Base64.encode(zlib.compress("<p>This year of this course hasn't been added to the database yet! :)</p>".encode("utf-8")))
                     },
-                )
-            except Exception as e:
-                print(e)
+                    "update": {},
+                },
+                include={"TriposPartYear": True}
+            )
 
             for question_number, question_data in questions.items():
                 # create the paper if it doesn't exist
                 paper = await db.paper.upsert(
-                    where={"name_triposPartId": {"name": question_data["paper"], "triposPartId": course.triposPart.id}},
+                    where={"name_triposId": {"name": question_data["paper"], "triposId": course.tripos.id}},
                     data={
-                        "create": {"name": question_data["paper"], "triposPartId": course.triposPart.id},
+                        "create": {"name": question_data["paper"], "triposId": course.tripos.id},
                         "update": {},
                     }
                 )
+
+                create = {
+                    "paperId": paper.id,
+                    "year": year,
+                    "paperYearUrl": f"https://www.cl.cam.ac.uk/teaching/exams/pastpapers/y{year}paper{paper.name}.html",
+                }
+
+                if course_year.TriposPartYear is not None:
+                    create["triposPartYearId"] = course_year.TriposPartYear.id
 
                 # create the paper year if it doesn't exist
                 paper_year = await db.paperyear.upsert(
                     where={"paperId_year": {"paperId": paper.id, "year": year}},
                     data={
-                        "create": {
-                            "paperId": paper.id,
-                            "year": year,
-                            "paperYearUrl": f"https://www.cl.cam.ac.uk/teaching/exams/pastpapers/y{year}paper{paper.name}.html",
-                        },
+                        "create": create,
                         "update": {},
                     },
                 )

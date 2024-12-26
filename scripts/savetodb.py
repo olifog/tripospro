@@ -68,7 +68,7 @@ SOURCE_URLS = [
     "https://www.cl.cam.ac.uk/teaching/2425/part1b.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part2.html",
     "https://www.cl.cam.ac.uk/teaching/2425/part3.html",
-]
+][::-1]
 
 
 def academic_year_to_second_year(year):
@@ -102,8 +102,23 @@ async def main():
             print(f"Tripos part {tripos_part} not found")
             continue
 
-        courses = json.load(open(f"./data/courses_{url.split('/')[-2]}_{tripos_part.name}.json"))
-        lecturers = json.load(open(f"./data/lecturers_{url.split('/')[-2]}_{tripos_part.name}.json"))
+        tripos_part_year = await db.tripospartyear.upsert(
+            where={"triposPartId_year": {"triposPartId": tripos_part.id, "year": year}},
+            data={
+                "create": {
+                    "triposPart": {"connect": {"id": tripos_part.id}},
+                    "year": year,
+                },
+                "update": {},
+            },
+        )
+
+        courses = json.load(
+            open(f"./data/courses_{url.split('/')[-2]}_{tripos_part.name}.json")
+        )
+        lecturers = json.load(
+            open(f"./data/lecturers_{url.split('/')[-2]}_{tripos_part.name}.json")
+        )
 
         for crsid, name in lecturers.items():
             await db.user.upsert(
@@ -125,16 +140,16 @@ async def main():
         for course_code, course_data in courses.items():
             course = await db.course.upsert(
                 where={
-                    "code_triposPartId": {
+                    "code_triposId": {
                         "code": course_code,
-                        "triposPartId": tripos_part.id,
+                        "triposId": cst_tripos.id,
                     }
                 },
                 data={
                     "create": {
                         "code": course_code,
                         "name": course_data["course_name"],
-                        "triposPart": {"connect": {"id": tripos_part.id}},
+                        "tripos": {"connect": {"id": cst_tripos.id}},
                     },
                     "update": {
                         "name": course_data["course_name"],
@@ -143,6 +158,8 @@ async def main():
             )
 
             print(course.name, year)
+            print(course.id)
+            print(tripos_part_year.id)
 
             course_year = await db.courseyear.upsert(
                 where={
@@ -153,7 +170,8 @@ async def main():
                 },
                 data={
                     "create": {
-                        "course": {"connect": {"id": course.id}},
+                        "course": {"connect": {"id": int(course.id)}},
+                        "TriposPartYear": {"connect": {"id": int(tripos_part_year.id)}},
                         "year": year,
                         "courseYearUrl": course_data["course_url"],
                         "lectures": (
@@ -168,9 +186,11 @@ async def main():
                         ),
                         "description": Base64.encode(
                             zlib.compress(
-                                (course_data.get("description", None)
-                                if course_data.get("description", None) is not None
-                                else course.name).encode("utf-8")
+                                (
+                                    course_data.get("description", None)
+                                    if course_data.get("description", None) is not None
+                                    else course.name
+                                ).encode("utf-8")
                             )
                         ),
                         "michaelmas": course_data["michaelmas"],
@@ -180,9 +200,11 @@ async def main():
                     "update": {
                         "description": Base64.encode(
                             zlib.compress(
-                                (course_data.get("description", None)
-                                if course_data.get("description", None) is not None
-                                else course.name).encode("utf-8")
+                                (
+                                    course_data.get("description", None)
+                                    if course_data.get("description", None) is not None
+                                    else course.name
+                                ).encode("utf-8")
                             )
                         ),
                     },
