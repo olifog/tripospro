@@ -45,7 +45,7 @@ export const Answers = ({
                   <span className="font-semibold text-slate-200 pl-1">
                     {answer.marks}
                   </span>
-                  /10
+                  /20
                 </span>
                 <span className="text-xs text-slate-400">
                   Time Taken:{" "}

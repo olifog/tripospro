@@ -58,7 +58,7 @@ export const RecordDone = ({
 
           setTimeout(() => {
             router.refresh();
-          }, 300);
+          }, 1000);
         }}
         className={cn(
           "flex flex-col gap-2 ml-2 border-l-2 dark:border-slate-200 border-slate-800 pl-2 pb-1 space-y-2",
@@ -78,13 +78,13 @@ export const RecordDone = ({
             />
           </div>
           <div>
-            <Label htmlFor="difficulty">Difficulty (1-10)</Label>
+            <Label htmlFor="marks">Marks (/20)</Label>
             <Input
               required
-              min={1}
-              max={10}
+              min={0}
+              max={20}
               type="number"
-              id="difficulty"
+              id="marks"
               className="w-24"
               placeholder="e.g. 5"
             />
