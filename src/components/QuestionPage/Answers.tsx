@@ -1,23 +1,11 @@
+import { getQuestionAnswers } from "@/queries/question";
 import { troute } from "@/troute";
 
 export const Answers = ({
-  questionId,
-  userId,
+  answers
 }: {
-  questionId: number;
-  userId: string;
+  answers?: Awaited<ReturnType<typeof getQuestionAnswers>>;
 }) => {
-  const { data: answers, isLoading } = troute.getQuestionAnswers({
-    params: { questionId: questionId, userId: userId },
-    enabled: !!userId,
-  });
-
-  if (isLoading) return null;
-
-  const sortedAnswers = answers?.sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
-
   return (
     <div className="flex flex-col">
       <h3 className="text-sm font-semibold mb-2">Previously Logged Answers</h3>
@@ -25,8 +13,8 @@ export const Answers = ({
         <p className="text-sm text-slate-500">No logged answers yet</p>
       )}
       <div className="grid grid-cols-1 gap-2">
-        {sortedAnswers &&
-          sortedAnswers.map((answer) => (
+        {answers &&
+          answers.map((answer) => (
             <div
               className="rounded-lg dark:bg-slate-900 bg-slate-800 border dark:border-slate-800 border-slate-700 p-1 w-60 shadow-md"
               key={answer.id}

@@ -1,10 +1,6 @@
-import { createAnswer } from "@/actions/question";
-import { MarkDoneButton } from "@/components/MarkDoneButton";
-import PdfViewer from "@/components/PdfViewer";
 import { QuestionPage } from "@/components/QuestionPage";
-import { Button } from "@/components/ui/button";
 
-import { getQuestionAnswers, getQuestionByPath } from "@/queries/question";
+import { getQuestionByPath } from "@/queries/question";
 import { getCurrentUser } from "@/queries/user";
 import { notFound } from "next/navigation";
 
@@ -31,9 +27,5 @@ export default async function Question({
 
   const user = await getCurrentUser();
 
-  const answers = user
-    ? await getQuestionAnswers({ questionId: question.id, userId: user.id })
-    : undefined;
-
-  return <QuestionPage user={user} question={question} answers={answers} />;
+  return <QuestionPage user={user} question={question} />;
 }

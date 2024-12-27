@@ -8,20 +8,28 @@ import { Answers } from "./Answers";
 import { getCurrentUser } from "@/queries/user";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { troute } from "@/troute";
 
 export const RightPanel = ({
   fullScreen,
   setFullScreen,
   question,
-  answers,
   user,
 }: {
   fullScreen: boolean;
   setFullScreen: (value: boolean) => void;
   question: NonNullable<Awaited<ReturnType<typeof getQuestionByPath>>>;
-  answers?: Awaited<ReturnType<typeof getQuestionAnswers>>;
   user: Awaited<ReturnType<typeof getCurrentUser>>;
 }) => {
+  const { data: answers, isLoading, refetch } = troute.getQuestionAnswers({
+    params: { questionId: question.id, userId: user!.id },
+    enabled: !!user,
+  });
+
+  const sortedAnswers = answers?.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
   return (
     <div className="w-full h-full rounded-xl bg-slate-50 dark:bg-slate-950 ml-1 flex flex-col p-2">
       <div className="w-full h-6 flex justify-center items-center">
@@ -60,8 +68,8 @@ export const RightPanel = ({
       )}
       {user && (
         <div className="flex flex-col gap-2">
-          <RecordDone questionId={question.id} userId={user.id} />
-          <Answers questionId={question.id} userId={user.id} />
+          <RecordDone refetch={refetch} questionId={question.id} userId={user.id} />
+          {isLoading ? null : <Answers answers={sortedAnswers} />}
         </div>
       )}
     </div>

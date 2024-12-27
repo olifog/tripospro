@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import PdfViewer from "../PdfViewer";
-import { getQuestionAnswers, getQuestionByPath } from "@/queries/question";
+import { getQuestionByPath } from "@/queries/question";
 import { useState } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { EllipsisVertical } from "lucide-react";
@@ -11,11 +11,9 @@ import { getCurrentUser } from "@/queries/user";
 
 export const QuestionPage = ({
   question,
-  answers,
   user,
 }: {
   question: NonNullable<Awaited<ReturnType<typeof getQuestionByPath>>>;
-  answers?: Awaited<ReturnType<typeof getQuestionAnswers>>;
   user: Awaited<ReturnType<typeof getCurrentUser>>;
 }) => {
   const [fullScreen, setFullScreen] = useState(false);
@@ -42,7 +40,6 @@ export const QuestionPage = ({
         <Panel defaultSize={50} minSize={20} maxSize={50} collapsible={true}>
           <RightPanel
             question={question}
-            answers={answers}
             fullScreen={fullScreen}
             setFullScreen={setFullScreen}
             user={user}

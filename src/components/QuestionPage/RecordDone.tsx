@@ -9,10 +9,12 @@ import { answerQuestion } from "@/actions/question";
 import { useRouter } from "next/navigation";
 
 export const RecordDone = ({
+  refetch,
   questionId,
   userId,
 }: {
   questionId: number;
+  refetch: () => void;
   userId: string;
 }) => {
   const [recordDoneOpen, setRecordDoneOpen] = useState(true);
@@ -55,10 +57,7 @@ export const RecordDone = ({
           });
 
           setIsLoading(false);
-
-          setTimeout(() => {
-            router.refresh();
-          }, 1000);
+          refetch();
         }}
         className={cn(
           "flex flex-col gap-2 ml-2 border-l-2 dark:border-slate-200 border-slate-800 pl-2 pb-1 space-y-2",
