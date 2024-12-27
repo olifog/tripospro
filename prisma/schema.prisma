@@ -64,6 +64,15 @@ model TriposPartYear {
   triposPartId Int
   year         String
 
+  candidates    Int?
+  starredFirsts Int?
+  firsts        Int?
+  twoOnes       Int?
+  twoTwos       Int?
+  thirds        Int?
+  unclassed     Int?
+  withdrawn     Int?
+
   CourseYear CourseYear[]
   PaperYear  PaperYear[]
 
@@ -183,14 +192,21 @@ model PaperYear {
 }
 
 model Question {
-  id                 Int                  @id @default(autoincrement())
-  paperYear          PaperYear            @relation(fields: [paperYearId], references: [id])
-  paperYearId        Int
-  courseYear         CourseYear           @relation(fields: [courseYearId], references: [id])
-  courseYearId       Int
-  questionNumber     Int
-  questionUrl        String
-  solutionUrl        String
+  id             Int        @id @default(autoincrement())
+  paperYear      PaperYear  @relation(fields: [paperYearId], references: [id])
+  paperYearId    Int
+  courseYear     CourseYear @relation(fields: [courseYearId], references: [id])
+  courseYearId   Int
+  questionNumber Int
+  questionUrl    String
+  solutionUrl    String
+
+  examinerComment String?
+  attempts        Int?
+  minimumMark     Int?
+  maximumMark     Int?
+  medianMark      Int?
+
   UserQuestionAnswer UserQuestionAnswer[]
   Thread             Thread[]
 
@@ -206,7 +222,7 @@ model UserQuestionAnswer {
   questionId Int
   timeTaken  Int?
   createdAt  DateTime @default(now())
-  difficulty Int?
+  marks      Int?
 }
 
 model Thread {

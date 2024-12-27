@@ -23,19 +23,19 @@ export const answerQuestion = async ({
   questionId,
   userId,
   timeTaken,
-  difficulty,
+  marks,
 }: {
   questionId: number;
   userId: string;
   timeTaken: number;
-  difficulty: number;
+  marks: number;
 }) => {
   const data = await prisma.userQuestionAnswer.create({
     data: {
       questionId,
       userId,
       timeTaken,
-      difficulty,
+      marks,
     },
   });
 

@@ -41,9 +41,9 @@ export const Answers = ({
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">
-                  Difficulty:{" "}
+                  Marks:{" "}
                   <span className="font-semibold text-slate-200 pl-1">
-                    {answer.difficulty}
+                    {answer.marks}
                   </span>
                   /10
                 </span>

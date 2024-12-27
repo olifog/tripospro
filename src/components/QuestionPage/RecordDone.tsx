@@ -39,13 +39,11 @@ export const RecordDone = ({
           const timeTaken = (
             (e.target as HTMLFormElement)[0] as HTMLInputElement
           ).value;
-          const difficulty = (
+          const marks = (
             (e.target as HTMLFormElement)[1] as HTMLInputElement
           ).value;
 
-          console.log(timeTaken, difficulty);
-
-          if (!timeTaken || !difficulty) return;
+          if (!timeTaken || !marks) return;
 
           setIsLoading(true);
 
@@ -53,12 +51,14 @@ export const RecordDone = ({
             questionId,
             userId,
             timeTaken: parseInt(timeTaken as string),
-            difficulty: parseInt(difficulty as string),
+            marks: parseInt(marks as string),
           });
 
           setIsLoading(false);
 
-          router.refresh();
+          setTimeout(() => {
+            router.refresh();
+          }, 300);
         }}
         className={cn(
           "flex flex-col gap-2 ml-2 border-l-2 dark:border-slate-200 border-slate-800 pl-2 pb-1 space-y-2",
