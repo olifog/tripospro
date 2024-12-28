@@ -22,7 +22,7 @@ export const RightPanel = ({
   user: Awaited<ReturnType<typeof getCurrentUser>>;
 }) => {
   const { data: answers, isLoading, refetch } = troute.getQuestionAnswers({
-    params: { questionId: question.id, userId: user!.id },
+    params: { questionId: question.id, userId: user?.id ?? "" },
     enabled: !!user,
   });
 
