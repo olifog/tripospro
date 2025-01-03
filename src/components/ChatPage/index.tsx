@@ -193,6 +193,13 @@ export const ChatPage = ({
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: "/api/chat",
     maxSteps: 5,
+    initialMessages: [
+      {
+        id: "0",
+        role: "assistant",
+        content: "Hello! Ask me any questions about the Tripos. I have access to every past paper question and can help recommend questions on topics.",
+      },
+    ],
 
     // run client-side tools that are automatically executed:
     async onToolCall({ toolCall }) {
