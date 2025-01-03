@@ -22,7 +22,7 @@ export const QuestionPage = ({
     <div
       className={cn(
         "w-full h-screen absolute top-0 flex -z-10",
-        fullScreen ? "z-[1000]" : "pt-32 max-w-screen-xl"
+        fullScreen ? "z-[1000]" : "pt-32 max-w-screen-2xl"
       )}
     >
       <PanelGroup
