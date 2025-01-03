@@ -36,7 +36,7 @@ const QuestionCard = ({
     return <span className="text-sm text-gray-500">Failed to load.</span>;
   }
 
-  const questionUrl = `/${question.courseYear.TriposPartYear?.triposPart.tripos.code ?? 'null'}` +
+  const questionUrl = `/${question.courseYear.TriposPartYear?.triposPart.tripos.code ?? 'CST'}` +
   `/${question.courseYear.TriposPartYear?.triposPart.name ?? 'null'}` +
   `/${question.courseYear.course.code}` +
   `/${question.courseYear.year}` +
