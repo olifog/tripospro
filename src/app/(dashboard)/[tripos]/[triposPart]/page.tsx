@@ -1,6 +1,5 @@
 import { CourseCardWithSuspense } from "@/components/CourseCard";
 import { CourseFilterProvider } from "@/components/CourseFilter/CourseFilterProvider";
-import { DismissableWarning } from "@/components/DismissableWarning";
 import { getTriposPartCourses } from "@/queries/course";
 import { getAllTriposes } from "@/queries/tripos";
 import { getTriposParts } from "@/queries/triposPart";
@@ -33,10 +32,6 @@ export default async function TriposPart({
 
   return (
     <div className="flex flex-col w-full max-w-4xl items-center space-y-2">
-      <DismissableWarning>
-        Warning: the web scraper is still in development, so some courses may be
-        missing/incomplete!
-      </DismissableWarning>
       <CourseFilterProvider>
         <div className="w-full relative">
           <MuuriGrid>
