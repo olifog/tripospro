@@ -69,7 +69,7 @@ export const RightPanel = ({
       {user && (
         <div className="flex flex-col gap-2">
           <RecordDone refetch={refetch} questionId={question.id} userId={user.id} />
-          {isLoading ? null : <Answers answers={sortedAnswers} />}
+          {isLoading ? null : <Answers answers={sortedAnswers} refetch={refetch} />}
         </div>
       )}
     </div>

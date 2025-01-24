@@ -1,11 +1,21 @@
+import { deleteAnswer } from "@/actions/answer";
 import { getQuestionAnswers } from "@/queries/question";
 import { troute } from "@/troute";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 export const Answers = ({
-  answers
+  answers,
+  refetch,
 }: {
   answers?: Awaited<ReturnType<typeof getQuestionAnswers>>;
+  refetch: () => void;
 }) => {
+
+  const handleDeleteAnswer = async (answerId: number) => {
+    await deleteAnswer(answerId);
+    refetch();
+  };
+
   return (
     <div className="flex flex-col">
       <h3 className="text-sm font-semibold mb-2">Previously Logged Answers</h3>
@@ -23,9 +33,17 @@ export const Answers = ({
                 <p className="text-white font-semibold text-sm">
                   {new Date(answer.createdAt).toLocaleDateString()}
                 </p>
-                <span className="text-xs text-slate-400">
-                  {new Date(answer.createdAt).toLocaleTimeString()}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-slate-400">
+                    {new Date(answer.createdAt).toLocaleTimeString()}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteAnswer(answer.id)}
+                  >
+                    <TrashIcon className="w-4 h-4 text-slate-400" />
+                  </button>
+                </div>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-slate-400">
