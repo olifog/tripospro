@@ -40,7 +40,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@tailwindcss/postcss": "^4.0.3",
-    "@types/node": "^20.17.16",
+    "@types/node": "^22.13.1",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "drizzle-kit": "^0.30.4",
