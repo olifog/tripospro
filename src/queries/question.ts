@@ -98,3 +98,43 @@ export const getQuestionWithContextById = async ({
 
   return data;
 };
+
+export const getQuestionByPaperYearNumber = async ({
+  paper,
+  year,
+  questionNumber,
+}: {
+  paper: string;
+  year: string;
+  questionNumber: string;
+}) => {
+  const data = await prisma.question.findFirst({
+    where: {
+      paperYear: {
+        paper: {
+          name: paper,
+        },
+        year: year,
+      },
+      questionNumber: Number.parseInt(questionNumber),
+    },
+    include: {
+      courseYear: {
+        include: {
+          TriposPartYear: {
+            include: {
+              triposPart: {
+                include: {
+                  tripos: true,
+                },
+              },
+            },
+          },
+          course: true,
+        },
+      },
+    },
+  });
+
+  return data;
+};
