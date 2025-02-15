@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check --write",
-    "ui-add": "npx shadcn add -yo"
+    "ui-add": "npx shadcn@canary add -yo"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.11.0",
