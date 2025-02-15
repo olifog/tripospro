@@ -1,4 +1,11 @@
-import { boolean, integer, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  varchar
+} from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -9,7 +16,7 @@ export const usersTable = pgTable("users", {
   picture: varchar({ length: 255 }),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const triposTable = pgTable("tripos", {
@@ -18,7 +25,7 @@ export const triposTable = pgTable("tripos", {
   code: varchar({ length: 255 }).notNull(),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const triposPartTable = pgTable("tripos_part", {
@@ -28,7 +35,7 @@ export const triposPartTable = pgTable("tripos_part", {
   triposId: integer().references(() => triposTable.id),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const triposPartYearTable = pgTable("tripos_part_year", {
@@ -46,7 +53,7 @@ export const triposPartYearTable = pgTable("tripos_part_year", {
   withdrawn: integer(),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const paperTable = pgTable("paper", {
@@ -55,7 +62,7 @@ export const paperTable = pgTable("paper", {
   triposId: integer().references(() => triposTable.id),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const paperYearTable = pgTable("paper_year", {
@@ -66,7 +73,7 @@ export const paperYearTable = pgTable("paper_year", {
   triposPartYearId: integer().references(() => triposPartYearTable.id),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const courseTable = pgTable("course", {
@@ -75,7 +82,7 @@ export const courseTable = pgTable("course", {
   code: varchar({ length: 255 }).notNull(),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const courseYearTable = pgTable("course_year", {
@@ -84,7 +91,7 @@ export const courseYearTable = pgTable("course_year", {
   courseId: integer().references(() => courseTable.id),
   paperYearId: integer().references(() => paperYearTable.id),
   url: varchar({ length: 255 }).notNull(),
-  
+
   michaelmas: boolean().notNull().default(false),
   lent: boolean().notNull().default(false),
   easter: boolean().notNull().default(false),
@@ -94,9 +101,8 @@ export const courseYearTable = pgTable("course_year", {
   suggestedSupervisions: integer(),
   format: varchar({ length: 255 }),
 
-
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const courseYearLecturerTable = pgTable("course_year_lecturer", {
@@ -105,7 +111,7 @@ export const courseYearLecturerTable = pgTable("course_year_lecturer", {
   lecturerId: integer().references(() => usersTable.id),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const questionTable = pgTable("question", {
@@ -125,7 +131,7 @@ export const questionTable = pgTable("question", {
   attempts: integer(),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
 
 export const userQuestionAnswerTable = pgTable("user_question_answer", {
@@ -137,5 +143,5 @@ export const userQuestionAnswerTable = pgTable("user_question_answer", {
   note: text(),
 
   createdAt: timestamp().notNull().defaultNow(),
-  updatedAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
 });
