@@ -44,7 +44,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "drizzle-kit": "^0.30.4",
-    "postcss": "^8.5.1",
+    "postcss": "^8.5.3",
     "tailwindcss": "^4.0.6",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
