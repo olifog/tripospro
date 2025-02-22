@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "biome check --write",
     "check": "npm-check",
+    "typecheck": "tsc --noEmit",
     "ui-add": "npx shadcn@canary add -yo",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

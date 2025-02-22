@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { db } from "@/db";
-import { triposPartTable, triposTable } from "./schema";
+import { triposPartTable, triposTable } from "@/db/schema/tripos";
 
 export async function seed() {
   const [tripos] = await db

@@ -70,6 +70,8 @@ function InnerPartSwitcher() {
   const activePart =
     sortedParts.find((part) => part.id === selectedPartId) ?? sortedParts[0];
 
+  const updateUserSettings = trpc.user.updateUserSettings.useMutation();
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -102,7 +104,9 @@ function InnerPartSwitcher() {
             {sortedParts.map((part, index) => (
               <DropdownMenuItem
                 key={part.name}
-                onClick={() => updateUserSettings({ triposPartId: part.id })}
+                onClick={() =>
+                  updateUserSettings.mutate({ triposPartId: part.id })
+                }
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-xs border">
