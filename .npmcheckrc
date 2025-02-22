@@ -1,0 +1,14 @@
+{
+    "depcheck": {
+        "ignoreMatches": [
+            "@tailwindcss/typography",
+            "tailwindcss",
+            "postcss",
+            "@tailwindcss/postcss",
+            "react-error-boundary",
+            "client-only",
+            "@types/node",
+            "tailwindcss-animate"
+        ]
+    }
+}

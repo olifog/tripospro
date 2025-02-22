@@ -1,4 +1,10 @@
 import { env } from "@/env";
 import { drizzle } from "drizzle-orm/neon-http";
 
-export const db = drizzle(env.DATABASE_URL);
+import * as userSchema from "./schema/user";
+
+const schema = {
+  ...userSchema
+};
+
+export const db = drizzle(env.DATABASE_URL, { schema: { ...schema } });
