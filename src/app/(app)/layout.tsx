@@ -1,21 +1,21 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+  SidebarTrigger
+} from "@/components/ui/sidebar";
 
 interface AppLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
@@ -42,10 +42,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

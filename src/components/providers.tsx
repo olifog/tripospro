@@ -8,9 +8,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <TRPCProvider>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <ClerkProvider>
-          {children}
-        </ClerkProvider>
+        <ClerkProvider>{children}</ClerkProvider>
       </ThemeProvider>
     </TRPCProvider>
   );

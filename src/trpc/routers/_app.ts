@@ -16,7 +16,7 @@ export const appRouter = createTRPCRouter({
       };
     }),
   tripos: triposRouter,
-  user: userRouter,
+  user: userRouter
 });
 
 // export type definition of API

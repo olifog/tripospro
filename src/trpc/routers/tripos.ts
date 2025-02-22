@@ -1,8 +1,8 @@
-import { baseProcedure } from "../init";
-import { createTRPCRouter } from "../init";
 import { db } from "@/db";
 import { userSettingsTable, usersTable } from "@/db/schema/user";
 import { eq } from "drizzle-orm";
+import { baseProcedure } from "../init";
+import { createTRPCRouter } from "../init";
 
 export const triposRouter = createTRPCRouter({
   getTriposParts: baseProcedure.query(async ({ ctx, input }) => {
@@ -22,14 +22,14 @@ export const triposRouter = createTRPCRouter({
               .limit(1)
           : Promise.resolve([
               {
-                user_settings: null,
-              },
-            ]),
+                user_settings: null
+              }
+            ])
       ]);
       return {
         parts,
-        selectedPartId: userSettings?.triposPartId,
+        selectedPartId: userSettings?.triposPartId
       };
     }
-  ),
+  )
 });

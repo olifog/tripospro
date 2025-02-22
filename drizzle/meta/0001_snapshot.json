@@ -114,12 +114,8 @@
           "name": "course_year_lecturer_courseYearId_course_year_id_fk",
           "tableFrom": "course_year_lecturer",
           "tableTo": "course_year",
-          "columnsFrom": [
-            "courseYearId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["courseYearId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -127,12 +123,8 @@
           "name": "course_year_lecturer_lecturerId_users_id_fk",
           "tableFrom": "course_year_lecturer",
           "tableTo": "users",
-          "columnsFrom": [
-            "lecturerId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["lecturerId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -254,12 +246,8 @@
           "name": "course_year_courseId_course_id_fk",
           "tableFrom": "course_year",
           "tableTo": "course",
-          "columnsFrom": [
-            "courseId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["courseId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -267,12 +255,8 @@
           "name": "course_year_paperYearId_paper_year_id_fk",
           "tableFrom": "course_year",
           "tableTo": "paper_year",
-          "columnsFrom": [
-            "paperYearId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["paperYearId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -337,12 +321,8 @@
           "name": "paper_triposId_tripos_id_fk",
           "tableFrom": "paper",
           "tableTo": "tripos",
-          "columnsFrom": [
-            "triposId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["triposId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -419,12 +399,8 @@
           "name": "paper_year_paperId_paper_id_fk",
           "tableFrom": "paper_year",
           "tableTo": "paper",
-          "columnsFrom": [
-            "paperId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["paperId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -432,12 +408,8 @@
           "name": "paper_year_triposPartYearId_tripos_part_year_id_fk",
           "tableFrom": "paper_year",
           "tableTo": "tripos_part_year",
-          "columnsFrom": [
-            "triposPartYearId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["triposPartYearId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -556,12 +528,8 @@
           "name": "question_paperYearId_paper_year_id_fk",
           "tableFrom": "question",
           "tableTo": "paper_year",
-          "columnsFrom": [
-            "paperYearId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["paperYearId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -569,12 +537,8 @@
           "name": "question_courseYearId_course_year_id_fk",
           "tableFrom": "question",
           "tableTo": "course_year",
-          "columnsFrom": [
-            "courseYearId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["courseYearId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -582,12 +546,8 @@
           "name": "question_authorId_users_id_fk",
           "tableFrom": "question",
           "tableTo": "users",
-          "columnsFrom": [
-            "authorId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["authorId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -658,12 +618,8 @@
           "name": "tripos_part_triposId_tripos_id_fk",
           "tableFrom": "tripos_part",
           "tableTo": "tripos",
-          "columnsFrom": [
-            "triposId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["triposId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -776,12 +732,8 @@
           "name": "tripos_part_year_triposPartId_tripos_part_id_fk",
           "tableFrom": "tripos_part_year",
           "tableTo": "tripos_part",
-          "columnsFrom": [
-            "triposPartId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["triposPartId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -920,12 +872,8 @@
           "name": "user_question_answer_userId_users_id_fk",
           "tableFrom": "user_question_answer",
           "tableTo": "users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -933,12 +881,8 @@
           "name": "user_question_answer_questionId_question_id_fk",
           "tableFrom": "user_question_answer",
           "tableTo": "question",
-          "columnsFrom": [
-            "questionId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["questionId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -989,12 +933,8 @@
           "name": "user_settings_userId_users_id_fk",
           "tableFrom": "user_settings",
           "tableTo": "users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -1002,12 +942,8 @@
           "name": "user_settings_triposPartId_tripos_part_id_fk",
           "tableFrom": "user_settings",
           "tableTo": "tripos_part",
-          "columnsFrom": [
-            "triposPartId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["triposPartId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -1098,23 +1034,17 @@
         "users_crsid_unique": {
           "name": "users_crsid_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "crsid"
-          ]
+          "columns": ["crsid"]
         },
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         },
         "users_clerkId_unique": {
           "name": "users_clerkId_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "clerkId"
-          ]
+          "columns": ["clerkId"]
         }
       },
       "policies": {},

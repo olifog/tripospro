@@ -1,8 +1,9 @@
 "use client";
 
-import * as React from "react";
 import { ChevronsUpDown } from "lucide-react";
+import * as React from "react";
 
+import { ErrorMessage } from "@/components/error";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,10 +18,9 @@ import {
   SidebarMenuItem,
   useSidebar
 } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { trpc } from "@/trpc/client";
 import { ErrorBoundary } from "react-error-boundary";
-import { ErrorMessage } from "@/components/error";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export function PartSwitcher() {
   return (

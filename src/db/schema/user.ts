@@ -1,9 +1,15 @@
-import { pgTable } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
-import { integer, varchar, timestamp, boolean, text } from "drizzle-orm/pg-core";
+import { pgTable } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  text,
+  timestamp,
+  varchar
+} from "drizzle-orm/pg-core";
+import { courseYearLecturerTable } from "./course";
 import { questionTable } from "./question";
 import { triposPartTable } from "./tripos";
-import { courseYearLecturerTable } from "./course";
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -21,13 +27,12 @@ export const usersTable = pgTable("users", {
 export const usersRelations = relations(usersTable, ({ one, many }) => ({
   userSettings: one(userSettingsTable, {
     fields: [usersTable.id],
-    references: [userSettingsTable.userId],
+    references: [userSettingsTable.userId]
   }),
   questionsAuthored: many(questionTable, { relationName: "questionsAuthored" }),
   userQuestionAnswers: many(userQuestionAnswerTable),
-  courseYearLecturers: many(courseYearLecturerTable),
+  courseYearLecturers: many(courseYearLecturerTable)
 }));
-
 
 export const userQuestionAnswerTable = pgTable("user_question_answer", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -41,32 +46,37 @@ export const userQuestionAnswerTable = pgTable("user_question_answer", {
   updatedAt: timestamp().notNull().defaultNow()
 });
 
-export const userQuestionAnswerRelations = relations(userQuestionAnswerTable, ({ one }) => ({
-  user: one(usersTable, {
-    fields: [userQuestionAnswerTable.userId],
-    references: [usersTable.id]
-  }),
-  question: one(questionTable, {
-    fields: [userQuestionAnswerTable.questionId],
-    references: [questionTable.id]
+export const userQuestionAnswerRelations = relations(
+  userQuestionAnswerTable,
+  ({ one }) => ({
+    user: one(usersTable, {
+      fields: [userQuestionAnswerTable.userId],
+      references: [usersTable.id]
+    }),
+    question: one(questionTable, {
+      fields: [userQuestionAnswerTable.questionId],
+      references: [questionTable.id]
+    })
   })
-}));
+);
 
 export const userSettingsTable = pgTable("user_settings", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   userId: integer().references(() => usersTable.id),
-  
-  triposPartId: integer().references(() => triposPartTable.id),
+
+  triposPartId: integer().references(() => triposPartTable.id)
 });
 
-export const userSettingsRelations = relations(userSettingsTable, ({ one }) => ({
-  user: one(usersTable, {
-    fields: [userSettingsTable.userId],
-    references: [usersTable.id]
-  }),
-  triposPart: one(triposPartTable, {
-    fields: [userSettingsTable.triposPartId],
-    references: [triposPartTable.id]
+export const userSettingsRelations = relations(
+  userSettingsTable,
+  ({ one }) => ({
+    user: one(usersTable, {
+      fields: [userSettingsTable.userId],
+      references: [usersTable.id]
+    }),
+    triposPart: one(triposPartTable, {
+      fields: [userSettingsTable.triposPartId],
+      references: [triposPartTable.id]
+    })
   })
-}));
-
+);

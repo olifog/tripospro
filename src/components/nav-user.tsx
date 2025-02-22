@@ -5,7 +5,7 @@ import {
   ChevronsUpDown,
   HelpCircle,
   LogOut,
-  Settings,
+  Settings
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -57,7 +57,11 @@ export function NavUser() {
       <SidebarMenuItem>
         {!user && (
           <div className="flex justify-center">
-            <Button className="block group-data-[collapsible=icon]:hidden" variant="secondary" asChild>
+            <Button
+              className="block group-data-[collapsible=icon]:hidden"
+              variant="secondary"
+              asChild
+            >
               <SignInButton mode="modal" />
             </Button>
           </div>

@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { pgTable } from "drizzle-orm/pg-core";
 
-import { integer, varchar, timestamp } from "drizzle-orm/pg-core";
+import { integer, timestamp, varchar } from "drizzle-orm/pg-core";
 import { paperYearTable } from "./paper";
 import { paperTable } from "./paper";
 
@@ -29,13 +29,16 @@ export const triposPartTable = pgTable("tripos_part", {
   updatedAt: timestamp().notNull().defaultNow()
 });
 
-export const triposPartRelations = relations(triposPartTable, ({ many, one }) => ({
-  triposPartYears: many(triposPartYearTable),
-  tripos: one(triposTable, {
-    fields: [triposPartTable.triposId],
-    references: [triposTable.id]
+export const triposPartRelations = relations(
+  triposPartTable,
+  ({ many, one }) => ({
+    triposPartYears: many(triposPartYearTable),
+    tripos: one(triposTable, {
+      fields: [triposPartTable.triposId],
+      references: [triposTable.id]
+    })
   })
-}));
+);
 
 export const triposPartYearTable = pgTable("tripos_part_year", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -55,12 +58,13 @@ export const triposPartYearTable = pgTable("tripos_part_year", {
   updatedAt: timestamp().notNull().defaultNow()
 });
 
-export const triposPartYearRelations = relations(triposPartYearTable, ({ many, one }) => ({
-  paperYears: many(paperYearTable),
-  triposPart: one(triposPartTable, {
-    fields: [triposPartYearTable.triposPartId],
-    references: [triposPartTable.id],
-  }),
-}));
-
-
+export const triposPartYearRelations = relations(
+  triposPartYearTable,
+  ({ many, one }) => ({
+    paperYears: many(paperYearTable),
+    triposPart: one(triposPartTable, {
+      fields: [triposPartYearTable.triposPartId],
+      references: [triposPartTable.id]
+    })
+  })
+);
