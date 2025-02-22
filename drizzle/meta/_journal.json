@@ -8,6 +8,13 @@
       "when": 1739581419233,
       "tag": "0000_eminent_jubilee",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1739589315149,
+      "tag": "0001_silly_kitty_pryde",
+      "breakpoints": true
     }
   ]
 }

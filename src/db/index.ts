@@ -1,10 +1,18 @@
 import { env } from "@/env";
 import { drizzle } from "drizzle-orm/neon-http";
 
+import * as courseSchema from "./schema/course";
+import * as paperSchema from "./schema/paper";
+import * as triposSchema from "./schema/tripos";
+import * as questionSchema from "./schema/question";
 import * as userSchema from "./schema/user";
 
 const schema = {
-  ...userSchema
+  ...courseSchema,
+  ...paperSchema,
+  ...questionSchema,
+  ...userSchema,
+  ...triposSchema
 };
 
 export const db = drizzle(env.DATABASE_URL, { schema: { ...schema } });

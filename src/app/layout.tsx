@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "REPLACE ME",
-  description: "REPLACE ME"
+  title: "Tripos Pro",
+  description: "overkill cambridge cs ppq tracker"
 };
 
 export default function RootLayout({
