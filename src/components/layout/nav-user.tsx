@@ -5,10 +5,13 @@ import {
   ChevronsUpDown,
   HelpCircle,
   LogOut,
-  Settings
+  Settings,
+  User
 } from "lucide-react";
 
+import { Link } from "@/components/link/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,18 +27,22 @@ import {
   SidebarMenuItem,
   useSidebar
 } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { useClerk } from "@clerk/nextjs";
-import { Button } from "./ui/button";
-import { Skeleton } from "./ui/skeleton";
+import { trpc } from "@/trpc/client";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
 
   const { user, isLoaded } = useUser();
+  const { data: userData, isLoading: userDataLoading } = trpc.user.getUserByClerkId.useQuery(
+    { clerkId: user?.id as string },
+    { enabled: isLoaded }
+  );
   const { signOut, openUserProfile } = useClerk();
 
-  if (!isLoaded) {
+  if (!isLoaded || userDataLoading) {
     return (
       <SidebarMenu>
         <SidebarMenuItem>
@@ -52,6 +59,10 @@ export function NavUser() {
     );
   }
 
+  if (user && !userData) {
+    throw new Error("Something super bad happened dude. contact olifog on discord");
+  }
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -66,7 +77,7 @@ export function NavUser() {
             </Button>
           </div>
         )}
-        {user && (
+        {user && userData && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton
@@ -77,7 +88,7 @@ export function NavUser() {
                   <AvatarImage
                     src={user.imageUrl}
                     alt={
-                      (user.publicMetadata.crsid as string) ??
+                      userData.crsid ??
                       user.fullName ??
                       user.primaryEmailAddress?.emailAddress
                     }
@@ -90,7 +101,7 @@ export function NavUser() {
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
-                    {(user.publicMetadata.crsid as string) ??
+                    {userData.crsid ??
                       user.fullName ??
                       user.primaryEmailAddress?.emailAddress}
                   </span>
@@ -113,7 +124,7 @@ export function NavUser() {
                     <AvatarImage
                       src={user.imageUrl}
                       alt={
-                        (user.publicMetadata.crsid as string) ??
+                        userData.crsid ??
                         user.fullName ??
                         user.primaryEmailAddress?.emailAddress
                       }
@@ -126,7 +137,7 @@ export function NavUser() {
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-semibold">
-                      {(user.publicMetadata.crsid as string) ??
+                      {userData.crsid ??
                         user.fullName ??
                         user.primaryEmailAddress?.emailAddress}
                     </span>
@@ -138,13 +149,21 @@ export function NavUser() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
+                <DropdownMenuItem asChild>
+                  <Link href={`/profile/${userData.crsid}`}>
+                    <User />
+                    Profile
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => openUserProfile()}>
                   <BadgeCheck />
                   Account
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings />
-                  Settings
+                <DropdownMenuItem asChild>
+                  <Link href="/settings">
+                    <Settings />
+                    Settings
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <HelpCircle />

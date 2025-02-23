@@ -1,5 +1,6 @@
 import { db } from "@/db";
-import type { getAuth } from "@clerk/nextjs/server";
+import { env } from "@/env";
+import { createClerkClient, type getAuth } from "@clerk/nextjs/server";
 import { TRPCError, initTRPC } from "@trpc/server";
 import { cache } from "react";
 import superjson from "superjson";
@@ -10,8 +11,10 @@ export const createTRPCContext = cache(
     headers: Headers;
     auth: ReturnType<typeof getAuth>;
   }) => {
+    const clerkClient = createClerkClient({ secretKey: env.CLERK_SECRET_KEY })
     return {
       db,
+      clerkClient,
       userId: opts.auth.userId,
       ...opts
     };

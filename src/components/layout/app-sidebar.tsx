@@ -1,6 +1,6 @@
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
-import { PartSwitcher } from "@/components/part-switcher";
+import { NavMain } from "@/components/layout/nav-main";
+import { NavUser } from "@/components/layout/nav-user";
+import { PartSwitcher } from "@/components/layout/part-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +11,7 @@ import {
 import { HydrateClient, trpc } from "@/trpc/server";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  trpc.tripos.getTriposPartsWithUserSelected.prefetch();
+  trpc.tripos.getTriposParts.prefetch();
 
   return (
     <Sidebar collapsible="icon" {...props}>

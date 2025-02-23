@@ -1,35 +1,49 @@
 import "dotenv/config";
 import { db } from "@/db";
 import { triposPartTable, triposTable } from "@/db/schema/tripos";
+import { eq } from "drizzle-orm";
 
 export async function seed() {
-  const [tripos] = await db
-    .insert(triposTable)
-    .values({
-      name: "Computer Science",
-      code: "CST"
-    })
-    .returning();
-
-  await db.insert(triposPartTable).values({
-    name: "Part IA",
-    code: "IA",
-    triposId: tripos.id
+  // Check if Computer Science tripos already exists
+  let tripos = await db.query.triposTable.findFirst({
+    where: eq(triposTable.code, "CST")
   });
 
-  await db.insert(triposPartTable).values({
-    name: "Part IB",
-    code: "IB",
-    triposId: tripos.id
-  });
+  if (!tripos) {
+    [tripos] = await db
+      .insert(triposTable)
+      .values({
+        name: "Computer Science",
+        code: "CST"
+      })
+      .returning();
+    console.log("Created Computer Science tripos");
+  }
 
-  await db.insert(triposPartTable).values({
-    name: "Part II",
-    code: "II",
-    triposId: tripos.id
-  });
+  // Define the parts to ensure exist
+  const parts = [
+    { name: "IA", code: "1a" },
+    { name: "IB", code: "1b" },
+    { name: "II", code: "2" }
+  ];
 
-  console.log("Tripos seeded");
+  // Check and insert each part if it doesn't exist
+  for (const part of parts) {
+    const existingPart = await db.query.triposPartTable.findFirst({
+      where: eq(triposPartTable.code, part.code)
+    });
+
+    if (!existingPart) {
+      await db.insert(triposPartTable).values({
+        name: part.name,
+        code: part.code,
+        triposId: tripos.id
+      });
+      console.log(`Created ${part.name} part`);
+    }
+  }
+
+  console.log("Seed completed");
 }
 
 seed();

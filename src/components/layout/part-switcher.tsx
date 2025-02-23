@@ -1,7 +1,8 @@
 "use client";
 
 import { ChevronsUpDown } from "lucide-react";
-import * as React from "react";
+
+import { Suspense } from "react";
 
 import { ErrorMessage } from "@/components/error";
 import {
@@ -9,7 +10,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuShortcut,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {
@@ -19,31 +19,36 @@ import {
   useSidebar
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { trpc } from "@/trpc/client";
 import { ErrorBoundary } from "react-error-boundary";
+import { usePart } from "@/hooks/use-params";
+import { useEffect } from "react";
+import { trpc } from "@/trpc/client";
+import { defaultPartCode } from "@/lib/search-params";
 
 export function PartSwitcher() {
   return (
-    <ErrorBoundary
-      fallback={
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <div className="flex h-12 w-full items-center p-2 group-data-[collapsible=icon]:hidden">
-              <ErrorMessage
-                variant="compact"
-                size="sm"
-                title="Failed to load parts"
-                description="Please refresh the page."
-              />
-            </div>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      }
-    >
-      <React.Suspense fallback={<PartSwitcherSkeleton />}>
+    <ErrorBoundary fallback={<PartSwitcherError />}>
+      <Suspense fallback={<PartSwitcherSkeleton />}>
         <InnerPartSwitcher />
-      </React.Suspense>
+      </Suspense>
     </ErrorBoundary>
+  );
+}
+
+function PartSwitcherError() {
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <div className="flex h-12 w-full items-center p-2 group-data-[collapsible=icon]:hidden">
+          <ErrorMessage
+            variant="compact"
+            size="sm"
+            title="Failed to load parts"
+            description="Please refresh the page."
+          />
+        </div>
+      </SidebarMenuItem>
+    </SidebarMenu>
   );
 }
 
@@ -63,14 +68,32 @@ function PartSwitcherSkeleton() {
 
 function InnerPartSwitcher() {
   const { isMobile } = useSidebar();
+  const [part, setPart] = usePart();
+  const [parts] = trpc.tripos.getTriposParts.useSuspenseQuery();
 
-  const [{ parts, selectedPartId }] =
-    trpc.tripos.getTriposPartsWithUserSelected.useSuspenseQuery();
-  const sortedParts = parts.sort((a, b) => a.code.localeCompare(b.code));
-  const activePart =
-    sortedParts.find((part) => part.id === selectedPartId) ?? sortedParts[0];
+  const sortedParts = parts?.sort((a, b) => a.code.localeCompare(b.code)) ?? [];
+  const defaultPart = sortedParts.find((p) => p.code === defaultPartCode);
+  if (!defaultPart) throw new Error("Default part not found");
 
-  const updateUserSettings = trpc.user.updateUserSettings.useMutation();
+  const activePart = sortedParts.find((p) => p.code === part);
+
+  useEffect(() => {
+    if (!part) {
+      const localPart = localStorage.getItem("part");
+      if (localPart && sortedParts.some((p) => p.code === localPart) && !part) {
+        setPart(localPart);
+      } else {
+        setPart(defaultPartCode);
+      }
+    }
+  }, []);
+
+  const changePart = (part: string) => {
+    setPart(part);
+    localStorage.setItem("part", part);
+  };
+
+  if (!activePart) return <PartSwitcherSkeleton />;
 
   return (
     <SidebarMenu>
@@ -82,11 +105,11 @@ function InnerPartSwitcher() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                {activePart.code}
+                {activePart.name}
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
-                  {activePart.name}
+                  Part {activePart.name}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto" />
@@ -104,16 +127,13 @@ function InnerPartSwitcher() {
             {sortedParts.map((part, index) => (
               <DropdownMenuItem
                 key={part.name}
-                onClick={() =>
-                  updateUserSettings.mutate({ triposPartId: part.id })
-                }
+                onClick={() => changePart(part.code)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-xs border">
-                  {part.code}
+                  {part.name}
                 </div>
-                {part.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                Part {part.name}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
