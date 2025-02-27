@@ -11,7 +11,7 @@ export const createTRPCContext = cache(
     headers: Headers;
     auth: ReturnType<typeof getAuth>;
   }) => {
-    const clerkClient = createClerkClient({ secretKey: env.CLERK_SECRET_KEY })
+    const clerkClient = createClerkClient({ secretKey: env.CLERK_SECRET_KEY });
     return {
       db,
       clerkClient,

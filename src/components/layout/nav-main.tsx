@@ -97,7 +97,7 @@ export function NavMain() {
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton tooltip={item.title}>
                       {item.icon && <item.icon />}
-                      <span>{item.title}</span>
+                      <span className="text-nowrap">{item.title}</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
@@ -109,12 +109,16 @@ export function NavMain() {
                             {subItem.disabled ? (
                               <div className="flex cursor-not-allowed items-center gap-2 opacity-50">
                                 {subItem.icon && <subItem.icon />}
-                                <span>{subItem.title}</span>
+                                <span className="text-nowrap">
+                                  {subItem.title}
+                                </span>
                               </div>
                             ) : (
                               <Link href={subItem.url}>
                                 {subItem.icon && <subItem.icon />}
-                                <span>{subItem.title}</span>
+                                <span className="text-nowrap">
+                                  {subItem.title}
+                                </span>
                               </Link>
                             )}
                           </SidebarMenuSubButton>
@@ -133,12 +137,12 @@ export function NavMain() {
                 {item.disabled ? (
                   <div className="flex cursor-not-allowed items-center gap-2 opacity-50">
                     {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                    <span className="text-nowrap">{item.title}</span>
                   </div>
                 ) : (
                   <Link href={item.url}>
                     {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                    <span className="text-nowrap">{item.title}</span>
                   </Link>
                 )}
               </SidebarMenuButton>

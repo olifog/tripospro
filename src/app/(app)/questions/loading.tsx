@@ -3,9 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function QuestionsLoading() {
   return (
-    <PageLayout header={
-      <Skeleton className="h-10 w-24" />
-    }>
+    <PageLayout header={<Skeleton className="h-10 w-24" />}>
       <Skeleton className="h-10 w-24" />
     </PageLayout>
   );

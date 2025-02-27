@@ -1,10 +1,10 @@
 import { db } from "@/db";
 import { userSettingsTable, usersTable } from "@/db/schema/user";
+import type { User } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { baseProcedure, protectedProcedure } from "../init";
 import { createTRPCRouter } from "../init";
-import type { User } from "@clerk/nextjs/server";
 
 const filterClerkUser = (clerkUser: User) => {
   return {
@@ -16,11 +16,11 @@ const filterClerkUser = (clerkUser: User) => {
     lastName: clerkUser.lastName,
     emailAddresses: clerkUser.emailAddresses.map((email) => ({
       id: email.id,
-      emailAddress: email.emailAddress,
+      emailAddress: email.emailAddress
     })),
     publicMetadata: clerkUser.publicMetadata,
-    lastActiveAt: clerkUser.lastActiveAt,
-  }
+    lastActiveAt: clerkUser.lastActiveAt
+  };
 };
 
 export const userRouter = createTRPCRouter({

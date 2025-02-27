@@ -10,7 +10,7 @@ function QuestionsPage() {
       <div>Questions</div>
       <div>{part}</div>
     </PageLayout>
-  )
+  );
 }
 
 export default withParamsCache(QuestionsPage);

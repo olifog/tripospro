@@ -1,0 +1,2063 @@
+{
+  "myear": 2024,
+  "edit_url_course": "https://webadmin.cst.cam.ac.uk/teaching/course/%m/%d/",
+  "edit_url_coursedb": "https://webadmin.cst.cam.ac.uk/teaching/course/%m",
+  "menubar": 0,
+  "recordings": 1,
+  "supervisions": 1,
+  "syllabus": {
+    "editor": "Becky Straw",
+    "url": "https://webadmin.cst.cam.ac.uk/teaching/course/%m/%s/%s_%m_syllabus.html",
+    "_label": "htmlinclude",
+    "e1ffe179-d43b-486a-8aac-09dd869455ea": "syllabus-html"
+  },
+  "teaching-admin": {
+    "f451d9fa-e9f9-478c-8639-06a11ee627f7": "stc40"
+  },
+  "timetable-url": "https://www.cst.cam.ac.uk/teaching/timetables",
+  "triposexam": 1,
+  "groups": {
+    "a2f35daf-511d-4136-84bb-3c75c4169729": {
+      "title": "Part IA CST",
+      "_label": "year1",
+      "teaching-admin": {
+        "45300b6c-a30d-4005-b858-950cb4805ff7": "rs2150",
+        "a5043b45-f4bb-47eb-9a06-ea296bc4933e": "ab3083",
+        "12c7d1ab-1a58-46e9-aa6e-d1a3529c9e81": "drr29"
+      },
+      "2ac3e64e-3bac-44de-a06c-a3267325dac8": "part1a"
+    },
+    "2a6e57c1-50ca-4116-8e92-f4f6ab4f6990": {
+      "title": "Part IB CST",
+      "_label": "year2",
+      "teaching-admin": {
+        "1179116d-d859-452d-85f7-aa18a983fa06": "rs2150",
+        "a49b70ba-d2a7-4ba9-bc0b-81854098868c": "ab3083",
+        "225addce-b424-474f-9829-0385a2174510": "drr29"
+      },
+      "32528cfe-db25-4ea9-8e15-8fad8ac667e7": "part1b"
+    },
+    "37ccf1b7-9896-413d-836f-0be6f1a04b8e": {
+      "title": "Part II CST",
+      "_label": "year3",
+      "teaching-admin": {
+        "d21db910-cf77-43c5-a1b9-a6d8b4602dd0": "rs2150",
+        "ce657630-f628-458b-9bf1-69db912481f7": "ab3083",
+        "bc7ffe73-cd62-462f-9212-7e553387ac2b": "drr29"
+      },
+      "95876fb4-ac8a-4c84-abad-86b10c52fb37": {
+        "note": "In addition to courses examined in Tripos papers 8 and 9, students also select two further modules, which are examined separately.",
+        "_label": "part2"
+      }
+    },
+    "536d0f16-75b8-4d2b-bf09-b3ab5fe9e39d": {
+      "title": "Masters",
+      "_label": "masters",
+      "assessmentpage": 1,
+      "note": "Students select five taught modules in total, distributed across Michaelmas and Lent terms. Students should select no more than four modules from those offered in Michaelmas and no more than two modules from those offered in Lent. A module that starts in Michaelmas term and continues in Lent term will count as a single module.\\n        The taught modules are delivered in a range of styles and have a variety of assessment methods. For example: traditional Lecture-based modules which have the prefix 'L' such as 'L11 Algebraic path problems'; modules with a large proportion of Practical classes have the prefix 'P' such as 'P51 High performance networking'; and Reading clubs or seminar style modules have the prefix 'R' such as 'R254 Cybercrime'.",
+      "showcode": 1,
+      "supervisions": 0,
+      "syllabus": {
+        "editor": "Lise Gough and Joy Rook",
+        "url": "http://webadmin.cst.cam.ac.uk/teaching/course/%m/%s/%s_%m_syllabus.html",
+        "ef00e4ff-d111-4bce-8a74-2b90082ad67a": "syllabus-html",
+        "_label": "htmlinclude"
+      },
+      "triposexam": 0,
+      "teaching-admin": {
+        "fcad38b6-064b-4a8d-8232-92ad195eb320": "lmg30",
+        "76bdf404-29fc-4752-95d4-9f23d9cfe918": "jlr59"
+      },
+      "f499a5fc-4a89-463b-8161-54ec3424c73c": {
+        "title": "Part III",
+        "_label": "part3"
+      },
+      "7a61fe21-0dad-4fe2-a611-83b224cee3e1": {
+        "title": "MPhil ACS",
+        "_label": "acs"
+      }
+    }
+  },
+  "courses": {
+    "Algorithm1": {
+      "lecturer": "jkf21",
+      "classes": {
+        "33112b79-bab6-44eb-bbe5-0871a8dc8f79": "part1a"
+      },
+      "term": "L",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254414,
+      "supervision_hours": 3,
+      "_label": "Algorithms 1"
+    },
+    "Algorithm2": {
+      "lecturer": "jkf21",
+      "classes": {
+        "4b29d031-5785-4cfe-a1bd-1a96875aceea": "part1a"
+      },
+      "term": "L",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254426,
+      "supervision_hours": 3,
+      "_label": "Algorithms 2",
+      "prerequisites": {
+        "2e85e99e-c7de-493c-b6bf-b89582c11181": "Algorithm1"
+      }
+    },
+    "Databases": {
+      "lecturer": "djg11",
+      "classes": {
+        "7d37634c-0ae3-4206-865f-61ede27f65a1": "part1a"
+      },
+      "term": "M",
+      "hours": {
+        "8378f920-2111-46af-82e7-51a2d6e96057": "8 lectures + 2 practical classes",
+        "_label": "12"
+      },
+      "format": "In-person lectures",
+      "moodle": 254415,
+      "supervision_hours": 3,
+      "_label": "Databases"
+    },
+    "DigElec": {
+      "lecturer": "ijw24",
+      "classes": {
+        "3a6672d0-b413-4be2-810d-106179a4a0e8": "part1a"
+      },
+      "term": "M",
+      "hours": {
+        "f038a759-b131-43d2-9246-b14357d60101": "12 lectures+ 4 practical classes",
+        "_label": "12"
+      },
+      "format": "In-person lectures",
+      "moodle": 254420,
+      "supervision_hours": 3,
+      "_label": "Digital Electronics"
+    },
+    "DiscMath": {
+      "lecturer": {
+        "6e085281-f0e5-4708-83a2-a9ba27a9b0aa": "mpf23",
+        "31193234-6330-48ef-bec4-40eac5340c20": "js2878"
+      },
+      "classes": {
+        "a48aa5ea-db2b-4fe1-9e24-0f9047dd9cdb": "part1a"
+      },
+      "term": {
+        "c327bec7-0496-41ac-8e61-9b8a5ff10f9d": "L",
+        "_label": "M"
+      },
+      "hours": 24,
+      "format": "In-person lectures",
+      "moodle": 254416,
+      "supervision_hours": 6,
+      "_label": "Discrete Mathematics",
+      "prerequisites": "This course is a prerequisite for all theory courses."
+    },
+    "FoundsCS": {
+      "lecturer": "avsm2",
+      "classes": {
+        "6c42aa50-da95-4bda-a6f9-755480d040da": "part1a"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254418,
+      "supervision_hours": 3,
+      "_label": "Foundations of Computer Science",
+      "prerequisites": "This course is a prerequisite for Programming in Java and Prolog (Part IB)."
+    },
+    "Graphics": {
+      "lecturer": "fz261",
+      "classes": {
+        "22160ea6-78ef-4f53-ab58-03a65b99436f": "part1a"
+      },
+      "term": "M",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254424,
+      "supervision_hours": 2,
+      "_label": "Introduction to Graphics"
+    },
+    "HW": {
+      "lecturer": "ijw24",
+      "classes": {
+        "b3bf368c-1008-4b0b-a269-922b7daa720d": "part1a"
+      },
+      "term": {
+        "e8b2c0d1-4e37-4bd2-87ba-74a7a2d03e8f": "L",
+        "_label": "M"
+      },
+      "format": "In-person lectures",
+      "moodle": 254417,
+      "_label": "Hardware Practical Classes",
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "IntDesign": {
+      "lecturer": "hg410",
+      "classes": {
+        "97c8a218-17d1-456d-9a19-6076f03ad0e3": "part1a"
+      },
+      "term": "E",
+      "hours": {
+        "a1dfcfe1-6b9a-40d7-911f-d589853f7a13": "8 hours lectures+ 8 hours practicals",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254429,
+      "supervision_hours": 2,
+      "_label": "Interaction Design"
+    },
+    "IntroProb": {
+      "lecturer": {
+        "6b7e546c-70e8-4b60-9465-320947394637": "mj201",
+        "aa6b78ca-18c6-409a-9d0f-6aef819b939a": "tms41"
+      },
+      "classes": {
+        "447bffd9-cfd1-4671-85bb-b7a09c0a1f9b": "part1a"
+      },
+      "term": "E",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254419,
+      "supervision_hours": 3,
+      "_label": "Introduction to Probability",
+      "prerequisites": {
+        "9518f1c3-64c1-4f97-b511-5baafeb22e6e": "DiscMath"
+      }
+    },
+    "MLRD": {
+      "lecturer": "fm611",
+      "classes": {
+        "f364c807-9cfb-48df-8ae1-b6d919352eed": "part1a"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254428,
+      "supervision_hours": 4,
+      "_label": "Machine Learning and Real-world Data",
+      "contributor": {
+        "cab475ec-efa9-4140-86cc-dc26f4555a03": "pjb48"
+      }
+    },
+    "OCaml": {
+      "lecturer": {
+        "966f4242-b21e-4143-b5d4-d61a62f8276d": "jjl25",
+        "4123c970-d2ee-4a06-9bd9-eff4afb121ae": "avsm2"
+      },
+      "classes": {
+        "da055b30-48e5-45a3-85b1-645c12d10d56": "part1a"
+      },
+      "term": "M",
+      "format": "In-person lectures",
+      "moodle": 254421,
+      "_label": "OCaml Practical Classes",
+      "supervisions": 0,
+      "triposexam": 0,
+      "syllabus": 0
+    },
+    "OOProg": {
+      "lecturer": "rkh23",
+      "classes": {
+        "b9880a6f-d773-46d4-b8b6-15a8a8d47412": "part1a"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254427,
+      "supervision_hours": 3,
+      "_label": "Object-Oriented Programming"
+    },
+    "OpSystems": {
+      "lecturer": "rmm1002",
+      "classes": {
+        "58dd4e5b-cde8-4d1d-ad16-7edbb5df77a8": "part1a"
+      },
+      "term": "L",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254422,
+      "supervision_hours": 3,
+      "_label": "Operating Systems",
+      "prerequisites": {
+        "ab1a8e0c-3239-4e87-9510-e50bbcc4b8a7": "DigElec"
+      }
+    },
+    "PrepCS": {
+      "lecturer": "rkh23",
+      "classes": {
+        "5511ee7c-e079-4938-881e-c7003157091c": "part1a"
+      },
+      "term": "P",
+      "moodle": 254413,
+      "_label": "Preparation for Computer Science",
+      "supervisions": 0,
+      "triposexam": 0,
+      "syllabus": 0,
+      "url": "https://www.cst.cam.ac.uk/freshers"
+    },
+    "Registratn": {
+      "lecturer": {
+        "34a23c24-6c78-4968-ab4e-7522214decdf": "arb33",
+        "170a929f-a7d9-4eed-8417-04d4eb7edcbc": "rkh23"
+      },
+      "classes": {
+        "592dc41f-63c3-44bc-9d7d-1e771b75a446": "part1a"
+      },
+      "term": "M",
+      "_label": "Registration",
+      "supervisions": 0,
+      "triposexam": 0,
+      "syllabus": 0
+    },
+    "SWSecEng": {
+      "lecturer": "tbc",
+      "classes": {
+        "160527f7-fd9a-45bc-adf6-2fb1a3860333": "part1a"
+      },
+      "term": "E",
+      "hours": 11,
+      "format": "In-person lectures",
+      "moodle": 254425,
+      "supervision_hours": 3,
+      "_label": "Software and Security Engineering",
+      "prerequisites": "This course is a pre-requisite for the Part IB Group Project"
+    },
+    "SciComp": {
+      "lecturer": "awm22",
+      "classes": {
+        "0828c99c-5323-4bf5-bf42-82c9d620754e": "part1a"
+      },
+      "term": {
+        "3920e658-6847-4b4a-a172-c5ca68a6b5e9": "L",
+        "_label": "M"
+      },
+      "hours": 1,
+      "format": "In-person lectures",
+      "moodle": 254423,
+      "supervision_hours": 1,
+      "_label": "Scientific Computing",
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "ArtInt": {
+      "lecturer": "sbh11",
+      "classes": {
+        "b53cd63d-9048-40ea-9a43-1d41f91add7f": "part1b"
+      },
+      "term": "E",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254430,
+      "supervision_hours": 3,
+      "_label": "Artificial Intelligence",
+      "prerequisites": {
+        "394497d4-ad9c-4c29-b877-0e7cca287f10": "Algorithm1",
+        "0e432cad-d699-4819-aa8f-50298841ae6d": "Algorithm2",
+        "_label": "In addition the course requires some mathematics, in particular some use of vectors and some calculus. Part IA Natural Sciences Mathematics or equivalent and Discrete Mathematics are likely to be helpful although not essential. Similarly, elements of Machine Learning and Real World Data, Foundations of Data Science, Logic and Proof, Prolog and Complexity Theory are likely to be useful. This course is a prerequisite for the Part II courses Machine Learning and Bayesian Inference and Natural Language Processing."
+      }
+    },
+    "CompConstr": {
+      "lecturer": "jdy22",
+      "classes": {
+        "186ca354-f083-4a46-92e9-47b0eb945c15": "part1b"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254431,
+      "supervision_hours": 4,
+      "_label": "Compiler Construction",
+      "prerequisites": {
+        "1ba7bdd0-fe13-4b81-b512-c773432d4c0e": "DiscMath"
+      }
+    },
+    "CompNet": {
+      "lecturer": "awm22",
+      "classes": {
+        "b33959c4-5104-43b0-8a43-cf7136adbc5d": "part1b"
+      },
+      "term": "L",
+      "hours": 20,
+      "format": "In-person lectures",
+      "moodle": 254439,
+      "supervision_hours": 5,
+      "_label": "Computer Networking"
+    },
+    "CompTheory": {
+      "lecturer": "tgg22",
+      "classes": {
+        "2f6eae19-fe3f-4403-95eb-8e1861edb608": "part1b"
+      },
+      "term": "L",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254433,
+      "supervision_hours": 3,
+      "_label": "Computation Theory",
+      "prerequisites": {
+        "fac65b2a-df45-4ac0-a92a-de368c4c5df5": "DiscMath"
+      }
+    },
+    "Complexity": {
+      "lecturer": "tg508",
+      "classes": {
+        "67aab630-1ba9-4f82-9413-f2cab4dcac93": "part1b"
+      },
+      "term": "E",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254432,
+      "supervision_hours": 3,
+      "_label": "Complexity Theory",
+      "prerequisites": {
+        "66cec03b-0816-4c91-9d03-1d997422a4cb": "Algorithm2",
+        "5de289b4-e7d0-4d4a-9bff-387fb5733120": "CompTheory"
+      }
+    },
+    "ConcDisSys": {
+      "lecturer": "mk428",
+      "classes": {
+        "ea5e45a7-052d-48d9-8c60-3a3c57657b98": "part1b"
+      },
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254435,
+      "supervision_hours": 4,
+      "_label": "Concurrent and Distributed Systems",
+      "prerequisites": {
+        "4309cff9-c622-4185-85b1-ec17268b8373": "OOProg",
+        "bc808106-349a-48fb-a9e6-d86d00152d77": "OpSystems"
+      }
+    },
+    "CySecurity": {
+      "lecturer": "fms27",
+      "classes": {
+        "61534dbf-07d3-4873-8f97-662c15a220d9": "part1b"
+      },
+      "term": "E",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254437,
+      "supervision_hours": 3,
+      "_label": "Cybersecurity",
+      "prerequisites": {
+        "6c26f593-c139-4eee-8da3-f8b7c8b1a635": "CompNet",
+        "44cf3395-06ce-4b2d-981f-204449100d64": "IntComArch",
+        "800e8722-bd08-46b7-85dc-aaa747a244a5": "SWSecEng",
+        "d872ec5b-f908-48e9-9f1d-fee6b5e156fa": "UnixTools",
+        "_label": "Introduction to Computer Architecture and Computer Networking."
+      }
+    },
+    "DataSci": {
+      "lecturer": "am2920",
+      "classes": {
+        "740aa006-fbc7-4db5-947f-da5442d7c994": "part1b"
+      },
+      "term": "M",
+      "hours": {
+        "26cf5e27-edc3-4838-8790-3fa8b073b4cc": "16 lectures",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254436,
+      "supervision_hours": 4,
+      "_label": "Data Science",
+      "prerequisites": "Mathematics for Natural Sciences"
+    },
+    "ECAD+Arch": {
+      "lecturer": "atm26",
+      "classes": {
+        "2f8552ae-30f6-4c07-98ed-276ab24194be": "part1b"
+      },
+      "term": "M",
+      "format": "In-person lectures",
+      "moodle": 254446,
+      "_label": "ECAD and Architecture Practical Classes",
+      "prerequisites": {
+        "6fe31faa-f140-4854-aefd-dc144af3d523": "DigElec"
+      },
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "EconLaw": {
+      "lecturer": {
+        "d36eed8b-652e-4775-b98c-0637459bcbf8": "afb21",
+        "accdf800-813b-45ab-9cd2-bb9ff034cc05": "cmab3",
+        "cc93baa6-ee8a-4c1c-afd2-96b5b0631308": "ki287",
+        "19f5a2bd-0cde-4af7-93f8-a3db535273e5": "rnc1",
+        "01b2a982-afa2-4d09-a3d1-afbc6e530260": "jc2106"
+      },
+      "classes": {
+        "2d9d0614-9f22-4722-8448-36b574f07791": "part1b"
+      },
+      "term": "M",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254449,
+      "supervision_hours": 2,
+      "_label": "Economics, Law and Ethics"
+    },
+    "FGraphics": {
+      "lecturer": "aco41",
+      "classes": {
+        "cded1ef4-f800-4b15-a512-777d5a6f8f6a": "part1b"
+      },
+      "term": "M",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254438,
+      "supervision_hours": 2,
+      "_label": "Further Graphics",
+      "prerequisites": {
+        "b8714c5a-c08a-4935-a9cb-d666fe213128": "Graphics",
+        "_label": "This course is a pre-requisite for Advanced Graphics and Image processing"
+      }
+    },
+    "FHCI": {
+      "lecturer": {
+        "8c4b7bca-6295-44e3-b9a4-68a607879cc3": "afb21",
+        "9838f53c-92f9-4eb7-b816-e0ac95748dc2": "lec40"
+      },
+      "classes": {
+        "0934c559-d81a-42a1-975e-99daceb548ad": "part1b"
+      },
+      "term": "L",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254447,
+      "supervision_hours": 2,
+      "_label": "Further Human–Computer Interaction",
+      "prerequisites": {
+        "d9c50a6b-432a-475b-90ac-a3e23c93b6ad": "IntDesign"
+      }
+    },
+    "FJava": {
+      "classes": {
+        "23e75f2a-080b-4ce8-b45c-2f7a784defa0": "part1b"
+      },
+      "term": "M",
+      "hours": {
+        "3a0b2f17-6eab-4a28-ad00-b158c4090201": "10 hours self-study",
+        "_label": "10"
+      },
+      "format": "Self study non-assessed course",
+      "moodle": 254442,
+      "_label": "Further Java",
+      "prerequisites": {
+        "484eb617-c99d-46de-b73e-0217ea36ef80": "OOProg",
+        "_label": "Companion courses: Concurrent and Distributed Systems."
+      },
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "ForModLang": {
+      "lecturer": "pjb48",
+      "classes": {
+        "6b245aa2-1811-4419-b359-87a195348ede": "part1b"
+      },
+      "term": "E",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254450,
+      "supervision_hours": 2,
+      "_label": "Formal Models of Language",
+      "prerequisites": {
+        "57e545bb-5347-4127-b043-b7ce6cab098f": "CompConstr",
+        "0b5a0ef0-80a6-4074-ac25-cfb63658a87e": "DiscMath"
+      }
+    },
+    "GroupProj": {
+      "lecturer": {
+        "432747b8-2426-479a-9785-92e6f5112bdb": "afb21",
+        "6f82a8ae-7a98-473d-8887-38fa16ab376e": "rkh23",
+        "e7e0fd90-f4d1-4cc6-bd00-bf64f5723bb3": "tcg40"
+      },
+      "classes": {
+        "4f7cf4b9-94a2-4785-a42c-4ccb2a03b39d": "part1b"
+      },
+      "term": {
+        "1179dcd9-15a2-4b30-a0b2-d4288b5b8a72": "L",
+        "_label": "M"
+      },
+      "_label": "Group Project",
+      "supervisions": 0,
+      "triposexam": 0,
+      "url": "https://www.cl.cam.ac.uk/teaching/group-projects/"
+    },
+    "IntComArch": {
+      "lecturer": {
+        "e5f9dcc3-20d4-492f-b1d3-e25352c95567": "rdm34",
+        "f961137f-5bd5-4341-9175-a43bc7d9bc2b": "tmj32"
+      },
+      "classes": {
+        "b6897f10-1b87-425f-a861-ca46ce003f83": "part1b"
+      },
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254443,
+      "supervision_hours": 5,
+      "_label": "Introduction to Computer Architecture",
+      "prerequisites": {
+        "ea249245-6534-40fb-8182-abc9a5315e92": "DigElec",
+        "_label": "Companion course: Electronic Computer Aided Design (ECAD)"
+      }
+    },
+    "LogicProof": {
+      "lecturer": "mj201",
+      "classes": {
+        "f96933d2-f487-4d13-af36-ee9708f215a6": "part1b"
+      },
+      "term": "L",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254448,
+      "supervision_hours": 3,
+      "_label": "Logic and Proof"
+    },
+    "ProgC": {
+      "lecturer": "djg11",
+      "classes": {
+        "2e412150-cc52-4407-8e7c-99bfd3474f2a": "part1b"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254445,
+      "supervision_hours": 3,
+      "_label": "Programming in C and C++"
+    },
+    "Prolog": {
+      "lecturer": "ijl20",
+      "classes": {
+        "50727522-224b-406b-a4b7-1092489d1ae7": "part1b"
+      },
+      "term": "L",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254444,
+      "supervision_hours": 2,
+      "_label": "Prolog",
+      "prerequisites": {
+        "9cffd86c-42a8-4fb3-bc9c-c7f6cb799d87": "Algorithm1",
+        "4b60d325-4116-4177-b9cb-6bc273054798": "Algorithm2",
+        "24409410-b63c-4ea9-8b07-c96d27ba86cc": "FoundsCS"
+      }
+    },
+    "Semantics": {
+      "lecturer": "pes20",
+      "classes": {
+        "b4fa5bca-e460-4266-99c6-451bf9c2d26a": "part1b"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254440,
+      "supervision_hours": 3,
+      "_label": "Semantics of Programming Languages",
+      "prerequisites": "This course is a pre-requisite for Part II Hoare Logic and Model Checking and Types"
+    },
+    "UnixTools": {
+      "lecturer": "mgk25",
+      "classes": {
+        "3ef20cc1-b5cc-4b99-8007-c9790448858d": "part1b"
+      },
+      "term": "M",
+      "hours": 8,
+      "format": "Video lectures",
+      "moodle": 254441,
+      "_label": "Unix Tools",
+      "prerequisites": {
+        "b1b1c4b1-baad-48be-890b-0b3b14b6eb2d": "OpSystems"
+      },
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "AAI": {
+      "lecturer": "hg410",
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254481,
+      "_label": "Affective Artificial Intelligence",
+      "prerequisites": "Python programming skills (other programming languages are also OK but not always ideal), and basic background in machine learning or signal/image processing.",
+      "type": "part2-unit",
+      "clone": {
+        "type": "masters-shared",
+        "synopsis": "Affective Artificial Intelligence (Affective AI) aims to imbue machines with social and emotional intelligence (EQ). More specifically, Affective AI aims to create artificially intelligent systems and machines that can recognize, interpret, process, and simulate human social signals and behaviours, expressions, and emotions, to enhance human-AI interaction and communication. \\r\\n\\r\\nTo achieve this goal, Affective AI draws upon various scientific disciplines, including machine learning, computer vision, speech / natural language / signal processing, psychology and cognitive science, and ethics and social sciences.",
+        "_label": "L344"
+      }
+    },
+    "ADS": {
+      "lecturer": {
+        "c4c4df16-1dd4-4c00-b404-4e5643360b70": "ndl21",
+        "d1d3ac14-1edd-49f1-ace0-304ad8974d97": "che29"
+      },
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254468,
+      "_label": "Advanced Data Science",
+      "prerequisites": {
+        "a607fdbd-fcff-4840-821f-4319a614da23": "DataSci",
+        "b0ecbab7-d9ae-4cbe-9c42-246a4c48d154": "MLRD",
+        "_label": "NST Mathematics"
+      },
+      "type": "part2-unit"
+    },
+    "AdComArch": {
+      "lecturer": "rdm34",
+      "classes": {
+        "3561d827-6d8d-4f6c-8e64-9a708eb05530": "part2"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254451,
+      "supervision_hours": 4,
+      "_label": "Advanced Computer Architecture",
+      "prerequisites": {
+        "eb6b9690-8a0b-4ff8-adcd-da5db3f0fa8b": "IntComArch"
+      }
+    },
+    "Bioinfo": {
+      "lecturer": "pl219",
+      "classes": {
+        "493f2021-c103-4a0b-a2c7-3103ba4a726b": "part2"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254452,
+      "supervision_hours": 3,
+      "_label": "Bioinformatics"
+    },
+    "BusSeminrs": {
+      "lecturer": "sam56",
+      "classes": {
+        "d7410fa9-77e3-406e-9524-ee29da465662": "part2"
+      },
+      "term": "E",
+      "format": "In-person lectures",
+      "moodle": 254454,
+      "_label": "Business Studies Seminars",
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "Business": {
+      "lecturer": "sam56",
+      "classes": {
+        "120a776d-e803-49fc-b521-5e9fc8b6bda3": "part2"
+      },
+      "term": "M",
+      "hours": 8,
+      "format": "In-person lectures",
+      "moodle": 254453,
+      "supervision_hours": 2,
+      "_label": "Business Studies",
+      "prerequisites": {
+        "9a624f4b-90a7-42d1-a492-4ad922ca00b5": "EconLaw"
+      }
+    },
+    "CAT": {
+      "lecturer": "mpf23",
+      "term": "M",
+      "hours": {
+        "35d8647f-4a72-403f-89aa-d9a2877a7293": "8 lectures (2 hours each)",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254469,
+      "_label": "Category Theory",
+      "prerequisites": {
+        "9b26dc4f-845f-489c-95e2-d82b9157c683": "DiscMath",
+        "a13cfb84-d35a-4b7b-a5cf-ecbbf3db1e94": "FoundsCS",
+        "a67fc681-6f06-4134-85cf-1d826fc99756": "Semantics"
+      },
+      "type": "part2-unit",
+      "classmax": 15,
+      "clone": {
+        "type": "masters-shared",
+        "hours": 16,
+        "prerequisites": "Familiarity with basic logic and naive set theory, with the lambda calculus and with inductively-defined type systems. Students will have to pass an entry test to ensure sufficient Mathematical background.",
+        "synopsis": "Category theory provides a unified treatment of mathematical properties and constructions that can be expressed in terms of “morphisms” between structures. It gives a precise framework for comparing one branch of mathematics (organized as a category) with another and for the transfer of problems in one area to another. Since its origins in the 1940s motivated by connections between algebra and geometry, category theory has been applied to diverse fields, including computer science, logic and linguistics. This course introduces the basic notions of category theory: adjunction, natural transformation, functor and category. We will use category theory to organize and develop the kinds of structure that arise in models and semantics for logics and programming languages.",
+        "_label": "L108"
+      }
+    },
+    "CC": {
+      "lecturer": "ek264",
+      "term": "L",
+      "hours": 14,
+      "format": "In-person lectures",
+      "moodle": 254482,
+      "_label": "Cloud Computing",
+      "prerequisites": {
+        "1ab8e8f5-58fe-4cb9-b7ed-ab0f674b6cc8": "CompNet",
+        "350ef6f6-18e2-4b9a-9653-a62ac9020b28": "ConcDisSys",
+        "323bf478-1766-480c-a59f-834c5a94a7d6": "ConceptsPL",
+        "41ac0ee0-e8a6-42d7-baf5-b4a10663526a": "OpSystems",
+        "2a97083a-3b91-4b1e-a366-f01638761b6e": "UnixTools",
+        "_label": "Students must have a very good knowledge of Unix Tools and scripting"
+      },
+      "contributor": {
+        "1f49ce36-7fe6-45d7-b460-442eef2f3203": "avsm2"
+      },
+      "type": "part2-unit",
+      "classmax": 18
+    },
+    "CE": {
+      "lecturer": "ss2600",
+      "term": "L",
+      "hours": {
+        "883693ff-a1ce-4953-8324-ee48be582348": "3x2 hour sessions + 5x2 hour school placement",
+        "_label": "16"
+      },
+      "format": "In person lectures & school placement",
+      "moodle": 254483,
+      "_label": "Computing Education",
+      "type": "part2-unit",
+      "classmax": 10
+    },
+    "CSM": {
+      "lecturer": "sk818",
+      "term": "L",
+      "hours": {
+        "4583613c-b7c9-4f5b-bfb7-57ea48de33cd": "online lectures and 8 examples classes",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254470,
+      "_label": "Computer Systems Modelling",
+      "prerequisites": {
+        "ea4bc879-c1b0-45aa-b033-daa6daa722ba": "DataSci",
+        "849c452f-fd1e-4052-9668-05c96af685af": "IntroProb"
+      },
+      "type": "part2-unit",
+      "classmax": 20
+    },
+    "Crypto": {
+      "lecturer": "mgk25",
+      "classes": {
+        "81b1f5fe-697e-4de3-bb0e-8991f696d300": "part2"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254455,
+      "supervision_hours": 4,
+      "_label": "Cryptography",
+      "prerequisites": {
+        "8755bff1-5c67-453d-908f-abaa8daa8cb4": "Complexity",
+        "7f685bb6-5614-4edf-9f8f-83f46b2f4f6f": "DiscMath",
+        "_label": "Mathematical Methods I from the NST Mathematics course"
+      }
+    },
+    "DNN": {
+      "lecturer": "fh277",
+      "term": "L",
+      "hours": {
+        "aa327bc9-1392-40c8-9ecd-b23ac4185104": "14hrs lectures",
+        "_label": "14"
+      },
+      "format": "In-person lectures",
+      "moodle": 254471,
+      "_label": "Deep Neural Networks",
+      "contributor": {
+        "0661e801-6715-414c-af2b-35aa444d04f3": "ndl32"
+      },
+      "type": "part2-unit",
+      "classmax": 50
+    },
+    "DSP": {
+      "lecturer": "mgk25",
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254472,
+      "_label": "Digital Signal Processing",
+      "prerequisites": "Mathematical Methods I and III from the NST Mathematics course (or equivalent), LaTeX and Julia (recommended)",
+      "type": "part2-unit",
+      "clone": {
+        "type": "masters-shared",
+        "prerequisites": "basic linear algebra",
+        "synopsis": "This course teaches basic signal-processing principles necessary to understand many modern high-tech systems, with examples from audio processing, image coding, radio communication, radar, and software-defined radio. Students will gain practical experience from numerical experiments in programming assignments (in Julia, MATLAB or NumPy).",
+        "_label": "L314"
+      }
+    },
+    "DenotSem": {
+      "lecturer": "mgapb2",
+      "classes": {
+        "e9b142e6-65c1-4023-bed5-b29af71fcf88": "part2"
+      },
+      "term": "M",
+      "hours": 10,
+      "format": "In-person lectures",
+      "moodle": 254456,
+      "supervision_hours": 2,
+      "_label": "Denotational Semantics"
+    },
+    "ECommerce": {
+      "lecturer": "sam56",
+      "classes": {
+        "74d0ef1a-acbb-4212-8f0f-811957c7b1f3": "part2"
+      },
+      "term": "L",
+      "hours": {
+        "a14af0df-caf5-4213-8324-ec074e692934": "2 examples classes may be held if no supervisions",
+        "_label": "8"
+      },
+      "format": "In-person lectures",
+      "moodle": 254457,
+      "supervision_hours": 2,
+      "_label": "E-Commerce",
+      "prerequisites": {
+        "251ab671-e1a4-40f0-9824-869a405f3c23": "Business",
+        "3bb17c57-58ec-4fb1-95c2-59dc486d193b": "CySecurity",
+        "1bf32c0f-1337-412b-beb1-05732bb29ad1": "EconLaw"
+      }
+    },
+    "ER": {
+      "lecturer": "aco41",
+      "term": "L",
+      "hours": {
+        "508aa8f9-e46f-4260-90ce-b139b1f9fcfd": "12 hrs lectures, 4hrs practicals",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254473,
+      "_label": "Extended Reality",
+      "prerequisites": {
+        "b9c85ba0-76c2-4fa6-8b0f-d612f953d2d9": "FGraphics",
+        "5c2c8950-9858-4e62-bd00-aea19ec28f7c": "Graphics"
+      },
+      "contributor": {
+        "8271ad7b-c3ba-4051-a4d1-13901bc6d8c2": "fz261"
+      },
+      "type": "part2-unit",
+      "classmax": 30
+    },
+    "FL": {
+      "lecturer": "ndl32",
+      "term": "L",
+      "hours": {
+        "8a8bd1e8-8aed-465f-a5b6-a000e8bec165": "8 x 1hr lectures, 4 x 1hr practicals",
+        "_label": "12"
+      },
+      "format": "In-person lectures",
+      "moodle": 254474,
+      "_label": "Federated Learning: Theory and Practice",
+      "prerequisites": "It is strongly recommended that students have previously (and successfully) completed an undergraduate machine learning course - or have equivalent experience through open-source material (e.g., lectures or similar). An example course would be: Part1B \"Artificial Intelligence\". Students should feel comfortable with SGD and optimization methods used to train current popular neural networks and simple forms of neural network architectures.",
+      "type": "part2-unit",
+      "classmax": 50,
+      "clone": {
+        "type": "masters-shared",
+        "hours": {
+          "a25eec75-d0b8-4c9d-9dde-23330e20947b": "8h lectures, 4h lab sessions, 4h advanced material",
+          "_label": "16"
+        },
+        "synopsis": "This course aims to extend students' machine learning knowledge and allow them to understand how these concepts can manifest in a decentralized setting. The course will consider both theoretical (e.g., decentralized optimization) and practical (e.g., networking efficiency) aspects that combine to define this growing area of machine learning.",
+        "_label": "L361"
+      }
+    },
+    "HCAI": {
+      "lecturer": "afb21",
+      "term": "M",
+      "hours": {
+        "e870aaba-a382-421d-9621-3a512bb18fdb": "8 x 2-hour sessions",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254479,
+      "_label": "Practical Research in Human-centred AI",
+      "prerequisites": {
+        "c80f98f5-cefb-476f-bc0c-f83b36522201": "FHCI"
+      },
+      "contributor": {
+        "15518a95-bcb1-49e2-9479-5814544001c2": "as2006"
+      },
+      "type": "part2-unit",
+      "clone": {
+        "type": "masters-shared",
+        "hours": {
+          "cf3570de-7b0b-4e07-a5d2-400ab2efa8a4": "8 x 2hr sessions",
+          "_label": "16"
+        },
+        "prerequisites": "Basic knowledge of machine learning",
+        "synopsis": "This is an advanced course in human-computer interaction, with a specialist focus on intelligent user interfaces and interaction with machine-learning and artificial intelligence technologies. The format will be largely practical, with students carrying out an original empirical research investigation over the course of one term. All empirical studies will address human interaction with some kind of model-based system for planning, decision, automation etc. Possible study formats might include: System evaluation, Field observation, Hypothesis testing experiment, Design intervention, Corpus analysis, or others as shown to be appropriate from evidence of prior research publications that have adopted specific empirical formats.",
+        "_label": "P342"
+      }
+    },
+    "HLog+ModC": {
+      "lecturer": "cp526",
+      "classes": {
+        "da588578-78e6-46e9-95f8-d7c96863a790": "part2"
+      },
+      "term": "E",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254458,
+      "supervision_hours": 3,
+      "_label": "Hoare Logic and Model Checking",
+      "prerequisites": {
+        "e52a781e-f951-4623-acf7-83d98fc20dcf": "LogicProof",
+        "5919a03a-dfe8-4579-ba1c-fe7ada71ca21": "Semantics"
+      }
+    },
+    "InfoTheory": {
+      "lecturer": "rkh23",
+      "classes": {
+        "2fdcf1f9-7f19-43a7-bf33-e8afbf262885": "part2"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254459,
+      "supervision_hours": 3,
+      "_label": "Information Theory"
+    },
+    "MH": {
+      "lecturer": {
+        "732a79b8-5075-484d-b839-a67e8876e748": "cm542",
+        "16ded1d1-60f4-4857-a954-5f32a0185b3f": "jh2298"
+      },
+      "term": "L",
+      "hours": {
+        "49ae1f03-f775-48d6-b2f7-a0521ec760d1": "14 Lectures plus two practicals",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254476,
+      "_label": "Mobile Health",
+      "type": "part2-unit",
+      "clone": {
+        "type": "masters-shared",
+        "hours": {
+          "342915d3-c649-4d4c-b012-90c394245aac": "14h lectures and 2h practicals",
+          "_label": "16"
+        },
+        "synopsis": "The course aims to pick up knowledge developed in undergraduate courses, related to machine learning as well as basic networking and systems and develop the concepts further into their applications into mobile systems and wearable with the aim of aiding the monitoring of our health.",
+        "_label": "L349"
+      }
+    },
+    "MLBayInfer": {
+      "lecturer": "sbh11",
+      "classes": {
+        "d4d60e9d-2718-446d-9c2e-a73f0fd6e7c6": "part2"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254461,
+      "supervision_hours": 4,
+      "_label": "Machine Learning and Bayesian Inference",
+      "prerequisites": {
+        "cb1765c0-c799-42d1-8514-ccbe88d7eadc": "DataSci",
+        "04298aa5-8621-4e32-aa87-cca9b5c9ba72": "DiscMath"
+      }
+    },
+    "MSP": {
+      "lecturer": {
+        "07d05e43-f304-4dcc-ad52-de281ac70ae1": "pes20",
+        "a37bd4a8-12bf-41b7-bd7e-7217540952bd": "tlh20"
+      },
+      "term": "L",
+      "hours": {
+        "e883da15-4e97-4264-a8b0-2e569e71f9a1": "8 x 2hr sessions",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254477,
+      "_label": "Multicore Semantics and Programming",
+      "prerequisites": {
+        "a15b8011-9f8c-4a6b-b867-3da6fc3a8d2a": "DiscMath",
+        "74becf7c-dcee-4c76-b4c2-2b4b171510f9": "OOProg",
+        "dc1cb2bc-7bd2-4678-b408-b44cad305f67": "Semantics"
+      },
+      "contributor": {
+        "0b66417c-7450-4ec3-befb-8fff06292c8e": "cp526"
+      },
+      "type": "part2-unit",
+      "classmax": 20,
+      "clone": {
+        "type": "masters-shared",
+        "hours": {
+          "56306029-06f8-402f-a2e6-a407086541c5": "8 x 2h blocks, including 2 x 1h practical sessions",
+          "_label": "16"
+        },
+        "classmax": 10,
+        "prerequisites": "Some familiarity with discrete mathematics (sets, partial orders, etc.) and with sequential Java programming will be assumed. Experience with operational semantics and with some concurrent programming would be helpful.",
+        "synopsis": "In recent years multiprocessors have become ubiquitous, but building reliable concurrent systems with good performance remains very challenging. This module introduces some of the theory and the practice of concurrent programming, from hardware memory models and the design of high-level programming languages to the correctness and performance properties of concurrent algorithms.",
+        "_label": "L304"
+      }
+    },
+    "MVP": {
+      "lecturer": "aco41",
+      "term": "M",
+      "hours": {
+        "adf73db6-9119-43cb-876a-c8daca2f80b3": "Six 2-hour lectures",
+        "_label": "12"
+      },
+      "format": "In-person lectures",
+      "moodle": 254475,
+      "_label": "Machine Visual Perception",
+      "contributor": {
+        "a7e48232-6cb0-468a-8e39-261b16344ef9": "cpt23"
+      },
+      "type": "part2-unit",
+      "classmax": 30,
+      "clone": {
+        "type": "masters-shared",
+        "hours": {
+          "0b82db37-c319-4516-bc24-93fde0e3f345": "12hrs lectures + 4hrs practicals",
+          "_label": "16"
+        },
+        "classmax": 25,
+        "synopsis": "This course aims at introducing the theoretical fundamentals and practical techniques for machine perception, the capability of computers to interpret data resulting from sensor measurements. It will introduce modern machine learning techniques with a focus on machine perception for visual data.",
+        "_label": "L335"
+      }
+    },
+    "NLP": {
+      "lecturer": {
+        "78aa75b9-37fc-437c-b9cc-4addab00b3a2": "ws390",
+        "d03ee92e-0614-4728-baf5-ee97cafddaf4": "yc632"
+      },
+      "term": "M",
+      "hours": {
+        "98848477-b67e-4075-b3a2-2e6d0e5b465c": "12 lectures + 3 practical classes",
+        "_label": "15"
+      },
+      "format": "In-person lectures",
+      "moodle": 254478,
+      "_label": "Natural Language Processing",
+      "prerequisites": {
+        "cfed4532-a3fc-48ca-b644-e7a50211bf13": "ArtInt",
+        "7e7ab045-55ef-48e9-9a57-781d5f2c1dd7": "DataSci",
+        "325ed1ba-7ba3-40c2-a2a9-cf5717586bc2": "ForModLang",
+        "5d539b0d-a1cb-4db3-9405-fe99f85019d1": "FoundsCS",
+        "37cf9e61-c69b-436c-9cd1-1da83cf97d31": "MLRD"
+      },
+      "type": "part2-unit",
+      "classmax": 30,
+      "clone": {
+        "title": "Overview of Natural Language Processing",
+        "type": "masters-shared",
+        "hours": {
+          "daa024d4-6e6a-4891-a0db-112a6fd7d54e": "12 lectures and 3 x 2 hour practical sessions",
+          "_label": "18"
+        },
+        "classmax": 16,
+        "prerequisites": "No prerequisites beyond those topics covered in an undergraduate CS degree.\\r\\nThis course is a prerequisite for L95: Introduction to Natural Language Syntax and Parsing if you haven't already done a NLP course",
+        "synopsis": "This module introduces the fundamental techniques of natural language processing. It aims to explain the potential and the main limitations of these techniques.  Some current research issues are introduced and some current and potential applications discussed and evaluated. Students will also be introduced to practical experimentation in natural language processing.",
+        "_label": "L390"
+      }
+    },
+    "OptComp": {
+      "lecturer": {
+        "806eb6da-ef8c-420f-9278-d6b33041a367": "tmj32",
+        "cfc45948-c293-432d-829c-31360396bcb9": "tcg40"
+      },
+      "classes": {
+        "176c2814-6937-4d76-8596-8c8b76a53d8d": "part2"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254462,
+      "supervision_hours": 4,
+      "_label": "Optimising Compilers",
+      "prerequisites": {
+        "f5bc44f0-cbdd-451d-9f8d-c77dad514024": "CompConstr"
+      }
+    },
+    "PrincComm": {
+      "lecturer": "jac22",
+      "classes": {
+        "07cf3085-5492-488d-9da3-07759cee035a": "part2"
+      },
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254463,
+      "supervision_hours": 4,
+      "_label": "Principles of Communications",
+      "prerequisites": {
+        "91236804-da36-4d10-aa31-877bc295fdb6": "CompNet",
+        "_label": "This course may be useful for the Part III course on Network Architectures.\\r\\nUseful related courses: Computer Systems Modelling, Information Theory, Digital Signal Processing"
+      }
+    },
+    "QuantComp": {
+      "lecturer": {
+        "b1614092-32bb-411c-a31f-bbfd676e171c": "sjh227",
+        "9ea3c79a-2f64-4d8c-ab99-bb52178333df": "pm830"
+      },
+      "classes": {
+        "66a37aee-d2da-4a84-9630-d111f4c4fc9d": "part2"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254464,
+      "supervision_hours": 4,
+      "_label": "Quantum Computing",
+      "prerequisites": {
+        "a1b1d8c5-90ff-4ea5-9a53-3e87fe3e3117": "CompTheory",
+        "18a22cf5-994b-42da-bc09-097220d33fe8": "DataSci"
+      }
+    },
+    "RandAlgthm": {
+      "lecturer": "tms41",
+      "classes": {
+        "ac3f3928-2da5-4981-85e6-b35d1e41241c": "part2"
+      },
+      "term": "L",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254465,
+      "supervision_hours": 3,
+      "_label": "Randomised Algorithms",
+      "prerequisites": {
+        "63b0e23e-f547-4fde-ad12-7f18591ee96e": "Algorithm1",
+        "47552cf6-718f-4995-b8ff-fb0544fc99fe": "Algorithm2",
+        "e68a5a45-a059-4890-91fb-ff9cbf7b69d3": "FoundsCS",
+        "f69e08c5-c5ca-414d-b55a-08435aa55d95": "IntroProb"
+      }
+    },
+    "TeX+Julia": {
+      "lecturer": "mgk25",
+      "classes": {
+        "01d397e1-c6a3-4301-ad2b-c94baf9a2e19": "part2"
+      },
+      "term": "M",
+      "hours": 2,
+      "format": "In-person lectures",
+      "moodle": 254460,
+      "_label": "LaTeX and Julia",
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "Types": {
+      "lecturer": "nk480",
+      "classes": {
+        "5d4997d3-4cb1-4a09-9a02-25960707fc66": "part2"
+      },
+      "term": "M",
+      "hours": 12,
+      "format": "In-person lectures",
+      "moodle": 254466,
+      "supervision_hours": 3,
+      "_label": "Types",
+      "prerequisites": {
+        "c5bf012e-b0aa-422c-9b93-2a7b73937f78": "CompTheory",
+        "cd0320f5-4ba7-485f-a328-a3abfeea2e37": "Semantics"
+      }
+    },
+    "L118": {
+      "lecturer": "jv258",
+      "classes": {
+        "ecb7b8d5-1c96-489c-826b-2d3865ab2396": "acs",
+        "b2de80ee-b925-4f9d-be71-5714dab49025": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "moodle": 254948,
+      "_label": "Advanced Topics in Category Theory",
+      "prerequisites": {
+        "0f9937a5-c84c-4743-b636-bb4858eb4e87": "L108"
+      },
+      "synopsis": "The module will introduce advanced topics in category theory. The aim is to train students to engage and start modern research on the mathematical foundations of higher categories, the graphical calculus, monoids and representations, type theories, and their applications in theoretical computer science, both classical and quantum."
+    },
+    "L130": {
+      "lecturer": "tg508",
+      "classes": {
+        "b9a17935-4781-4cbf-ac83-9435576bee93": "acs",
+        "2ae8bcc1-c69b-40a6-acd8-6008203ee3a8": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "b57bd368-4f5e-4952-8d08-ed3f0f90568a": "8x1-hour lectures and 8x1-hour seminars",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254954,
+      "_label": "Quantum Algorithms and Complexity",
+      "prerequisites": "Mathematical maturity and familiarity with (classical) algorithms, (classical) complexity theory, and quantum computing.",
+      "classmax": 16,
+      "synopsis": "This module is a research-focused introduction to the theory of quantum computing. The aim is to prepare the students to conduct research in quantum algorithms and quantum complexity theory."
+    },
+    "L132": {
+      "lecturer": "pm830",
+      "classes": {
+        "0c072446-41e9-409d-bc4c-3bbc9adfc164": "acs",
+        "002d506c-9e9f-406d-a139-65ada23a04d0": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "9aa075b4-3884-40c7-966d-8041e46ab3d3": "8hrs lectures, 8hrs seminars",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254955,
+      "_label": "Understanding Quantum Architecture",
+      "prerequisites": "Requires introductory linear algebra - concepts such as eigenvalues, Hermitian matrices, unitary matrices. Taking the Part II Quantum Computing course (or similar) is helpful but not required. Familiarity with computer architecture and compilers is helpful.",
+      "classmax": 16,
+      "synopsis": "This course covers the architecture of a practical-scale quantum computer. We will examine the resource requirements of practical quantum applications, understand the different layers of the quantum stack, the techniques used in these layers and examine how these layers come together to enable practical quantum advantage over classical computing."
+    },
+    "L193": {
+      "lecturer": "mj201",
+      "classes": {
+        "eb06ce54-b72c-4f27-b6a1-95684d527c24": "acs",
+        "9b9071b5-1d72-4b03-9e65-aa41aa997272": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "4da6372c-f259-4f23-917e-de229b41fa01": "6hrs lectures; 6 hrs presentations;4hrs practicals",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254959,
+      "_label": "Explainable Artificial Intelligence",
+      "prerequisites": "A solid background in statistics, calculus and linear algebra. We strongly recommend some experience with machine learning and deep neural networks (to the level of the first chapters of Goodfellow et al.’s “Deep Learning”). Students are expected to be comfortable reading and writing Python code for the module’s practical sessions.",
+      "contributor": {
+        "0ea04a4b-84a1-445f-8ef5-32742f5672d6": "me466",
+        "e64074e1-aa02-4ffe-8e79-50865ea7868d": "zs315"
+      },
+      "classmax": 20,
+      "synopsis": "The recent palpable introduction of Artificial Intelligence (AI) models to everyday consumer-facing products, services, and tools brings forth several new technical challenges and ethical considerations. Amongst these is the fact that most of these models are driven by Deep Neural Networks (DNNs), models that, although extremely expressive and useful, are notoriously complex and opaque. This “black-box” nature of DNNs limits their ability to be successfully deployed in critical scenarios such as those in healthcare and law. Explainable Artificial Intelligence (XAI) is a fast-moving subfield of AI that aims to circumvent this crucial limitation of DNNs by either (i) constructing human-understandable explanations for their predictions, or (ii) designing novel neural architectures that are interpretable by construction."
+    },
+    "L46": {
+      "lecturer": "ndl32",
+      "classes": {
+        "f7577169-e6ce-4fc4-b648-db26d1f9faa5": "acs",
+        "90b7fe78-babf-408a-a1ed-3f2542c43777": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "97bc5421-136b-46fc-a987-e1ff379fb474": "8 × two-hour sessions",
+        "_label": "16"
+      },
+      "moodle": 254935,
+      "_label": "Principles of Machine Learning Systems",
+      "prerequisites": "It is recommended that students have successfully completed introductory courses, at an undergraduate level, in: 1) operating systems, 2) computer architecture, and 3) machine learning. In addition, this course will heavily focus on deep neural network methodologies and assume familiarity with common neural architectures and related algorithms. If these topics were not covered within the machine learning course taken, students should supplement by reviewing material in a book like: \"Dive into Deep Learning\". Finally, students are assumed to be comfortable with programming in Python.",
+      "contributor": {
+        "42e3138a-4b5d-48af-a09d-7853388bb177": "tmdp2"
+      },
+      "classmax": 30,
+      "synopsis": "This course will examine the emerging principles and methodologies that underpin scalable and efficient machine learning systems. Primarily, the course will focus on an exciting cross-section of algorithms and system techniques that are used to support the training and inference of machine learning models under a spectrum of computing systems that range from constrained embedded systems up to large-scale distributed systems. It will also touch up the new engineering practices that are developing in support of such systems at scale. When needed to appreciate issues of scalability and efficiency, the course will drill down to certain aspects of computer architecture, systems software and distributed systems and explore how these interact with the usage and deployment of state-of-the-art machine learning."
+    },
+    "L48": {
+      "lecturer": "ndl21",
+      "classes": {
+        "de16b998-e6d9-4887-b6bd-634429d06d97": "acs",
+        "055e8195-8c42-4382-af9a-77c254e33c8b": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "moodle": 254936,
+      "_label": "Machine Learning and the Physical World",
+      "prerequisites": "A good background in statistics, calculus and linear algebra. A machine learning module such as Machine Learning and Bayesian Inference (https://www.cst.cam.ac.uk/teaching/2021/MLBayInfer) or equivalent is highly recommended.",
+      "contributor": {
+        "5383e0f1-c8b6-4b85-b3d2-bb4c9d918c60": "che29"
+      },
+      "classmax": 30,
+      "synopsis": "The module “Machine Learning and the Physical World” is focused on machine learning systems that interact directly with the real world. Building artificial systems that interact with the physical world have significantly different challenges compared to the purely digital domain. In the real world data is scares, often uncertain and decisions can have costly and irreversible consequences. However, we also have the benefit of centuries of scientific knowledge that we can draw from. This module will provide the methodological background to machine learning applied in this scenario. We will study how we can build models with a principled treatment of uncertainty, allowing us to leverage prior knowledge and provide decisions that can be interrogated."
+    },
+    "L50": {
+      "lecturer": "awm22",
+      "classes": {
+        "7439ec31-617a-41c3-965c-037db6f0540f": "acs",
+        "99547bde-d374-4683-993b-3bff50311669": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "9187d05e-7b1a-4360-b49c-d345f4a4f8d8": "6 hrs lectures + 10 hrs supervised laboratory",
+        "_label": "16"
+      },
+      "moodle": 254938,
+      "_label": "Introduction to networking and systems measurements",
+      "prerequisites": "Undergraduate courses in digital communication",
+      "classmax": 12,
+      "synopsis": "Systems research refers to the study of a broad range of behaviours arising from a complex system design, including: resource sharing and scheduling; interactions between hardware and software; network topology, protocol and device design and implementation; low-level operating systems; Interconnect, storage and more. This module will: teach performance measurement methodology and practice through profiling experiments; expose students to real-world systems artefacts evident through different measurement tools; develop scientific writing skills thorough a series of laboratory reports; and provide research skills for characterization and modelling of systems and networks using measurements."
+    },
+    "L65": {
+      "lecturer": {
+        "5dd3bdc6-f3fb-4cfc-aa84-46974999f5a2": "pl219",
+        "0c2f30c4-5452-4c46-a52c-d3be3078e206": "pv273"
+      },
+      "classes": {
+        "34ea0ab0-d026-4e5a-b9c4-7e5e1935fd95": "acs",
+        "a150c1fe-2c80-4396-8c40-b01b6b780861": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "7f32a11c-5672-4aa3-a663-2b898b85cd7a": "12hrs lectures + 4hrs practicals",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254947,
+      "_label": "Geometric Deep Learning",
+      "prerequisites": "Experience with machine learning and deep neural networks is recommended. Knowledge of concepts from graph theory and group theory is useful, although the relevant parts will be explicitly retaught.",
+      "classmax": 50,
+      "synopsis": "This module will study geometric deep learning -- machine learning approaches on nontrivially-structured data. It aims to provide students with the capability to analyse such data in an effective way, position geometric deep learning in a proper context with related fields, and enable students to contribute to this emerging area in future years. Specifically, it will highlight graph structures as an elegant abstraction that can be used to represent a wide variety of deep learning approaches, and there will be a corresponding focus on graph neural network architectures. The module will be grounded in theoretical concepts of invariance, equivariance, symmetries and network science, offering a sufficiently broad lens to tackle generic geometric deep learning setups (over grids, groups and manifolds---not only graphs)."
+    },
+    "L81": {
+      "lecturer": {
+        "bee9712a-401d-4b7e-82a5-4f639e188557": "tb592",
+        "c02d2a5c-09cf-48b1-82af-a8b63b411e5f": "mgapb2",
+        "4950a2c5-4421-4e8d-9962-9ffe935046b1": "pes20"
+      },
+      "classes": {
+        "0f6cff84-f5be-43c8-b35b-e53d07a5c5bc": "acs",
+        "9f8cb18c-fb66-4eb9-8399-99f4509edb48": "part3"
+      },
+      "term": "M",
+      "format": "In-person lectures",
+      "moodle": 254956,
+      "_label": "Proof Assistants",
+      "classmax": 16,
+      "synopsis": "This module introduces students to interactive theorem proving using Isabelle and Coq. It includes techniques for specifying formal models of software and hardware systems and for deriving properties of these models."
+    },
+    "L95": {
+      "lecturer": "pjb48",
+      "classes": {
+        "78fa2df0-361e-47a1-959a-a61d5710ba47": "acs",
+        "4f38a1b5-9fca-4f33-a1fc-97ef80fff25b": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "moodle": 254939,
+      "_label": "Introduction to Natural Language Syntax and Parsing",
+      "prerequisites": "L90: Overview of Natural Language Processing or an equivalent undergraduate course",
+      "classmax": 12,
+      "synopsis": "This module aims to provide a brief introduction to linguistics for computer scientists and then goes on to cover some of the core tasks in natural language processing (NLP), focussing on statistical tagging and parsing. We will look at how to evaluate taggers and parsers and see how well state-of-the-art tools perform given current techniques."
+    },
+    "L98": {
+      "lecturer": "ws390",
+      "classes": {
+        "c0a6c4a7-dd72-4b65-a09d-8d12a45c1fb9": "acs",
+        "5c8a1977-850f-4c0b-a493-7be1eb3cd9f0": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "438606ed-188a-4ce2-b1b9-5fbfb66dc695": "8 x 2 hour lectures",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254941,
+      "_label": "Introduction to Computational Semantics",
+      "classmax": 16,
+      "synopsis": "This module introduces students to various aspects of the semantics of Natural Languages (mainly English)."
+    },
+    "P56": {
+      "lecturer": "awm22",
+      "classes": {
+        "cf3fd64e-b5b8-49c3-a575-dfd7f2fab402": "acs",
+        "9fa4afca-e346-4c81-a5d0-1943592ec1b1": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "2e013f79-9e62-43b3-bb8b-86f59840b0a3": "(8 x 2hrs first half lecture, second half lab)",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254949,
+      "_label": "Understanding Networked-Systems Performance",
+      "prerequisites": "A student must possess knowledge comparable to the undergraduate subjects on Unix Tools, C/C++ programming and Computer Networks. Optionally; a student will be advantaged by doing an introduction to Computer Systems Modelling; such as the Part 2 Computer Systems Modelling subject as well as having a background in measurement methodologies such as that of L50: Introduction to networking and systems measurements provided in the ACS/Part III curriculum.",
+      "classmax": 12,
+      "synopsis": "This is a practical course, actively building and extending software tools to observe the detailed behaviour of transaction-oriented datacenter-like software. Students will observe and understand sources of user-facing tail latency, including that stemming from resource contention, cross-program interference, bad software locking, and simple design errors."
+    },
+    "P79": {
+      "lecturer": "mk428",
+      "classes": {
+        "356bca2a-2e9d-4164-aa66-6e827fc1f098": "acs",
+        "1fbbd5c4-eb6b-476d-b236-8873e6104e69": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "3c71c05e-a7d6-4063-8ff4-e041028b4bc4": "8 hours lectures + 8 hours practicals",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254958,
+      "_label": "Cryptography and Protocol Engineering",
+      "prerequisites": "Part II Cryptography or similar, Discrete Mathematics",
+      "contributor": {
+        "33ea76b1-0d3a-48c6-a4fe-33200d8e0b01": "dh623"
+      },
+      "classmax": 16,
+      "synopsis": "We all use cryptographic protocols every day: whenever we access an https:// website or send a message via WhatsApp or Signal, for example. In this module, students will get hands-on experience of how those protocols are implemented. We start by writing our own secure messaging protocol from scratch, and then move on to more advanced examples of cryptographic protocols for security and privacy, such as private information retrieval (searching for data without revealing what you’re searching for)."
+    },
+    "R01": {
+      "lecturer": {
+        "e7577343-e51c-48be-8b1d-2bc79db19ef5": "rmm1002",
+        "0738d49e-62ab-4aa3-bda3-18009595c92b": "rk647"
+      },
+      "classes": {
+        "feb72fcb-6e23-473e-b67f-3d71b7147bf6": "acs",
+        "f6aaa8e1-e75a-4f7d-aeb5-0b77f4d39ce6": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "moodle": 254950,
+      "_label": "Advanced Topics in Computer Systems",
+      "prerequisites": "1A Operations Systems, 1B Concurrent and Distributed Systems and 1B Computer Networking or equivalent courses",
+      "synopsis": "An overview of “systems research”, a broad area covering operating systems, database systems, file systems, distributed systems and networking. The focus will be on critical thinking: the ability to argue for and/or against a particular approach or idea."
+    },
+    "R02": {
+      "lecturer": "jac22",
+      "classes": {
+        "ce8e1e49-c35b-4608-a344-07823d338a83": "acs",
+        "5f1755b2-7ddf-474f-87c5-473449aaa6ce": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "moodle": 254940,
+      "_label": "Network Architectures",
+      "prerequisites": "Undergraduate courses that cover the material in Principles of Communications, Security, and Computer Systems Modelling",
+      "classmax": 16,
+      "synopsis": "The world needs more network architects! This module will discuss and critique historical and contemporary network architectures including ATM, TCP/IP and 3G, as well as cover emerging sensor networks and delay tolerant approaches."
+    },
+    "R160": {
+      "lecturer": {
+        "fe16e55a-5482-4f9d-a25c-2d156d46f532": "fms27",
+        "b249b826-6572-4941-9457-20a6eb93f8d7": "fs105"
+      },
+      "classes": {
+        "5656e7ed-7a8f-4fb0-a4c6-0a7ab1d3fa56": "acs",
+        "201cac46-752c-4fec-91be-1dd7f740772a": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "_label": "Digital Money and Decentralised Finance",
+      "prerequisites": "Part 1b Cybersecurity; Part II Cryptography (or equivalent from other universities)",
+      "classmax": 12,
+      "synopsis": "Our society is evolving towards digital payments and the elimination of physical cash. Digital alternatives to cash require trade-offs between various properties including unforgeability, traceability, divisibility, transferability without intermediaries, privacy, redeemability, control over the money supply and many more, often in conflict with each other. Since the 1980s, cryptographers have proposed a variety of clever technical solutions addressing some of these issues but it is only with the appearance of Bitcoin, blockchain and a plethora of copycat cryptocurrencies that a new asset class has now emerged, worth in excess of two trillion dollars (although plagued by extreme volatility). Meanwhile, most major countries have been planning the introduction of Central Bank Digital Currencies in an attempt to retain control. This seminar-style interactive module encourages the students to understand what's happening, what the underlying problems and opportunities are (technical, social and economic) and where we should go from here. We are at a historical turning point where an enterprising candidate might disrupt the status quo and truly make a difference."
+    },
+    "R171": {
+      "lecturer": "ra702",
+      "classes": {
+        "471aadfc-5bb4-4b38-9c10-8a5a84bcb737": "acs",
+        "f26c3bee-817f-4553-8e75-83691b8ece5a": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "22dc5392-9abf-472f-92e2-27512115518b": "8 x two-hour seminars",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254960,
+      "_label": "Reinforcement Learning",
+      "prerequisites": "Multivariable calculus, linear algebra, probability, machine learning (intro)",
+      "synopsis": "The aim of this module is to introduce students to the foundations of the field of reinforcement learning (RL), discuss state-of-the-art RL methods, incentivise students to produce critical analysis of recent methods, and prompt students to propose novel solutions that address shortcomings of existing methods. If judged by the headlines, RL has seen an unprecedented success in recent years. However, the vast majority of RL methods still have shortcomings that might not be apparent at first glance. The aim of the course is to inspire students by communicating the promising aspects of RL, but ensure that students develop the ability to produce a critical analysis of current RL limitations."
+    },
+    "R181": {
+      "lecturer": "asp45",
+      "classes": {
+        "16ef0573-5dc7-4585-8226-39d32d911d2c": "acs",
+        "23c8ed8a-253b-4c2e-a393-141e2d843330": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "1ee5e923-e097-42bc-958b-f8f96e681e66": "8 x 1 hour lectures; 8 x 1 hour reading groups",
+        "_label": "16"
+      },
+      "format": "In-person lectures",
+      "moodle": 254957,
+      "_label": "Computing for Collective Intelligence",
+      "prerequisites": "Familiarity with core machine learning paradigms - Basic calculus (analytical skills) -\\r\\nBasic discretre optimization (combinatorics)",
+      "classmax": 18,
+      "synopsis": "There is a substantial body of academic work demonstrating that complex life is built by cooperation across scales: collections of genes cooperate to produce organisms, cells cooperate to produce multi-cellular organisms and multicellular animals cooperate to form complex social groups. Arguably, all intelligence is collective intelligence. Yet, to-date, many artificially intelligent agents (both embodied and virtual), are generally not conceived from the ground up to interact with other intelligent agents (be it machines or humans). The canonical AI problem is that of a monolithic and solitary machine confronting a non-social environment. This course aims to balance this trend by (i) equipping students with conceptual and practical knowledge on collective intelligence from a computational standpoint, and (ii) by conveying various computational paradigms by which collective intelligence can be modelled as well as synthesized."
+    },
+    "R225": {
+      "lecturer": "afb21",
+      "classes": {
+        "37e3bcf4-9eea-4882-ba57-773bc8be187d": "acs",
+        "8f6f14ce-718e-492a-99d5-767d43a0c54e": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254951,
+      "_label": "Theories of Socio-digital Design for Human-Centred AI",
+      "prerequisites": "This course is appropriate to any ACS student, and will assist in the development of critical thinking, argument and long-form writing skills. Prior experience of essay-based humanities subjects at university or secondary school will be beneficial, but not required.",
+      "contributor": {
+        "d11e72bc-0ccf-4e59-a089-5b064095d889": "th536"
+      },
+      "classmax": 10,
+      "synopsis": "This course is based on a reading group originally developed in collaboration with the Socio-DigitalSystems group at Microsoft Research Cambridge. The objective is for computer science researchers to develop facility in discussing and critiquing the aims"
+    },
+    "R244": {
+      "lecturer": "ey204",
+      "classes": {
+        "e9762679-e391-418f-98be-08bb116c3c95": "acs",
+        "23bc018f-e56f-44e7-9080-f2abeb29f7ed": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "moodle": 254942,
+      "_label": "Large-scale data processing and optimisation",
+      "classmax": 15,
+      "synopsis": "This module provides an introduction to large-scale data processing, optimisation, and the impact on computer system's architecture. Large-scale distributed applications with high volume data processing such as training of machine learning will grow ever more in importance. Integrating machine learning approaches (e.g. Bayesian Optimisation, Reinforcement Learning) for system optimisation will be also explored in this course."
+    },
+    "R252": {
+      "lecturer": {
+        "9f73745f-937a-438f-99cd-d1b8560ee4f8": "fh277",
+        "88a1a7bf-c99d-4979-85fd-fc04e9655620": "cm2099"
+      },
+      "classes": {
+        "b8d44fc0-02d2-419a-aab8-287a33056617": "acs",
+        "501030a3-bc2e-4cb6-ad5d-a466d40ec2e0": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "0c34caf1-49cb-4f3f-81f3-003d25c35c82": "8x2 hour reading group sessions",
+        "_label": "16"
+      },
+      "moodle": 254952,
+      "_label": "Theory of Deep Learning",
+      "prerequisites": "A strong background in calculus, probability theory and linear algebra, familiarity with differential equations, optimization and information theory is required. Students need to have studied Deep Neural Networks, familiarity with deep learning terminology (e.g. architectures, benchmark problems) as well as deep learning frameworks (pytorch, jax or similar) is assumed",
+      "classmax": 28,
+      "synopsis": "The objectives of this course is to expose you to one of the most active contemporary research directions within machine learning: the theory of deep learning (DL). While the first wave of modern DL has focussed on empirical breakthroughs and ever more complex techniques, the attention is now shifting to building a solid mathematical understanding of why these techniques work so well in the first place."
+    },
+    "R255": {
+      "lecturer": {
+        "48d1c9d1-1b19-4141-aae8-8850ed8e7795": "mj201",
+        "69d0a9a5-ae13-43ec-9302-a74b550634a3": "che29"
+      },
+      "classes": {
+        "2de1717a-da95-45b6-a1d3-c3832c633086": "acs",
+        "24fff440-6040-4392-b8ff-afe44b6c25bd": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "format": "In-person lectures and seminars",
+      "moodle": 254953,
+      "_label": "Advanced topics in machine learning",
+      "prerequisites": "Machine learning experience essential, like from L48, L101, L46 or similar",
+      "synopsis": "This course explores current research topics in machine learning in sufficient depth that, at the end of the course, participants will be in a position to contribute to research on their chosen topics. Each topic will be introduced with a lecture which, building on the material covered in the prerequisite courses, will make the current research literature accessible. Each lecture will be followed by up to three sessions which will typically be run as a reading group with student presentations on recent papers from the literature followed by a discussion, or a practical, or similar."
+    },
+    "R265": {
+      "lecturer": {
+        "9dc5c5d3-cca1-4429-a354-a9a42d0661fa": "tmj32",
+        "f54730b9-8828-4303-8484-6c210e5dbf8e": "rdm34"
+      },
+      "classes": {
+        "30e35216-88fe-480d-8109-0b5547c8deeb": "acs",
+        "209e3f7d-90cf-426e-a6f3-80c559a2ce09": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "a8401e46-4d31-4989-a515-f78cfc37ae53": "8 x 2-hour sessions",
+        "_label": "16"
+      },
+      "moodle": 254943,
+      "_label": "Advanced Topics in Computer Architecture",
+      "prerequisites": "An undergraduate course in computer architecture. A good basic understanding of computer architecture will also suffice, e.g. provided by the Patterson and Hennessy book “The Hardware/Software Interface” and/or the early chapters of their book “Computer Architecture: A Quantitative Approach”.",
+      "contributor": {
+        "d6f699ca-1848-433f-94f8-2b2e87938cb6": "jdw57"
+      },
+      "classmax": 15,
+      "synopsis": "This course aims to provide students with an introduction to a range of advanced topics in computer architecture. It will explore the current and future challenges facing the architects of modern computers. These will also be used to illustrate the many different influences and trade-offs involved in computer architecture."
+    },
+    "R269": {
+      "lecturer": "cm542",
+      "classes": {
+        "71f2acf5-245f-4021-a083-4ccd25e85b6f": "acs",
+        "7eaaf3dc-56f7-4519-8f10-0f0367c80ebc": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "format": "In-person lectures",
+      "moodle": 254944,
+      "_label": "Mobile, Wearable Systems and Machine Learning",
+      "contributor": {
+        "271e597e-69e6-45a6-9d02-6ffe1bd375b8": "yl868"
+      },
+      "classmax": 22,
+      "synopsis": "This module aims to introduce the latest research advancements in mobile systems and mobile data machine learning, spanning a range of domains including systems, data gathering, analytics and machine learning, on device machine learning and applications such as health, transportation, behaviour monitoring, cyber-physical systems, autonomous vehicles, drones. The course will cover current and seminal research papers in the area of research."
+    },
+    "R277": {
+      "lecturer": "jdy22",
+      "classes": {
+        "6d32ae0d-407f-4db1-b7a7-e00f8e12b608": "acs",
+        "4f6fc7db-e06c-400a-bf42-c1b61b40dd3c": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "146314cf-ac10-4a29-b88a-d611049414e8": "8 x 2hrs lectures",
+        "_label": "16"
+      },
+      "format": "In-person seminars",
+      "moodle": 254945,
+      "_label": "Advanced topics in programming languages",
+      "prerequisites": "Part IB Semantics, Part II Types (or similar modules)",
+      "classmax": 16,
+      "synopsis": "This module explores various topics in programming languages beyond the scope of undergraduate courses. It aims to introduce students to ideas, results and techniques found in the literature and prepare them for research in the field."
+    },
+    "R47": {
+      "lecturer": "sk818",
+      "classes": {
+        "59842d15-fd46-4b6d-8d96-9fd5f3564ce5": "acs",
+        "0d3897b8-d0c8-4107-8037-eae11efff52d": "part3"
+      },
+      "term": "L",
+      "_label": "Distributed Ledger Technologies: Foundations and Applications",
+      "classmax": 15,
+      "synopsis": "This module examines foundations and current research into distributed ledger (blockchain) technologies and their applications. Students will read, review, and present seminal research papers in this area. Once completed, students should be able to integrate blockchain technologies into their own research and gain familiarity with a range of research skills."
+    }
+  },
+  "lecturers": {
+    "MAllamanis": {
+      "_label": "Miltos Allamanis",
+      "url": "mailto:Miltiadis.Allamanis@microsoft.com"
+    },
+    "MBrockschmidt": {
+      "_label": "Marc Brockschmidt",
+      "url": "mailto:mabrocks@microsoft.com"
+    },
+    "aac10": "Prof Ann Copestake",
+    "abr28": "Dr Bogdan Roman",
+    "acn1": "Dr Arthur Norman",
+    "aco41": "Dr Cengiz Oztireli",
+    "acr31": "Dr Andrew Rice",
+    "ad260": "Prof Anuj Dawar",
+    "ad465": "Dr Adria de Gispert",
+    "afb21": "Prof Alan Blackwell",
+    "ah12": "Prof Andy Hopper",
+    "ah793": "Dr Alice Hutchings",
+    "aib29": "Dr Andrei Bejan",
+    "alk23": "Dr Anna Korhonen",
+    "am21": "Prof Alan Mycroft",
+    "am2920": "Dr Andrea Marinoni",
+    "amp12": "Prof Andrew Pitts",
+    "aoy20": "Dr Ali Ozgur Yontem",
+    "apc38": "Dr Andrew Caines",
+    "arb33": "Prof Alastair Beresford",
+    "as2006": "Dr Advait Sarkar",
+    "asp45": "Prof Amanda Prorok",
+    "atm26": "Dr Theo Markettos",
+    "av308": "Prof Andreas Vlachos",
+    "avsm2": "Prof Anil Madhavapeddy",
+    "awm22": "Prof Andrew Moore",
+    "bdj23": "Brian Jones",
+    "bh288": "Dr Bjarki Holm",
+    "bk291": "Dr Bartosz Klin",
+    "bns21": "Dr Brian Shand",
+    "brmt2": "Dr Blaise Thomson",
+    "carh4": {
+      "_label": "Prof Sir Tony Hoare",
+      "url": "http://research.microsoft.com/en-us/people/thoare/"
+    },
+    "caw77": "Conrad Watt",
+    "cer54": {
+      "_label": "Prof Carl Rasmussen",
+      "url": "https://www.csap.cam.ac.uk/network/carl-rasmussen/"
+    },
+    "che29": "Dr Carl Henrik Ek",
+    "ckh11": "Chris Hadley",
+    "cm2099": "Dr Challenger Mishra",
+    "cm542": "Prof Cecilia Mascolo",
+    "cmab3": "Dr Claire Benn",
+    "cp526": "Dr Christopher Pulte",
+    "cpt23": "Dr Christopher Town",
+    "cu200": "Dr Christian Urban",
+    "dao29": "Dr Dominic Orchard",
+    "dc552": "Dr David Chisnall",
+    "de239": "Dr David Evans",
+    "dh623": "Dr Daniel Hugenroth",
+    "djg11": "Dr David Greaves",
+    "djw1005": "Dr Damon Wischik",
+    "dme26": "Dr David Eyers",
+    "do242": "Dr Diarmuid O’Seaghdha",
+    "dpm36": "Dr Dominic Mulligan",
+    "drm10": "Dr Derek McAuley",
+    "drt24": "Dr Daniel Thomas",
+    "ejb1": "Prof Ted Briscoe",
+    "ek264": "Dr Evangelia Kalyvianaki",
+    "ek358": "Dr Ekaterina Kochmar",
+    "es407": "Dr Ekaterina Shutova",
+    "ey204": "Dr Eiko Yoneki",
+    "ff286": "Dr Fulvio Forni",
+    "fh277": "Dr Ferenc Huszar",
+    "fhk1": "Dr Frank King",
+    "fi224": "Dr Fumiya Iida",
+    "fm611": "Dr Fermin Moscoso del Prado Martin",
+    "fms27": "Prof Frank Stajano",
+    "frc26": "Dr Franck Courbon",
+    "fs105": "Dr Ferdinando Samaria",
+    "fz261": "Fangcheng Zhong",
+    "gcj21": "Dr Graeme Jenkinson",
+    "gete2": "Dr Guy Emerson",
+    "gst22": "Dr George Taylor",
+    "gw104": "Prof Glynn Winskel",
+    "hg410": "Prof Hatice Gunes",
+    "hh360": "Dr Heidi Howard",
+    "hlj36": "Dr Heleen Janssen",
+    "hy260": "Dr Helen Yannakoudakis",
+    "ijl20": "Dr Ian Lewis",
+    "ijpdmt2": "Ivo Timoteo",
+    "ijw24": "Dr Ian Wassell",
+    "iml1": "Prof Ian Leslie",
+    "jac22": "Prof Jon Crowcroft",
+    "jal1": {
+      "_label": "Jack Lang",
+      "url": "http://www.emma.cam.ac.uk/teaching/fellows/display/?fellow=239"
+    },
+    "jas289": "Dr John Sylvester",
+    "jc2106": "Dr Jennifer Cobbe",
+    "jc2161": "Dr Jagmohan Chauhan",
+    "jdw57": "Dr Jonathan Woodruff",
+    "jdy22": "Dr Jeremy Yallop",
+    "jgd1000": "Prof John Daugman",
+    "jh2298": "Dr Jing Han",
+    "jjl25": "Dr Jon Ludlam",
+    "jkf21": "Dr John Fawcett",
+    "jl221": {
+      "_label": "Dr Joan Lasenby",
+      "url": "http://www-sigproc.eng.cam.ac.uk/~jl/"
+    },
+    "jlf46": "Dr Jonas Frey",
+    "jmb25": "Prof Jean Bacon",
+    "jmh93": "Dr Jonathan Hayman",
+    "jp622": "Dr Jean Pichon",
+    "js2878": "Dr Jon Sterling",
+    "js573": "Dr Jatinder Singh",
+    "js861": "Dr Jaroslav Sevcik",
+    "jt796": "Justin Tan",
+    "jv258": "Dr Jamie Vicary",
+    "ki287": "Dr Konstantinos Ioannidis",
+    "km10": "Dr Ken Moody",
+    "ko201": {
+      "_label": "Dr Karen Ottewell",
+      "url": "http://www.langcen.cam.ac.uk/lc/staff/karen.html"
+    },
+    "ks775": "Dr Kasper Svendsen",
+    "lec40": "Dr Luke Church",
+    "lmi22": "Dr L M Ioannou",
+    "lp15": "Prof Larry Paulson",
+    "lpw25": "Dr Leo White",
+    "lr346": "Dr Laura Rimell",
+    "lz381": "Dr Luca Zanetti",
+    "mcm79": "Dr Mariana Marasoiu",
+    "me466": "Mateo Espinosa Zarlenga",
+    "mgapb2": "Dr Meven Lennon-Bertrand",
+    "mgk25": "Dr Markus Kuhn",
+    "mj201": "Prof Mateja Jamnik",
+    "mjcg": "Prof Mike Gordon",
+    "mjfg100": {
+      "_label": "Prof Mark Gales",
+      "url": "http://mi.eng.cam.ac.uk/~mjfg/"
+    },
+    "mjp41": "Dr Matthew Parkinson",
+    "mk428": "Dr Martin Kleppmann",
+    "mmam3": "Dr Marwa Mahmoud",
+    "mns25": "Matt Stuttle",
+    "mo390": "Dr Maris Ozols",
+    "mom22": "Dr Magnus Myreen",
+    "mp867": "Dr Maria Perez-Ortiz",
+    "mpf23": "Prof Marcelo Fiore",
+    "mr472": "Dr Marek Rei",
+    "mrhg2": "Dr Mark Gotham",
+    "mss84": "Dr Michael Schlichtkrull",
+    "mtw29": "Dr Mark Granroth-Wilding",
+    "na482": "Dr Nada Amin",
+    "nad10": "Prof Neil Dodgson",
+    "ndl21": "Prof Neil Lawrence",
+    "ndl32": "Dr Nic Lane",
+    "nhc30": {
+      "_label": "Dr Nigel Collier",
+      "url": "http://www.languagesciences.cam.ac.uk/directory/dr-nigel-collier"
+    },
+    "nk480": "Dr Neel Krishnaswami",
+    "nr454": "Dr Nicolas Rivera",
+    "nrs32": "Dr Nishanth Sastry",
+    "ns441": "Dr Nik Sultana",
+    "nz247": "Dr Noa Zilberman",
+    "ok259": "Dr Ohad Kammar",
+    "others": {
+      "_label": " (and others)",
+      "cec5879c-9ca3-49d9-ac2b-61276a91e6de": "url"
+    },
+    "pat40": "Dr Paul Taylor",
+    "pb355": {
+      "_label": "Dr Alex Benton",
+      "url": "http://bentonian.com/"
+    },
+    "pes20": "Prof Peter Sewell",
+    "pjb48": "Prof Paula Buttery",
+    "pl219": "Prof Pietro Lio'",
+    "pm830": "Dr Prakash Murali",
+    "pnb14": "Dr Nick Benton",
+    "pp524": "Dr Pedro Porto Buarque de Gusmao",
+    "pr10": "Prof Peter Robinson",
+    "pv273": "Dr Petar Veličković",
+    "pw117": {
+      "_label": "Prof Phil Woodland",
+      "url": "http://mi.eng.cam.ac.uk/~pcw/"
+    },
+    "ra702": "Dr Rika Antonova",
+    "raa43": {
+      "_label": "Dr Anne Alexander",
+      "url": "http://www.digitalhumanities.cam.ac.uk/directory/raa43@cam.ac.uk"
+    },
+    "rc10001": {
+      "_label": "Prof Roberto Cipolla",
+      "url": "http://mi.eng.cam.ac.uk/~cipolla/"
+    },
+    "rc635": "Dr Ronan Cummins",
+    "rdc42": "Dr Ryan Cotterell",
+    "rdm34": "Dr Robert Mullins",
+    "ret26": {
+      "_label": "Dr Richard Turner",
+      "url": "http://www.eng.cam.ac.uk/research/people/view/197"
+    },
+    "rg31": "Dr Richard Gibbens",
+    "rgu20": "Dr Raoul Urma",
+    "rja14": "Prof Ross Anderson",
+    "rk647": "Dr Roman Kolcun",
+    "rkh23": "Dr Robert Harle",
+    "rkm38": "Dr Rafal Mantiuk",
+    "rmf25": "Dr Ramsey Faragher",
+    "rmm1002": "Prof Richard Mortier",
+    "rnc1": "Dr Richard Clayton",
+    "rnw24": "Prof Robert Watson",
+    "sac92": "Dr Stephen Cummins",
+    "sam56": "Stewart McTavish",
+    "sbh11": "Dr Sean Holden",
+    "sc609": "Dr Stephen Clark",
+    "scy27": "Shih-Chun You",
+    "sdf22": "Dr Simon Frost",
+    "sht25": "Prof Simone Teufel",
+    "sjh227": "Dr Steven Herbert",
+    "sjm217": "Dr Steven Murdoch",
+    "sjy11": "Prof Steve Young",
+    "sk818": "Prof Srinivasan Keshav",
+    "sk826": "Dr KC Sivaramakrishnan",
+    "smh22": "Dr Steven Hand",
+    "sps32": "Dr Sergei Skorobogatov",
+    "ss2138": "Sandra Servia Rodriguez",
+    "ss2600": "Dr Sue Sentance",
+    "ss368": "Dr Samuel Staton",
+    "stc40": "Dr Stewart Carswell",
+    "swm11": "Prof Simon Moore",
+    "tb592": "Dr Thomas Bauereiss",
+    "tbc": {
+      "_label": "(to be confirmed)",
+      "c62d27cd-5f11-4536-8ce4-152493d4dffe": "url"
+    },
+    "tcg40": "Dr Tobias Grosser",
+    "tef10": "Dr Thomas Forster",
+    "tg508": "Prof Tom Gur",
+    "tgg22": "Dr Timothy Griffin",
+    "th536": "Dr Tomasz Hollanek",
+    "tlh20": "Dr Timothy Harris",
+    "tmdp2": "Dr Titouan Parcollet",
+    "tmj32": "Prof Timothy Jones",
+    "tms41": "Dr Thomas Sauerwald",
+    "tp366": "Dr Tamara Polajnar",
+    "wjb31": {
+      "_label": "Prof Bill Byrne",
+      "url": "http://mi.eng.cam.ac.uk/~wjb31/"
+    },
+    "ws390": "Dr Weiwei Sun",
+    "yc632": "Yulong Chen",
+    "yl868": "Dr Yang Liu",
+    "zg201": {
+      "_label": "Prof Zoubin Ghahramani",
+      "url": "http://mlg.eng.cam.ac.uk/zoubin/"
+    },
+    "zs315": "Dr Zohreh Shams"
+  },
+  "types": {
+    "masters-nfc": {
+      "assessmentpage": 0,
+      "classes": {
+        "564759c9-2e2c-43d8-bd24-c18118d38985": "acs",
+        "2b52c549-4d97-4cfc-bbd7-2360e8de62d5": "part3"
+      },
+      "heading": "Not-for-credit modules",
+      "syllabus-footnote": {
+        "d53c0a75-faf1-4139-85d6-0c78a0cb84b4": "This module is offered as background for some Lent Term ACS modules but cannot be taken for credit.",
+        "_label": "*p"
+      },
+      "_label": "Masters module, not for credit"
+    },
+    "masters-nfc-shared": {
+      "assessmentpage": 0,
+      "classes": {
+        "5df498ce-2609-42f1-b909-9a202ecaa49b": "acs",
+        "952be2be-d612-45fa-a014-f93fe0cf812d": "part3"
+      },
+      "heading": "Not-for-credit modules",
+      "materials": "clone",
+      "recordings": "clone",
+      "supervisions": 0,
+      "syllabus": "clone",
+      "syllabus-footnote": {
+        "92307621-6cdc-47e9-9eff-bf44b9c0ddd4": "This course is borrowed from ",
+        "e5ec1221-eb17-4b09-90f3-1e3315873fc1": {
+          "href": "../part2.html",
+          "043154a4-b715-4cba-81a4-8f0eed91bd25": "Part II of the Computer Science Tripos",
+          "_label": "*a"
+        },
+        "00758006-afc9-4a0b-8d15-0c61f755aa1e": ". This module is offered as background for some Lent Term ACS modules but cannot be taken for credit.",
+        "_label": "*p"
+      },
+      "triposexam": 0,
+      "_label": "Masters module borrowed from Part II, not for credit"
+    },
+    "masters-shared": {
+      "assessmentpage": 1,
+      "classes": {
+        "2705ff54-73ab-4485-a66e-5af566b8b1ea": "acs",
+        "8d3ae031-e8f7-4c89-8207-5be40b5307bf": "part3"
+      },
+      "4b82f1a6-3b3c-4f6b-9ccb-a22dc7bfcd54": "heading",
+      "materials": "clone",
+      "recordings": "clone",
+      "supervisions": 0,
+      "syllabus": {
+        "03fc1d6b-f150-40ef-a15d-90024bc7e6ac": "clone",
+        "83df3ffd-7cb9-4bda-b322-24dab77332d3": {
+          "url": "http://webadmin.cst.cam.ac.uk/teaching/course/%m/%s/%s_%m_syllabus.html",
+          "21f446a6-bf77-4566-a6d2-ac41f913ddea": "syllabus-html",
+          "_label": "htmlinclude"
+        }
+      },
+      "syllabus-footnote": {
+        "acc4c60a-4515-4332-9a4f-2719889b8ef1": "This module is shared with ",
+        "21262d00-12f3-46e4-9359-ecda3565e974": {
+          "href": "../part2.html",
+          "f77c17e6-8103-460d-87c5-35a223d8ca84": "Part II of the Computer Science Tripos",
+          "_label": "*a"
+        },
+        "4d745b78-fa72-4da7-a564-5a9267bdbe06": ". Assessment will be adjusted for the two groups of students to be at an appropriate level for whichever course the student is enrolled on. ",
+        "9a54b137-e1ab-45e1-980b-9b3f1e7cf10e": {
+          "href": "assessment.html",
+          "6f3b6c15-6a75-4a22-93a3-bf7e7b0644b7": "Further information about assessment and practicals",
+          "_label": "*a"
+        },
+        "bec74fff-a968-4ab9-acc2-7e9ef029f54a": " will follow at the first lecture.",
+        "_label": "*p"
+      },
+      "triposexam": 0,
+      "_label": "Masters module borrowed from Part II"
+    },
+    "part2-unit": {
+      "assessmentpage": 1,
+      "classes": {
+        "f14c4bff-909a-4242-bd82-4f3637b06401": "part2"
+      },
+      "heading": "Modules",
+      "showcode": 1,
+      "supervisions": 0,
+      "triposexam": 0,
+      "_label": "Part II module"
+    }
+  }
+}

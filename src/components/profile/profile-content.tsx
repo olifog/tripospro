@@ -14,13 +14,13 @@ const TopProfile = ({ crsid }: { crsid: string }) => {
         </HydrateClient>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export async function ProfileContent({ crsid }: { crsid: string }) {
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <TopProfile crsid={crsid} />
     </div>
-  )
+  );
 }

@@ -28,18 +28,19 @@ import {
   useSidebar
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { trpc } from "@/trpc/client";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { useClerk } from "@clerk/nextjs";
-import { trpc } from "@/trpc/client";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
 
   const { user, isLoaded } = useUser();
-  const { data: userData, isLoading: userDataLoading } = trpc.user.getUserByClerkId.useQuery(
-    { clerkId: user?.id as string },
-    { enabled: isLoaded }
-  );
+  const { data: userData, isLoading: userDataLoading } =
+    trpc.user.getUserByClerkId.useQuery(
+      { clerkId: user?.id as string },
+      { enabled: isLoaded }
+    );
   const { signOut, openUserProfile } = useClerk();
 
   if (!isLoaded || userDataLoading) {
@@ -60,7 +61,9 @@ export function NavUser() {
   }
 
   if (user && !userData) {
-    throw new Error("Something super bad happened dude. contact olifog on discord");
+    throw new Error(
+      "Something super bad happened dude. contact olifog on discord"
+    );
   }
 
   return (

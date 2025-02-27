@@ -6,7 +6,7 @@ function ChatPage() {
     <PageLayout header={<h1>Chat</h1>}>
       <div>Chat</div>
     </PageLayout>
-  )
+  );
 }
 
 export default withParamsCache(ChatPage);

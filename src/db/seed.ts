@@ -45,5 +45,3 @@ export async function seed() {
 
   console.log("Seed completed");
 }
-
-seed();

@@ -1,11 +1,11 @@
 "use client";
 
-import { ErrorBoundary } from "react-error-boundary";
-import { Skeleton } from "../ui/skeleton";
-import Image from "next/image";
 import { trpc } from "@/trpc/client";
+import Image from "next/image";
 import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { ErrorMessage } from "../error";
+import { Skeleton } from "../ui/skeleton";
 
 export const ProfilePicture = ({ crsid }: { crsid: string }) => {
   return (
@@ -36,7 +36,8 @@ const ProfilePictureSkeleton = () => {
 const ProfilePictureInner = ({ crsid }: { crsid: string }) => {
   const [userData] = trpc.user.getUserByCrsid.useSuspenseQuery({ crsid });
 
-  if (!userData?.clerkUser?.imageUrl) return <ProfilePictureDefault crsid={crsid} />;
+  if (!userData?.clerkUser?.imageUrl)
+    return <ProfilePictureDefault crsid={crsid} />;
 
   return (
     <div className="relative h-16 w-16 overflow-hidden rounded-lg">
@@ -73,12 +74,21 @@ const ProfileDetailsSkeleton = () => {
 };
 
 const ProfileDetailsError = () => {
-  return <ErrorMessage variant="compact" title="Failed to load profile details" description="Please refresh the page." />;
+  return (
+    <ErrorMessage
+      variant="compact"
+      title="Failed to load profile details"
+      description="Please refresh the page."
+    />
+  );
 };
 
 const ProfileDetailsInner = ({ crsid }: { crsid: string }) => {
   const [userData] = trpc.user.getUserByCrsid.useSuspenseQuery({ crsid });
 
-  return <span className="text-muted-foreground">{userData?.clerkUser?.firstName} {userData?.clerkUser?.lastName}</span>;
+  return (
+    <span className="text-muted-foreground">
+      {userData?.clerkUser?.firstName} {userData?.clerkUser?.lastName}
+    </span>
+  );
 };
-

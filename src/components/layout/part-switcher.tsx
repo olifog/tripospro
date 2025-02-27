@@ -19,11 +19,11 @@ import {
   useSidebar
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ErrorBoundary } from "react-error-boundary";
 import { usePart } from "@/hooks/use-params";
-import { useEffect } from "react";
-import { trpc } from "@/trpc/client";
 import { defaultPartCode } from "@/lib/search-params";
+import { trpc } from "@/trpc/client";
+import { useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 export function PartSwitcher() {
   return (
