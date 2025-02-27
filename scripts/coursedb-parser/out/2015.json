@@ -1,0 +1,1683 @@
+{
+  "myear": 2014,
+  "teaching-admin": {
+    "c1f67db9-294f-4ecf-9ab3-bb60f3bd6a6a": "lmg30",
+    "aeb9e8fc-ceaf-48ba-af38-35b5bf28b283": "kmc42",
+    "0c1ea9b2-fd87-4fef-90b3-b887bcbf7dce": "dp341",
+    "4811f10b-f6fb-4165-afa0-2353eabfbe1b": "ms725",
+    "084e6a65-bfc3-4865-a12f-18973da60ae6": "ncc25",
+    "368cebbb-8b19-4b6e-94d2-723b6f187e48": "ckh11",
+    "b276834b-92d4-4a63-a23e-7aaae46dcc75": "wwwupdate"
+  },
+  "timetable-url": "http://www.cl.cam.ac.uk/teaching/timetables/",
+  "groups": {
+    "2689959a-ed98-40ba-b9c8-39db4ecf0ed3": {
+      "title": "Year 1",
+      "_label": "year1",
+      "supervisions": 1,
+      "syllabus": "latexhtmlinclude",
+      "triposexam": 1,
+      "10f5c2e2-8308-4eb5-a6bc-aefc2b1f0196": {
+        "title": "Part IA CST",
+        "_label": "part1a-cst"
+      },
+      "55700991-c128-418f-89be-29554a5ebe98": {
+        "title": "Part IA NST, Part I PBS",
+        "_label": "part1a-other"
+      }
+    },
+    "a2e24835-fc08-4588-a181-0c4ab31a2914": {
+      "title": "Year 2",
+      "_label": "year2",
+      "supervisions": 1,
+      "syllabus": "latexhtmlinclude",
+      "triposexam": 1,
+      "074d645a-758c-43a6-800b-ad7b62e1c613": {
+        "title": "Part IB",
+        "_label": "part1b"
+      }
+    },
+    "4b6aa6ca-71c9-4d75-8737-a6ff49139c71": {
+      "title": "Year 3",
+      "_label": "year3",
+      "supervisions": 1,
+      "syllabus": "latexhtmlinclude",
+      "triposexam": 1,
+      "cc18d867-1a78-4ecc-af5b-1ff408b97aa4": {
+        "title": "Part II",
+        "_label": "part2"
+      }
+    },
+    "c4b63f68-8102-4d3a-8291-adcc381f92d4": {
+      "title": "Year 4",
+      "_label": "year4",
+      "assessmentpage": 1,
+      "showcode": 1,
+      "syllabus": "htmlinclude",
+      "8f2dc41b-ae40-4431-9ef8-64c3d0379b18": {
+        "title": "Part III",
+        "_label": "part3"
+      },
+      "4d6b1116-f5ab-4cb2-8bcb-ab305d76213e": {
+        "title": "MPhil ACS",
+        "_label": "acs"
+      }
+    }
+  },
+  "courses": {
+    "AdvGraph": {
+      "lecturer": "pb355",
+      "classes": {
+        "5188acb0-8c49-4ca8-894f-3a9a26fd8a50": "part2"
+      },
+      "term": "L",
+      "_label": "Advanced Graphics",
+      "oldnames": {
+        "b670516e-c27c-43be-ab3c-a50a455a9acb": "Advanced Graphics and HCI"
+      }
+    },
+    "AdvAlgo": {
+      "lecturer": "tms41",
+      "classes": {
+        "738f265e-df0b-43fe-9ec3-0bc8b8b49a40": "part2"
+      },
+      "term": "E",
+      "_label": "Advanced Algorithms"
+    },
+    "Algorithms": {
+      "lecturer": {
+        "03af1d4f-b66c-48d3-8399-49bb3599de96": "fms27",
+        "dc3cff2c-73fb-447f-b2a7-474e0d2da6db": "tms41"
+      },
+      "classes": {
+        "10e63af2-8185-4ed0-b5c3-2db61c3764ef": "part1a-cst",
+        "69856c0f-0bbd-4080-aab2-999c01077b5b": "part1a-other"
+      },
+      "term": "L",
+      "_label": "Algorithms"
+    },
+    "ArtIntI": {
+      "lecturer": "sbh11",
+      "classes": {
+        "e8695d95-d8d5-4ef0-a39d-d96fddf2ffc0": "part1b"
+      },
+      "term": "E",
+      "_label": "Artificial Intelligence I",
+      "oldnames": {
+        "73bedb20-6913-4b39-baab-07bd9bd7012e": "Artificial Intelligence"
+      }
+    },
+    "ArtIntII": {
+      "lecturer": "ijpdmt2",
+      "classes": {
+        "4ad5ee87-2360-47a8-94f4-044730912baf": "part2"
+      },
+      "term": "L",
+      "_label": "Artificial Intelligence II",
+      "oldnames": {
+        "52456aac-8831-45c9-8bca-fed8fa52f70e": "Artificial Intelligence"
+      }
+    },
+    "Bioinfo": {
+      "lecturer": "pl219",
+      "classes": {
+        "e38c290d-a796-45ea-94a8-53b66d4ed424": "part2"
+      },
+      "term": "M",
+      "_label": "Bioinformatics"
+    },
+    "BusSeminrs": {
+      "lecturer": "jal1",
+      "classes": {
+        "c43ed12c-d3ce-4766-a1e3-ddf14e778312": "part2"
+      },
+      "term": "E",
+      "_label": "Business Studies Seminars",
+      "triposexam": 0
+    },
+    "Business": {
+      "lecturer": "jal1",
+      "classes": {
+        "80ffed6c-5336-48ea-b7f0-c6a8fee20b59": "part2"
+      },
+      "term": "M",
+      "_label": "Business Studies"
+    },
+    "CandC++": {
+      "lecturer": "avsm2",
+      "classes": {
+        "99da03d3-96c3-4c9f-a828-76e9410a11d8": "part1b"
+      },
+      "term": {
+        "47c121fa-f681-4777-a4af-77b28bedf070": "L",
+        "_label": "M"
+      },
+      "_label": "Programming in C and C++"
+    },
+    "CompArch": {
+      "lecturer": "rdm34",
+      "classes": {
+        "428d97ff-3d95-4808-9c73-a9db1c9d3c31": "part2"
+      },
+      "term": "L",
+      "_label": "Comparative Architectures"
+    },
+    "CompConstr": {
+      "lecturer": "tgg22",
+      "classes": {
+        "a1d3b675-2e76-47a8-9d78-0fa1552cbc7d": "part1b"
+      },
+      "term": "L",
+      "_label": "Compiler Construction"
+    },
+    "CompDesign": {
+      "lecturer": "swm11",
+      "classes": {
+        "e3dc747d-5e1f-49fb-9a5e-c21943960143": "part1b"
+      },
+      "term": "M",
+      "_label": "Computer Design",
+      "oldnames": {
+        "2403f0eb-03e3-430c-8dee-84290ed4ec8d": "ECAD"
+      }
+    },
+    "CompFund": {
+      "lecturer": "rkh23",
+      "classes": {
+        "64dfab72-b2c9-4c97-8ed6-f5305926300f": "part1a-cst",
+        "39a061a5-3feb-4114-b8dc-74031f3d9d62": "part1a-other"
+      },
+      "term": "M",
+      "_label": "Computer Fundamentals",
+      "oldnames": {
+        "55b04215-8774-4822-854c-ff76bbaa331e": "Operating Systems"
+      },
+      "triposexam": 0,
+      "supervisions": 0,
+      "syllabus": 0
+    },
+    "CompGraph": {
+      "lecturer": "pr10",
+      "classes": {
+        "cbf2b016-ba91-420c-9c42-537a502f1020": "part1b"
+      },
+      "term": "M",
+      "_label": "Computer Graphics and Image Processing"
+    },
+    "CompNet": {
+      "lecturer": "awm22",
+      "classes": {
+        "2a7e0741-fd6f-4982-a636-0d77de86cbc9": "part1b"
+      },
+      "term": {
+        "6e2139e6-40eb-45d9-81dc-5ba9774426cf": "L",
+        "_label": "M"
+      },
+      "_label": "Computer Networking",
+      "oldnames": {
+        "6958cefb-fffd-41d4-aef9-34919f42e8a1": "Digital Communication I"
+      }
+    },
+    "CompSysMod": {
+      "lecturer": "rg31",
+      "classes": {
+        "68b0bb79-42a2-44ff-bcc7-184c9d25810a": "part2"
+      },
+      "term": "M",
+      "_label": "Computer Systems Modelling"
+    },
+    "CompTheory": {
+      "lecturer": "amp12",
+      "classes": {
+        "6828329f-cd74-46c2-99fc-bd4aadcd425d": "part1b"
+      },
+      "term": "L",
+      "_label": "Computation Theory"
+    },
+    "CompVision": {
+      "lecturer": "jgd1000",
+      "classes": {
+        "7f0bc790-badc-4ee7-af57-f7f40c3ff3fa": "part2"
+      },
+      "term": "L",
+      "_label": "Computer Vision"
+    },
+    "Complexity": {
+      "lecturer": "ad260",
+      "classes": {
+        "5d3faf02-1489-4079-a5db-b7d3902ae761": "part1b"
+      },
+      "term": "E",
+      "_label": "Complexity Theory",
+      "oldnames": {
+        "cdcfbedb-41d1-435b-9e3a-da77614e63c7": "Complexity"
+      }
+    },
+    "ConcDisSys": {
+      "lecturer": {
+        "f494722b-96f3-4c2f-b664-f7e5db6f9f75": "jmb25",
+        "9eb12f92-4455-4a36-95e2-c3c03bac4b57": "rnw24"
+      },
+      "classes": {
+        "4ab1a1a9-85ca-46e3-85f6-be6d3982ddfc": "part1b"
+      },
+      "term": {
+        "95af6eab-295a-4d50-ac05-b0bca86d9766": "L",
+        "_label": "M"
+      },
+      "_label": "Concurrent and Distributed Systems",
+      "oldnames": {
+        "43de0c14-0700-47b1-a47a-fa29c8f87fd2": "Concurrent Systems"
+      }
+    },
+    "ConceptsPL": {
+      "lecturer": "am21",
+      "classes": {
+        "99af3c67-903b-4f84-8aa2-d44cbd5340cd": "part1b"
+      },
+      "term": "E",
+      "_label": "Concepts in Programming Languages",
+      "oldnames": {
+        "47938931-85f3-4d1d-9fb4-cf8a4fed6bff": "Comparative Programming Languages"
+      }
+    },
+    "DSP": {
+      "lecturer": "mgk25",
+      "classes": {
+        "0b9c7709-94f3-4812-9cee-71e3dba60ab0": "part2"
+      },
+      "term": "M",
+      "_label": "Digital Signal Processing"
+    },
+    "Databases": {
+      "lecturer": "tgg22",
+      "classes": {
+        "3ec47fe0-eff7-4593-aa8f-cd7a1a4d29bc": "part1b"
+      },
+      "term": "L",
+      "_label": "Databases"
+    },
+    "DenotSem": {
+      "lecturer": "mpf23",
+      "classes": {
+        "aeb84257-10c0-469f-8c8a-0b8875e2de67": "part2"
+      },
+      "term": "L",
+      "_label": "Denotational Semantics"
+    },
+    "DigElec": {
+      "lecturer": "ijw24",
+      "classes": {
+        "b3aef439-66af-45a9-abcb-7ef9b652a2c6": "part1a-cst"
+      },
+      "term": "M",
+      "_label": "Digital Electronics"
+    },
+    "DiscMath": {
+      "lecturer": {
+        "cb5ff4cb-010f-47dd-bdaf-9fb600751406": "mpf23",
+        "c8d7f6a2-6352-4eea-8888-177ff4e8c8e1": "amp12"
+      },
+      "classes": {
+        "190c6b6a-feda-4906-b8df-efb14feef23f": "part1a-cst"
+      },
+      "term": {
+        "ae77edb2-720f-4f43-954f-2531b33ab835": "L",
+        "_label": "M"
+      },
+      "_label": "Discrete Mathematics",
+      "oldnames": {
+        "97107122-1c55-409a-9db6-8689fabd9ee7": "Discrete Mathematics I"
+      }
+    },
+    "ECAD+Arch": {
+      "lecturer": {
+        "18a377df-c327-472f-8951-e6ddd0cc0de1": "swm11",
+        "40e942b8-32dd-4d5e-bca8-f6536bb59094": "rdm34"
+      },
+      "classes": {
+        "3a2e2298-1f99-4772-964b-c37cba243746": "part1b"
+      },
+      "term": "M",
+      "_label": "ECAD and Architecture Practical Classes",
+      "triposexam": 0,
+      "supervisions": 0
+    },
+    "ECommerce": {
+      "lecturer": "jal1",
+      "classes": {
+        "951977e7-d1b3-459f-b2ff-e4e3aacfdcb7": "part2"
+      },
+      "term": "L",
+      "_label": "E-Commerce",
+      "oldnames": {
+        "d0b8901f-badf-4b46-b279-e1c05b963630": "Business Studies"
+      }
+    },
+    "EconLaw": {
+      "lecturer": "rja14",
+      "classes": {
+        "73675f5e-1da4-41df-a914-28725fe15048": "part1b"
+      },
+      "term": "E",
+      "_label": "Economics, Law and Ethics",
+      "oldnames": {
+        "ab3a5422-971b-4867-a62d-a5e19cd649a1": "Economics and Law"
+      }
+    },
+    "FJava": {
+      "lecturer": {
+        "5f7ddbae-65d2-4ce7-8c37-7cada545d501": "arb33",
+        "f40d2672-f50d-499b-8193-d00fd90a1040": "acr31"
+      },
+      "classes": {
+        "58a3ae3b-8ffe-4a2e-b0c7-cdaebdc31b38": "part1b"
+      },
+      "term": {
+        "49a332e2-aab3-4c43-8d6d-4a2a90e03a20": "L",
+        "_label": "M"
+      },
+      "_label": "Further Java",
+      "supervisions": 0
+    },
+    "FJavaBrfg": {
+      "lecturer": "arb33",
+      "classes": {
+        "bae61a3e-e717-4c4a-8385-15c39c7e6288": "part1a-cst"
+      },
+      "term": "E",
+      "_label": "Further Java Briefing",
+      "supervisions": 0,
+      "triposexam": 0
+    },
+    "NumMethods": {
+      "lecturer": "djg11",
+      "classes": {
+        "01eaa8c6-d5b7-42a4-b6c0-66b140556548": "part1a-cst",
+        "b08251e6-8bf0-4c95-b09b-bef2860f39ca": "part1a-other"
+      },
+      "term": "E",
+      "_label": "Numerical Methods",
+      "oldnames": {
+        "2c68a4b8-ddc2-4d3c-8818-7aa46d34c044": "Floating-Point Computation"
+      }
+    },
+    "FoundsCS": {
+      "lecturer": "lp15",
+      "classes": {
+        "fc054061-bd77-467a-ae2d-8ed2eee5f3b8": "part1a-cst",
+        "62909e2d-2a5e-4ee0-9b51-50345be93a4d": "part1a-other"
+      },
+      "term": "M",
+      "_label": "Foundations of Computer Science"
+    },
+    "GroupProj": {
+      "lecturer": "iml1",
+      "classes": {
+        "cea4a474-eb01-4299-99f5-e66fc47f8c82": "part1b"
+      },
+      "term": {
+        "cee57441-06f1-49b5-bf76-24ce4a47917e": "L",
+        "_label": "M"
+      },
+      "_label": "Group Project",
+      "url": "http://www.cl.cam.ac.uk/teaching/group-projects/",
+      "feedback": 0,
+      "triposexam": 0
+    },
+    "HCI": {
+      "lecturer": "afb21",
+      "classes": {
+        "d1c825c1-07f8-476b-ae0f-94af3eeb35f3": "part2"
+      },
+      "term": "M",
+      "_label": "Human-Computer Interaction",
+      "oldnames": {
+        "f59215ff-a8dc-45d6-9647-8eb19b51b2f0": "Advanced Graphics and HCI"
+      }
+    },
+    "HW": {
+      "lecturer": "ijw24",
+      "classes": {
+        "11f65249-bd09-43be-9b0c-079b0b94022c": "part1a-cst"
+      },
+      "term": {
+        "668ba1fb-2d4a-48b7-889c-d8ccee837f2c": "L",
+        "_label": "M"
+      },
+      "_label": "Hardware Practical Classes",
+      "supervisions": 0,
+      "triposexam": 0,
+      "feedback": 0,
+      "syllabus": 0
+    },
+    "HoareLogic": {
+      "lecturer": "mjcg",
+      "classes": {
+        "392744f0-b715-48d8-b67d-b3718ee25b29": "part2"
+      },
+      "term": "M",
+      "_label": "Hoare Logic",
+      "oldnames": {
+        "0bd9b2bd-486d-4d55-bb66-e546233c03dd": "Specification and Verification I"
+      }
+    },
+    "InfoRtrv": {
+      "lecturer": "sht25",
+      "classes": {
+        "39f5760c-cb4e-4216-9b69-57c40ab3958b": "part2"
+      },
+      "term": "L",
+      "_label": "Information Retrieval"
+    },
+    "InfoTheory": {
+      "lecturer": "jgd1000",
+      "classes": {
+        "e43d4224-d1e9-4b9b-9426-b67b5f5b06db": "part2"
+      },
+      "term": "M",
+      "_label": "Information Theory and Coding"
+    },
+    "LogicProof": {
+      "lecturer": "lp15",
+      "classes": {
+        "b61e0ce1-c504-4eb6-b874-b28e693ac7d8": "part1b"
+      },
+      "term": "L",
+      "_label": "Logic and Proof"
+    },
+    "MathMforCS": {
+      "lecturer": {
+        "fe8866c9-e210-447c-be59-e24314c2c85e": "jgd1000",
+        "0edefc59-3a34-41c2-b566-c4158fc0f9a6": "rg31"
+      },
+      "classes": {
+        "ab637c2d-2583-4555-aae3-52c27f2e6a30": "part1b"
+      },
+      "term": "M",
+      "_label": "Mathematical Methods for Computer Science",
+      "oldnames": {
+        "cbedbb2d-be00-43f9-b463-99872e0fe83d": "Continuous Mathematics"
+      }
+    },
+    "ML": {
+      "lecturer": "lp15",
+      "classes": {
+        "49b32aeb-a60e-4ffa-8f15-2693523f1504": "part1a-cst",
+        "160391dc-36f3-4219-a513-eba87163c0ad": "part1a-other"
+      },
+      "term": "M",
+      "_label": "ML Practical Classes",
+      "triposexam": 0,
+      "supervisions": 0,
+      "syllabus": 0,
+      "oldnames": {
+        "31595ff0-5c67-49e0-a46c-33db7712ed12": "ML under Windows"
+      }
+    },
+    "MobSensSys": {
+      "lecturer": "cm542",
+      "classes": {
+        "07ee9d0e-67d8-4bb5-b6f0-f0fa1dd73267": "part2"
+      },
+      "term": "E",
+      "_label": "Mobile and Sensor Systems"
+    },
+    "NLP": {
+      "lecturer": "aac10",
+      "classes": {
+        "0ac7ba20-efef-4c34-adc6-c2eb5114c98a": "part2"
+      },
+      "term": "M",
+      "_label": "Natural Language Processing"
+    },
+    "OOProg": {
+      "lecturer": "rkh23",
+      "classes": {
+        "29921539-8945-4aae-9fba-504af8afae05": "part1a-cst",
+        "3acd18cd-2b6e-4a51-8d35-b9554553c3d7": "part1a-other"
+      },
+      "term": "M",
+      "_label": "Object-Oriented Programming",
+      "oldnames": {
+        "a2513b8e-a385-48c7-8d3d-3e6e7bd0c2bc": "Programming Methods and Java"
+      }
+    },
+    "OpSystems": {
+      "lecturer": "iml1",
+      "classes": {
+        "ce865565-c93f-4ed6-b95f-ca334074b4e0": "part1a-cst"
+      },
+      "term": "L",
+      "_label": "Operating Systems"
+    },
+    "OptComp": {
+      "lecturer": "am21",
+      "classes": {
+        "054d2a21-c4aa-4d1b-acf9-8011e5161589": "part2"
+      },
+      "term": "M",
+      "_label": "Optimising Compilers"
+    },
+    "PrincComm": {
+      "lecturer": "jac22",
+      "classes": {
+        "819921ba-7714-40dd-b44d-86ffee3cdfba": "part2"
+      },
+      "_label": "Principles of Communications",
+      "oldnames": {
+        "9d454b21-337f-4ee9-be50-5f7387c68cb7": "Digital Communication II"
+      }
+    },
+    "ProgJava": {
+      "lecturer": {
+        "81e68c52-31e6-40a1-9389-ecff79324b31": "arb33",
+        "879d47a1-71f5-4a70-803b-5a49ad64f716": "acr31"
+      },
+      "classes": {
+        "fcb9ee8f-0227-429a-abd9-8e8082bba28d": "part1a-cst",
+        "ff31340e-8b8d-423b-afdb-00161a735b59": "part1a-other"
+      },
+      "term": {
+        "75dbdbaa-b714-4a6c-b8ae-1553d7a1c8fc": "L",
+        "_label": "M"
+      },
+      "_label": "Programming in Java"
+    },
+    "Prolog": {
+      "lecturer": {
+        "fe0ce389-9ce2-4e59-8f52-ba4198b8e271": "arb33",
+        "dee5bca0-5ecf-41b4-b7e1-162f0372bc33": "acr31"
+      },
+      "classes": {
+        "bfef74b5-2c78-4402-9a6b-67e05a127dff": "part1b"
+      },
+      "term": "M",
+      "_label": "Prolog",
+      "oldnames": {
+        "044b91ef-5511-40a5-8df9-ad8918e0d2b6": "Prolog for Artificial Intelligence"
+      }
+    },
+    "QuantComp": {
+      "lecturer": "ad260",
+      "classes": {
+        "a2fd9b96-a6ab-4697-98a2-679b137125d0": "part2"
+      },
+      "term": "M",
+      "_label": "Quantum Computing"
+    },
+    "Registratn": {
+      "lecturer": "rkh23",
+      "classes": {
+        "51539d87-5577-4fd1-afa6-35c51c8c9edc": "part1a-cst",
+        "6da21127-b9b5-401c-bbf0-51e0206be228": "part1a-other"
+      },
+      "term": "M",
+      "_label": "Registration",
+      "feedback": 0,
+      "supervisions": 0,
+      "triposexam": 0,
+      "syllabus": 0
+    },
+    "SWIDesign": {
+      "lecturer": "afb21",
+      "classes": {
+        "15742327-9da8-4c2d-9a28-28746e271707": "part1a-cst"
+      },
+      "term": "E",
+      "_label": "Software and Interface Design",
+      "oldnames": {
+        "e98d09b5-65f5-4e91-ada2-c994a1d6b6a6": "Software Design"
+      }
+    },
+    "SWEng": {
+      "lecturer": "rja14",
+      "classes": {
+        "4ac3cc46-fcc1-48dd-b2c7-539d9204e082": "part1b"
+      },
+      "term": "M",
+      "_label": "Software Engineering",
+      "oldnames": {
+        "15d9211c-5a1c-4916-b5de-e92d115cac8d": "Software Engineering I"
+      }
+    },
+    "SecurityI": {
+      "lecturer": "mgk25",
+      "classes": {
+        "57b0577d-7803-4d9f-b907-5d8cb3dc9611": "part1b"
+      },
+      "term": "E",
+      "_label": "Security I",
+      "oldnames": {
+        "dc5ba1cd-36f8-465c-bc66-8fc684476794": "Introduction to Security"
+      }
+    },
+    "SecurityII": {
+      "lecturer": {
+        "9a3276dd-ea19-4a9e-9989-356ce2327297": "fms27",
+        "ca5d8f61-ee4a-48c8-b456-4c86c33040bd": "mgk25"
+      },
+      "classes": {
+        "aa20a369-9359-496e-9d3e-b9a0768b6ddf": "part2"
+      },
+      "term": "L",
+      "_label": "Security II",
+      "oldnames": {
+        "edcaf29a-2ead-42bd-afe9-30db4df724ff": "Security"
+      }
+    },
+    "Semantics": {
+      "lecturer": "pes20",
+      "classes": {
+        "4bda3bc4-a5a2-41a4-aca9-29f99371fce5": "part1b"
+      },
+      "term": "M",
+      "_label": "Semantics of Programming Languages",
+      "oldnames": {
+        "d9ce05a8-a8d9-42f3-9eb0-7892c630f34c": "Semantics"
+      }
+    },
+    "SysOnChip": {
+      "lecturer": "djg11",
+      "classes": {
+        "6865013c-4a80-4a23-b4fa-1b97e4cd96fd": "part2"
+      },
+      "term": "L",
+      "_label": "System-on-Chip Design",
+      "oldnames": {
+        "455ee514-44d5-4833-93f6-5c8c607800d8": "VLSI Design"
+      }
+    },
+    "TempLogic": {
+      "lecturer": "mjcg",
+      "classes": {
+        "c5178856-693f-427d-827f-236d1a09faf5": "part2"
+      },
+      "term": "L",
+      "_label": "Temporal Logic and Model Checking",
+      "oldnames": {
+        "f2e6a108-6f89-4d75-8a47-3090f8e9f188": "Specification and Verification II"
+      }
+    },
+    "TopConc": {
+      "lecturer": "jmh93",
+      "classes": {
+        "d02116bd-f9aa-4858-a2f3-3f82241cca5c": "part2"
+      },
+      "term": "L",
+      "_label": "Topics in Concurrency"
+    },
+    "TopIssues": {
+      "lecturer": "rkh23",
+      "classes": {
+        "bf360f65-43d9-4dc5-a475-3e01a881eea8": "part2"
+      },
+      "term": "E",
+      "_label": "Topical Issues",
+      "oldnames": {
+        "913d1bc4-e7f1-4a25-868c-8fc7c1b7a987": "Additional Topics"
+      }
+    },
+    "Types": {
+      "lecturer": "dao29",
+      "classes": {
+        "801c7284-5a46-4325-b74c-9f699a03a22c": "part2"
+      },
+      "term": "M",
+      "_label": "Types"
+    },
+    "UnixTools": {
+      "lecturer": "mgk25",
+      "classes": {
+        "72305dd9-c1d1-4e70-b98c-c7f9bb24533f": "part1b"
+      },
+      "term": "M",
+      "_label": "Unix Tools",
+      "triposexam": 0,
+      "supervisions": 0
+    },
+    "C00": {
+      "lecturer": {
+        "50ec666b-be5b-4e59-b6c2-1c3200428cb5": "arb33",
+        "0f018845-61be-4de7-8eef-bd96a84920ea": "afb21",
+        "65f76709-0632-406b-a4cc-d9ea3b96de73": "aac10",
+        "abf10cc1-ff90-467c-98c4-6b99c40e1a36": "pr10"
+      },
+      "classes": {
+        "a1e70955-8431-4b36-93b1-1e2026ead3c7": "acs",
+        "dc95ca00-6c65-45a6-a451-a90ecc8657e8": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "_label": "Research Skills",
+      "prerequisites": "Fluency in English (reading and writing)",
+      "synopsis": "Covers key research skills including: understanding the research process; how to read research papers; technical writing and technical presentation; and experiment design and statistical analysis of results. This module must be taken by all M.Phil students.",
+      "note": "compulsory for M.Phil students"
+    },
+    "R01": {
+      "lecturer": "smh22",
+      "classes": {
+        "b9aa4f3a-7488-4800-ac1f-c5531314b1e4": "acs",
+        "0f8606b5-25ef-4c0e-bb77-5e153e50eef6": "part3"
+      },
+      "hours": {
+        "489c9c5c-e8bd-406d-a1c6-3113190074bb": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Advanced Topics in Computer Systems",
+      "prerequisites": "Undergraduate operating systems course",
+      "synopsis": "An overview of “systems research”, a broad area covering operating systems, database systems, file systems, distributed systems and networking. The focus will be on critical thinking: the ability to argue for and/or against a particular approach or idea. Each week students will read and critique (and sometimes present) research papers in the field."
+    },
+    "R02": {
+      "lecturer": "jac22",
+      "classes": {
+        "c8c8129d-b0c5-42e2-a588-ac342b6dd078": "acs",
+        "ad3d1875-2e4c-42fa-b378-c15e04de6632": "part3"
+      },
+      "hours": 16,
+      "_label": "Network Architectures",
+      "prerequisites": "Undergraduate courses in computer networks and security",
+      "synopsis": "The world needs more network architects! This module will discuss and critique historical and contemporary network architectures including ATM, TCP/IP and 3G, as well as cover emerging sensor networks and delay tolerant approaches."
+    },
+    "R03": {
+      "lecturer": "pr10",
+      "classes": {
+        "bea7640a-1fd4-41db-884a-3cdcad747452": "acs",
+        "8c6a2940-261a-44f9-b403-5b163f2f5368": "part3"
+      },
+      "hours": {
+        "1de167c6-2749-458b-b018-3dacbf9526f7": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Innovative User Interfaces",
+      "prerequisites": "An undergraduate course in human-computer interaction",
+      "class-limit": 12,
+      "synopsis": "Provides an overview of research in the area of innovative user interfaces including, amongst other topics, windows and icons; augmented reality; ubiquitous computing; and ambient displays."
+    },
+    "R05": {
+      "lecturer": "rdm34",
+      "classes": {
+        "5003b53f-2f7c-4f9d-b7b9-83dbc9355313": "acs",
+        "6d1c9366-15c4-4f4f-a36d-b76a84a29f7c": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "a1658092-1949-42e5-b8d6-6f1396521039": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Chip Multiprocessors",
+      "prerequisites": "An undergraduate course in computer architecture",
+      "synopsis": "Uni-processor designs can no longer be scaled to take full advantage of advances in fabrication technology. This has forced a shift to parallel architectures in an attempt to sustain performance growth. This module examines the motivation for such a shift in detail, and covers the research challenges facing industry and academia in attempting to exploit single-chip parallel architectures."
+    },
+    "R07": {
+      "lecturer": "bh288",
+      "classes": {
+        "d48b525c-74a4-473b-8b81-eb403548fb47": "acs",
+        "5ae0495a-bb78-407e-b4aa-dc9bd80b0eaf": "part3"
+      },
+      "hours": 8,
+      "_label": "Introductory Logic",
+      "prerequisites": "Basic familiarity with discrete mathematics and set theory (for example, to the level of Discrete Mathematics I and II from Part 1A of the Cambridge Computer Science Tripos).",
+      "synopsis": "This module aims to provide the basic mathematical logic which will be assumed in later courses."
+    },
+    "R204": {
+      "lecturer": {
+        "f3156a1d-b7ce-4769-97d7-9c8fedc342ec": "pes20",
+        "18c00c58-4e5b-43e3-ba11-dd85316b0bcf": "tlh20"
+      },
+      "classes": {
+        "b675b2d9-bd82-454d-b0b8-16552ffbdbac": "acs",
+        "1a94f90b-42a1-47be-aacb-3a52140fee2b": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "d1d8aecd-e93d-4903-9295-b39264402168": "8 × two-hour blocks, including 2 × one-hour practical sessions",
+        "_label": "16"
+      },
+      "_label": "Multicore Semantics and Programming",
+      "prerequisites": "Some familiarity with discrete mathematics (sets, partial orders, etc.) and with sequential Java programming will be assumed. Experience with operational semantics and with some concurrent programming would be helpful.",
+      "synopsis": "In recent years multiprocessors have become ubiquitous, but building reliable concurrent systems with good performance remains very challenging. This module introduces some of the theory and the practice of concurrent programming, from hardware memory models and the design of high-level programming languages to the correctness and performance properties of concurrent algorithms."
+    },
+    "R206": {
+      "lecturer": {
+        "893922a4-007d-4036-aafa-93802453872d": "rja14",
+        "1474fd3d-58ba-4d27-b250-99532876ee96": "fms27",
+        "67653c34-f7fb-482b-bbfa-c88f3819a67c": "sjm217",
+        "3dc06567-ab2f-43cc-afb4-a8ab52cf6756": "rnw24"
+      },
+      "classes": {
+        "5025071d-0b07-42b8-b355-68a7985f0788": "acs",
+        "d4fda0ea-8e21-4f07-9d74-cc82570f6c16": "part3"
+      },
+      "hours": {
+        "84cc13bf-b08b-4ecb-aac4-63752ed2aeed": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Operating and Distributed System Security",
+      "prerequisites": "Undergraduate operating systems course; an undergraduate networking course would be useful",
+      "synopsis": "This course aims to introduce students to research questions in the protection mechanisms used in operating systems and distributed systems. Topics include the engineering tradeoffs involved in access control mechanisms, such as expressiveness versus performance and usability; the implications for CPU and operating system design; the use of formal methods to validate and harden enforcement mechanisms; the analysis of protocols and APIs; and application case studies."
+    },
+    "R207": {
+      "lecturer": "aac10",
+      "classes": {
+        "983bf841-5838-490c-9564-2ed4feb06448": "acs",
+        "7edc0272-a195-4fac-b2d8-d4729be601d5": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "a07350fd-c060-439f-a4be-fe3d29e71c52": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Language and Concepts",
+      "prerequisites": "L100 Introduction to Natural Language Processing",
+      "class-limit": 8,
+      "synopsis": "NB: Not to be offered in 2015-2016. The notion of a concept is crucial to the way that we think about representation of language and human cognition. Concepts are relevant to AI and NLP/computational linguistics as well as other areas of Computer Science which are concerned with modelling the real world in a way which is comprehensible to humans, including semantic web technology.  The aim of this course is to start from a computational perspective but to provide an overview of the interdisciplinary issues involved in the study of concepts, including ideas from linguistics, cognitive science, philosophy and neuroscience.  The course will be organised as a reading group and assessed by an essay."
+    },
+    "R209": {
+      "lecturer": {
+        "963e7420-bedf-4f49-91a6-a03fb18c3e35": "rja14",
+        "2eb32aff-e29f-4f17-a3ec-f7a11a9069ea": "fms27",
+        "c399f76e-4bce-4ce9-ac08-62d3eebad588": "arb33",
+        "_label": "rnw24"
+      },
+      "classes": {
+        "d5718fba-5188-49e8-bcd5-1efbe5f8008e": "acs",
+        "1eeebd15-1f52-4f5d-b298-12c168b585a8": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "234b28db-d255-4330-815f-89deb9745609": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Computer Security: Principles and Foundations",
+      "prerequisites": "Undergraduate operating systems course; an undergraduate networking course would be useful. It is recommended that students undertaking the Lent term course also take this Michaelmas term course.",
+      "synopsis": "This course aims to provide students with an introduction to the history and central themes of computer security, from its 1970s foundations to some current research topics, with a theme of  how to defend cloud-based systems against capable motivated opponents. The course considers first local computer systems and then distributed systems; however, we will rapidly discover that this is an artificial distinction that only becomes more awkward as we enter the current period. Throughout the course, we will consider proposed systems along with the adversarial research intended to identify gaps and vulnerabilities."
+    },
+    "R210": {
+      "lecturer": {
+        "4b65ca14-33d3-4282-8e84-ff4e207089c7": "rnw24",
+        "bde28b14-03e6-4f29-a791-f2b3a4817eb4": "fms27",
+        "55d61d40-c870-4cd4-bc8e-7012e28e943d": "arb33",
+        "_label": "rja14"
+      },
+      "classes": {
+        "a2621c19-34d3-47de-aab6-a9cc0d4bc32c": "acs",
+        "31d8c8a0-70dc-4be5-a722-2a9d6324fc30": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "5602856a-9800-4b74-afff-71bf0e9c5ba9": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Computer Security: Current Applications and Research",
+      "prerequisites": "It is recommended that students undertaking this course also take the Michaelmas term course R209 Computer Security: Principles and Foundations.",
+      "synopsis": "In the second security course in the ACS, we turn our attention to active research topics in computer security at the Computer Laboratory. One unifying theme is how to build secure systems at scale that contain more secure and less secure components. Building on the lessons from multilevel secure systems and security protocols discussed in the first course, we will explore infrastructure versus applications; services versus clients; the use of smartcards and other cryptographic processors; API security; and failure modes from covert channels to concurrency vulnerabilities."
+    },
+    "R212": {
+      "lecturer": "ey204",
+      "classes": {
+        "cc1fe4da-54ff-44e2-9254-9e8f62015666": "acs",
+        "4aff420d-1141-4cf0-952b-b758bd4f9535": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "762504e1-d68a-4939-818a-09394f930cec": "Eight 2-hour seminar sessions (combination of lectures and reading club)",
+        "_label": "16"
+      },
+      "_label": "Data Centric Systems and Networking",
+      "prerequisites": "Undergraduate network architectures and operating systems courses",
+      "class-limit": 17,
+      "synopsis": "This module provides an introduction to data centric systems and networking where data is a communication token in networking and its impact on the computer system's architecture. Large-scale distributed applications with big data processing will grow ever more in importance and become a pervasive aspect of the lives of millions of users. Supporting the design and implementation of robust, secure, and heterogeneous large-scale distributed systems is essential."
+    },
+    "R214": {
+      "lecturer": {
+        "2d4794b3-4363-4cd6-a215-3bb2553a55d1": "alk23",
+        "b25cd8b4-7107-45a2-8fba-c68c9d72df9e": "pl219"
+      },
+      "classes": {
+        "cb56ccb4-6448-4041-8503-eae342e38bf0": "acs",
+        "8cc95148-85d9-4833-8e11-17a5a35e13ff": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Biomedical Information Processing",
+      "prerequisites": "None",
+      "synopsis": "Research done within biomedical sciences is generating vast amounts of information which can, when processed appropriately, improve our understanding of the complex processes that govern life, death and disease. This course surveys computational techniques that can be used to process biomedical data with the overall goal of supporting the processes of scientific inquiry, problem solving, and decision making in biomedical sciences. A variety of data types and sources will be introduced, along with data and text mining techniques that can be used to analyse, extract, discover and integrate biomedical information at levels ranging from molecular through human populations. The course surveys specific problems in biology, clinical medicine and public health and shows how information processing can support practical applications in these areas."
+    },
+    "R215": {
+      "lecturer": {
+        "64f5690a-55d1-439e-811c-09b32860adfd": "afb21"
+      },
+      "classes": {
+        "d6dbb859-fc99-4a10-ba95-7b1d11c751ff": "acs",
+        "f1969270-a971-4003-8f8c-a8307b391d94": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "_label": "Theories of Interaction and Socio-digital Design",
+      "prerequisites": "This course is appropriate to any ACS student, and will assist in the development of critical thinking, argument and long-form writing skills. Prior experience of essay-based humanities subjects at university or secondary school will be beneficial, but not required.",
+      "synopsis": "This course is based on a reading group originally developed in collaboration with the Socio-Digital Systems group at Microsoft Research Cambridge. The objective is for computer science researchers to develop facility in discussing and critiquing the aims of their research, especially for an audience drawn from other academic disciplines.  Participants may include research students and academic guests from other University departments."
+    },
+    "R216": {
+      "lecturer": {
+        "9a5c7be1-31a6-484f-90be-99ff2d85ff8a": "sht25"
+      },
+      "classes": {
+        "9b3c32a9-8bf8-42dd-a238-eac845b0dc36": "acs",
+        "a7a73ebe-42a0-4d8c-963d-3a2a02f95ed9": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Discourse Processing",
+      "prerequisites": "L90 Overview of Natural Language Processing and L95 Introduction to Natural Language",
+      "synopsis": "This module provides an introduction to NLP research centered around discourse processing (i.e., the means by which larger pieces of text are structured), and to text summarisation methods, particularly those based on discourse processing."
+    },
+    "L11": {
+      "lecturer": "tgg22",
+      "classes": {
+        "b8263356-1afc-4fed-9370-f7b9bdb9804b": "acs",
+        "e554662a-790a-4310-9579-653e74f008de": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "_label": "Algebraic Path Problems, with applications to Internet Routing",
+      "prerequisites": "An undergraduate course in discrete mathematics.",
+      "synopsis": "A great deal of interesting work was done in the 1970s in generalizing shortest path algorithms to a wide class of semirings – called “path algebras” or “dioids”. Although the evolution of Internet Routing protocols does not seem to have taken much inspiration from this work, recent “reverse engineering” efforts have demonstrated that an algebraic approach is very useful for both understanding existing protocols and for exploring the design space of future Internet routing protocols. This course is intended to present the basic mathematics needed to understand this approach. No previous background will be assumed. The course will start from scratch and end with open research problems. Many examples inspired by Internet Routing will be presented along the way."
+    },
+    "L15": {
+      "lecturer": "ad260",
+      "classes": {
+        "066e252b-1d66-4602-9971-f1432fa29f41": "acs",
+        "52dd4b8e-19d8-45a4-b5b6-ab7713b684ef": "part3"
+      },
+      "hours": 16,
+      "_label": "Topics in Logic and Complexity",
+      "prerequisites": "Undergraduate courses in complexity theory, computation theory and first-order logic",
+      "synopsis": "The course covers the use of methods from logic in the study of  computational complexity as well as aspects of logic that can be  understood from the perspective of complexity.  In particular, it  focuses on the study of the expressive power of logical formalisms and  methods for proving limitations on this."
+    },
+    "L18": {
+      "lecturer": "mj201",
+      "classes": {
+        "90c7cf72-4c3d-42cb-983b-0976992bcb3a": "acs",
+        "a9b4eaa3-f192-4d50-bf90-5e3a3a12bb53": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "_label": "Automated Reasoning",
+      "prerequisites": "Familiarity with basic logic and artificial intelligence beneficial",
+      "class-limit": 16,
+      "synopsis": "Provides an introduction to how reasoning can be automated from an AI perspective. The course will introduce students to fundamental techniques for designing and implementing automated reasoners, and present advanced uses of theorem proving for solving mathematical problems via automated reasoning."
+    },
+    "L21": {
+      "lecturer": "lp15",
+      "classes": {
+        "570a29af-846c-449f-a96e-415a26a72544": "acs",
+        "8620132d-941e-4dcc-83a8-904f2504d0fb": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "6cda1aaf-916c-4b9f-abd1-63715c1d58ea": "12 lectures and 4 practical classes",
+        "_label": "16"
+      },
+      "_label": "Interactive Formal Verification",
+      "prerequisites": "Familiarity with basic logic and operational semantics",
+      "synopsis": "Introduces students to interactive theorem proving using Isabelle. It includes techniques for specifying formal models of software and hardware systems and for deriving properties of these models."
+    },
+    "L22": {
+      "lecturer": "gw104",
+      "classes": {
+        "b1e7696b-d197-4c85-8db0-53834dc99e00": "acs",
+        "afb5bef1-f5fe-4aa8-beb6-b22b6c78e7fd": "part3"
+      },
+      "hours": 8,
+      "_label": "Advanced Topics in Concurrency",
+      "prerequisites": "Category theory course such as Category Theory and Logic L108 module",
+      "synopsis": "How can the ideas and methodology of denotational semantics and domain theory be extended and generalized to the richer world of interacting concurrent processes? Using ideas and techniques from semantics and category theory this half-module will guide the student to recent research in domain theory for concurrency."
+    },
+    "L23": {
+      "lecturer": "amp12",
+      "classes": {
+        "e110b8ec-b8f2-4d34-a8cf-a25ef1c7a006": "acs",
+        "a5376c2c-a4f0-4678-a3e0-799b366ce182": "part3"
+      },
+      "hours": 8,
+      "_label": "Nominal Sets and Their Applications",
+      "prerequisites": "Logic and set theory (e.g. Discrete Mathematics I and II from CST Part IA) and operational semantics of typed programming languages (e.g. Semantics of Programming Languages from CST Part IB). Familiarity with some elementary category theory (such as the Category Theory and Logic L108 module).",
+      "synopsis": "Names and constructs that bind names are ubiquitous in programming languages. Nominal sets provide a mathematical theory of structures involving names, based on some simple, but subtle ideas to do with symmetry and computing with data structures that are infinite, but finite modulo symmetry. The theory has applications to programming language semantics, machine-assisted theorem proving and the design of functional and logical metaprogramming languages. The course introduces the theory of nominal sets, survey some of its applications and highlight potential areas for further research."
+    },
+    "L24": {
+      "lecturer": "mpf23",
+      "classes": {
+        "ed8598b9-8c6e-48de-9b84-35720117b85a": "acs",
+        "6f923979-9677-4d0c-a949-e3a6f91226d5": "part3"
+      },
+      "hours": 8,
+      "_label": "Categorical Models of Computational Languages",
+      "prerequisites": "L108 Category Theory and Logic; knowledge of the material in the Part II `Denotational Semantics' and `Types' courses would be a bonus.",
+      "synopsis": "The course explores the mathematical structures used to model a wide range of computational languages. These will be considered from the following viewpoints: (i) type discipline; (ii) data structuring; (iii) calling mechanisms; (iv) programming primitives; (v) resource management; and (vi) operational semantics. Overall we will look at: (i) untyped and typed languages, and, amongst the latter, simple, polymorphic, and dependently typed; (ii) inductive and recursively defined datatypes; (iii) call-by-name, call-by-value, and mixed paradigms; (iv) computational effects and control operators; (v) linearity; and (vi) reduction vs interaction. "
+    },
+    "L25": {
+      "lecturer": {
+        "e917300c-a0fe-43a5-9bc7-61ba79bd0481": "am21",
+        "1e0d684e-33ae-4e86-b644-da891ff3234c": "dc552"
+      },
+      "classes": {
+        "6d3d6b15-197f-40fa-908b-9ba419b3db01": "acs",
+        "3b2a316d-666d-444e-80ec-a11b80b5e080": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "c83d3ea6-4013-405c-8f5b-b1ccc6228404": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Modern Compiler Design",
+      "prerequisites": "Undergraduate courses on C/C++ and compilers (see also “pre-course reading” below), enough practical C++ to augment a large open-source system (LLVM).",
+      "synopsis": "The LLVM project provides a modular set of libraries for building compilers, used in both academic research and industry.  It therefore provides a rare opportunity for students to gain experience with a system that is both state-of-the-art in terms of research and also of direct industrial relevance.  The course will focus largely one middle of the compiler – the analysis, transform, and optimisation pipeline – and will require the students to design and implement language-specific optimisations."
+    },
+    "L26": {
+      "lecturer": {
+        "c481ec01-873e-4eca-8f74-b00703d1caf1": "mjcg",
+        "3b85f517-9a3f-4d6c-a246-376016e0c8fd": "mom22"
+      },
+      "classes": {
+        "e8a3e4ad-e54d-450d-97d9-3dee1c20b712": "acs",
+        "5fdd4cb3-b351-4874-8150-f196061c1f1a": "part3"
+      },
+      "hours": 16,
+      "_label": "Functional Programming: Implementation, Specification and Verification",
+      "synopsis": "This course has two aims that will be addressed in parallel. The first aim is to teach basics of functional programming languages and how they are implemented. The second aim is to teach how such concepts can be modelled precisely, using formal specifications, and how proof can be used to establish, to a high degree of assurance, that their low-level implementations faithfully implement the high-level specifications."
+    },
+    "L28": {
+      "lecturer": {
+        "e5b5e808-c7fe-4125-8361-64ee1314365d": "avsm2",
+        "61ac6d13-8fab-4e4a-832b-25f72efbf255": "jdy22"
+      },
+      "classes": {
+        "db8e97a8-66d8-449b-9a7e-5416d2bd1ddb": "acs",
+        "1b089371-425c-41bc-b508-19ba4901aa0e": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Advanced Functional Programming",
+      "prerequisites": "Students wishing to take the module should have some experience of a typed functional programming language and an understanding of type inference.",
+      "contributor": {
+        "dbde6591-666f-47fe-9f64-0d1e3f92e729": "am21",
+        "2fa30d3d-28d7-4973-94aa-9e6eb7eb4997": "lpw25"
+      },
+      "synopsis": "NEW: This module aims to teach students how to use the features of modern typed functional programming languages to design and implement libraries and DSLs. It aims to demonstrate how such techniques can improve both correctness and efficiency."
+    },
+    "L29": {
+      "lecturer": {
+        "28131e0f-7399-4ec1-8e11-5637eafb8b5f": "mpf23",
+        "7fbc264e-9327-4c31-938d-a55dfc15144b": "ok259"
+      },
+      "classes": {
+        "51341128-1bf3-484b-a70d-1df85c01a1bd": "acs",
+        "e5da137f-7885-4f5e-867e-eb1cf9acae1c": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Advanced Topics in Denotational Semantics",
+      "prerequisites": "L108 Category Theory and Logic; knowledge of the material in the CST Part II Denotational Semantics and Types courses recommended.",
+      "synopsis": "NEW: This module aims to bring students up to date with current research in the\ndenotational approach to the semantics of programming languages, with the\nobjective of training students to start research in theoretical computer\nscience on the mathematical foundations of programming languages and its\napplications."
+    },
+    "L40": {
+      "lecturer": {
+        "46f74083-e8c8-47f8-a43d-d6f1b18adf88": "rkh23",
+        "b0e996d9-7161-4480-a4f1-58388cb46ca2": "rmf25"
+      },
+      "classes": {
+        "c5fc0ecb-39f3-41d1-8e46-552bb6a87aeb": "acs",
+        "65964775-5422-4bd2-bc0b-fa5251fea06e": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Sensor Fusion and Location Aware Computing",
+      "synopsis": "NB: Not to be offered in 2015-2016. This module provides a thorough understanding of modern sensor fusion and positioning techniques;  a thorough understanding of the application of machine learning to positioning problems, from sensor bias determination to SLAM; exposure to current location aware computing systems, approaches, ongoing challenges; and practical experimentation and system development of a fully-working and relatively-advanced smartphone-based indoor positioning system."
+    },
+    "L41": {
+      "lecturer": {
+        "8baf802d-d0fb-4288-9b38-05b785ba9e0f": "rnw24"
+      },
+      "classes": {
+        "cd4d7cda-e51f-4392-bf10-e07c61d907a6": "acs",
+        "82bc454e-b942-4b5c-97c9-a4c1f04bed57": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "c88a8b52-6528-4f08-aa02-30a09fd3c923": "6 one-hour lectures, 5 two-hour practical labs",
+        "_label": "16"
+      },
+      "_label": "Advanced Operating Systems",
+      "prerequisites": "Undergraduate Operating Systems course; please see syllabus\n  for further details",
+      "synopsis": "NEW: Operating systems are complex, concurrent, and rapidly evolving software systems: the process model, hardware abstraction, storage and networking services, security primitives, and tracing/analysis/debugging tools are a critical foundation for our contemporary computing environments. This course teaches a blend of operating-system design and implementation as well as systems research methodology through a series of lectures and practical material split into four two-week sub-modules. The first introduced tracing, profiling, and performance analysis techniques. The remaining three sub-modules will apply these skills to critical parts of our systems stack corpus: local filesystems/storage, the network stack/protocols, and distributed filesystems (not yet a final list). Measurement and evaluation will be a core aspect of the module: through labs and practical exercises, students will gain a deeper understanding of core principles in system behaviour, as well as analysis skills and intuitions that will serve them in future systems research. Lectures will consider methodology, systems principles, and systems implementation. There will likely be 1-2 guest lectures from experts in the field."
+    },
+    "L90": {
+      "lecturer": {
+        "2d17ec35-ea23-49c9-a6a5-1bf108c282da": "aac10",
+        "b2a030af-246a-4158-b2c7-b04784629408": "sht25"
+      },
+      "classes": {
+        "8f5bfaa7-1142-42e3-bb2a-2ba5d514bb27": "acs",
+        "30fddf89-66a6-4545-b8ff-585134383cb0": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "627d5bce-823c-452f-bc43-e00425c76119": "12 lectures and 2 x 2 hour practical sessions",
+        "_label": "16"
+      },
+      "_label": "Overview of Natural Language Processing",
+      "prerequisites": "Courses such as CST Part II Regular Languages and Finite Automata, Probability, Logic and Proof, and Artificial Intelligence",
+      "synopsis": "NEW: This module introduces the fundamental techniques of natural language processing. It aims to explain the potential and the main limitations of these techniques. Some current research issues are introduced and some current and potential applications discussed and evaluated."
+    },
+    "L95": {
+      "lecturer": {
+        "854bf4c6-8e1e-4f04-9798-21322bf5ef54": "ejb1",
+        "973cc469-e61a-4890-beaf-0e9cca1b09ec": "sc609"
+      },
+      "classes": {
+        "dba2a7fe-43a0-4a35-bb21-d39112803a28": "acs",
+        "5e963118-f15d-4daf-9352-dfe9eda69e6f": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "_label": "Introduction to Natural Language Syntax and Parsing",
+      "prerequisites": "L90 or other Natural Language Processing course",
+      "synopsis": "This module aims to provide a brief introduction to linguistics for computer scientists and then goes on to cover some of the core tasks in natural language processing (NLP), focussing on statistical tagging and parsing. We will look at how to evaluate taggers and parsers and see how well state-of-the-art tools perform given current techniques."
+    },
+    "L100": {
+      "lecturer": {
+        "05b754ba-470a-4314-bde0-b54b94dcc794": "ejb1",
+        "1a74d350-04a6-4081-96e7-a2ea11a77eb6": "sc609"
+      },
+      "classes": {
+        "813237b1-5bb3-4dd5-8547-d1591b9f19d0": "acs",
+        "67876c4b-9c0d-4706-a1e1-95ab168cf99f": "part3"
+      },
+      "hours": 16,
+      "_label": "Introduction to Natural Language Processing",
+      "prerequisites": "None",
+      "synopsis": "This module aims to provide a brief introduction to linguistics for computer scientists and then goes on to cover some of the core tasks in natural language processing (NLP), with the emphasis on statistical techniques suitable for the extraction of meaning from large bodies of text. Finally we will consider some applications and evaluate how well they work given current techniques."
+    },
+    "L101": {
+      "lecturer": {
+        "6eb7806c-4335-4134-8e3a-9448016e4fcd": "ejb1",
+        "e248b21c-4628-4c02-a66b-98299628f2fb": "mjfg100"
+      },
+      "classes": {
+        "0390fb3d-7c5c-4f16-a0ef-3a019075bef0": "acs",
+        "feef3798-159e-4fb3-8225-33776b1a76a1": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "3051fd69-cbe8-472b-b65b-ace340fcabf4": "8 lectures + 8 seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Machine Learning for Language Processing",
+      "prerequisites": "L95 Introduction to Natural Language Syntax and Parsing and, preferably, Spoken Language Processing L106",
+      "synopsis": "This module aims to provide an introduction to machine learning with specific application to tasks such as document topic classification, spam email filtering, and named entity and event recognition for textual information extraction. We will cover supervised, weakly-supervised and unsupervised approaches using generative and discriminative classifiers based on graphical models, including hidden Markov models, Gaussian mixture models and conditional random fields."
+    },
+    "L102": {
+      "lecturer": {
+        "6eadc670-b640-4a4b-9bf3-0b1ab1d7b09e": "sc609",
+        "bc6a4330-f635-45a2-8fe3-3a00a4194645": "wjb31"
+      },
+      "classes": {
+        "995c09d3-ad62-4895-93e4-cd1c35ff343f": "acs",
+        "97f15bea-9e78-4183-aa33-2a93a0db4642": "part3"
+      },
+      "hours": {
+        "98aaaa44-035a-49aa-8387-ee7b671d10d5": "10 lectures + extended practical session covering 6 sessions",
+        "_label": "16"
+      },
+      "_label": "Statistical Machine Translation",
+      "prerequisites": "L100 Introduction to Natural Language Processing",
+      "synopsis": "This module provides an in-depth introduction to Statistical Machine Translation, the dominant approach to providing large-scale, robust translation applicable to many language pairs (and the approach currently used by Google)."
+    },
+    "L106": {
+      "lecturer": {
+        "65e88661-3e71-41ad-bbca-569428bafa35": "pw117",
+        "408b199b-2d5e-4093-971b-0779de9f3ea2": "mjfg100",
+        "b6ce91b9-e5f2-4c9f-b4f8-0a9ca75baa4e": "wjb31"
+      },
+      "classes": {
+        "61d7d8cf-3934-4dca-961e-35711625bac6": "acs",
+        "46a3d55d-a0d6-440e-9d29-c2acb4926c8b": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "ad4bffb3-e641-4ecf-9aa1-02c4faccff07": "14 lectures + 2 practical sessions",
+        "_label": "16"
+      },
+      "_label": "Spoken Language Processing",
+      "synopsis": "The aim of this module is to introduce the underlying statistical approaches and some of the major techniques used for spoken language processing. Core statistical models that are used in a wide-range of speech and language applications will be discussed along with their underlying theory. Examples of how these models may be applied to speech processing applications, such as speech recognition and speaker verification, will be described."
+    },
+    "L107": {
+      "lecturer": {
+        "79966950-c231-4d5f-b6e4-347dbec003d1": "ejb1",
+        "4d7f0cd4-8f91-4a1e-95af-51a6719dfd30": "sc609"
+      },
+      "classes": {
+        "6c767fcd-7ee0-4881-8711-bea678c1592e": "acs",
+        "44c89f95-96d4-4ae6-98e7-17e3dfc46602": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Advanced Syntax and Semantics of Natural Language",
+      "prerequisites": "NB: Not to be offered in 2015-2016. L95 Introduction to Natural Language Syntax and Parsing and a course in logic.",
+      "synopsis": "We will take an in-depth look at how to describe formally a wide-coverage grammar of English using Categorial Syntax and Montague Semantics. We will then go on to study how practical parsers can be developed within this framework capable of returning the most likely compositional interpretation of sentences with high accuracy."
+    },
+    "L108": {
+      "lecturer": {
+        "b608fe65-8b3b-4226-8904-062fcc718fe0": "amp12"
+      },
+      "classes": {
+        "6e220ed2-1603-4cec-b87b-e1b6a822ee17": "acs",
+        "79c8cd9a-9d82-4a29-98de-a8d22b6d1eaa": "part3"
+      },
+      "term": "M",
+      "hours": 16,
+      "_label": "Category Theory and Logic",
+      "prerequisites": "Basic familiarity with logic and set theory (e.g. Discrete Mathematics I and II from Part 1A Computer Science course), with the lambda calculus (e.g. Part 1A Foundations of Computer Science) and with inductively-defined type systems (e.g. Part 1B course on Semantics of Programming Languages)",
+      "synopsis": "Category theory provides a unified treatment of mathematical properties and constructions that can be expressed in terms of &quot;morphisms&quot; between structures. It gives a precise framework for comparing one branch of mathematics (organized as a category) with another and for the transfer of problems in one area to another. Since its origins in the 1940s motivated by connections between algebra and geometry, category theory has been applied to diverse fields, including computer science, logic and linguistics. This course introduces the basic notions of category theory: adjunction, natural transformation, functor and category. We will use category theory to organize and develop the kinds of structure that arise in models and semantics for logics and programming languages."
+    },
+    "L109": {
+      "lecturer": "cm542",
+      "classes": {
+        "42a17850-be25-464c-89fa-7de3d6312b99": "acs",
+        "76b0c2ce-472b-419b-8be1-36d649b91a59": "part3"
+      },
+      "term": "L",
+      "hours": 16,
+      "_label": "Social and Technological Network Analysis",
+      "prerequisites": "An undergraduate course on probability",
+      "class-limit": 18,
+      "synopsis": "NB: Not to be offered in 2015-2016. Importance of network theory; graph theory; network analyses [measures]. Random and scale-free networks. Small world behaviour. Applications (to Internet & WWW). Social networks and online social network analysis. Network evolution and cascading."
+    },
+    "L110": {
+      "lecturer": {
+        "56fff1b8-ab11-4dfd-8b8b-6da5fac737d4": "aib29",
+        "_label": "rg31"
+      },
+      "classes": {
+        "b49d65cc-4541-499e-bb1e-4448a3a84ed2": "acs",
+        "8ecc3831-c31b-4f40-a5a2-87dcb783ef18": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "7e8665b1-0cda-4eb0-8a4c-626b7628b38c": "14 lectures + 2 example classes",
+        "_label": "16"
+      },
+      "_label": "Flows in Networks",
+      "prerequisites": "Familiarity with the basics of mathematical optimization problems, graph theory, game theory and packet-based communication networks",
+      "synopsis": "NB: Not to be offered in 2015-2016. This module aims to provide a understanding of models for flows in networks and to illustrate these ideas by considering road and communication networks."
+    },
+    "L114": {
+      "lecturer": "sht25",
+      "classes": {
+        "239becd8-a819-47e0-9c58-f91244f686bc": "acs",
+        "f4db838f-86a7-491b-a300-7fd7d4bffde8": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "99353bb9-d2eb-4315-b37e-5c86056bb577": "8 × two-hour lecture sessions",
+        "_label": "16"
+      },
+      "_label": "Lexical Semantics",
+      "prerequisites": "L90 Overview of Natural Language Processing",
+      "synopsis": "This module provides an introduction to NLP research centered around lexical semantics (i.e., aspects of the meaning of words and relations between word meanings). Relevant phenomena are described theoretically, followed by a description of algorithms for determination of meaning and detection of text structure are presented. Special attention is given to adequate evaluation methods in each area. Applications are also discussed, where appropriate."
+    },
+    "L115": {
+      "lecturer": "sht25",
+      "classes": {
+        "82668fc3-9f39-4be9-96c0-f1f65be29e98": "acs",
+        "ca1c6016-1c42-4a09-98d8-d715ea089016": "part3"
+      },
+      "hours": {
+        "6259edc6-c073-4470-bb76-4bbeb04f4bad": "8 × two-hour lecture sessions",
+        "_label": "16"
+      },
+      "_label": "Discourse and Text Summarisation ",
+      "prerequisites": "L100 Introduction to Natural Language Processing",
+      "synopsis": "This module provides an introduction to NLP research centered around discourse processing (i.e., the means by which larger pieces of text are structured), and to text summarisation methods, particularly those based on discourse processing."
+    },
+    "P31": {
+      "lecturer": {
+        "6204040a-d3ef-46c9-a558-ecd8487a3aa8": "bdj23",
+        "_label": "ijw24"
+      },
+      "classes": {
+        "1d66bebe-fe5b-4a1d-97b1-cc19b4c63a96": "acs",
+        "943a6840-ffd9-4ff5-a963-4354f1e8405f": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "da9d10b7-e2e8-4004-b466-b9f6d0be00e2": "8 × two-hour seminar sessions",
+        "_label": "16"
+      },
+      "_label": "Low Power Embedded Systems Programming",
+      "prerequisites": "Good working knowledge of C. Familiarity with analog and digital hardware would be advantageous.",
+      "class-limit": 6,
+      "synopsis": "NB: Not to be offered in 2015-2016. Teaches students how to write programs for low power embedded devices that communicate with other computers or devices to solve practical problems. The course will cover the relevant theoretical knowledge required for writing such applications, and the practical experience writing C programs for Atmel microprocessors. The module will also give students an appreciation for some of the research issues in low power embedded systems."
+    },
+    "P33": {
+      "lecturer": "awm22",
+      "classes": {
+        "e9a79fae-04e8-4239-a751-50c8b695f5b3": "acs",
+        "8dd8123f-8c11-43c2-bf5c-fd71565a8f85": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "6e5e5aea-6414-4cd5-a3a5-05416e7bd1de": "1 introductory lecture + 8 × two-hour supervised laboratory slots",
+        "_label": "16"
+      },
+      "_label": "Building an Internet Router",
+      "prerequisites": "Undergraduate courses in digital communication, good working knowledge of C/C++, ECAD, Unix",
+      "synopsis": "This module requires the full design, implementation, testing and inter-operability of a complex hardware and software system."
+    },
+    "P34": {
+      "lecturer": "swm11",
+      "classes": {
+        "25a08e78-0e54-4ed9-b53e-5942cc2fe471": "acs",
+        "c70d4a79-58f8-4f5f-84df-58a6ab58f3ea": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "6eb38180-1a6b-4d6c-92d9-ce9cc220d9e1": "8 lectures + 8 practicals",
+        "_label": "16"
+      },
+      "_label": "Advanced Computer Design",
+      "prerequisites": "Some training in VHDL or Verilog HDL and computer architecture",
+      "synopsis": "The aim of this module is to provide an introduction to undertaking multithreaded multiprocessor computer architecture research using FPGAs as an emulation platform."
+    },
+    "P35": {
+      "lecturer": "djg11",
+      "classes": {
+        "f693b9a4-69e3-459f-8602-a28528f38f6f": "acs",
+        "5e1f84ed-15c2-47fc-9a72-7ea6caff6ffa": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "27c31533-441d-46d2-b1dd-b48729c0940d": "8 lectures + 8 practicals/coursework and research project option",
+        "_label": "16"
+      },
+      "_label": "System on Chip Design and Modelling",
+      "prerequisites": "Some experience with VHDL/Verilog RTL, Assembler, C++",
+      "synopsis": "A current-day system on a chip (SoC) consists of several different microprocessor subsystems together with memories and I/O interfaces. This practical module covers SoC design and modelling techniques with emphasis on architectural exploration, assertion-driven design and the concurrent development of hardware and embedded software."
+    },
+    "P36": {
+      "lecturer": "acr31",
+      "classes": {
+        "dc7c8cac-5193-4b93-85f0-0cd88277e90c": "acs",
+        "3ad1a736-6181-4c30-b097-3c50bdf596c4": "part3"
+      },
+      "hours": {
+        "52976be5-1893-43ea-98e7-63e8994e1855": "8 × one-hour lectures + 8 × one-hour practical classes",
+        "_label": "16"
+      },
+      "_label": "Programming for Mobiles",
+      "prerequisites": "Programming in Java; and undergraduate course in digital communication",
+      "synopsis": "Developing applications for modern smart phones requires different considerations to writing for a conventional PC environment. This course will cover the relevant background knowledge required to effectively develop for modern smart phones, discuss the differences between current popular platforms and highlight some of the ongoing research questions. Practical experience will be provided implementing concepts from lectures in practical classes using the Android operating system."
+    },
+    "P201": {
+      "lecturer": "afb21",
+      "classes": {
+        "38671401-3d99-4b50-b0dd-e85ad67b8e87": "acs",
+        "fc74b902-6dcf-42d7-aa54-626191d92735": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "9804dc99-00f6-42ac-af44-f94f2f49b181": "4 x introductory lectures, 4 × two-hour seminar sessions, 2 x demonstrated experimental sessions",
+        "_label": "16"
+      },
+      "_label": "Usability of Programming Languages",
+      "prerequisites": "Introductory HCI course presumed, but not essential",
+      "class-limit": 15,
+      "synopsis": "Compiler construction is one of the basic skills of all computer scientists, and thousands of new programming, scripting and customisation languages are created every year. Yet very few of these succeed in the market, or are well regarded by their users. This course addresses the research questions underlying the success of new programmable tools. A programming language is essentially a means of communicating between humans and computers. Traditional computer science research has studied the machine end of the communications link at great length, but there is a shortage of knowledge and research methods for understanding the human end of the link. This course provides practical research skills necessary to make advances in this essential field. The skills acquired will also be valuable for students intending to pursue research in advanced HCI, or designing evaluation studies as a part of their MPhil research project."
+    },
+    "RSL": {
+      "classes": {
+        "2954e393-5e55-42ca-ab06-43b407702a79": "acs",
+        "a43eabb4-5ef1-41d4-8a55-466e8db832e3": "part3"
+      },
+      "term": "M",
+      "hours": 4,
+      "_label": "Research Students Lectures",
+      "synopsis": "A series of lunchtime lectures prepared and given by Computer Laboratory research students.",
+      "assessmentpage": 0
+    },
+    "E4F8": {
+      "lecturer": "jl221",
+      "classes": {
+        "33625f9e-956c-4ef1-9cc8-f3aa194ab473": "acs",
+        "d10663a4-1571-4e5f-a563-2052df4ff042": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "f4ef3e82-d014-4368-8b97-634fe01b54e0": "lectures including example classes",
+        "_label": "16"
+      },
+      "_label": "Image Processing and Image Coding",
+      "prerequisites": "Knowledge of 1D Fourier theory and a bit of statistical signal processing experience. Students are asked to talk with their Course Adviser before selecting this module.",
+      "url": "http://to.eng.cam.ac.uk/teaching/courses/y4/4f8.html",
+      "synopsis": "NB: Module offered by the Department of Engineering. Sophisticated processing of images by digital hardware is now fairly common, and ranges from special effects in video games to satellite image enhancement. Three of the main application areas are video data compression, image enhancement, and scene understanding. This module introduces the key tools for performing these tasks, and shows how these tools can be applied. This module is offered by the Department of Engineering."
+    },
+    "E4F12": {
+      "lecturer": "rc10001",
+      "classes": {
+        "bcded6f4-a670-42dd-b4fc-6ed26e908c99": "acs",
+        "0d911288-83b7-4277-8194-403941f87553": "part3"
+      },
+      "term": "M",
+      "hours": {
+        "8d751d7c-0d05-466d-a2b9-73a37385d550": "lectures including 3 example classes",
+        "_label": "16"
+      },
+      "_label": "Computer Vision and Robotics",
+      "prerequisites": "Students are asked to talk with their Course Adviser before selecting this module.",
+      "url": "http://to.eng.cam.ac.uk/teaching/courses/y4/4f12.html",
+      "class-limit": 6,
+      "synopsis": "NB: Module offered by the Department of Engineering. The module aims to introduce the principles, models and applications of computer vision. The course will cover image structure, projection, stereo vision, and the interpretation of visual motion. It will be illustrated with case studies of industrial (robotic) applications of computer vision, including visual navigation for autonomous robots, robot hand-eye coordination and novel man-machine interfaces."
+    },
+    "E4F13": {
+      "lecturer": "zg201",
+      "classes": {
+        "95dbdb26-b66a-4e8c-a69f-223b29e19515": "acs",
+        "322f0347-5f91-42aa-ae7a-36343f8a63ca": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "cae2cf23-3003-4460-95f0-8dd6b1aae36b": "lectures including 3 example classes",
+        "_label": "16"
+      },
+      "_label": "Machine Learning",
+      "prerequisites": "Signal and pattern processing undergraduate course desirable. Students are asked to talk with their Course Adviser before selecting this module.",
+      "url": "http://to.eng.cam.ac.uk/teaching/courses/y4/4f13.html",
+      "synopsis": "NB Module offered by the Department of Engineering. Machine learning (ML) is an interdisciplinary field focusing on both the mathematical foundations and practical applications of systems that learn, reason and act. The goal of machine learning is to automatically extract knowledge from observed data for the purposes of making predictions, decisions and understanding the world. \nThe aim of this module is to introduce students to basic concepts in machine learning, focusing on statistical methods for supervised and unsupervised learning. The module will be structured around three recent illustrative successful applications: Gaussian processes for regression and classification, Latent Dirichlet Allocation models for unsupervised text modelling and the TrueSkill probabilistic ranking model."
+    },
+    "M004": {
+      "lecturer": "carh4",
+      "classes": {
+        "c43d608e-0fb7-4934-8186-005a3a3337ac": "acs",
+        "08bd54a4-5ef1-46f2-b674-bf9aeb08bdf3": "part3"
+      },
+      "hours": 8,
+      "_label": "Algebra and programming semantics",
+      "prerequisites": "Some acquaintance and interest in the ideas of Milner or Hoare or Plotkin, ...",
+      "synopsis": "NEW: to have fun with the algebra of sequential and concurrent programming, in application to  programming languages, programs and proofs.",
+      "assessmentpage": 0
+    },
+    "M005": {
+      "lecturer": {
+        "8e7ebbe1-eeac-4686-b178-24e89fb144cb": "raa43",
+        "_label": "afb21"
+      },
+      "classes": {
+        "9f65de41-9b4d-4ace-8cb4-38a4c5b15b04": "acs",
+        "1a475cd4-63a5-4ee1-afc8-6901b3d84500": "part3"
+      },
+      "term": "E",
+      "hours": {
+        "e0b89bb7-3480-448c-9408-18ba89b5203d": "Six two-hour sessions over one week",
+        "_label": "12"
+      },
+      "_label": "Critical Coding for Digital Humanities",
+      "synopsis": "An immersive co-teaching course, in which students from different disciplinary backgrounds work in pairs to jointly create a novel software application. The course is primarily practical, with practical work carried out on the students' own laptops. It involves six two-hour sessions, taught over a single week (Friday to Thursday), and a presentation session on the final Friday.",
+      "assessmentpage": 0
+    },
+    "M22": {
+      "lecturer": "gw104",
+      "classes": {
+        "199a81d9-d438-4c0c-bd4b-fba6fc1f21a8": "acs",
+        "737d369c-7a12-495f-a246-3ef7ad750cc8": "part3"
+      },
+      "term": "L",
+      "hours": {
+        "8066b771-8cd4-4cd2-85bb-eafcfddf0237": "Three two-hour sessions",
+        "_label": "6"
+      },
+      "_label": "A Mathematical Theory of Distributed Games and Strategies",
+      "synopsis": "This module will give a rapid introduction to ongoing research in developing a mathematical theory of distributed games in which a Player (or a team of players) can interact and compete against an Opponent (or a team of opponents) in a highly distributed fashion, without, for instance, enforcing that their moves occur in a sequential fashion, or need to alternate. Although phrased in terms of `Player' and `Opponent' the dichotomy Player vs. Opponent can stand for Process vs. Environment, Prover vs. Disprover, or Ally vs. Enemy. These alternatives indicate the wide range of potential applications in computer science, logic, and beyond.",
+      "assessmentpage": 0
+    }
+  },
+  "lecturers": {
+    "aac10": "Prof Ann Copestake",
+    "acn1": "Dr Arthur Norman",
+    "acr31": "Dr Andrew Rice",
+    "ad260": "Prof Anuj Dawar",
+    "ad465": "Dr Adria de Gispert",
+    "afb21": "Dr Alan Blackwell",
+    "ah12": "Prof Andy Hopper",
+    "aib29": "Dr Andrei Bejan",
+    "alk23": "Dr Anna Korhonen",
+    "am21": "Prof Alan Mycroft",
+    "amp12": "Prof Andrew Pitts",
+    "arb33": "Dr Alastair Beresford",
+    "awm22": "Dr Andrew Moore",
+    "avsm2": "Dr Anil Madhavapeddy",
+    "bh288": "Dr Bjarki Holm",
+    "bk291": "Dr Bartosz Klin",
+    "bdj23": "Mr Brian Jones",
+    "bns21": "Dr Brian Shand",
+    "brmt2": "Dr Blaise Thomson",
+    "carh4": {
+      "url": "http://research.microsoft.com/en-us/people/thoare/",
+      "_label": "Prof Sir Tony Hoare"
+    },
+    "cer54": "Dr Carl Rasmussen",
+    "dde775d4-2cf9-4218-9854-1f9e2d0f0838": {
+      "url": "http://www.csap.cam.ac.uk/network/carl-rasmussen/"
+    },
+    "ckh11": "Mr Chris Hadley",
+    "cm542": "Prof Cecilia Mascolo",
+    "cpt23": "Dr Christopher Town",
+    "cu200": "Dr Christian Urban",
+    "dao29": "Dr Dominic Orchard",
+    "dc552": "Dr David Chisnall",
+    "de239": "Dr David Evans",
+    "djg11": "Dr David Greaves",
+    "dme26": "Dr David Eyers",
+    "do242": "Dr Diarmuid O’Seaghdha",
+    "drm10": "Dr Derek McAuley",
+    "ejb1": "Prof Ted Briscoe",
+    "ey204": "Dr Eiko Yoneki",
+    "fhk1": "Dr Frank King",
+    "fms27": "Dr Frank Stajano",
+    "gst22": "Dr George Taylor",
+    "gw104": "Prof Glynn Winskel",
+    "ijpdmt2": "Ivo Timoteo",
+    "ijw24": "Dr Ian Wassell",
+    "iml1": "Prof Ian Leslie",
+    "jac22": "Prof Jon Crowcroft",
+    "jal1": {
+      "url": "http://www.emma.cam.ac.uk/teaching/fellows/display/?fellow=239",
+      "_label": "Mr Jack Lang"
+    },
+    "jdy22": "Dr Jeremy Yallop",
+    "jgd1000": "Prof John Daugman",
+    "jkf21": "Dr John Fawcett",
+    "jl221": {
+      "url": "http://www-sigproc.eng.cam.ac.uk/~jl/",
+      "_label": "Dr Joan Lasenby"
+    },
+    "jlf46": "Dr Jonas Frey",
+    "jmb25": "Prof Jean Bacon",
+    "jmh93": "Dr Jonathan Hayman",
+    "js861": "Dr Jaroslav Sevcik",
+    "km10": "Dr Ken Moody",
+    "lmi22": "Dr L M Ioannou",
+    "lp15": "Prof Larry Paulson",
+    "lpw25": "Dr Leo White",
+    "mgk25": "Dr Markus Kuhn",
+    "mj201": "Dr Mateja Jamnik",
+    "mjcg": "Prof Mike Gordon",
+    "mjfg100": {
+      "url": "http://mi.eng.cam.ac.uk/~mjfg/",
+      "_label": "Prof Mark Gales"
+    },
+    "mjp41": "Dr Matthew Parkinson",
+    "mns25": "Mr Matt Stuttle",
+    "mom22": "Dr Magnus Myreen",
+    "mpf23": "Prof Marcelo Fiore",
+    "nad10": "Prof Neil Dodgson",
+    "nrs32": "Mr Nishanth Sastry",
+    "ok259": "Dr Ohad Kammar",
+    "pat40": "Dr Paul Taylor",
+    "pb355": {
+      "url": "http://bentonian.com/",
+      "_label": "Dr Alex Benton"
+    },
+    "pes20": "Prof Peter Sewell",
+    "pl219": "Dr Pietro Lio",
+    "pnb14": "Dr Nick Benton",
+    "pr10": "Prof Peter Robinson",
+    "pw117": {
+      "url": "http://mi.eng.cam.ac.uk/~pcw/",
+      "_label": "Prof Phil Woodland"
+    },
+    "raa43": {
+      "url": "http://www.digitalhumanities.cam.ac.uk/directory/raa43@cam.ac.uk",
+      "_label": "Dr Anne Alexander"
+    },
+    "rc10001": {
+      "url": "http://mi.eng.cam.ac.uk/~cipolla/",
+      "_label": "Prof Roberto Cipolla"
+    },
+    "rdm34": "Dr Robert Mullins",
+    "ret26": {
+      "url": "http://www.eng.cam.ac.uk/research/people/view/197",
+      "_label": "Dr Richard Turner"
+    },
+    "rg31": "Dr Richard Gibbens",
+    "rja14": "Prof Ross Anderson",
+    "rkh23": "Dr Robert Harle",
+    "rmf25": "Dr Ramsey Faragher",
+    "rnc1": "Dr Richard Clayton",
+    "rnw24": "Dr Robert Watson",
+    "sbh11": "Dr Sean Holden",
+    "sc609": "Dr Stephen Clark",
+    "sht25": "Dr Simone Teufel",
+    "sjm217": "Dr Steven Murdoch",
+    "sjy11": "Prof Steve Young",
+    "smh22": "Dr Steven Hand",
+    "ss368": "Dr Samuel Staton",
+    "swm11": "Prof Simon Moore",
+    "tef10": "Dr Thomas Forster",
+    "tgg22": "Dr Timothy Griffin",
+    "tlh20": "Dr Timothy Harris",
+    "tmj32": "Dr Timothy Jones",
+    "tms41": "Dr Thomas Sauerwald",
+    "wjb31": {
+      "url": "http://mi.eng.cam.ac.uk/~wjb31/",
+      "_label": "Prof Bill Byrne"
+    },
+    "zg201": {
+      "url": "http://mlg.eng.cam.ac.uk/zoubin/",
+      "_label": "Prof Zoubin Ghahramani"
+    },
+    "tbc": {
+      "_label": "(to be confirmed)"
+    }
+  }
+}

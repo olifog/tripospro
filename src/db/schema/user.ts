@@ -8,7 +8,7 @@ import {
   varchar
 } from "drizzle-orm/pg-core";
 import { courseYearLecturerTable } from "./course";
-import { questionTable } from "./question";
+import { questionAuthorTable, questionTable } from "./question";
 import { triposPartTable } from "./tripos";
 
 export const usersTable = pgTable("users", {
@@ -29,7 +29,7 @@ export const usersRelations = relations(usersTable, ({ one, many }) => ({
     fields: [usersTable.id],
     references: [userSettingsTable.userId]
   }),
-  questionsAuthored: many(questionTable, { relationName: "questionsAuthored" }),
+  questionsAuthored: many(questionAuthorTable, { relationName: "questionsAuthored" }),
   userQuestionAnswers: many(userQuestionAnswerTable),
   courseYearLecturers: many(courseYearLecturerTable)
 }));

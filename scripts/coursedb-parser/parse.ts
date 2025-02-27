@@ -37,7 +37,7 @@ const ClassSchema = z.intersection(
     supervisions: z.number().optional(),
     triposexam: z.number().optional()
   }),
-  z.record(z.string(), z.string())
+  z.record(z.string(), z.any())
 );
 
 const CourseSchema = z.intersection(
@@ -68,13 +68,11 @@ const LecturerSchema = z.record(
   z.string(),
   z.union([
     z.string(),
-    z.object({
-      _label: z.string()
-    })
+    z.record(z.string(), z.any())
   ])
 );
 
-const CourseDBSchema = z.intersection(
+export const CourseDBSchema = z.intersection(
   z.object({
     myear: z.number().optional(),
     edit_url_course: z.string().optional(),

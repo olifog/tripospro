@@ -16,7 +16,6 @@ export const questionTable = pgTable("question", {
   solutionUrl: varchar({ length: 255 }),
 
   examinerComment: text(),
-  authorId: integer().references(() => usersTable.id),
   minimumMark: integer(),
   maximumMark: integer(),
   medianMark: integer(),
@@ -25,6 +24,7 @@ export const questionTable = pgTable("question", {
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow()
 });
+
 
 export const questionRelations = relations(questionTable, ({ one, many }) => ({
   paperYear: one(paperYearTable, {
@@ -35,9 +35,26 @@ export const questionRelations = relations(questionTable, ({ one, many }) => ({
     fields: [questionTable.courseYearId],
     references: [courseYearTable.id]
   }),
-  author: one(usersTable, {
-    fields: [questionTable.authorId],
-    references: [usersTable.id]
-  }),
+  authors: many(questionAuthorTable),
   userQuestionAnswers: many(userQuestionAnswerTable)
+}));
+
+export const questionAuthorTable = pgTable("question_author", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  
+  questionId: integer().references(() => questionTable.id),
+  authorId: integer().references(() => usersTable.id),
+  createdAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow()
+});
+
+export const questionAuthorRelations = relations(questionAuthorTable, ({ one }) => ({
+  question: one(questionTable, {
+    fields: [questionAuthorTable.questionId],
+    references: [questionTable.id]
+  }),
+  author: one(usersTable, {
+    fields: [questionAuthorTable.authorId],
+    references: [usersTable.id]
+  })
 }));
