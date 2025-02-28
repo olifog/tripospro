@@ -84,7 +84,7 @@ export type PatchQuestionData = {
     name: string;
   }[];
   paperYear: {
-    triposPart: {
+    triposPart?: {
       name: string;
       code: string;
     };
@@ -152,6 +152,10 @@ export const getOrPatchPaper = async (data: PatchQuestionData) => {
 };
 
 export const getOrPatchTriposPart = async (data: PatchQuestionData) => {
+  if (!data.paperYear.triposPart) {
+    return null;
+  }
+
   if (cache.triposParts.has(data.paperYear.triposPart.code)) {
     const cached = cache.triposParts.get(data.paperYear.triposPart.code);
     if (cached) return cached;
@@ -186,6 +190,10 @@ export const getOrPatchTriposPart = async (data: PatchQuestionData) => {
 };
 
 export const getOrPatchTriposPartYear = async (data: PatchQuestionData) => {
+  if (!data.paperYear.triposPart) {
+    return null;
+  }
+
   if (
     cache.triposPartYears.has(
       [data.paperYear.triposPart.code, data.year].join(":")
@@ -198,6 +206,10 @@ export const getOrPatchTriposPartYear = async (data: PatchQuestionData) => {
   }
 
   const triposPart = await getOrPatchTriposPart(data);
+
+  if (!triposPart) {
+    return null;
+  }
 
   const triposPartYear = await db.query.triposPartYearTable.findFirst({
     where: and(
@@ -260,7 +272,7 @@ export const getOrPatchPaperYear = async (data: PatchQuestionData) => {
     .values({
       year: Number.parseInt(data.year),
       paperId: paper.id,
-      triposPartYearId: triposPartYear.id,
+      triposPartYearId: triposPartYear?.id,
       url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/y${data.year}PAPER${paper.name}.pdf`,
     })
     .returning();

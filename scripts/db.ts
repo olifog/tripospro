@@ -8,19 +8,74 @@ import { parseCourseDB, type CourseDBSchema } from "./coursedb-parser/parse";
 import { parseQuestions, type QuestionSchema, QuestionsSchema } from "./questions-parser";
 import type { z } from "zod";
 import { getOrPatchQuestion, resetDatabase } from "./upload";
+import { db } from "@/db";
+import { courseTable } from "@/db/schema/course";
+import { eq } from "drizzle-orm";
 
 const dbCommand = new Command("db").description("Database operations");
 
-const skip_years = [2024, 2023, 2022, 2021, 2020]
-
-const applyRemaps = (question: z.infer<typeof QuestionSchema>) => {
+const applyQuestionRemaps = (question: z.infer<typeof QuestionSchema>) => {
   const newQuestion = { ...question };
 
   if (newQuestion.topic === "Programming in C") {
     newQuestion.topic = "Programming in C and C++";
   }
 
+  if (newQuestion.topic === "Artificial Intelligence" && newQuestion.year === "2017") {
+    newQuestion.topic = "Artificial Intelligence I";
+  }
+
+  if (newQuestion.topic === "Object-Oriented Programming with Java") {
+    newQuestion.topic = "Object-Oriented Programming";
+  }
+
+  if (newQuestion.topic === "Algorithms" && ["2007", "2008"].includes(newQuestion.year)) {
+    newQuestion.topic = "Algorithms I";
+  }
+
   return newQuestion;
+};
+
+const applyCourseDbRemaps = (courseDb: z.infer<typeof CourseDBSchema>) => {
+  const newCourseDb = { ...courseDb };
+
+  newCourseDb.courses = Object.fromEntries(
+    Object.entries(newCourseDb.courses).reduce<
+      [string, z.infer<typeof CourseDBSchema>["courses"][number]][]
+    >((acc, [key, value]) => {
+      value._label = value._label.replace(/\u00A0/g, " ");
+      if (["Programming in C", "C and C++"].includes(value._label)) {
+        value._label = "Programming in C and C++";
+      }
+      if (value._label === "Human-Computer Interaction") {
+        value._label = "Human–Computer Interaction";
+      }
+      if (value._label === "Principles of Communication") {
+        value._label = "Principles of Communications";
+      }
+      if (value._label === "Programming Methods") {
+        value._label = "Programming Methods and Java";
+      }
+      if (value._label === "Operating Systems I") {
+        value._label = "Operating Systems";
+      }
+      if (courseDb.myear === 2010 && value._label === "Concurrent and Distributed Systems II") {
+        return acc;
+      }
+      if (courseDb.myear === 2010 && value._label === "Concurrent and Distributed Systems I") {
+        value._label = "Concurrent and Distributed Systems";
+        value.term = {
+          "1": "M",
+          "2": "L",
+        }
+      }
+      // replace nbsp with space
+      acc.push([key, value]);
+      return acc
+    }, [])
+  );
+
+  return newCourseDb;
 };
 
 const ingestCommand = new Command("ingest")
@@ -49,7 +104,7 @@ const ingestCommand = new Command("ingest")
             "utf8"
           )
         );
-        coursedbMap.set((year + 1).toString(), coursedb);
+        coursedbMap.set((year + 1).toString(), applyCourseDbRemaps(coursedb));
         year++;
       } catch (error) {
         break;
@@ -72,18 +127,16 @@ const ingestCommand = new Command("ingest")
     );
 
     for (const rawQuestion of questions) {
-      if (skip_years.includes(Number(rawQuestion.year))) {
-        continue;
-      }
-
-      const question = applyRemaps(rawQuestion);
+      const question = applyQuestionRemaps(rawQuestion);
 
       const coursedb = coursedbMap.get(question.year);
-      if (!coursedb) {
-        throw new Error(`Coursedb not found for year ${question.year}`);
-      }
+      // if (!coursedb) {
+      //   throw new Error(`Coursedb not found for year ${question.year}`);
+      // }
 
-      const triposParts = coursedb.groups
+      const triposParts =
+        !coursedb ? {} :
+      coursedb.groups
         ? Object.fromEntries(
             Object.values(coursedb.groups).map((group) => {
               const key = Object.entries(group).reduce((acc, field) => {
@@ -104,76 +157,19 @@ const ingestCommand = new Command("ingest")
             })
           );
 
-      const course = Object.entries(coursedb.courses).find(([key, value]) => {
+      const course = Object.entries(coursedb?.courses ?? {}).find(([key, value]) => {
         return value._label === question.topic;
       })?.[0];
 
-      if (!course) {
-        throw new Error(`Course not found for question ${question.topic}`);
-      }
-
-      const questionInput = {
-        paper: question.paper,
-        questionNumber: question.question,
-        year: question.year,
-        solutionUrl: question.solutions,
-        url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.pdf}`,
-        authors: question.author
-          ? question.author.split("+").reduce((acc: { crsid: string; name: string }[], crsid) => {
-              if (!coursedb.lecturers[crsid]) {
-                return acc;
-              }
-              const name =
-                typeof coursedb.lecturers[crsid] === "string"
-                  ? coursedb.lecturers[crsid]
-                  : coursedb.lecturers[crsid]._label;
-              acc.push({ crsid, name });
-              return acc;
-            }, [])
-          : [],
-        paperYear: {
-          triposPart: {
-            name: triposParts[
-              (Object.values(coursedb.courses[course].classes ?? {})[0] as string).split("-")[0]
-            ],
-            code: (Object.values(
-              coursedb.courses[course].classes ?? {}
-            )[0] as string).split("-")[0],
-          },
-        },
-        course: {
-          url: `https://www.cl.cam.ac.uk/teaching/${question.year}/${course}`,
-          michaelmas:
-            (typeof coursedb.courses[course].term === "string" &&
-              coursedb.courses[course].term === "M") ||
-            (typeof coursedb.courses[course].term === "object" &&
-              Object.values(coursedb.courses[course].term).includes("M")),
-          lent:
-            (typeof coursedb.courses[course].term === "string" &&
-              coursedb.courses[course].term === "L") ||
-            (typeof coursedb.courses[course].term === "object" &&
-              Object.values(coursedb.courses[course].term).includes("L")),
-          easter:
-            (typeof coursedb.courses[course].term === "string" &&
-              coursedb.courses[course].term === "E") ||
-            (typeof coursedb.courses[course].term === "object" &&
-              Object.values(coursedb.courses[course].term).includes("E")),
-          lectures:
-            typeof coursedb.courses[course].hours === "number"
-              ? coursedb.courses[course].hours
-              : coursedb.courses[course].hours?._label
-              ? Number.parseInt(coursedb.courses[course].hours._label)
-              : undefined,
-          moodleId: coursedb.courses[course].moodle
-            ? coursedb.courses[course].moodle.toString()
-            : undefined,
-          suggestedSupervisions: coursedb.courses[course].supervision_hours,
-          format: coursedb.courses[course].format,
-          lecturers: coursedb.courses[course].lecturer
-            ? (typeof coursedb.courses[course].lecturer === "string"
-                ? [coursedb.courses[course].lecturer]
-                : Object.values(coursedb.courses[course].lecturer)
-              ).reduce((acc: { crsid: string; name: string }[], crsid) => {
+      if (course && coursedb) {
+        const questionInput = {
+          paper: question.paper,
+          questionNumber: question.question,
+          year: question.year,
+          solutionUrl: question.solutions,
+          url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.pdf}`,
+          authors: question.author
+            ? question.author.split("+").reduce((acc: { crsid: string; name: string }[], crsid) => {
                 if (!coursedb.lecturers[crsid]) {
                   return acc;
                 }
@@ -184,17 +180,99 @@ const ingestCommand = new Command("ingest")
                 acc.push({ crsid, name });
                 return acc;
               }, [])
-            : undefined,
-          course: {
-            code: course,
-            name: coursedb.courses[course]._label,
+            : [],
+          paperYear: {
+            triposPart: {
+              name: triposParts[
+                (Object.values(coursedb.courses[course].classes ?? {})[0] as string).split("-")[0]
+              ],
+              code: (Object.values(
+                coursedb.courses[course].classes ?? {}
+              )[0] as string).split("-")[0],
+            },
           },
-        },
-      };
+          course: {
+            url: `https://www.cl.cam.ac.uk/teaching/${question.year}/${course}`,
+            michaelmas:
+              (typeof coursedb.courses[course].term === "string" &&
+                coursedb.courses[course].term === "M") ||
+              (typeof coursedb.courses[course].term === "object" &&
+                Object.values(coursedb.courses[course].term).includes("M")),
+            lent:
+              (typeof coursedb.courses[course].term === "string" &&
+                coursedb.courses[course].term === "L") ||
+              (typeof coursedb.courses[course].term === "object" &&
+                Object.values(coursedb.courses[course].term).includes("L")),
+            easter:
+              (typeof coursedb.courses[course].term === "string" &&
+                coursedb.courses[course].term === "E") ||
+              (typeof coursedb.courses[course].term === "object" &&
+                Object.values(coursedb.courses[course].term).includes("E")),
+            lectures:
+              typeof coursedb.courses[course].hours === "number"
+                ? coursedb.courses[course].hours
+                : coursedb.courses[course].hours?._label
+                ? Number.parseInt(coursedb.courses[course].hours._label)
+                : undefined,
+            moodleId: coursedb.courses[course].moodle
+              ? coursedb.courses[course].moodle.toString()
+              : undefined,
+            suggestedSupervisions: coursedb.courses[course].supervision_hours,
+            format: coursedb.courses[course].format,
+            lecturers: coursedb.courses[course].lecturer
+              ? (typeof coursedb.courses[course].lecturer === "string"
+                  ? [coursedb.courses[course].lecturer]
+                  : Object.values(coursedb.courses[course].lecturer)
+                ).reduce((acc: { crsid: string; name: string }[], crsid) => {
+                  if (!coursedb.lecturers[crsid]) {
+                    return acc;
+                  }
+                  const name =
+                    typeof coursedb.lecturers[crsid] === "string"
+                      ? coursedb.lecturers[crsid]
+                      : coursedb.lecturers[crsid]._label;
+                  acc.push({ crsid, name });
+                  return acc;
+                }, [])
+              : undefined,
+            course: {
+              code: course,
+              name: coursedb.courses[course]._label,
+            },
+          },
+        };
 
-      console.log(JSON.stringify(questionInput, null, 2));
+        console.log(JSON.stringify(questionInput, null, 2));
 
-      await getOrPatchQuestion(questionInput);
+        await getOrPatchQuestion(questionInput);
+      } else {
+        const questionInput = {
+          paper: question.paper,
+          questionNumber: question.question,
+          year: question.year,
+          solutionUrl: question.solutions,
+          url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.pdf}`,
+          authors: [],
+          paperYear: {
+          },
+          course: {
+            url: `https://www.cl.cam.ac.uk/teaching/${question.year}`,
+            michaelmas: false,
+            lent: false,
+            easter: false,
+            course: {
+              name: question.topic,
+              code: (await db.query.courseTable.findFirst({
+                where: eq(courseTable.name, question.topic),
+              }))?.code ?? question.topic,
+            }
+          }
+        };
+
+        console.log(JSON.stringify(questionInput, null, 2));
+
+        await getOrPatchQuestion(questionInput);
+      }
     }
   });
 
