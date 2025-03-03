@@ -6,7 +6,8 @@ import { trpc } from "@/trpc/server";
 async function ProfilePage({
   params
 }: {
-  params: Promise<{ [key: string]: string }>;
+  params: Promise<{ crsid: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { crsid } = await params;
 

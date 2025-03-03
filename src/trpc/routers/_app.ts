@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { baseProcedure, createTRPCRouter } from "../init";
+import { questionRouter } from "./question";
 import { triposRouter } from "./tripos";
 import { userRouter } from "./user";
 
@@ -16,7 +17,8 @@ export const appRouter = createTRPCRouter({
       };
     }),
   tripos: triposRouter,
-  user: userRouter
+  user: userRouter,
+  question: questionRouter
 });
 
 // export type definition of API

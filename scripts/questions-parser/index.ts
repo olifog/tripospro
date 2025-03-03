@@ -31,7 +31,7 @@ export function parseQuestions({
   const headers = lines[0].split(",").map((h) => h.trim());
   const rows = lines.slice(1, -1).map((line) => {
     const values = line.split(",");
-    
+
     // the 5th value, topic, could have commas inside it -- need to keep merging values until there's only 7 values left
     let topic = values[4];
     while (values.length > 7) {

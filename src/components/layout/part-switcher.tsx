@@ -25,6 +25,12 @@ import { trpc } from "@/trpc/client";
 import { useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
+const partAbbreviations = {
+  part1a: "IA",
+  part1b: "IB",
+  part2: "II"
+};
+
 export function PartSwitcher() {
   return (
     <ErrorBoundary fallback={<PartSwitcherError />}>
@@ -105,11 +111,15 @@ function InnerPartSwitcher() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                {activePart.name}
+                {
+                  partAbbreviations[
+                    activePart.code as keyof typeof partAbbreviations
+                  ]
+                }
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
-                  Part {activePart.name}
+                  {activePart.name}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto" />
@@ -131,9 +141,13 @@ function InnerPartSwitcher() {
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-xs border">
-                  {part.name}
+                  {
+                    partAbbreviations[
+                      part.code as keyof typeof partAbbreviations
+                    ]
+                  }
                 </div>
-                Part {part.name}
+                {part.name}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>

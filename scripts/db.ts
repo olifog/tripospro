@@ -1,16 +1,21 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { cwd } from "node:process";
+import { db } from "@/db";
+import { courseTable } from "@/db/schema/course";
 import { seed } from "@/db/seed";
 import { calendarYearToAcademicYear } from "@/lib/utils";
 import { Command } from "commander";
-import { parseCourseDB, type CourseDBSchema } from "./coursedb-parser/parse";
-import { parseQuestions, type QuestionSchema, QuestionsSchema } from "./questions-parser";
-import type { z } from "zod";
-import { getOrPatchQuestion, resetDatabase } from "./upload";
-import { db } from "@/db";
-import { courseTable } from "@/db/schema/course";
 import { eq } from "drizzle-orm";
+import type { z } from "zod";
+import { type CourseDBSchema, parseCourseDB } from "./coursedb-parser/parse";
+import {
+  type QuestionSchema,
+  QuestionsSchema,
+  parseQuestions
+} from "./questions-parser";
+import { ingestYear } from "./report-parser";
+import { getOrPatchQuestion, resetDatabase } from "./upload";
 
 const dbCommand = new Command("db").description("Database operations");
 
@@ -21,7 +26,10 @@ const applyQuestionRemaps = (question: z.infer<typeof QuestionSchema>) => {
     newQuestion.topic = "Programming in C and C++";
   }
 
-  if (newQuestion.topic === "Artificial Intelligence" && newQuestion.year === "2017") {
+  if (
+    newQuestion.topic === "Artificial Intelligence" &&
+    newQuestion.year === "2017"
+  ) {
     newQuestion.topic = "Artificial Intelligence I";
   }
 
@@ -29,7 +37,10 @@ const applyQuestionRemaps = (question: z.infer<typeof QuestionSchema>) => {
     newQuestion.topic = "Object-Oriented Programming";
   }
 
-  if (newQuestion.topic === "Algorithms" && ["2007", "2008"].includes(newQuestion.year)) {
+  if (
+    newQuestion.topic === "Algorithms" &&
+    ["2007", "2008"].includes(newQuestion.year)
+  ) {
     newQuestion.topic = "Algorithms I";
   }
 
@@ -59,23 +70,36 @@ const applyCourseDbRemaps = (courseDb: z.infer<typeof CourseDBSchema>) => {
       if (value._label === "Operating Systems I") {
         value._label = "Operating Systems";
       }
-      if (courseDb.myear === 2010 && value._label === "Concurrent and Distributed Systems II") {
+      if (
+        courseDb.myear === 2010 &&
+        value._label === "Concurrent and Distributed Systems II"
+      ) {
         return acc;
       }
-      if (courseDb.myear === 2010 && value._label === "Concurrent and Distributed Systems I") {
+      if (
+        courseDb.myear === 2010 &&
+        value._label === "Concurrent and Distributed Systems I"
+      ) {
         value._label = "Concurrent and Distributed Systems";
         value.term = {
           "1": "M",
-          "2": "L",
-        }
+          "2": "L"
+        };
       }
       // replace nbsp with space
       acc.push([key, value]);
-      return acc
+      return acc;
     }, [])
   );
 
   return newCourseDb;
+};
+
+const applyTriposPartRemaps = (triposPart: string) => {
+  if (triposPart === "diploma") {
+    return "part2";
+  }
+  return triposPart.split("-")[0].slice(0, 6);
 };
 
 const ingestCommand = new Command("ingest")
@@ -134,32 +158,38 @@ const ingestCommand = new Command("ingest")
       //   throw new Error(`Coursedb not found for year ${question.year}`);
       // }
 
-      const triposParts =
-        !coursedb ? {} :
-      coursedb.groups
-        ? Object.fromEntries(
-            Object.values(coursedb.groups).map((group) => {
-              const key = Object.entries(group).reduce((acc, field) => {
-                if (!["_label", "title", "teaching-admin"].includes(field[0])) {
-                  return typeof field[1] === "string" ? field[1] : field[1]._label;
+      const triposParts = !coursedb
+        ? {}
+        : coursedb.groups
+          ? Object.fromEntries(
+              Object.values(coursedb.groups).map((group) => {
+                const key = Object.entries(group).reduce((acc, field) => {
+                  if (
+                    !["_label", "title", "teaching-admin"].includes(field[0])
+                  ) {
+                    return typeof field[1] === "string"
+                      ? field[1]
+                      : field[1]._label;
+                  }
+                  return acc;
+                }, "");
+                return [applyTriposPartRemaps(key), group.title];
+              })
+            )
+          : Object.fromEntries(
+              Object.entries(coursedb.classes ?? {}).map(([key, value]) => {
+                if (typeof value === "string") {
+                  return [key, value];
                 }
-                return acc;
-              }, "");
-              return [key.split("-")[0], group.title];
-            })
-          )
-        : Object.fromEntries(
-            Object.entries(coursedb.classes ?? {}).map(([key, value]) => {
-              if (typeof value === "string") {
-                return [key, value];
-              }
-              return [key.split("-")[0], value.title];
-            })
-          );
+                return [applyTriposPartRemaps(key), value.title];
+              })
+            );
 
-      const course = Object.entries(coursedb?.courses ?? {}).find(([key, value]) => {
-        return value._label === question.topic;
-      })?.[0];
+      const course = Object.entries(coursedb?.courses ?? {}).find(
+        ([key, value]) => {
+          return value._label === question.topic;
+        }
+      )?.[0];
 
       if (course && coursedb) {
         const questionInput = {
@@ -169,27 +199,35 @@ const ingestCommand = new Command("ingest")
           solutionUrl: question.solutions,
           url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.pdf}`,
           authors: question.author
-            ? question.author.split("+").reduce((acc: { crsid: string; name: string }[], crsid) => {
-                if (!coursedb.lecturers[crsid]) {
+            ? question.author
+                .split("+")
+                .reduce((acc: { crsid: string; name: string }[], crsid) => {
+                  if (!coursedb.lecturers[crsid]) {
+                    return acc;
+                  }
+                  const name =
+                    typeof coursedb.lecturers[crsid] === "string"
+                      ? coursedb.lecturers[crsid]
+                      : coursedb.lecturers[crsid]._label;
+                  acc.push({ crsid, name });
                   return acc;
-                }
-                const name =
-                  typeof coursedb.lecturers[crsid] === "string"
-                    ? coursedb.lecturers[crsid]
-                    : coursedb.lecturers[crsid]._label;
-                acc.push({ crsid, name });
-                return acc;
-              }, [])
+                }, [])
             : [],
           paperYear: {
             triposPart: {
               name: triposParts[
-                (Object.values(coursedb.courses[course].classes ?? {})[0] as string).split("-")[0]
+                applyTriposPartRemaps(
+                  Object.values(
+                    coursedb.courses[course].classes ?? {}
+                  )[0] as string
+                )
               ],
-              code: (Object.values(
-                coursedb.courses[course].classes ?? {}
-              )[0] as string).split("-")[0],
-            },
+              code: applyTriposPartRemaps(
+                Object.values(
+                  coursedb.courses[course].classes ?? {}
+                )[0] as string
+              )
+            }
           },
           course: {
             url: `https://www.cl.cam.ac.uk/teaching/${question.year}/${course}`,
@@ -212,8 +250,8 @@ const ingestCommand = new Command("ingest")
               typeof coursedb.courses[course].hours === "number"
                 ? coursedb.courses[course].hours
                 : coursedb.courses[course].hours?._label
-                ? Number.parseInt(coursedb.courses[course].hours._label)
-                : undefined,
+                  ? Number.parseInt(coursedb.courses[course].hours._label)
+                  : undefined,
             moodleId: coursedb.courses[course].moodle
               ? coursedb.courses[course].moodle.toString()
               : undefined,
@@ -237,9 +275,9 @@ const ingestCommand = new Command("ingest")
               : undefined,
             course: {
               code: course,
-              name: coursedb.courses[course]._label,
-            },
-          },
+              name: coursedb.courses[course]._label
+            }
+          }
         };
 
         console.log(JSON.stringify(questionInput, null, 2));
@@ -253,8 +291,7 @@ const ingestCommand = new Command("ingest")
           solutionUrl: question.solutions,
           url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/${question.pdf}`,
           authors: [],
-          paperYear: {
-          },
+          paperYear: {},
           course: {
             url: `https://www.cl.cam.ac.uk/teaching/${question.year}`,
             michaelmas: false,
@@ -262,9 +299,12 @@ const ingestCommand = new Command("ingest")
             easter: false,
             course: {
               name: question.topic,
-              code: (await db.query.courseTable.findFirst({
-                where: eq(courseTable.name, question.topic),
-              }))?.code ?? question.topic,
+              code:
+                (
+                  await db.query.courseTable.findFirst({
+                    where: eq(courseTable.name, question.topic)
+                  })
+                )?.code ?? question.topic
             }
           }
         };
@@ -342,9 +382,43 @@ const questionsCommand = new Command("questions")
     console.log(`Saved index.csv to ${outputPath}`);
   });
 
+const reportsCommand = new Command("reports")
+  .description("Ingest exam statistics")
+  .option("-y, --year <year>", "The year to ingest the exam statistics of")
+  .option("-a, --all", "Ingest all years")
+  .action(async (options) => {
+    let startYear = undefined;
+    let endYear = undefined;
+
+    if (options.year) {
+      startYear = Number.parseInt(options.year);
+      endYear = startYear;
+    }
+    if (options.all) {
+      startYear = 2000;
+      endYear = new Date().getFullYear();
+    }
+
+    if (startYear && endYear) {
+      for (let year = startYear; year <= endYear; year++) {
+        console.log(`\nIngesting exam statistics for year ${year}...`);
+        try {
+          await ingestYear(year.toString());
+        } catch (error) {
+          console.error(
+            `Error ingesting exam statistics for year ${year}: ${error}`
+          );
+        }
+      }
+    } else {
+      throw new Error("No year or all flag provided");
+    }
+  });
+
 dbCommand.addCommand(ingestCommand);
 ingestCommand.addCommand(coursedbCommand);
 ingestCommand.addCommand(questionsCommand);
+ingestCommand.addCommand(reportsCommand);
 
 const seedCommand = new Command("seed")
   .description("Seed the database with sample data")

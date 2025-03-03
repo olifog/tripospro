@@ -25,7 +25,6 @@ export const questionTable = pgTable("question", {
   updatedAt: timestamp().notNull().defaultNow()
 });
 
-
 export const questionRelations = relations(questionTable, ({ one, many }) => ({
   paperYear: one(paperYearTable, {
     fields: [questionTable.paperYearId],
@@ -41,20 +40,23 @@ export const questionRelations = relations(questionTable, ({ one, many }) => ({
 
 export const questionAuthorTable = pgTable("question_author", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  
+
   questionId: integer().references(() => questionTable.id),
   authorId: integer().references(() => usersTable.id),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow()
 });
 
-export const questionAuthorRelations = relations(questionAuthorTable, ({ one }) => ({
-  question: one(questionTable, {
-    fields: [questionAuthorTable.questionId],
-    references: [questionTable.id]
-  }),
-  author: one(usersTable, {
-    fields: [questionAuthorTable.authorId],
-    references: [usersTable.id]
+export const questionAuthorRelations = relations(
+  questionAuthorTable,
+  ({ one }) => ({
+    question: one(questionTable, {
+      fields: [questionAuthorTable.questionId],
+      references: [questionTable.id]
+    }),
+    author: one(usersTable, {
+      fields: [questionAuthorTable.authorId],
+      references: [usersTable.id]
+    })
   })
-}));
+);

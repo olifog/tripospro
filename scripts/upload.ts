@@ -1,16 +1,16 @@
 import { db } from "@/db";
-import { usersTable } from "@/db/schema/user";
-import { eq, and } from "drizzle-orm";
-import {
-  triposPartTable,
-  triposTable,
-  triposPartYearTable,
-} from "@/db/schema/tripos";
+import { courseTable, courseYearTable } from "@/db/schema/course";
+import { courseYearLecturerTable } from "@/db/schema/course";
 import { paperTable } from "@/db/schema/paper";
 import { paperYearTable } from "@/db/schema/paper";
-import { courseTable, courseYearTable } from "@/db/schema/course";
 import { questionAuthorTable, questionTable } from "@/db/schema/question";
-import { courseYearLecturerTable } from "@/db/schema/course";
+import {
+  triposPartTable,
+  triposPartYearTable,
+  triposTable
+} from "@/db/schema/tripos";
+import { usersTable } from "@/db/schema/user";
+import { and, eq } from "drizzle-orm";
 
 const cache = {
   papers: new Map<string, typeof paperTable.$inferSelect>(),
@@ -20,7 +20,7 @@ const cache = {
   tripos: new Map<string, typeof triposTable.$inferSelect>(),
   courses: new Map<string, typeof courseTable.$inferSelect>(),
   courseYears: new Map<string, typeof courseYearTable.$inferSelect>(),
-  questions: new Map<string, typeof questionTable.$inferSelect>(),
+  questions: new Map<string, typeof questionTable.$inferSelect>()
 };
 
 export type PatchUserData = {
@@ -29,7 +29,7 @@ export type PatchUserData = {
 
 export const getOrPatchUser = async (crsid: string, data: PatchUserData) => {
   const user = await db.query.usersTable.findFirst({
-    where: eq(usersTable.crsid, crsid),
+    where: eq(usersTable.crsid, crsid)
   });
 
   if (user) {
@@ -41,7 +41,7 @@ export const getOrPatchUser = async (crsid: string, data: PatchUserData) => {
     .values({
       crsid,
       name: data.name,
-      email: `${crsid}@cam.ac.uk`,
+      email: `${crsid}@cam.ac.uk`
     })
     .returning();
 
@@ -99,7 +99,7 @@ export const getOrPatchTripos = async () => {
   }
 
   const tripos = await db.query.triposTable.findFirst({
-    where: eq(triposTable.code, "CST"),
+    where: eq(triposTable.code, "CST")
   });
   if (tripos) {
     cache.tripos.set("CST", tripos);
@@ -110,7 +110,7 @@ export const getOrPatchTripos = async () => {
     .insert(triposTable)
     .values({
       code: "CST",
-      name: "Computer Science Tripos",
+      name: "Computer Science Tripos"
     })
     .returning();
 
@@ -127,7 +127,7 @@ export const getOrPatchPaper = async (data: PatchQuestionData) => {
   }
 
   const paper = await db.query.paperTable.findFirst({
-    where: eq(paperTable.name, data.paper),
+    where: eq(paperTable.name, data.paper)
   });
   if (paper) {
     cache.papers.set(data.paper, paper);
@@ -140,7 +140,7 @@ export const getOrPatchPaper = async (data: PatchQuestionData) => {
     .insert(paperTable)
     .values({
       name: data.paper,
-      triposId: tripos.id,
+      triposId: tripos.id
     })
     .returning();
 
@@ -162,7 +162,7 @@ export const getOrPatchTriposPart = async (data: PatchQuestionData) => {
   }
 
   const triposPart = await db.query.triposPartTable.findFirst({
-    where: eq(triposPartTable.code, data.paperYear.triposPart.code),
+    where: eq(triposPartTable.code, data.paperYear.triposPart.code)
   });
   if (triposPart) {
     cache.triposParts.set(data.paperYear.triposPart.code, triposPart);
@@ -176,7 +176,7 @@ export const getOrPatchTriposPart = async (data: PatchQuestionData) => {
     .values({
       name: data.paperYear.triposPart.name,
       code: data.paperYear.triposPart.code,
-      triposId: tripos.id,
+      triposId: tripos.id
     })
     .returning();
 
@@ -215,7 +215,7 @@ export const getOrPatchTriposPartYear = async (data: PatchQuestionData) => {
     where: and(
       eq(triposPartYearTable.triposPartId, triposPart.id),
       eq(triposPartYearTable.year, Number.parseInt(data.year))
-    ),
+    )
   });
 
   if (triposPartYear) {
@@ -230,7 +230,7 @@ export const getOrPatchTriposPartYear = async (data: PatchQuestionData) => {
     .insert(triposPartYearTable)
     .values({
       year: Number.parseInt(data.year),
-      triposPartId: triposPart.id,
+      triposPartId: triposPart.id
     })
     .returning();
 
@@ -258,7 +258,7 @@ export const getOrPatchPaperYear = async (data: PatchQuestionData) => {
     where: and(
       eq(paperYearTable.paperId, paper.id),
       eq(paperYearTable.year, Number.parseInt(data.year))
-    ),
+    )
   });
   if (paperYear) {
     cache.paperYears.set([paper.id, data.year].join(":"), paperYear);
@@ -273,7 +273,7 @@ export const getOrPatchPaperYear = async (data: PatchQuestionData) => {
       year: Number.parseInt(data.year),
       paperId: paper.id,
       triposPartYearId: triposPartYear?.id,
-      url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/y${data.year}PAPER${paper.name}.pdf`,
+      url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/y${data.year}PAPER${paper.name}.pdf`
     })
     .returning();
 
@@ -288,7 +288,7 @@ export const getOrPatchCourse = async (data: PatchQuestionData) => {
   }
 
   const course = await db.query.courseTable.findFirst({
-    where: eq(courseTable.code, data.course.course.code),
+    where: eq(courseTable.code, data.course.course.code)
   });
   if (course) {
     cache.courses.set(data.course.course.code, course);
@@ -299,7 +299,7 @@ export const getOrPatchCourse = async (data: PatchQuestionData) => {
     .insert(courseTable)
     .values({
       name: data.course.course.name,
-      code: data.course.course.code,
+      code: data.course.course.code
     })
     .returning();
 
@@ -323,7 +323,7 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
     where: and(
       eq(courseYearTable.courseId, course.id),
       eq(courseYearTable.year, Number.parseInt(data.year))
-    ),
+    )
   });
 
   if (courseYear) {
@@ -344,7 +344,7 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
       lectures: data.course.lectures,
       moodleId: data.course.moodleId,
       suggestedSupervisions: data.course.suggestedSupervisions,
-      format: data.course.format,
+      format: data.course.format
     })
     .returning();
 
@@ -355,7 +355,7 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
     const user = await getOrPatchUser(lecturer.crsid, { name: lecturer.name });
     await db.insert(courseYearLecturerTable).values({
       courseYearId: newCourseYear[0].id,
-      lecturerId: user.id,
+      lecturerId: user.id
     });
   }
 
@@ -389,7 +389,7 @@ export const getOrPatchQuestion = async (data: PatchQuestionData) => {
       eq(questionTable.paperYearId, paperYear.id),
       eq(questionTable.courseYearId, courseYear.id),
       eq(questionTable.questionNumber, Number.parseInt(data.questionNumber))
-    ),
+    )
   });
 
   if (question) {
@@ -403,7 +403,7 @@ export const getOrPatchQuestion = async (data: PatchQuestionData) => {
       courseYearId: courseYear.id,
       questionNumber: Number.parseInt(data.questionNumber),
       solutionUrl: data.solutionUrl ?? "",
-      url: data.url ?? "",
+      url: data.url ?? ""
     })
     .returning();
 
@@ -411,7 +411,7 @@ export const getOrPatchQuestion = async (data: PatchQuestionData) => {
     authors.map((author) =>
       db.insert(questionAuthorTable).values({
         questionId: newQuestion[0].id,
-        authorId: author.id,
+        authorId: author.id
       })
     )
   );

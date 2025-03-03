@@ -7,7 +7,12 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["components/ui", "supabase/types.ts", "scripts/coursedb-parser/out", "scripts/questions-parser/questions.json"],
+    "ignore": [
+      "components/ui",
+      "supabase/types.ts",
+      "scripts/coursedb-parser/out",
+      "scripts/questions-parser/questions.json"
+    ],
     "include": [
       "./**/*.ts",
       "./**/*.tsx",

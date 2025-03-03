@@ -1,65 +1,65 @@
 {
   "myear": 2015,
   "teaching-admin": {
-    "54d7e0f9-0456-47f9-b928-ad701d1508d0": "lmg30",
-    "ae79f68a-6d85-45dc-ae40-eda6b39b95a4": "jlr59",
-    "13ff1b19-d02d-43a8-985f-4086e1141b04": "clc32",
-    "c7d4b2eb-4144-4470-b4dc-2d3d824e2fc2": "dp341",
-    "93559bf8-db4a-4b98-bb69-66f0474eef4e": "ms725",
-    "70ec28c5-c9bc-4a51-930e-de886f1eccdb": "ncc25",
-    "d6398ca1-9df4-4777-bcb1-2c2b26d1d971": "ckh11",
-    "10d042a1-7f6c-4303-a6fb-8f9942f3dadc": "wwwupdate"
+    "54509006-8efa-4102-8d1b-6d05fa383237": "lmg30",
+    "f9b53d57-adc5-4686-9bed-06492c9e1e1e": "jlr59",
+    "a35d9a07-50c7-467d-a7f0-9c0682eedf42": "clc32",
+    "cb7ca467-55fb-4baf-966d-262db6f090c4": "dp341",
+    "0c59e3b3-8729-4eb2-abcf-311b1b1c1890": "ms725",
+    "74b00830-361d-4d4c-a917-4b8e0c571fe9": "ncc25",
+    "70c7a302-69a0-45b5-a736-005d91a4e287": "ckh11",
+    "48dac13f-3076-4c31-a36d-2ca3cdb175b1": "wwwupdate"
   },
   "timetable-url": "http://www.cl.cam.ac.uk/teaching/timetables/",
   "groups": {
-    "e6fb9443-31b6-4ab5-b8dd-2043a75336f6": {
+    "56e7ef36-4153-4bbf-8a51-d6d8e7792624": {
       "title": "Year 1",
       "_label": "year1",
       "supervisions": 1,
       "syllabus": "latexhtmlinclude",
       "triposexam": 1,
-      "25d31e53-d46d-47b2-bafc-55b64d8e76c9": {
+      "32bd6d53-bcc5-4bf0-8f6f-1ee7a24dd102": {
         "title": "Part IA CST",
         "_label": "part1a-cst"
       },
-      "a593748c-4e04-47b1-8d7d-625931136490": {
+      "696ad52c-1387-4920-96ed-d6bb330601f0": {
         "title": "Part IA NST, Part I PBS",
         "_label": "part1a-other"
       }
     },
-    "94774092-614b-4c25-aa1a-1432888cf302": {
+    "58ecba56-1c4e-4ed9-b745-54b873e47c9b": {
       "title": "Year 2",
       "_label": "year2",
       "supervisions": 1,
       "syllabus": "latexhtmlinclude",
       "triposexam": 1,
-      "3ae278ad-7951-4da9-8bd9-9a4adfcafc5d": {
+      "43fa86b6-bfae-4331-a955-d0f85367539d": {
         "title": "Part IB",
         "_label": "part1b"
       }
     },
-    "f4d73e80-5b22-4a6a-9597-959929cae553": {
+    "f33b7294-305f-4d38-a0b6-324861720683": {
       "title": "Year 3",
       "_label": "year3",
       "supervisions": 1,
       "syllabus": "latexhtmlinclude",
       "triposexam": 1,
-      "598937b3-6ab1-46c2-b48a-64930bd91a94": {
+      "5a5ace5a-3bf5-42e0-b29c-fb10436582b4": {
         "title": "Part II",
         "_label": "part2"
       }
     },
-    "e7aa1460-8fb8-40fb-860f-c8303542af0a": {
+    "eb6a60de-4d38-49fe-aa0a-b4f99ed2d939": {
       "title": "Year 4",
       "_label": "year4",
       "assessmentpage": 1,
       "showcode": 1,
       "syllabus": "htmlinclude",
-      "1c065caa-46e6-494c-bd0b-be5d72b25d07": {
+      "59684851-9181-4eea-b3e6-fa936c752328": {
         "title": "Part III",
         "_label": "part3"
       },
-      "70c53c6a-d826-4711-834f-9a1bc69d8b93": {
+      "2643a950-18b6-4f7c-bb28-910679ad42dc": {
         "title": "MPhil ACS",
         "_label": "acs"
       }
@@ -68,13 +68,13 @@
   "courses": {
     "PrepCS": {
       "lecturer": {
-        "4c5c0556-3f73-4533-873a-5e0882198aac": "rkh23",
-        "abd3d651-c710-4f73-810c-690cd399b590": "arb33",
-        "a5ef03ed-2279-4229-9ce3-c39dbd6e3b5f": "acr31"
+        "fe9ed60d-de99-4164-8fe9-6f63defc72d0": "rkh23",
+        "37493979-312d-4d16-8b6c-4f247507e5ea": "arb33",
+        "69462b13-c2a4-48d3-ad4f-60e3e54cc997": "acr31"
       },
       "classes": {
-        "47fdfa24-909d-4758-9d59-a35f301b0861": "part1a-cst",
-        "28e8a186-7ba7-46d6-acdc-2d5f2e7d3f91": "part1a-other"
+        "d8bc82e7-f2b2-47d9-afa1-97ef1743aa3c": "part1a-cst",
+        "4dde3838-abda-4d57-b83a-3e84c2e60194": "part1a-other"
       },
       "term": "P",
       "_label": "Preparation for Computer Science",
@@ -84,34 +84,34 @@
     },
     "AdvGraph": {
       "lecturer": {
-        "16f83716-572a-4d30-8f6e-3b5c01a3ef27": "pb355",
-        "e99a9a82-a275-420a-8e91-5bad35b36188": "rkm38"
+        "053496fa-78a2-4983-820e-13b3e727d1cf": "pb355",
+        "fa158c18-aac4-4598-9339-f91dd6846300": "rkm38"
       },
       "classes": {
-        "9b20864d-fbef-4b9d-aa2b-f4e351bc25e5": "part2"
+        "f023bd23-3857-46bd-ad25-d83baac31760": "part2"
       },
       "term": "L",
       "_label": "Advanced Graphics",
       "oldnames": {
-        "a5fb647b-94ae-4872-9417-5047964cd82d": "Advanced Graphics and HCI"
+        "3a203051-a37e-4a49-b6ce-ff2f7501f8b5": "Advanced Graphics and HCI"
       }
     },
     "AdvAlgo": {
       "lecturer": "tms41",
       "classes": {
-        "2847ab60-88ec-4873-b9f8-51296dd35d73": "part2"
+        "9d7af087-73d9-450c-a06f-8df5d0d586e3": "part2"
       },
       "term": "E",
       "_label": "Advanced Algorithms"
     },
     "Algorithms": {
       "lecturer": {
-        "5568ceae-0c40-4ac5-8f1b-79fcdb03ab8c": "fms27",
-        "317b2204-be26-43d6-b4f5-2bc1fd31dd6e": "tms41"
+        "20d6622c-1c71-43e0-bf9b-478657554e1e": "fms27",
+        "3608ea58-e8eb-47fc-8c25-855dea42f358": "tms41"
       },
       "classes": {
-        "5757df0d-6c48-4382-ac96-562f9c9d26f0": "part1a-cst",
-        "87581863-1227-4596-b662-b1091f8b7014": "part1a-other"
+        "747f767b-1614-4c7e-9151-02aa2c070fd0": "part1a-cst",
+        "a327110e-3d52-4323-b22d-c22a95293c93": "part1a-other"
       },
       "term": "L",
       "_label": "Algorithms"
@@ -119,29 +119,29 @@
     "ArtIntI": {
       "lecturer": "sbh11",
       "classes": {
-        "00766294-5166-4000-8bd6-375791961e3c": "part1b"
+        "b643e6e3-6628-4ffd-92a2-32cf34d0f8b3": "part1b"
       },
       "term": "E",
       "_label": "Artificial Intelligence I",
       "oldnames": {
-        "34f64147-e02f-4e48-bb7f-a4af2cbac904": "Artificial Intelligence"
+        "602d0f67-6856-45a2-a2c9-be3799b4a0a9": "Artificial Intelligence"
       }
     },
     "ArtIntII": {
       "lecturer": "sbh11",
       "classes": {
-        "283dc3ee-4303-4014-9b62-88970586f315": "part2"
+        "4802b859-b419-4dc4-9baf-5edfecd725ae": "part2"
       },
       "term": "L",
       "_label": "Artificial Intelligence II",
       "oldnames": {
-        "ad03183f-a715-4ccd-8772-aedd4b77bf5d": "Artificial Intelligence"
+        "614a6b18-e007-404d-b8a5-a2fb16e47363": "Artificial Intelligence"
       }
     },
     "Bioinfo": {
       "lecturer": "pl219",
       "classes": {
-        "a1eb340d-8f64-43c6-b714-cae985c54b87": "part2"
+        "3abceb2f-9173-4c36-8305-b70a44356400": "part2"
       },
       "term": "M",
       "_label": "Bioinformatics"
@@ -149,7 +149,7 @@
     "BusSeminrs": {
       "lecturer": "jal1",
       "classes": {
-        "1742894d-62f0-423d-9991-894984676d79": "part2"
+        "743dd394-c298-4812-9121-a61adfead6fa": "part2"
       },
       "term": "E",
       "_label": "Business Studies Seminars",
@@ -158,7 +158,7 @@
     "Business": {
       "lecturer": "jal1",
       "classes": {
-        "f1b906ce-fce0-4e7a-b9c1-96c159c7221d": "part2"
+        "2e1b721f-397f-4ee3-983e-ee6a3d0a4a35": "part2"
       },
       "term": "M",
       "_label": "Business Studies"
@@ -166,7 +166,7 @@
     "CandC++": {
       "lecturer": "avsm2",
       "classes": {
-        "4d6317cb-8887-4076-8283-91765b271804": "part1b"
+        "e0bddd92-3ef5-4d1b-ab3c-83766e17a1d5": "part1b"
       },
       "term": "M",
       "_label": "Programming in C and C++"
@@ -174,7 +174,7 @@
     "CompArch": {
       "lecturer": "rdm34",
       "classes": {
-        "fd76fc99-92f8-4232-9ab9-5a1ef8e895ae": "part2"
+        "3c81f948-a590-447c-8064-f58fecdb8f8e": "part2"
       },
       "term": "L",
       "_label": "Comparative Architectures"
@@ -182,29 +182,29 @@
     "CompConstr": {
       "lecturer": "tgg22",
       "classes": {
-        "a29a3aa3-a0cb-40a6-a78c-e74f5d5ec47a": "part1b"
+        "3cf06265-d20b-4c42-846d-1c3d495e6a98": "part1b"
       },
       "term": "L",
       "_label": "Compiler Construction"
     },
     "CompDesign": {
       "lecturer": {
-        "092a9e2b-441b-490a-96e7-c8ea22458963": "swm11",
-        "c8b68b4b-18c9-45ef-b87d-5dddc222692b": "tmj32"
+        "ed62819d-c35e-4171-bb40-636fe24dc16e": "swm11",
+        "f03442b6-a694-48aa-a7aa-842f2289637a": "tmj32"
       },
       "classes": {
-        "e66e5007-3bdf-44e8-9fec-9d7054b8005d": "part1b"
+        "88f29d6f-dd32-4fb2-a845-d2959c2d582d": "part1b"
       },
       "term": "M",
       "_label": "Computer Design",
       "oldnames": {
-        "5e3f71e6-1a60-45f4-857f-9f023d1edbe7": "ECAD"
+        "4a8e4904-8bff-4ec0-8402-4d3f9a1c44b6": "ECAD"
       }
     },
     "CompGraph": {
       "lecturer": "pr10",
       "classes": {
-        "24f0219a-5016-49ce-8b48-83baf368d886": "part1b"
+        "900a1f2a-3285-464d-ae21-901f57420260": "part1b"
       },
       "term": "M",
       "_label": "Computer Graphics and Image Processing"
@@ -212,21 +212,21 @@
     "CompNet": {
       "lecturer": "awm22",
       "classes": {
-        "ed213801-ef02-41a8-b825-16514307799f": "part1b"
+        "6cb05bd5-27b7-45c2-9a39-b0065d4fac19": "part1b"
       },
       "term": {
-        "058ec95f-9fff-47a3-81b7-ea441cfc6937": "L",
+        "637d8bdd-ae7f-4d80-b8a9-0131e06d429a": "L",
         "_label": "M"
       },
       "_label": "Computer Networking",
       "oldnames": {
-        "899d7fff-9786-43c7-88b0-33e79c37a08f": "Digital Communication I"
+        "f2e489dc-9eb4-4ccc-bfba-826701d28f29": "Digital Communication I"
       }
     },
     "CompSysMod": {
       "lecturer": "rg31",
       "classes": {
-        "23f988b7-8490-4a60-b955-ba5187658795": "part2"
+        "0394497f-abf9-4a08-9a9c-aa5a9c2241bb": "part2"
       },
       "term": "L",
       "_label": "Computer Systems Modelling"
@@ -234,7 +234,7 @@
     "CompTheory": {
       "lecturer": "amp12",
       "classes": {
-        "a5089ce5-54ec-45d1-84a1-51437a8feb77": "part1b"
+        "b8b1c9f1-376e-450b-93bc-85bca09c0f02": "part1b"
       },
       "term": "L",
       "_label": "Computation Theory"
@@ -242,7 +242,7 @@
     "CompVision": {
       "lecturer": "jgd1000",
       "classes": {
-        "4bf59441-2634-47b3-959f-da8e8a288d96": "part2"
+        "82b5e8e4-274b-4a61-8c46-9fdea9bdefc2": "part2"
       },
       "term": "L",
       "_label": "Computer Vision"
@@ -250,43 +250,43 @@
     "Complexity": {
       "lecturer": "ad260",
       "classes": {
-        "5efa3da2-cf67-4cbb-b54d-d6f29b26ee83": "part1b"
+        "a7ee230b-b90c-4356-8d69-d0665c8b1505": "part1b"
       },
       "term": "E",
       "_label": "Complexity Theory",
       "oldnames": {
-        "1de204c6-7c43-46a4-818b-f016258d1f59": "Complexity"
+        "3b8954fc-5471-488a-9a83-03f831f3be7e": "Complexity"
       }
     },
     "ConcDisSys": {
       "lecturer": "rnw24",
       "classes": {
-        "3c5e03b3-e050-4705-815a-317217dd2fd6": "part1b"
+        "1a1ff1f5-8a51-48c8-99e2-bbed78b0eef9": "part1b"
       },
       "term": {
-        "0b706108-9918-4e4c-bbd6-ad796585b197": "L",
+        "6848d03a-72f3-48b1-afa6-137894d843ae": "L",
         "_label": "M"
       },
       "_label": "Concurrent and Distributed Systems",
       "oldnames": {
-        "50ac7c63-ad15-4f95-9275-6b7eae3bc9ea": "Concurrent Systems"
+        "6602a8fd-5d71-4137-9865-8b8ffc14806c": "Concurrent Systems"
       }
     },
     "ConceptsPL": {
       "lecturer": "am21",
       "classes": {
-        "1dc89089-286f-4ef9-a011-f86549c02155": "part1b"
+        "5b9e4fa2-e53f-43c9-a032-65cc82ffee74": "part1b"
       },
       "term": "E",
       "_label": "Concepts in Programming Languages",
       "oldnames": {
-        "87511705-88fd-4455-916c-0ba93d47198b": "Comparative Programming Languages"
+        "fc94d4e4-c40e-4605-985c-d8f19fee961b": "Comparative Programming Languages"
       }
     },
     "DSP": {
       "lecturer": "mgk25",
       "classes": {
-        "e55f8499-24bc-4acc-854a-2e35757e327b": "part2"
+        "0b77d579-e40c-4584-a50a-ecc9963621e6": "part2"
       },
       "term": "M",
       "_label": "Digital Signal Processing"
@@ -294,7 +294,7 @@
     "Databases": {
       "lecturer": "tgg22",
       "classes": {
-        "4bca6140-cd0a-4f16-91cf-cfa4690e244f": "part1b"
+        "aa028ce9-2a00-472c-b3bb-c2fc3ba4a88e": "part1b"
       },
       "term": "L",
       "_label": "Databases"
@@ -302,7 +302,7 @@
     "DenotSem": {
       "lecturer": "mpf23",
       "classes": {
-        "a7e23826-7039-4684-89f9-d6f257b42008": "part2"
+        "14c0dc7c-fffd-4a5a-b933-d3986e03c4f9": "part2"
       },
       "term": "M",
       "_label": "Denotational Semantics"
@@ -310,35 +310,35 @@
     "DigElec": {
       "lecturer": "ijw24",
       "classes": {
-        "7fa39fd9-d4d9-464b-81bf-f0403ebecfc6": "part1a-cst"
+        "3a496c6f-1da8-48b8-bd0c-952f108f5819": "part1a-cst"
       },
       "term": "M",
       "_label": "Digital Electronics"
     },
     "DiscMath": {
       "lecturer": {
-        "671ae0d3-5813-442a-83ab-09c885b91a05": "mpf23",
-        "f64a6a31-a190-45ee-9510-3735fcd749ad": "iml1"
+        "a4e33b37-5380-4f29-a844-0691c362c8c6": "mpf23",
+        "4baacd02-9268-4abe-8a51-e4314921db7b": "iml1"
       },
       "classes": {
-        "625684dc-9a06-40c0-8058-89069cc78a45": "part1a-cst"
+        "e4d638b5-de71-4bbf-b589-8aeaed15d275": "part1a-cst"
       },
       "term": {
-        "2c561b1c-bd5f-4974-82bd-eda9d5762352": "L",
+        "f7065bc2-f319-444a-a1d7-621c70e0bec4": "L",
         "_label": "M"
       },
       "_label": "Discrete Mathematics",
       "oldnames": {
-        "8bdbd6a7-979d-44b1-9ec6-f3df4ba44f4c": "Discrete Mathematics I"
+        "52e34096-531c-43b2-aa6b-5204439c419a": "Discrete Mathematics I"
       }
     },
     "ECAD+Arch": {
       "lecturer": {
-        "1034e259-f9a7-47c3-bb22-99c3241f8c95": "swm11",
-        "3e8f559b-ed33-4bdb-aa8e-704dc6f2fc9a": "rdm34"
+        "4920c79e-313c-48f4-aa27-0910c852694f": "swm11",
+        "9b6716e5-b972-4e9c-9fba-9d6478cac0a4": "rdm34"
       },
       "classes": {
-        "a5973365-56fc-4678-9395-ffec5a547fae": "part1b"
+        "c17275e6-e43f-455e-b9cc-d7deda5a5be5": "part1b"
       },
       "term": "M",
       "_label": "ECAD and Architecture Practical Classes",
@@ -348,32 +348,32 @@
     "ECommerce": {
       "lecturer": "jal1",
       "classes": {
-        "ff92ce15-3b40-4b72-80a8-1d4a91eee18d": "part2"
+        "7a04b43f-0176-4933-9dac-e2c908f93fb3": "part2"
       },
       "term": "L",
       "_label": "E-Commerce",
       "oldnames": {
-        "13496287-f8ab-429f-ae04-8a5ff11c0e2b": "Business Studies"
+        "38ff6694-4374-4be7-acf5-e5670f1affde": "Business Studies"
       }
     },
     "EconLaw": {
       "lecturer": "rja14",
       "classes": {
-        "f7c8c10a-49bd-410a-8de8-7ddfc95827ac": "part1b"
+        "c4c12959-cc05-40e4-95db-f389a113fc09": "part1b"
       },
       "term": "E",
       "_label": "Economics, Law and Ethics",
       "oldnames": {
-        "2a285c66-8ee3-4f90-a128-1598b5263aee": "Economics and Law"
+        "b8f75e90-7855-49ed-991a-fa9bfed2f20b": "Economics and Law"
       }
     },
     "FJava": {
       "lecturer": {
-        "6dcc1436-2a90-45e1-beb2-3b66beaed6e0": "sac92",
+        "6bed050c-ed25-403a-b781-8f2e0a2c698d": "sac92",
         "_label": "acr31"
       },
       "classes": {
-        "10924e80-3e9e-4c2b-89c8-7f319da6435d": "part1b"
+        "a5845649-d064-4e3e-a7a3-32de2da8cebc": "part1b"
       },
       "term": "M",
       "_label": "Further Java",
@@ -382,7 +382,7 @@
     "FJavaBrfg": {
       "lecturer": "acr31",
       "classes": {
-        "3101ed3a-4311-4534-85b5-3606d160897a": "part1a-cst"
+        "fc0ab08d-5631-4d81-bea4-3de3f52fbd92": "part1a-cst"
       },
       "term": "E",
       "_label": "Further Java Briefing",
@@ -392,20 +392,20 @@
     "NumMethods": {
       "lecturer": "djg11",
       "classes": {
-        "b35264bd-7540-417a-bc44-a1e7f926c73b": "part1a-cst",
-        "0b8eeb34-371f-4d9f-a863-2722245d0878": "part1a-other"
+        "683e6e0b-42b5-4967-9ee0-b5f8ef8b4429": "part1a-cst",
+        "62540e50-b196-41b3-9993-50e0aef46630": "part1a-other"
       },
       "term": "E",
       "_label": "Numerical Methods",
       "oldnames": {
-        "f8d93381-650b-4e73-8025-575ebeb25c6e": "Floating-Point Computation"
+        "cc7dd9a9-58e8-4cf0-b94b-ee47266c9890": "Floating-Point Computation"
       }
     },
     "FoundsCS": {
       "lecturer": "lp15",
       "classes": {
-        "7a87a6d9-a35d-4de3-8dc1-943396db5647": "part1a-cst",
-        "afab343b-36ef-479e-8941-7ce49fe88437": "part1a-other"
+        "fd2bd81e-3948-4749-b0aa-ab5ad3190453": "part1a-cst",
+        "db25b5f6-d2d2-4f5a-a47b-756682e9cc83": "part1a-other"
       },
       "term": "M",
       "_label": "Foundations of Computer Science"
@@ -413,10 +413,10 @@
     "GroupProj": {
       "lecturer": "iml1",
       "classes": {
-        "a5179d42-5875-4880-9d90-af16e69621dd": "part1b"
+        "cd0dac13-11e3-43f5-9be4-70993a662257": "part1b"
       },
       "term": {
-        "086116fc-f244-4535-ac17-95f4d7f8a7df": "L",
+        "d11bcec8-da78-43fd-b832-cc47e9c02cf3": "L",
         "_label": "M"
       },
       "_label": "Group Project",
@@ -427,21 +427,21 @@
     "HCI": {
       "lecturer": "afb21",
       "classes": {
-        "9e1de0ea-0152-4869-a34f-55ad147111af": "part2"
+        "51dbd89c-761c-4ef9-b192-2b257498f2df": "part2"
       },
       "term": "M",
       "_label": "Human–Computer Interaction",
       "oldnames": {
-        "5b553ea5-9357-4a28-ad54-2db1df557b31": "Advanced Graphics and HCI"
+        "f8b4798c-f917-491f-bfe0-6bd024ba1f9e": "Advanced Graphics and HCI"
       }
     },
     "HW": {
       "lecturer": "ijw24",
       "classes": {
-        "fdffd660-869d-4d75-9384-854d7c66bda0": "part1a-cst"
+        "be4f55a4-569c-41a3-9069-475f1a665b2f": "part1a-cst"
       },
       "term": {
-        "1889e8ba-4f0d-4462-9069-01155938e404": "L",
+        "6efa32c8-def0-4809-bad3-e093223ba907": "L",
         "_label": "M"
       },
       "_label": "Hardware Practical Classes",
@@ -453,19 +453,19 @@
     "HLog+ModC": {
       "lecturer": "am21",
       "classes": {
-        "3ee4d0fc-d4cb-43df-94ad-526799ae074b": "part2"
+        "4f9ba875-3553-45e8-8d35-a451a4b76c9d": "part2"
       },
       "term": "L",
       "_label": "Hoare Logic and Model Checking",
       "oldnames": {
-        "ebf56230-388c-48cd-abf5-078fc032a736": "Specification and Verification I",
-        "c5131514-8920-45ec-8e5c-f9077fb52e2d": "Hoare Logic"
+        "09741ede-0c42-4ffa-93b9-a3868fc66f02": "Specification and Verification I",
+        "2383a277-fffc-4ed1-a0a2-052582d76aca": "Hoare Logic"
       }
     },
     "InfoRtrv": {
       "lecturer": "rc635",
       "classes": {
-        "bb415683-86c1-4d80-9ed1-cfdf0851b19b": "part2"
+        "8a3c95e9-5fc2-4d26-9ac9-b7505154b1e9": "part2"
       },
       "term": "L",
       "_label": "Information Retrieval"
@@ -473,40 +473,40 @@
     "InfoTheory": {
       "lecturer": "jgd1000",
       "classes": {
-        "b3001e0d-80a9-42dd-ae17-2aa2c6a43936": "part2"
+        "ad707205-f9f2-46b7-9feb-b2dd2a2cd6d3": "part2"
       },
       "term": "M",
       "_label": "Information Theory",
       "oldnames": {
-        "f058964b-859e-44d3-802a-e82facfc3868": "Information Theory and Coding"
+        "d3ac5196-a354-48d0-96f4-18d52eff4e0c": "Information Theory and Coding"
       }
     },
     "LogicProof": {
       "lecturer": "lp15",
       "classes": {
-        "d754925a-4c34-4453-9472-45b784d61727": "part1b"
+        "ba5a67ca-ad16-4e28-9407-3b4db81d3e80": "part1b"
       },
       "term": "L",
       "_label": "Logic and Proof"
     },
     "MathMforCS": {
       "lecturer": {
-        "ced1f30a-b852-4c31-a001-143f38f4a9bc": "jgd1000",
-        "02cb87d2-563f-45e2-b952-b49260e63bfc": "rg31"
+        "d322d827-48f0-44e3-95bc-eed2b9f59134": "jgd1000",
+        "6b7b38fd-300c-4c27-b85e-d511b4eb8697": "rg31"
       },
       "classes": {
-        "d52c5cb9-8534-43cb-87e7-35ca3d4b2646": "part1b"
+        "6ae2fbce-4d68-48a8-a8ff-72693da99ecd": "part1b"
       },
       "term": "M",
       "_label": "Mathematical Methods for Computer Science",
       "oldnames": {
-        "1051a75c-f1c3-4a48-9a0f-a0bdb38fa44a": "Continuous Mathematics"
+        "a307cc32-0be0-42a7-95ee-fa8e27e4a898": "Continuous Mathematics"
       }
     },
     "TeX+MATLAB": {
       "lecturer": "mgk25",
       "classes": {
-        "0daa5dbf-d1b4-4684-b3ad-906f7d61e6b4": "part2"
+        "0aa7a71a-ffa2-4f1d-bb30-563d954d3058": "part2"
       },
       "term": "M",
       "_label": "LaTeX and MATLAB",
@@ -516,8 +516,8 @@
     "ML": {
       "lecturer": "lp15",
       "classes": {
-        "b49658f7-c3d0-42e5-9f35-13a159456815": "part1a-cst",
-        "83fc4706-1ef8-4f9b-961f-a1bd5fc2b650": "part1a-other"
+        "297604e6-7d9f-4208-a958-8dc413482d92": "part1a-cst",
+        "b12606d6-d24a-49e0-8ef4-ee25a69e3d44": "part1a-other"
       },
       "term": "M",
       "_label": "ML Practical Classes",
@@ -525,45 +525,45 @@
       "supervisions": 0,
       "syllabus": 0,
       "oldnames": {
-        "b1429d7e-6021-4129-bb9b-43f5545b3f4f": "ML under Windows"
+        "80175463-31eb-41da-83ae-ce11677a5e8b": "ML under Windows"
       }
     },
     "MobSensSys": {
       "lecturer": "cm542",
       "classes": {
-        "94de15ad-5c29-48b8-813f-ff03e5bc0294": "part2"
+        "38940efc-a080-425e-97f2-61ab46851b67": "part2"
       },
       "_label": "Mobile and Sensor Systems"
     },
     "NLP": {
       "lecturer": "es407",
       "classes": {
-        "2a62fc05-c709-46e4-ab21-590ae45a58e1": "part2"
+        "88b65883-1b19-4cd2-a1a2-787da601f66e": "part2"
       },
       "term": "M",
       "_label": "Natural Language Processing"
     },
     "OOProg": {
       "lecturer": {
-        "bb1408ec-22cf-418f-942c-0b3f6ad774b5": "rkh23",
-        "65de68dd-28d9-4f73-ad8f-fc3b5c04de84": "acr31",
-        "171771ac-4bbe-4522-b190-a699479dc253": "sac92"
+        "a8004271-37ff-41fb-859c-4d24edfeac8b": "rkh23",
+        "aab16146-ef2e-4b2a-95fa-a14376bb1a85": "acr31",
+        "0dfdfc3d-6624-45f0-8c71-db262ba47e1e": "sac92"
       },
       "classes": {
-        "e8d915c7-5ccd-4df3-9325-73775c09bea6": "part1a-cst",
-        "1e708c77-04e2-4a86-97be-c95a37321e22": "part1a-other"
+        "5a662b18-5350-40bf-8795-56f4767d6872": "part1a-cst",
+        "0a9aa9bd-daa7-4282-b20a-c6eaa6af116f": "part1a-other"
       },
       "term": "M",
       "_label": "Object-Oriented Programming",
       "oldnames": {
-        "04a02fbf-d4d3-4f48-864b-83929a095c43": "Programming Methods and Java",
-        "38c77084-9b9e-43ef-990b-7ec2be454d90": "Programming in Java"
+        "8fe3692c-1d0c-4161-ad68-503fe5fa5531": "Programming Methods and Java",
+        "e3b6f990-4da0-4ec0-8d4d-d7b6a6377bb4": "Programming in Java"
       }
     },
     "OpSystems": {
       "lecturer": "rmm1002",
       "classes": {
-        "7e282884-c257-4399-ac61-492766039980": "part1a-cst"
+        "7748998f-33c8-4fda-acee-34a9dcc73ab8": "part1a-cst"
       },
       "term": "L",
       "_label": "Operating Systems"
@@ -571,7 +571,7 @@
     "OptComp": {
       "lecturer": "am21",
       "classes": {
-        "c2c2ebad-c694-489b-ab3d-1142a8b13cbf": "part2"
+        "a8b53738-72f0-4140-a20e-7d70b3c8cb48": "part2"
       },
       "term": "M",
       "_label": "Optimising Compilers"
@@ -579,29 +579,29 @@
     "PrincComm": {
       "lecturer": "jac22",
       "classes": {
-        "b2cd25b8-ad78-4a49-a63e-01ed9aefc228": "part2"
+        "9921acad-acc8-44e0-a5a4-fb34264cc948": "part2"
       },
       "term": "M",
       "_label": "Principles of Communications",
       "oldnames": {
-        "087c14a8-afaf-4f55-9bb9-60510683a387": "Digital Communication II"
+        "0591bf3e-1da1-425e-ac7d-83377bd47dba": "Digital Communication II"
       }
     },
     "Prolog": {
       "lecturer": "acr31",
       "classes": {
-        "f883b10d-0e93-4e67-ac90-e25dfd4b14ab": "part1b"
+        "87e11962-1135-40f4-bd5a-a45e16acf497": "part1b"
       },
       "term": "M",
       "_label": "Prolog",
       "oldnames": {
-        "3ce59eb7-e682-4e71-8dd1-055cfb91176c": "Prolog for Artificial Intelligence"
+        "da86cf5b-0aac-4984-8710-bb5ba3b11a17": "Prolog for Artificial Intelligence"
       }
     },
     "QuantComp": {
       "lecturer": "ad260",
       "classes": {
-        "1059e120-1176-4792-a1e9-0a3802004e2d": "part2"
+        "bb01f593-7fa6-486c-8a06-109cb378ac4d": "part2"
       },
       "term": "M",
       "_label": "Quantum Computing"
@@ -609,8 +609,8 @@
     "Registratn": {
       "lecturer": "rkh23",
       "classes": {
-        "7626fb08-a813-4be0-a818-e7410ca42619": "part1a-cst",
-        "ac6991b0-abca-4b87-b809-990f8c59361a": "part1a-other"
+        "1d3a496e-af6d-458b-b93e-874e25418141": "part1a-cst",
+        "17c12c55-6b6f-4481-b4db-a2e32138002f": "part1a-other"
       },
       "term": "M",
       "_label": "Registration",
@@ -622,86 +622,86 @@
     "SWIDesign": {
       "lecturer": "afb21",
       "classes": {
-        "b0d881ff-bb0e-49da-b46d-f217e2f57923": "part1a-cst"
+        "49069494-d02b-46ce-a244-65f7e8927805": "part1a-cst"
       },
       "term": "E",
       "_label": "Software and Interface Design",
       "oldnames": {
-        "6c364f10-9c64-4782-a747-d1156b683147": "Software Design"
+        "2b4e4e29-c206-4318-8b77-830279b21939": "Software Design"
       }
     },
     "SWEng": {
       "lecturer": "rja14",
       "classes": {
-        "0fb7452d-0989-449c-9ddb-6bcdbd367d6d": "part1b"
+        "bb396dd3-1a13-4d90-9393-196d4bb38fad": "part1b"
       },
       "term": "M",
       "_label": "Software Engineering",
       "oldnames": {
-        "af7a64b2-f068-4bd1-8a2c-77806c98aea6": "Software Engineering I"
+        "d0b0fe8b-fd9a-4241-a23b-0177f8dc588c": "Software Engineering I"
       }
     },
     "SecurityI": {
       "lecturer": "mgk25",
       "classes": {
-        "7cf370f8-65bf-444a-858a-e879b0d910ea": "part1b"
+        "c0cbbff1-4255-4486-acd8-66e5bc6fe3f7": "part1b"
       },
       "term": "E",
       "_label": "Security I",
       "oldnames": {
-        "6d22120e-51ff-480d-bdc3-ae84659b814c": "Introduction to Security"
+        "1b86ff3c-5d75-4ac0-b3ed-d9e2026e40a0": "Introduction to Security"
       }
     },
     "SecurityII": {
       "lecturer": {
-        "e0d0e2e8-f482-4f5a-a804-27056e4872a7": "fms27",
-        "e3c3e835-8de6-407c-8031-13c31370d788": "mgk25"
+        "c03a2f34-c837-4972-80a1-14eb5158f08c": "fms27",
+        "0e94ab56-059a-48d2-975b-cc23da1715f2": "mgk25"
       },
       "classes": {
-        "ed06469e-a4aa-43e2-b474-cb82cb1b4624": "part2"
+        "f18342a2-e501-49b0-83cc-3a0f301e9a45": "part2"
       },
       "term": "L",
       "_label": "Security II",
       "oldnames": {
-        "c30d157f-bc0e-40be-9e27-7bd2a9bf5c93": "Security"
+        "48150fae-23e5-4809-be0c-354ed0a59664": "Security"
       }
     },
     "Semantics": {
       "lecturer": "pes20",
       "classes": {
-        "fa99f7a0-1fef-4061-98a1-e93ae4838130": "part1b"
+        "9376e887-c1d5-4706-8d0e-6464c2f7e9b7": "part1b"
       },
       "term": "M",
       "_label": "Semantics of Programming Languages",
       "oldnames": {
-        "a8858760-e080-42b3-9eae-5d6450d35deb": "Semantics"
+        "f512fa3e-a4a2-4be3-bea6-d23187c5d883": "Semantics"
       }
     },
     "SysOnChip": {
       "lecturer": "djg11",
       "classes": {
-        "aa011df4-d6be-40a7-a2d4-27f8cb3ca3ad": "part2"
+        "b8571f6e-4e11-4305-a030-328867dc626d": "part2"
       },
       "term": "L",
       "_label": "System-on-Chip Design",
       "oldnames": {
-        "5a6b5045-7422-4d09-b294-c59ec25b551d": "VLSI Design"
+        "d07e861c-837a-4133-b682-63ee80cad6bd": "VLSI Design"
       }
     },
     "TempLogic": {
       "lecturer": "mjcg",
       "classes": {
-        "6de1a37b-640b-4426-90fe-797a294de19f": "part2"
+        "2ca30ca3-4cd6-4440-b0fa-53731c84e2a1": "part2"
       },
       "_label": "Temporal Logic and Model Checking",
       "oldnames": {
-        "6453f9bc-c98d-4b89-a697-cfc7b7487493": "Specification and Verification II"
+        "e1921e7b-3d13-4452-bbed-49ca5f58490e": "Specification and Verification II"
       }
     },
     "TopConc": {
       "lecturer": "jmh93",
       "classes": {
-        "1ae90d90-72e2-4a38-b536-5e027ac9b129": "part2"
+        "4cc498ac-1f01-4485-964c-4b1bf8520433": "part2"
       },
       "term": "L",
       "_label": "Topics in Concurrency"
@@ -709,18 +709,18 @@
     "TopIssues": {
       "lecturer": "rkh23",
       "classes": {
-        "aa2781e0-8d8f-4bd3-b492-9d591a60aa61": "part2"
+        "59e847ae-56a1-4fee-a0e4-d79f191c6f83": "part2"
       },
       "term": "E",
       "_label": "Topical Issues",
       "oldnames": {
-        "b22100b4-08fb-43f4-ad83-6d16ac2c9fa8": "Additional Topics"
+        "d9a63138-55fc-41cd-99c7-ee6c01c53bd9": "Additional Topics"
       }
     },
     "Types": {
       "lecturer": "amp12",
       "classes": {
-        "7e85f3d9-d28e-43a1-925e-d828a2297165": "part2"
+        "5da33cc3-9b5f-4409-8f68-e573106b2131": "part2"
       },
       "term": "M",
       "_label": "Types"
@@ -728,7 +728,7 @@
     "UnixTools": {
       "lecturer": "mgk25",
       "classes": {
-        "2b924a16-71a2-452c-a4f9-7cfabde60c26": "part1b"
+        "5a5333fb-33b4-459a-8783-8241a4f9c726": "part1b"
       },
       "term": "M",
       "_label": "Unix Tools",
@@ -737,17 +737,17 @@
     },
     "C00": {
       "lecturer": {
-        "38fc8a56-729e-4452-928d-c83120169f30": "afb21",
-        "739e919d-0371-4164-b2cb-7a08c1e57f48": "nad10",
-        "1f0033de-6fb8-4d88-b30c-675060f498aa": "pr10",
-        "4d8a6e34-845c-48a3-921a-bfe85899e2e0": "ko201"
+        "d5358e94-4c89-40b8-bb65-3dc39c41d39d": "afb21",
+        "2d6d811e-e837-460c-a60b-2aa6d8633e5e": "nad10",
+        "74769c39-ddf2-4e0e-83eb-d6fb9652e130": "pr10",
+        "72fca2ec-774a-42d3-9432-43494842577c": "ko201"
       },
       "classes": {
-        "1900f436-7e96-424e-aa3f-929e697849f5": "acs",
-        "efa7fbfc-259d-4596-a166-b7c0e70cf708": "part3"
+        "d1f184b5-9462-4fa3-9701-f0c5cc8a2f0b": "acs",
+        "c39ae775-2625-4fe8-80e6-5c6384e919c0": "part3"
       },
       "hours": {
-        "ea5cfc20-6c37-4462-8b0a-113a95264810": "Minimum of 12 hours to be logged across three terms",
+        "19927530-fdba-4af4-8be4-9d826ffdd4c2": "Minimum of 12 hours to be logged across three terms",
         "_label": "12"
       },
       "_label": "Research Skills Programme",
@@ -757,27 +757,27 @@
     },
     "RSP": {
       "lecturer": {
-        "ed72057a-2f6e-490f-b374-0c06820f25ef": "afb21",
-        "fd49337a-57a9-4c16-949f-40c97bfeef34": "nad10",
-        "2f4688f0-d672-4728-9b66-0f32b7d3555d": "others"
+        "0db896e5-fa0b-4338-83c6-01fa0a2fe139": "afb21",
+        "65c476db-62d2-471a-841c-52918e5d2f72": "nad10",
+        "ad7b52a0-faf5-40c5-9d2e-c53cf4e0fd31": "others"
       },
       "classes": {
-        "669c3ae8-4bda-432f-b282-14c7b5fd0d24": "acs",
-        "d81a25be-97b4-40e0-b4fb-7706d3de93a9": "part3"
+        "efa896a7-af49-4b98-b775-7e2ccde0d73a": "acs",
+        "5313b03b-b294-4fa6-b1ab-877bd9b2868f": "part3"
       },
       "term": {
-        "c8239f7c-94be-41e4-ab3a-1e281180ac35": "L",
-        "12154a4e-b4da-4001-a558-b594e8b355bf": "E",
+        "7abe9ceb-c8a8-4925-ba55-0a1655212037": "L",
+        "3b272537-2439-408e-94c0-1b559fb9b80a": "E",
         "_label": "M"
       },
       "hours": {
-        "4b7858a2-fd76-4ccb-b990-9159b5bfd85c": "Minimum of 12 hours to be logged across three terms",
+        "476a11c9-7db0-4b0c-8ff8-40521a4b4f0d": "Minimum of 12 hours to be logged across three terms",
         "_label": "12"
       },
       "_label": "Research Skills Programme",
       "prerequisites": "Fluency in English (reading and writing)",
       "oldnames": {
-        "8f9a0c19-38a1-42e0-b8d4-4df98ac2615d": "C00 Research Skills"
+        "22f64b69-616a-4393-9ce3-9124617ebc2f": "C00 Research Skills"
       },
       "synopsis": "To provide advice on and training in a variety of practical skills required for research. To provide training in a subset chosen from the diverse set of skills that will be useful in the other research-led modules, in the individual project, and in the student's future career. This programme must be taken by all M.Phil students and CPGS students.",
       "note": "mandatory"
@@ -785,11 +785,11 @@
     "R01": {
       "lecturer": "smh22",
       "classes": {
-        "0d49d1f4-c974-45d8-b227-50971e3e9633": "acs",
-        "8aeb5205-8e40-4a93-b9a6-2889b7318078": "part3"
+        "f458e4e6-ad27-4f17-a1cf-42c22a0d6dbe": "acs",
+        "22c514a1-0481-48ee-96b2-447595fa3149": "part3"
       },
       "hours": {
-        "1cbd8484-9f7f-49d5-ae7a-2e72c53c35fc": "8 × two-hour seminar sessions",
+        "00e6b4de-ef5c-49f1-b60f-9737eb9672a1": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Advanced Topics in Computer Systems",
@@ -799,8 +799,8 @@
     "R02": {
       "lecturer": "jac22",
       "classes": {
-        "f6550cf8-9527-4bc1-a618-ec9bb5a063e3": "acs",
-        "5892cf7a-862b-4655-a585-3d9739ca1619": "part3"
+        "05ef554d-30a6-4a9e-bc79-3aff80ea8c55": "acs",
+        "d05387d5-282b-4c20-b4b8-0ad56a170860": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -811,11 +811,11 @@
     "R03": {
       "lecturer": "pr10",
       "classes": {
-        "c509a1b0-6741-4be9-849d-86685b62319f": "acs",
-        "a66951ab-aba0-4c05-ad0c-2a67f0ce5724": "part3"
+        "4d6c8fa2-d11e-44c9-99f6-31129e05f6ca": "acs",
+        "487a000b-6d6b-4270-89fe-c11ce1136ca9": "part3"
       },
       "hours": {
-        "1ecdcd33-af07-493a-9eb3-084d88b8ea8b": "8 × two-hour seminar sessions",
+        "ce204ec2-8361-4d10-871c-27df230bb8ed": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Innovative User Interfaces",
@@ -826,12 +826,12 @@
     "R05": {
       "lecturer": "rdm34",
       "classes": {
-        "057f3d96-3168-4171-8032-5a3b0a781dcb": "acs",
-        "bb927b8c-d9f2-49af-825e-9e81e8186bd8": "part3"
+        "e274c9ea-1631-4a36-a365-b5154a73fe1f": "acs",
+        "c9fe5b3f-a9d4-4234-b477-9f6cc99ffa24": "part3"
       },
       "term": "M",
       "hours": {
-        "5332e299-e33b-45d0-b1fe-b12c7890fbfd": "8 × two-hour seminar sessions",
+        "115aca40-aaed-41c0-9cfb-dac4799a6108": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Chip Multiprocessors",
@@ -841,8 +841,8 @@
     "R07": {
       "lecturer": "bh288",
       "classes": {
-        "0fe968a1-6ef3-4e7a-9ba2-59801b8cfc23": "acs",
-        "00be80d7-98a1-4f6f-8baf-80c68ed0b9b3": "part3"
+        "494ce59f-6cd1-4a70-a0ce-2a2cdb800ba8": "acs",
+        "b5d2cda4-ef3c-4046-bad0-2b68b29a1d92": "part3"
       },
       "hours": 8,
       "_label": "Introductory Logic",
@@ -851,16 +851,16 @@
     },
     "R204": {
       "lecturer": {
-        "0815bb17-8be4-40a4-8b45-1d38d22efcdc": "pes20",
-        "167b85c2-72e1-4fc8-a959-ef4f7f945f0c": "tlh20"
+        "11cf06b7-4508-473f-9c3d-f7f376e4ef7b": "pes20",
+        "11fef0c0-c575-40d0-b3a1-01cdf7a127d8": "tlh20"
       },
       "classes": {
-        "01249fb1-ea3c-444d-933b-ea2d1e7bfc4f": "acs",
-        "d0497b2e-9446-455b-a4ff-4c035f03eb02": "part3"
+        "c4a6e62f-31d8-4404-8e8d-a07b2415fbd3": "acs",
+        "0662204f-142c-4b34-bc6d-152c1e3f247a": "part3"
       },
       "term": "M",
       "hours": {
-        "7b8b5b76-f81b-461f-8117-c993ce14143f": "8 × two-hour blocks, including 2 × one-hour practical sessions",
+        "b5c3bea1-9f57-4a20-9dcf-dd364fca2b5f": "8 × two-hour blocks, including 2 × one-hour practical sessions",
         "_label": "16"
       },
       "_label": "Multicore Semantics and Programming",
@@ -869,17 +869,17 @@
     },
     "R206": {
       "lecturer": {
-        "41ef53a9-59ee-4136-8fb8-9280e07fdac2": "rja14",
-        "3576dc9e-c9cb-4e2e-bb86-e9c85445104d": "fms27",
-        "376c6f13-dd2b-4eca-a16e-4a59aa8e0230": "sjm217",
-        "9de6aa38-7d9b-4bd9-a4d8-de25002155cb": "rnw24"
+        "c017fe39-bc30-4e04-bc94-bb7ab29e44b3": "rja14",
+        "d5fda513-483b-4817-b99a-47b39bec8367": "fms27",
+        "cc49d8a8-e09f-45b4-924b-c3b4588f483e": "sjm217",
+        "89c4c32b-61c6-45fa-be27-02f2cb1e1275": "rnw24"
       },
       "classes": {
-        "73cf6022-71ed-42d4-aad9-03acff33d97e": "acs",
-        "86ae869d-3e04-42d8-bf20-c64480fd4c94": "part3"
+        "bf464881-f17b-4f5a-af73-f74e4819ea80": "acs",
+        "863653e8-0b72-4385-90d0-45c3bbe2b66a": "part3"
       },
       "hours": {
-        "d218539e-14c3-49f8-b3ce-dafda09e8f5a": "8 × two-hour seminar sessions",
+        "e695f422-f9e5-40e9-86fa-1d51116d64a9": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Operating and Distributed System Security",
@@ -889,11 +889,11 @@
     "R207": {
       "lecturer": "aac10",
       "classes": {
-        "c3acc8c9-c832-426b-9687-c2cc15011797": "acs",
-        "b0728a18-02f2-4c3b-b198-38f869f801b5": "part3"
+        "9b355207-ce77-412b-9cfe-b235bc50f026": "acs",
+        "4855f411-8d06-476d-8fe9-8d57f12b7687": "part3"
       },
       "hours": {
-        "80390665-c126-43f8-93de-ccfd15170867": "8 × two-hour seminar sessions",
+        "91e3b34a-adf1-4ef2-baf9-71ae2f427649": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Language and Concepts",
@@ -903,17 +903,17 @@
     },
     "R209": {
       "lecturer": {
-        "768547d3-49a7-494e-80f8-d077e4a98da6": "rja14",
-        "40a31100-a950-42cd-b633-4aa2a4bc61ec": "drt24",
+        "41099b8d-1f8f-4d23-8459-86aa2a0c0071": "rja14",
+        "9b24ffc4-7732-48bd-b869-8a0688fb2fd1": "drt24",
         "_label": "rnw24"
       },
       "classes": {
-        "34f95c6c-9023-4ee4-bdce-dbb961e0e3f4": "acs",
-        "86654a42-91a1-47d4-b3d1-28bba8381952": "part3"
+        "69152931-6152-4d84-8b6e-e12704a5433a": "acs",
+        "3d32c396-ea66-4cf1-9722-9d2119da1200": "part3"
       },
       "term": "M",
       "hours": {
-        "e3075fca-7cc7-43cb-b442-75e554fa6c4e": "8 × two-hour seminar sessions",
+        "9d69ba29-19bc-4962-bb64-fd036e4c6ff5": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Computer Security: Principles and Foundations",
@@ -922,17 +922,17 @@
     },
     "R210": {
       "lecturer": {
-        "1ca9f242-dd3f-4a56-8608-f437ac30260e": "rnw24",
-        "fe97ea65-5f50-4c6c-9a64-01802fb9807b": "drt24",
+        "a48bcd87-ffee-436e-94b1-f5b7bec2a57a": "rnw24",
+        "fca51c11-1830-460e-a73f-3c793f991010": "drt24",
         "_label": "rja14"
       },
       "classes": {
-        "95bc41cc-199a-448f-b20c-3b2891e1f3c3": "acs",
-        "a80e21f5-74ec-4dc4-8b5e-663a9c7bee1b": "part3"
+        "426689a7-6c59-4d64-bc11-9efd3b1d0494": "acs",
+        "861c2825-200e-4e85-ba4d-188ad94a9f43": "part3"
       },
       "term": "L",
       "hours": {
-        "f54c944a-79cf-402d-bc9e-199913ffbfcd": "8 × two-hour seminar sessions",
+        "9461d786-06a4-482c-b839-c3eae92f0765": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Computer Security: Current Applications and Research",
@@ -942,12 +942,12 @@
     "R212": {
       "lecturer": "ey204",
       "classes": {
-        "040f34fc-ec4e-4022-8e0a-34f8c2be4862": "acs",
-        "caf49f65-154f-46ec-accc-e6c2aeede6ac": "part3"
+        "c73b89d4-22fb-4b54-b936-c3a38c89ae58": "acs",
+        "75bc96db-7d93-4ad0-8b8d-09d3534adff8": "part3"
       },
       "term": "M",
       "hours": {
-        "c633df73-9c0b-4119-b08b-f8f18de68ebe": "Eight 2-hour seminar sessions (combination of lectures and reading club)",
+        "dba5c904-1639-47a2-b367-9692147af69c": "Eight 2-hour seminar sessions (combination of lectures and reading club)",
         "_label": "16"
       },
       "_label": "Data Centric Systems and Networking",
@@ -957,12 +957,12 @@
     },
     "R214": {
       "lecturer": {
-        "4c2d6fe3-19a9-4363-810a-1a34448b68cf": "alk23",
-        "7f920d78-0594-491f-9a7f-f6959800e0c4": "pl219"
+        "187b2064-c84a-4f94-a0c1-478b6df31564": "alk23",
+        "81499847-b8f6-4f7f-ba81-51c7e54bf93a": "pl219"
       },
       "classes": {
-        "5231afaf-8465-474b-94ff-96f6900c8ad6": "acs",
-        "61c7a3d7-b3f2-4690-bc6d-2ab8aaa7fb15": "part3"
+        "219c82ea-cbde-44e7-9ba1-4d0b8fbf715d": "acs",
+        "a3e04cab-edda-41a0-ba94-17b4794ab636": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -972,11 +972,11 @@
     },
     "R215": {
       "lecturer": {
-        "0b03485e-b6c5-4a02-8f36-891c6ed0d415": "afb21"
+        "715b6e64-a788-462b-bf8a-94bfafd5e1a4": "afb21"
       },
       "classes": {
-        "54cecb00-f171-4c0d-ac60-c4d0aa96186e": "acs",
-        "3d7fdd67-c83d-4b46-80ce-9b078afc32b6": "part3"
+        "79d261ec-f2cd-41f1-b104-c036b19f0d0c": "acs",
+        "9129ab37-dc5b-430f-9ce0-1934d20b24b0": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -986,11 +986,11 @@
     },
     "R216": {
       "lecturer": {
-        "e17e2fe7-e220-4d02-ba76-3277d5e5bfa9": "sht25"
+        "35d220c5-4c64-4042-a742-eaf91f44c549": "sht25"
       },
       "classes": {
-        "a5a31d4f-b9b1-4714-aa4c-f32b184176f1": "acs",
-        "5fa80930-19a0-44e9-909d-82f4fd2f7669": "part3"
+        "43cb4de6-66e8-44c4-8120-3f1e9e9ffcee": "acs",
+        "0bb52883-f394-4549-94e1-147fde3baa6e": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -1000,36 +1000,36 @@
     },
     "R222": {
       "lecturer": {
-        "71cf2d5a-fc50-4d88-ae6f-fb3ce1beb5dd": "ejb1",
-        "d485c67f-9288-4ec8-89a1-398d32808c88": "sc609"
+        "72bc973b-0093-4e7b-b5ad-9250dae65c51": "ejb1",
+        "88d91a8e-0ea3-44f6-b1e9-db6a8e954225": "sc609"
       },
       "classes": {
-        "ea2e8109-4b79-4e36-8f12-38ce7c176e58": "acs",
-        "3d2c53f2-6852-4b8c-905e-dd211af2a775": "part3"
+        "96c2d723-a6bb-4d35-96c8-443ec487baa6": "acs",
+        "3a5d4fa9-a5f5-4836-a1ee-be3dc46fc37c": "part3"
       },
       "term": "L",
       "hours": {
-        "50db8c17-6ffd-4c57-8dba-171bdcd813ef": "4 lectures and 12 one-hour seminars",
+        "be24282f-b7c2-47bb-bc31-87f4a61c3185": "4 lectures and 12 one-hour seminars",
         "_label": "16"
       },
       "_label": "Advanced Topics in Natural Language Processing",
       "prerequisites": "L90 or similar, L95, L101",
       "contributor": {
-        "aecf3f89-dc1e-48ab-9357-50d80af4578e": "rc635",
-        "0528e36b-f8a1-48b8-9c01-a8e8d5b89ff1": "mr472",
-        "e4ae58a7-0e57-4b79-b761-da5ec31620fe": "ek358",
-        "67658738-bf75-4ac1-8969-3058efb8c080": "mtw29",
-        "f27c24f1-ec75-419d-8140-7e1d116b4ec7": "tp366",
-        "9f029382-0fd5-4ad5-bcb4-8edf090de6a1": "lr346",
-        "ca37d2be-ac62-462b-967d-5e0709e8c6ed": "hy260"
+        "c4c44e85-c7c6-434a-a2a4-62e45a03e33d": "rc635",
+        "2acc9512-ebdd-40af-b2e4-7fb1af1ff323": "mr472",
+        "7e630d6a-dd90-46f6-8ef0-713ac19264b1": "ek358",
+        "0ecafaeb-8d33-4303-922d-87c422f7bec4": "mtw29",
+        "a4f3475b-6dad-436b-95e5-d6988b76feac": "tp366",
+        "fa62c56e-5bc5-4600-b279-8ec9608ae4d0": "lr346",
+        "f097291d-3554-4c4f-a9b7-f995e6da3844": "hy260"
       },
       "synopsis": "This module aims to cover at least four selected topics in enough detail and depth so that participants are potentially in a position to contribute to research on the topic. Each topic will be introduced with a lecture which, building on the material covered in the prerequisite courses, will make the current research literature accessible. The three seminar sessions will typically be run as a reading group with student presentations and discussion and will typically cover about six recent papers from the literature."
     },
     "L11": {
       "lecturer": "tgg22",
       "classes": {
-        "471ed313-df17-48a2-ad25-3ab716981935": "acs",
-        "8f70eab5-8f13-4bd9-98c5-05c61d3fcb4d": "part3"
+        "b60c788f-976e-42e3-82a1-68b25763b79e": "acs",
+        "ec2bcf5c-cf1f-4ff3-acfb-0b6905a611d5": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1040,8 +1040,8 @@
     "L15": {
       "lecturer": "ad260",
       "classes": {
-        "f1f80b95-f89a-44db-ab94-71a7023bf414": "acs",
-        "799e7127-dd26-44ed-831e-83d26684f6ea": "part3"
+        "c3e4d689-4b7c-44e1-98ec-f538281ea0b0": "acs",
+        "b5bb947b-0d54-4be8-ae61-e48634cd0f00": "part3"
       },
       "hours": 16,
       "_label": "Topics in Logic and Complexity",
@@ -1051,8 +1051,8 @@
     "L18": {
       "lecturer": "mj201",
       "classes": {
-        "0938b2a4-3bcc-4d2b-bb92-5d39a7f35a94": "acs",
-        "ffe9dc7e-9a25-4b3c-b62a-9a98baf206d7": "part3"
+        "084e349a-37da-41e6-a18f-7e1c16634bfc": "acs",
+        "ff331f65-b7a0-4a60-be1f-64f3a9b10034": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1064,12 +1064,12 @@
     "L21": {
       "lecturer": "lp15",
       "classes": {
-        "7eb01a68-8e22-4389-a37b-90406bf5c8f7": "acs",
-        "bfa64658-61df-4b4d-a6d6-66727ca761c5": "part3"
+        "c5830910-e6c4-4941-a33c-e5dcff2aad2c": "acs",
+        "d338c8c1-15bf-402d-bbb9-45a133c6cb2a": "part3"
       },
       "term": "L",
       "hours": {
-        "1717955d-3aaf-4c1f-a707-63898d2e890f": "12 lectures and 4 practical classes",
+        "00efb1c8-0d31-456b-bedd-57f4e4cf83ea": "12 lectures and 4 practical classes",
         "_label": "16"
       },
       "_label": "Interactive Formal Verification",
@@ -1079,8 +1079,8 @@
     "L22": {
       "lecturer": "gw104",
       "classes": {
-        "c35ea8e9-dc31-4042-a9b8-6090f451a8d0": "acs",
-        "54a788f1-6f3c-4dd5-a46d-a3b8fd9b5d94": "part3"
+        "61a00d08-8ef4-430f-84af-771b16a2cb6a": "acs",
+        "df5104e6-50a1-4b82-aee8-86a51cb97c51": "part3"
       },
       "hours": 8,
       "_label": "Advanced Topics in Concurrency",
@@ -1090,8 +1090,8 @@
     "L23": {
       "lecturer": "amp12",
       "classes": {
-        "8e9f40b0-d076-46aa-815d-d3347b4f4c23": "acs",
-        "9b965203-4695-47c3-8209-2f95a1ba1f23": "part3"
+        "1553bd65-90d4-457d-ab22-7889c96a2593": "acs",
+        "d8760908-683e-4e55-99ce-1e3ae5a979e0": "part3"
       },
       "hours": 8,
       "_label": "Nominal Sets and Their Applications",
@@ -1101,8 +1101,8 @@
     "L24": {
       "lecturer": "mpf23",
       "classes": {
-        "928c7ccf-8d60-4f6f-8a89-e1a78651e23b": "acs",
-        "b4e13e0a-a9b1-436e-93cf-befd12fc62a9": "part3"
+        "4d688a00-fee6-434b-ad0b-1e05e5f28d33": "acs",
+        "ee8a1ba2-52bf-4596-b38a-313405879ba2": "part3"
       },
       "hours": 8,
       "_label": "Categorical Models of Computational Languages",
@@ -1111,16 +1111,16 @@
     },
     "L25": {
       "lecturer": {
-        "0ef35aea-6f3b-464e-a958-0713387db913": "am21",
-        "b7381a80-c209-4433-bd03-d31d0f687aae": "dc552"
+        "1e7c6ba9-a651-4961-a868-b8eb5c149c2f": "am21",
+        "89d08ddf-ef4f-4b16-9e12-991ea561c677": "dc552"
       },
       "classes": {
-        "37bc39e2-6276-4f1e-96aa-2e42c81e4630": "acs",
-        "9a178ae1-fb2a-43a1-9962-ee8af74fb848": "part3"
+        "0f260b9e-66bc-49d0-a21a-7394e3c46cfc": "acs",
+        "7ef5592c-47d2-474e-83b1-06a8243529ad": "part3"
       },
       "term": "M",
       "hours": {
-        "682553bd-72ed-4f65-b558-003ceb4c0357": "8 × two-hour seminar sessions",
+        "37d4000a-bdb5-427d-851e-31b60be59186": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Modern Compiler Design",
@@ -1129,12 +1129,12 @@
     },
     "L26": {
       "lecturer": {
-        "599f1fc4-d32f-454f-b095-675d7e2dd104": "mjcg",
-        "172dd099-17bf-4b25-b1d2-ae19f71f60ab": "mom22"
+        "692f693f-9ba6-4ff6-a4e4-8ecccca98fc6": "mjcg",
+        "583f5a99-3b2d-4e93-8fa9-81f462426886": "mom22"
       },
       "classes": {
-        "ff0c0697-5c96-47a0-88ce-97d7606fb42e": "acs",
-        "30e3cbd5-c11e-4c2b-a489-2c04f32ccdcb": "part3"
+        "edbf187a-98db-4b81-82fb-ad54c31a4693": "acs",
+        "1c75e9fd-595d-4aac-aa86-26b8033f2be0": "part3"
       },
       "hours": 16,
       "_label": "Functional Programming: Implementation, Specification and Verification",
@@ -1142,32 +1142,32 @@
     },
     "L28": {
       "lecturer": {
-        "f1a30e32-6c60-4b99-92d7-6ab64f9c24ac": "avsm2",
-        "15d2392b-5e75-4d37-9d31-6d873ab285e6": "jdy22"
+        "bb99f806-984c-4d45-9046-062d92e1b305": "avsm2",
+        "efbfdcbc-4536-4dbf-bc0d-411ff9850768": "jdy22"
       },
       "classes": {
-        "ea3cdf29-078b-4a86-b35b-5444c8e5ad74": "acs",
-        "3ebcdd32-a7dd-4236-9707-137e7c57c873": "part3"
+        "b3d852cf-951c-4b8f-ac46-af41fca4e5e2": "acs",
+        "db3e49a8-bd70-4e96-97e0-dead1691ee42": "part3"
       },
       "term": "L",
       "hours": 16,
       "_label": "Advanced Functional Programming",
       "prerequisites": "Students wishing to take the module should have some experience of a typed functional programming language and an understanding of type inference.",
       "contributor": {
-        "9a63c307-a266-411c-8c42-814b34483793": "am21",
-        "0e113d29-78a8-4a55-8696-927bc90f8c99": "lpw25",
-        "9da66932-59a7-4cf0-aff9-235be67d7931": "sk826"
+        "04f86daf-4419-4032-af56-56e83a45cae9": "am21",
+        "18eb2a1c-4b5a-4c01-b81f-152b46754820": "lpw25",
+        "f6906b2b-0ce5-4a0b-97fa-98f9a17735f4": "sk826"
       },
       "synopsis": "This module aims to teach students how to use the features of modern typed functional programming languages to design and implement libraries and DSLs. It aims to demonstrate how such techniques can improve both correctness and efficiency."
     },
     "L29": {
       "lecturer": {
-        "4b8c682f-80b2-405a-aeab-7da7b68a6256": "mpf23",
-        "cb7cfa77-09f6-485a-b310-d32e8ead0bda": "ok259"
+        "c8489e90-79d7-4f4b-84b9-a99b903cb065": "mpf23",
+        "422004c9-e748-433b-b002-0df2d990bc7b": "ok259"
       },
       "classes": {
-        "df8ae4f6-037a-4b45-afb5-6d810d1499d2": "acs",
-        "930fba9d-d01a-4a84-ae0b-e02663109d52": "part3"
+        "3a7f5d77-c36b-46c4-b4b9-be3d39dba2c6": "acs",
+        "c4ebc51b-19cc-4051-941c-0136800ec436": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -1177,12 +1177,12 @@
     },
     "L40": {
       "lecturer": {
-        "d950f9b9-aee8-4649-862a-508227dc845d": "rkh23",
-        "fbe4a94a-3caa-4910-b0bc-9a0ce017948e": "rmf25"
+        "7f5d5445-eb49-4038-a4e4-52587f6f56b5": "rkh23",
+        "6652b948-7998-4998-aca4-ae5ced781d7c": "rmf25"
       },
       "classes": {
-        "e1830538-6be1-45c8-aa3a-748ee316f793": "acs",
-        "68feaf6c-21c6-4fa4-b202-6b9e4efef394": "part3"
+        "9e023259-bad0-4d25-a32c-c874cd718859": "acs",
+        "3d53e79d-af2b-4e1a-874a-849bf85a1b95": "part3"
       },
       "hours": 16,
       "_label": "Sensor Fusion and Location Aware Computing",
@@ -1190,15 +1190,15 @@
     },
     "L41": {
       "lecturer": {
-        "b9818b95-61e4-4f5a-a6f7-9869f3a10d7a": "rnw24"
+        "3e4dcc3d-d860-4002-87db-c8b9878ed1b3": "rnw24"
       },
       "classes": {
-        "a3101e35-024b-4cf0-a6b3-176e4161efc9": "acs",
-        "5ddf7d80-9aa6-4a04-8dbb-71fa70ecbeab": "part3"
+        "a6b7fe2c-c68a-4299-9cb4-5f328702f7cf": "acs",
+        "7bdabcde-5268-428e-b110-43dde19728f9": "part3"
       },
       "term": "M",
       "hours": {
-        "7cd6bea0-3da3-47ba-bccf-1254a9de2040": "6 one-hour lectures, 5 two-hour practical labs",
+        "e56a98f8-8773-4309-ac96-57d7f77f18e4": "6 one-hour lectures, 5 two-hour practical labs",
         "_label": "16"
       },
       "_label": "Advanced Operating Systems",
@@ -1207,13 +1207,13 @@
     },
     "L42": {
       "lecturer": {
-        "9b98cd0e-4c4f-473e-a355-9602aa96cf58": "mj201",
-        "9005f6f0-a304-4436-a201-9626f1110576": "pl219",
-        "c86283df-c410-4401-9661-996b3c4798fe": "tms41"
+        "bb265b7b-8672-4948-a054-6057f5ed91fe": "mj201",
+        "bcd89c57-b31a-46d7-965a-e810d84310d6": "pl219",
+        "6526dafe-368f-4090-a359-30489629515d": "tms41"
       },
       "classes": {
-        "0dff13b4-ac23-4cda-9b9b-7200241d761f": "acs",
-        "b19288ed-a973-4f15-b218-9505ccf2f617": "part3"
+        "388f8d5b-dc8c-407f-918c-d4535527caf4": "acs",
+        "4187d980-51d2-489b-b9bf-881429d91eda": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -1223,16 +1223,16 @@
     },
     "L90": {
       "lecturer": {
-        "1cc9d4ae-013f-46e9-aea6-3b2de14591a4": "es407",
-        "f84a6d02-4a6c-4ebd-9ca5-711c2b2dc864": "sht25"
+        "f4f9cddc-373e-48d0-a36b-01aa00cc2501": "es407",
+        "7d973da9-7d6f-4b1e-8046-15c4227c0384": "sht25"
       },
       "classes": {
-        "6e193299-76f4-4f76-bd32-d869f8b394a0": "acs",
-        "6bc7ea7a-62cb-4024-8c27-5eae1877946c": "part3"
+        "2c993388-a19f-47e5-b545-688c104b2f68": "acs",
+        "dfd65240-cc67-4756-8b07-39b21795127d": "part3"
       },
       "term": "M",
       "hours": {
-        "713045eb-8aa0-4f21-8583-00461c13485e": "12 lectures and 2 x 2 hour practical sessions",
+        "94655942-156e-45ec-8e67-10542fab9d7e": "12 lectures and 2 x 2 hour practical sessions",
         "_label": "16"
       },
       "_label": "Overview of Natural Language Processing",
@@ -1241,12 +1241,12 @@
     },
     "L95": {
       "lecturer": {
-        "c943685c-f3e7-445a-844b-00bf65c9602f": "ejb1",
-        "8dd2a3db-a7d2-4b8d-b3d2-1fb6ccf7f1b3": "sc609"
+        "692f40ab-0c31-4e0b-af85-90a5eb554724": "ejb1",
+        "a9b5098b-47a4-4b85-9f5c-a0de169990f3": "sc609"
       },
       "classes": {
-        "7ab5da77-3d92-4c4c-8d50-478977a38f5d": "acs",
-        "11faba4d-9907-40f8-b1dd-122a39f0e481": "part3"
+        "44191b04-e2de-415a-afd6-7d6a48363645": "acs",
+        "cda18788-3f51-4ebf-9f91-55de65b3b6d6": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1256,12 +1256,12 @@
     },
     "L100": {
       "lecturer": {
-        "6c400817-bb69-46bc-bf10-498a513d92ea": "ejb1",
-        "8577b87f-3376-436b-acec-e39784b2e5b6": "sc609"
+        "2f07495b-ae64-4a96-a9a2-64452e448697": "ejb1",
+        "cc393fc3-c6a8-461b-9428-afcdc092eb86": "sc609"
       },
       "classes": {
-        "9e8292d3-bf89-4c10-845b-370e6f5d3a72": "acs",
-        "08ae0f8c-4fa6-4fcc-a68f-bc4e2b937350": "part3"
+        "b918a08c-b73e-4e8c-8a7a-b9a760324626": "acs",
+        "98d2133b-0bbd-4408-b9ee-90a84aefc781": "part3"
       },
       "hours": 16,
       "_label": "Introduction to Natural Language Processing",
@@ -1270,16 +1270,16 @@
     },
     "L101": {
       "lecturer": {
-        "d287b735-dc1c-4747-b3b7-a49ae710b000": "ejb1",
-        "084982ff-543d-4e50-b1e0-22f2843271d2": "sc609"
+        "3d54677f-f677-470f-b18c-0813def1babf": "ejb1",
+        "a398a09e-51a5-440c-819f-a4f58afc4811": "sc609"
       },
       "classes": {
-        "f3287f45-2ce4-444d-a6f7-cf7d56bba305": "acs",
-        "57df683b-111d-44b5-a42e-b669a88e6a91": "part3"
+        "fd637097-8e17-49f6-bfe9-4c12fa4ab4c3": "acs",
+        "11805115-d3f8-4a80-b241-f9d6b7f4e7db": "part3"
       },
       "term": "M",
       "hours": {
-        "8bb03dee-218b-448c-a0d5-a7621ecb13e4": "8 lectures + 8 seminar sessions",
+        "2f5bb19b-768f-4180-a10f-62b644187bd1": "8 lectures + 8 seminar sessions",
         "_label": "16"
       },
       "_label": "Machine Learning for Language Processing",
@@ -1288,15 +1288,15 @@
     },
     "L102": {
       "lecturer": {
-        "775ed22d-a385-4c5a-9baa-de641918e63e": "sc609",
-        "3197d515-ffca-4d57-8d2a-ffc615fca922": "wjb31"
+        "6e3f8476-f95c-4909-a15b-0261731bee29": "sc609",
+        "ea416902-449f-4a40-9d74-ec673239aa3b": "wjb31"
       },
       "classes": {
-        "1afaaee7-d0de-4db0-9083-841e3c59a6e8": "acs",
-        "0626ed01-a731-42b7-b715-f1e57f60846c": "part3"
+        "38bc4a42-6616-4e59-95ce-5b0696dfa268": "acs",
+        "da962a7b-ce28-4441-b43b-67d885493894": "part3"
       },
       "hours": {
-        "ed7daa93-7fa7-4397-8854-f5ccd43730b1": "10 lectures + extended practical session covering 6 sessions",
+        "ae5a0b46-31b6-4944-8d81-0ce3aec16915": "10 lectures + extended practical session covering 6 sessions",
         "_label": "16"
       },
       "_label": "Statistical Machine Translation",
@@ -1305,16 +1305,16 @@
     },
     "L106": {
       "lecturer": {
-        "fa991335-7aa5-4842-a133-8279ae9901b1": "pw117",
-        "a7d4b0f1-0d9c-4a2b-996f-19e1ea6fb344": "mjfg100",
-        "08d8c2de-d124-4987-ad13-ccf9e1a38620": "wjb31"
+        "943c030e-ac47-44b0-940b-9f724ffb5780": "pw117",
+        "e04a5167-6a6f-48b5-a1dc-5f7c2ad48c18": "mjfg100",
+        "1bf5b9a0-265a-435c-bdf3-f5b6fc8d9c67": "wjb31"
       },
       "classes": {
-        "f0c99258-fb38-4419-b192-4285dfde1190": "acs",
-        "495b50b5-7253-4080-894c-535c9d291ba8": "part3"
+        "01d8a692-aaa0-4d47-8d6c-0c5e90c33f50": "acs",
+        "f615d623-8f67-4c0f-9a48-977197b74495": "part3"
       },
       "hours": {
-        "006bece6-f62a-42a4-9338-941942d3fff4": "14 lectures + 2 practical sessions",
+        "21613b11-2f11-4890-bcfd-03081ee6dbf1": "14 lectures + 2 practical sessions",
         "_label": "16"
       },
       "_label": "Spoken Language Processing",
@@ -1322,12 +1322,12 @@
     },
     "L107": {
       "lecturer": {
-        "4dfa9770-738d-4c4c-ad96-6e6b25b16a22": "ejb1",
-        "5a227791-4a48-4396-8a7e-062a26820af0": "sc609"
+        "d85d1503-fbaa-4048-8adf-f01e6ccf56d1": "ejb1",
+        "b50d6a4c-a4fe-4cf1-9519-c4fa57e1e19f": "sc609"
       },
       "classes": {
-        "9a601d15-f937-4428-bae9-c558564fb767": "acs",
-        "2cc2f683-9048-407d-8f4a-3d7d9240e243": "part3"
+        "145a16e7-ec2f-4893-9b36-607a7db7207f": "acs",
+        "061cd7c8-517a-4e00-822d-29abbc465644": "part3"
       },
       "hours": 16,
       "_label": "Advanced Syntax and Semantics of Natural Language",
@@ -1336,11 +1336,11 @@
     },
     "L108": {
       "lecturer": {
-        "aa4e0824-f6e3-4bcf-8cca-7c7b42b909e3": "amp12"
+        "96c1e6ed-1aa9-4437-a701-17dcc93472bc": "amp12"
       },
       "classes": {
-        "753eef83-8b08-4f78-a2a9-5724afc69a07": "acs",
-        "5810c9dc-95d6-469d-9256-b3189362d0de": "part3"
+        "fe85c390-5e8c-48ec-917d-e69f65b9203d": "acs",
+        "9799d4b0-e0bd-44a3-b437-1dc8ca37770b": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1351,8 +1351,8 @@
     "L109": {
       "lecturer": "cm542",
       "classes": {
-        "f9813ff9-fa3d-4a19-bfae-7661e88b5754": "acs",
-        "7764cc89-e058-45f5-8e3b-cd89ee73f812": "part3"
+        "2241a1ad-8bf8-438e-a3d5-f9789511e01e": "acs",
+        "de5a359b-5cd4-4b84-9699-c52612a2bff7": "part3"
       },
       "hours": 16,
       "_label": "Social and Technological Network Analysis",
@@ -1362,15 +1362,15 @@
     },
     "L110": {
       "lecturer": {
-        "5b66c14c-27d0-4175-b657-703efee8b8e0": "aib29",
+        "1b2edb9e-a19a-4709-847e-3023be777701": "aib29",
         "_label": "rg31"
       },
       "classes": {
-        "edc4597c-86c7-4542-a03e-bec1aeccf7b8": "acs",
-        "8c9ba112-d35e-4660-82b8-77ba59ab41c0": "part3"
+        "db3f3a6c-39cb-4964-b955-d284d4ab47e9": "acs",
+        "587a0aaa-1888-49e5-b73c-0b702a73ca41": "part3"
       },
       "hours": {
-        "dd57cb95-6a9f-4766-94dc-2abccb756386": "14 lectures + 2 example classes",
+        "4ad88448-c38c-438d-87c7-8eab4fc48833": "14 lectures + 2 example classes",
         "_label": "16"
       },
       "_label": "Flows in Networks",
@@ -1380,11 +1380,11 @@
     "L114": {
       "lecturer": "sht25",
       "classes": {
-        "2aecd200-b6c0-4c4a-b767-ed0ad71ea222": "acs",
-        "86c24cce-d9b9-4ae3-9560-e05ecb051b6c": "part3"
+        "c9e31b80-fdaf-48e0-ad0d-0cc26a839108": "acs",
+        "f0460961-f911-498a-9a4d-a6fc446e26ac": "part3"
       },
       "hours": {
-        "1f21e81c-f2c7-46d3-b682-e221dede889e": "8 × two-hour lecture sessions",
+        "aaea57c2-d011-43d4-b9dc-f7df8d546ab8": "8 × two-hour lecture sessions",
         "_label": "16"
       },
       "_label": "Lexical Semantics",
@@ -1394,11 +1394,11 @@
     "L115": {
       "lecturer": "sht25",
       "classes": {
-        "9fb43fc4-4d72-4156-b845-6b17879132fd": "acs",
-        "d953bf28-60c0-4863-be63-91c77f8df2af": "part3"
+        "00cc0891-5b49-4b9b-9225-3796fb35d244": "acs",
+        "1377f151-eac7-430f-823f-e8cfaaf51a8c": "part3"
       },
       "hours": {
-        "9fb61019-fb1f-41f4-bbd6-cc77214d418b": "8 × two-hour lecture sessions",
+        "752d4818-7b90-4b4e-a538-4dede7e18641": "8 × two-hour lecture sessions",
         "_label": "16"
       },
       "_label": "Discourse and Text Summarisation ",
@@ -1408,8 +1408,8 @@
     "L120": {
       "lecturer": "rg31",
       "classes": {
-        "a79cf2c7-2d73-4ae8-aeeb-7f68dbac84ff": "acs",
-        "090758f8-ee9a-486c-a941-3ed2eec1c3ba": "part3"
+        "0f3fd05d-5485-4192-8376-dbe1802d61df": "acs",
+        "67323533-2201-44cf-a068-62f109b99a85": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1419,15 +1419,15 @@
     },
     "P31": {
       "lecturer": {
-        "f956a361-ea4a-4418-a618-344e8da642ca": "bdj23",
+        "6001f6d6-6c8c-4094-89aa-c0facdcb5c3d": "bdj23",
         "_label": "ijw24"
       },
       "classes": {
-        "2c990801-d02b-4f5e-a1cb-c5c0b0251967": "acs",
-        "64f89ef8-cadc-49f3-8bae-196362079ec9": "part3"
+        "2e1866e1-a28b-4cf7-803b-a907c73357cf": "acs",
+        "401e2324-6046-456d-ab86-43a34a1e64b4": "part3"
       },
       "hours": {
-        "42ce5298-3d1d-4a48-a10d-c880fac755b5": "8 × two-hour seminar sessions",
+        "78c9c92a-7083-4d08-8d54-c6c80a335766": "8 × two-hour seminar sessions",
         "_label": "16"
       },
       "_label": "Low Power Embedded Systems Programming",
@@ -1438,12 +1438,12 @@
     "P33": {
       "lecturer": "awm22",
       "classes": {
-        "59ddfcaa-9fdb-47ae-be87-358c16aebacf": "acs",
-        "dff7f289-938b-46e0-90eb-70858107ca4d": "part3"
+        "7971dfac-53f8-41c7-9839-0b1227c0e9ee": "acs",
+        "faee0421-dd1f-4b96-8a0c-da2deb0b173b": "part3"
       },
       "term": "M",
       "hours": {
-        "41f23c61-5e50-48c2-9f0b-b06da7fc0e48": "1 introductory lecture + 8 × two-hour supervised laboratory slots",
+        "78a42a44-9f06-474b-a3f7-191731d50cff": "1 introductory lecture + 8 × two-hour supervised laboratory slots",
         "_label": "16"
       },
       "_label": "Building an Internet Router",
@@ -1453,12 +1453,12 @@
     "P34": {
       "lecturer": "swm11",
       "classes": {
-        "77f82dce-ed9b-4331-9fee-121f01269075": "acs",
-        "cb691fe2-0e4f-4280-bb54-af4a372337b9": "part3"
+        "a6fd3343-53e9-4b38-8313-97911d3382fd": "acs",
+        "8b79b429-b9f4-41d8-a09d-a2b04397e6ff": "part3"
       },
       "term": "M",
       "hours": {
-        "c7097649-7a56-4a00-a3ad-83e28a27f155": "8 lectures + 8 practicals",
+        "71d68990-0e09-4473-b39b-438862dbe7ba": "8 lectures + 8 practicals",
         "_label": "16"
       },
       "_label": "Advanced Computer Design",
@@ -1468,12 +1468,12 @@
     "P35": {
       "lecturer": "djg11",
       "classes": {
-        "3e0f2c74-40b4-41d6-badb-9181e328460d": "acs",
-        "2b0efcc4-9d0c-4a82-b102-2e5725694461": "part3"
+        "08d5383d-69e3-4677-8577-374fa6687874": "acs",
+        "b523f36c-1fbb-4194-a63d-aea06178c83e": "part3"
       },
       "term": "L",
       "hours": {
-        "785c498e-e36c-4998-8427-d5104589429e": "8 lectures + 8 practicals/coursework and research project option",
+        "10da5bef-2dc1-4b6c-a9f1-41787f45ca1b": "8 lectures + 8 practicals/coursework and research project option",
         "_label": "16"
       },
       "_label": "System on Chip Design and Modelling",
@@ -1483,11 +1483,11 @@
     "P36": {
       "lecturer": "acr31",
       "classes": {
-        "979b6291-9835-41d1-92b1-374a544249a4": "acs",
-        "624f72d4-27cd-4bc4-ba30-7b8787b34e6c": "part3"
+        "4e7ef65b-8b72-47c7-b0fb-914940e8224d": "acs",
+        "d7e735ad-4ace-4aa0-b13d-b267d56dda9f": "part3"
       },
       "hours": {
-        "7f30bedc-9112-426d-8730-cfc2af0ce41e": "8 × one-hour lectures + 8 × one-hour practical classes",
+        "564c17c4-db1b-458f-a878-c72b8d91ad19": "8 × one-hour lectures + 8 × one-hour practical classes",
         "_label": "16"
       },
       "_label": "Programming for Mobiles",
@@ -1497,12 +1497,12 @@
     "P201": {
       "lecturer": "afb21",
       "classes": {
-        "62349a27-a1ab-4b46-8086-305a66610a1b": "acs",
-        "c666ccec-06cc-482e-bf14-6dd23eb1d1e6": "part3"
+        "de06a71f-e6b9-4934-beac-14d46f67a98b": "acs",
+        "f63fc6d4-95cc-4f96-9982-893cd06d83d4": "part3"
       },
       "term": "L",
       "hours": {
-        "7e03f92f-c7ae-4ac4-9906-e17b452f9a12": "4 x introductory lectures, 4 × two-hour seminar sessions, 2 x demonstrated experimental sessions",
+        "9e101c30-47e5-4c6c-aa33-1e0f691d7a99": "4 x introductory lectures, 4 × two-hour seminar sessions, 2 x demonstrated experimental sessions",
         "_label": "16"
       },
       "_label": "Usability of Programming Languages",
@@ -1513,8 +1513,8 @@
     "RSL": {
       "lecturer": "acr31",
       "classes": {
-        "32019daf-91a4-4e03-a197-b9985eaa8466": "acs",
-        "6980fc93-f8af-462f-aa6a-81f5defff05a": "part3"
+        "bbffeeac-ea9c-4005-9101-67f2ec73bbb3": "acs",
+        "d55b8985-89a5-4eb8-af00-2ce42be2ebda": "part3"
       },
       "term": "M",
       "hours": 6,
@@ -1526,12 +1526,12 @@
     "E4F8": {
       "lecturer": "jl221",
       "classes": {
-        "e3fc4634-699f-4ee0-95b5-39e857a19033": "acs",
-        "0e16ec69-9302-4dc4-a5f6-055c8b4e8158": "part3"
+        "92466df7-6c77-4df6-aecd-af143ed6ee08": "acs",
+        "22515d36-628f-49d6-8221-6f9a645df496": "part3"
       },
       "term": "L",
       "hours": {
-        "29ab9349-f93d-4de3-8b01-c0ce92d16381": "lectures including example classes",
+        "398f5f80-e835-47bb-8025-028067bb95e9": "lectures including example classes",
         "_label": "16"
       },
       "_label": "Image Processing and Image Coding",
@@ -1542,12 +1542,12 @@
     "E4F12": {
       "lecturer": "rc10001",
       "classes": {
-        "e0219887-78b2-42d6-8b64-b766f5799527": "acs",
-        "517bea1e-9518-48eb-b2d4-33ff62590967": "part3"
+        "291f44e9-0e26-4997-a880-138dc90cc33a": "acs",
+        "53639617-fe9b-4b49-83ce-6e8058e4f6fa": "part3"
       },
       "term": "M",
       "hours": {
-        "05cdff31-5ceb-4429-90e0-e32f4c6217cc": "lectures including 3 example classes",
+        "9b3b8418-1d0d-4845-8255-b7b46e38cf21": "lectures including 3 example classes",
         "_label": "16"
       },
       "_label": "Computer Vision and Robotics",
@@ -1559,11 +1559,11 @@
     "E4F13": {
       "lecturer": "zg201",
       "classes": {
-        "57ee29e6-2f76-4582-81bc-6c13c95867d3": "acs",
-        "1331e9ec-d148-4871-bb00-f44db7364bb7": "part3"
+        "2a02d717-9fed-408e-874a-4e826c3e6e08": "acs",
+        "d7a2acbf-2796-4ac8-888b-4e73f81585a3": "part3"
       },
       "hours": {
-        "47a4a167-58c6-4761-b358-13397868d9c6": "lectures including 3 example classes",
+        "0629478f-9caf-4d80-ad38-ba91752b2856": "lectures including 3 example classes",
         "_label": "16"
       },
       "_label": "Machine Learning",
@@ -1574,8 +1574,8 @@
     "M004": {
       "lecturer": "carh4",
       "classes": {
-        "c20b13b5-aa1e-456d-ba4a-a99875fd4641": "acs",
-        "c87b72fe-5bb7-49ac-8024-271ac79225f0": "part3"
+        "bce29638-cbf6-416b-8dc3-c9a27f14dcdf": "acs",
+        "a85bb8a4-e051-4db6-8e43-b87104408c70": "part3"
       },
       "hours": 8,
       "_label": "Algebra and programming semantics",
@@ -1585,16 +1585,16 @@
     },
     "M005": {
       "lecturer": {
-        "4f7d65f6-3ff8-4329-91a0-2fbe073205b9": "raa43",
+        "6d09927a-d6c7-405d-8229-f33eb7b055ae": "raa43",
         "_label": "afb21"
       },
       "classes": {
-        "9e634136-1f5d-488c-b82d-4ee2c4c89321": "acs",
-        "b9aaf43b-7bcc-4f66-99a3-f9f1538ba2ed": "part3"
+        "cf8a2475-35a0-4c7e-813b-daf109d1da48": "acs",
+        "8427e401-4530-48aa-91bb-906df7aa3e60": "part3"
       },
       "term": "E",
       "hours": {
-        "6644f630-b2a3-47db-b535-19154dcff3ac": "Six two-hour sessions over one week",
+        "30d8f2d3-6ad1-40d3-9b94-a9ed89c23b2a": "Six two-hour sessions over one week",
         "_label": "12"
       },
       "_label": "Critical Coding for Digital Humanities",
@@ -1604,12 +1604,12 @@
     "M22": {
       "lecturer": "gw104",
       "classes": {
-        "a809a969-280a-47dc-a0b7-03e79fbb85da": "acs",
-        "a7b9e7d9-7204-4638-b8d1-f5bcd3830791": "part3"
+        "42453d89-8eb0-4dfe-8449-c5a27f26f8d2": "acs",
+        "775fbddf-66c0-4c30-84aa-9e2a3528b711": "part3"
       },
       "term": "L",
       "hours": {
-        "3c1cb3b3-b632-46df-ac4d-4e5c642e77b9": "Three two-hour sessions",
+        "7a0396f3-edca-48a9-bd9c-bd2ab6285ff1": "Three two-hour sessions",
         "_label": "6"
       },
       "_label": "A Mathematical Theory of Distributed Games and Strategies",
@@ -1618,7 +1618,7 @@
     },
     "S500": {
       "classes": {
-        "1c51e247-d4df-495c-b5b8-e101c2be12c4": "acs"
+        "57e8a8fb-72dc-4d33-bdcc-29ac5522963c": "acs"
       },
       "term": "M",
       "hours": 16,
@@ -1630,7 +1630,7 @@
     },
     "S501": {
       "classes": {
-        "3a9e2f1e-2207-4944-8194-0135137cdc47": "acs"
+        "ce92f53e-4d03-4c84-ba34-437522abea47": "acs"
       },
       "term": "L",
       "hours": 16,
@@ -1666,7 +1666,7 @@
       "_label": "Prof Sir Tony Hoare"
     },
     "cer54": "Dr Carl Rasmussen",
-    "218d39d2-16f6-4438-8a2f-69aa2c5e52eb": {
+    "a24c12f3-bb1a-474e-b288-030d08b3edb8": {
       "url": "http://www.csap.cam.ac.uk/network/carl-rasmussen/"
     },
     "ckh11": "Chris Hadley",

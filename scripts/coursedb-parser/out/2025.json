@@ -9,48 +9,48 @@
     "editor": "Becky Straw",
     "url": "https://webadmin.cst.cam.ac.uk/teaching/course/%m/%s/%s_%m_syllabus.html",
     "_label": "htmlinclude",
-    "b73f14dd-3b24-4a7d-8292-26a17f4c8f25": "syllabus-html"
+    "4678a2ac-7aed-45f7-9ce8-97b8fff08505": "syllabus-html"
   },
   "teaching-admin": {
-    "a0b9f999-6b3b-422b-8ab6-14734c263bdb": "stc40"
+    "1c8b3026-c909-46db-bd7e-ef8923a67497": "stc40"
   },
   "timetable-url": "https://www.cst.cam.ac.uk/teaching/timetables",
   "triposexam": 1,
   "groups": {
-    "0019abd0-ef31-424a-85f9-4133aa2ef2d9": {
+    "3724d3f4-a1be-40e3-aa9f-5d2045150a5d": {
       "title": "Part IA CST",
       "_label": "year1",
       "teaching-admin": {
-        "89d1597e-fe14-43fa-9d1b-e6bbaff2492e": "rs2150",
-        "79eabee1-6445-4c9b-ad04-aafa51f8c9f5": "ab3083",
-        "75e34cef-2007-41a4-aff9-8a4c0a2cd19a": "drr29"
+        "a5bc9c51-1bc4-4505-b216-60ad3961e9aa": "rs2150",
+        "5d991b34-304c-4f73-a842-ad13e2b62acd": "ab3083",
+        "3f4d1aff-c55e-4a6f-a088-6e132ae383f5": "drr29"
       },
-      "3558bc11-ecbb-4ec9-a41f-d39e56260bd1": "part1a"
+      "7515020b-1909-4ba7-b1fe-2669e35bba93": "part1a"
     },
-    "4252ba92-172d-4bfa-ac2e-43dab42de022": {
+    "0ab69f84-edea-4037-b311-e9e8e65b0efe": {
       "title": "Part IB CST",
       "_label": "year2",
       "teaching-admin": {
-        "9546c470-0818-466e-97ae-c3784c266e29": "rs2150",
-        "fd61a884-abc1-4a96-8bf3-544e8ddf1c1b": "ab3083",
-        "2115145c-adeb-433a-b93f-503300aa4cb7": "drr29"
+        "329aa344-e5be-4295-acea-a0454b52a53a": "rs2150",
+        "a87f601d-54a9-4f3c-a61a-997f21f7a73e": "ab3083",
+        "636e7c25-ffb5-4dbd-b0e4-b9b59097bb10": "drr29"
       },
-      "f6fb3338-7560-419a-b6e7-a13405e9b8c8": "part1b"
+      "30db8ce8-8013-4dd4-ba6b-06b6ee7b618d": "part1b"
     },
-    "3f822471-68ed-42de-bbcb-f9f7efe9dd51": {
+    "0e260809-2777-4c8d-942d-3d474f8e9b56": {
       "title": "Part II CST",
       "_label": "year3",
       "teaching-admin": {
-        "95d8bdba-5fa9-4372-84a5-b40c9356c858": "rs2150",
-        "e2493073-8e78-446c-9ce1-f419b94499e6": "ab3083",
-        "d2a42453-bc95-4dd8-8bb0-285cd0201f99": "drr29"
+        "fe0e21b5-0aad-4829-8f6f-f4412114b718": "rs2150",
+        "c8f8655c-214f-41b7-852b-dc7129295517": "ab3083",
+        "8ac3e6e2-8169-4167-85db-2dea313bd78d": "drr29"
       },
-      "e6579f30-8079-464a-b3ff-58fd7c316ed7": {
+      "dd516af2-3b1a-4809-8188-09d574096be0": {
         "note": "In addition to courses examined in Tripos papers 8 and 9, students also select two further modules, which are examined separately.",
         "_label": "part2"
       }
     },
-    "df345aa3-e0af-46a7-9ed2-611ea7ca20e0": {
+    "db54f1f7-4401-49d9-8a31-638570f22834": {
       "title": "Masters",
       "_label": "masters",
       "assessmentpage": 1,
@@ -60,19 +60,19 @@
       "syllabus": {
         "editor": "Lise Gough and Joy Rook",
         "url": "http://webadmin.cst.cam.ac.uk/teaching/course/%m/%s/%s_%m_syllabus.html",
-        "1b209f7f-a7a6-4478-81d6-a9f1f07c4f2a": "syllabus-html",
+        "7f6659d7-2e79-467e-9e50-0d10acbb5ecb": "syllabus-html",
         "_label": "htmlinclude"
       },
       "triposexam": 0,
       "teaching-admin": {
-        "82b064ff-f3ff-4083-a9d7-fde9022d5b22": "lmg30",
-        "b32e38d3-f602-4b4c-beb1-8f474cf25ca2": "jlr59"
+        "f6434f33-8d35-4e36-a9e2-a9093d80f8c2": "lmg30",
+        "39fb5c3b-d423-4b4a-ad64-ce415cda59bc": "jlr59"
       },
-      "ffb1f5f9-f478-4e24-a661-6916e96abe0a": {
+      "734b423b-b785-4546-aacc-2b158961d3fa": {
         "title": "Part III",
         "_label": "part3"
       },
-      "0768a9c6-5d61-4ea1-9c5e-aee039ab3800": {
+      "3b1ff2f7-85e5-473b-93bc-84375fcf62dc": {
         "title": "MPhil ACS",
         "_label": "acs"
       }
@@ -82,7 +82,7 @@
     "Algorithm1": {
       "lecturer": "jkf21",
       "classes": {
-        "7d61fd7d-b786-480a-9abd-efd564bb186c": "part1a"
+        "51ba0018-7905-4d71-8b56-9a72447ea7eb": "part1a"
       },
       "term": "L",
       "hours": 12,
@@ -94,7 +94,7 @@
     "Algorithm2": {
       "lecturer": "jkf21",
       "classes": {
-        "095a8b6a-f010-4928-a872-9a0a3c3c9feb": "part1a"
+        "8c3f41af-1481-4255-9b5f-1623b53726fb": "part1a"
       },
       "term": "L",
       "hours": 12,
@@ -103,17 +103,17 @@
       "supervision_hours": 3,
       "_label": "Algorithms 2",
       "prerequisites": {
-        "66e01ba6-2e8f-44f0-bf2c-8ee72252aee0": "Algorithm1"
+        "c5cb3aa0-e381-4c8f-a0b5-07f9bd9937fa": "Algorithm1"
       }
     },
     "Databases": {
       "lecturer": "djg11",
       "classes": {
-        "1479e609-ada8-40bf-bb23-a5edf324a5d3": "part1a"
+        "8c75c6f2-a648-4e9d-af72-4f4fb4807550": "part1a"
       },
       "term": "M",
       "hours": {
-        "069f0372-4683-4843-9a14-16824d9c971a": "8 lectures + 2 practical classes",
+        "afa71832-b8b0-4107-9faa-4ca931e2cf2c": "8 lectures + 2 practical classes",
         "_label": "12"
       },
       "format": "In-person lectures",
@@ -124,11 +124,11 @@
     "DigElec": {
       "lecturer": "ijw24",
       "classes": {
-        "f552b626-ee15-4ff9-8327-e15672037fb8": "part1a"
+        "a81ac11b-b008-4359-8ab9-3401bba2c504": "part1a"
       },
       "term": "M",
       "hours": {
-        "662684e1-b5c5-4d46-9968-e82771b954f3": "12 lectures+ 4 practical classes",
+        "76775403-4e02-49fd-bca3-935160c61316": "12 lectures+ 4 practical classes",
         "_label": "12"
       },
       "format": "In-person lectures",
@@ -138,14 +138,14 @@
     },
     "DiscMath": {
       "lecturer": {
-        "934e760f-ca11-40f7-a2a6-b60901be5425": "mpf23",
-        "fcb5a98a-b753-4906-8f4e-a4022d048595": "js2878"
+        "f2b76087-3ef5-486c-bbdf-8ac61fb518e3": "mpf23",
+        "569f67a4-2a5b-4f2f-96f8-f21c3c9dbff6": "js2878"
       },
       "classes": {
-        "de8c348e-0523-45f7-a258-86c7b11c5246": "part1a"
+        "9d6a9fc0-85b2-4020-9843-bd25776fccc8": "part1a"
       },
       "term": {
-        "bd8b9bd1-71e7-4af3-a0a3-ec521ddcdcd2": "L",
+        "a8f05995-48a4-4ab7-9d5d-860897a4fde3": "L",
         "_label": "M"
       },
       "hours": 24,
@@ -158,7 +158,7 @@
     "FoundsCS": {
       "lecturer": "avsm2",
       "classes": {
-        "93dadd75-c0fc-4741-806e-91c992a7fbbe": "part1a"
+        "3739cd72-85cc-421d-b5b2-0f3db5eb8d23": "part1a"
       },
       "term": "M",
       "hours": 12,
@@ -171,7 +171,7 @@
     "Graphics": {
       "lecturer": "fz261",
       "classes": {
-        "416f5b84-3f2a-4f46-b837-58dfea8b860a": "part1a"
+        "a2858009-6f32-429c-bcbb-0f3860ea8269": "part1a"
       },
       "term": "M",
       "hours": 8,
@@ -183,10 +183,10 @@
     "HW": {
       "lecturer": "ijw24",
       "classes": {
-        "81ee8835-6eb1-472d-862e-e2974d226c64": "part1a"
+        "9efe2d42-48be-4e55-8026-803450e08b31": "part1a"
       },
       "term": {
-        "de8fd589-c85b-46c8-94f8-9e48e0fe7670": "L",
+        "f527dbec-dcbc-4335-bc14-3c62879ea0b7": "L",
         "_label": "M"
       },
       "format": "In-person lectures",
@@ -198,11 +198,11 @@
     "IntDesign": {
       "lecturer": "hg410",
       "classes": {
-        "6a000668-64d0-4b47-8e59-dfcf3019b8a1": "part1a"
+        "347c45e7-592b-4ab0-a185-2960b01db504": "part1a"
       },
       "term": "E",
       "hours": {
-        "7bf4eeaf-861e-43cf-9c25-065658201786": "8 hours lectures+ 8 hours practicals",
+        "d2096ca2-5f32-4367-8404-56774e13c43c": "8 hours lectures+ 8 hours practicals",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -212,11 +212,11 @@
     },
     "IntroProb": {
       "lecturer": {
-        "afb9b9ba-8b1c-44c2-bf2d-ea528c6aeaab": "mj201",
-        "5bad0d94-ea59-4447-a4be-99b2466fb524": "tms41"
+        "cb5d31bc-e65e-48ac-b57c-5f0a3e8ce4e4": "mj201",
+        "4918b4bc-2740-43dd-aab7-0584ad6c7bc4": "tms41"
       },
       "classes": {
-        "b469477b-b6cd-46b4-8440-0ca1ae7b1242": "part1a"
+        "54302a5d-ba46-46d7-9c70-1be5809c593a": "part1a"
       },
       "term": "E",
       "hours": 12,
@@ -225,13 +225,13 @@
       "supervision_hours": 3,
       "_label": "Introduction to Probability",
       "prerequisites": {
-        "c5f3c422-d0c8-499d-b481-d40c4c4f904f": "DiscMath"
+        "8375bfc4-eec3-489f-bd07-dc5e8da25d5f": "DiscMath"
       }
     },
     "MLRD": {
       "lecturer": "fm611",
       "classes": {
-        "45c0bec8-ecf1-4743-8209-065aa5521776": "part1a"
+        "8af0db8e-7ef8-4765-a272-f69547e27050": "part1a"
       },
       "term": "L",
       "hours": 16,
@@ -240,16 +240,16 @@
       "supervision_hours": 4,
       "_label": "Machine Learning and Real-world Data",
       "contributor": {
-        "8ee5f0bf-0b9f-435b-a768-3c8cb035bfe0": "pjb48"
+        "662bf701-e596-4f91-99ba-e7b3624244b7": "pjb48"
       }
     },
     "OCaml": {
       "lecturer": {
-        "bbc630ff-46f1-4221-9408-34500f029a9b": "jjl25",
-        "97aa505d-abe0-4b79-aa94-d42768d6f38a": "avsm2"
+        "fde6cf47-9348-4c16-a3e9-47ddbaec8940": "jjl25",
+        "308c9d97-79ff-47da-84cc-f9ac47356c45": "avsm2"
       },
       "classes": {
-        "6a8b38f2-1ce6-4516-948f-747ca4c0efd8": "part1a"
+        "316f0dc0-d3e2-438a-acea-b5cfe76d4eff": "part1a"
       },
       "term": "M",
       "format": "In-person lectures",
@@ -262,7 +262,7 @@
     "OOProg": {
       "lecturer": "rkh23",
       "classes": {
-        "69011f61-c77d-4945-b53f-f4e6b87643e3": "part1a"
+        "51fedd4a-4cd3-4627-aea4-7f187f272279": "part1a"
       },
       "term": "M",
       "hours": 12,
@@ -274,7 +274,7 @@
     "OpSystems": {
       "lecturer": "rmm1002",
       "classes": {
-        "0591d5fd-8cd1-4c6d-af7f-e1c0f66a2c66": "part1a"
+        "cb37637f-8282-4d3f-bc67-f0e178097efa": "part1a"
       },
       "term": "L",
       "hours": 12,
@@ -283,13 +283,13 @@
       "supervision_hours": 3,
       "_label": "Operating Systems",
       "prerequisites": {
-        "0caa02b7-3a17-4a0f-b013-f2f1795bc63f": "DigElec"
+        "349dd360-0e48-4cff-8517-7612c6d3ec03": "DigElec"
       }
     },
     "PrepCS": {
       "lecturer": "rkh23",
       "classes": {
-        "f1745ecb-5168-49b7-9f65-13b647d08dbe": "part1a"
+        "10e36dae-0938-4258-9346-652d3ee9abc3": "part1a"
       },
       "term": "P",
       "moodle": 254413,
@@ -301,11 +301,11 @@
     },
     "Registratn": {
       "lecturer": {
-        "9809daf6-ca11-436e-8d47-d7a340d1fe89": "arb33",
-        "067c2866-6dc3-4b0b-82f3-3e392e4247de": "rkh23"
+        "abe8bc0b-9343-4ca7-9fae-e96477ddda46": "arb33",
+        "ae744da4-f6c4-4b71-ad8b-c7e59c0ba389": "rkh23"
       },
       "classes": {
-        "af77fef9-4ee6-4aac-af2c-a8ff83180c6c": "part1a"
+        "2891bb81-2910-42f5-b3e1-70afed1634a0": "part1a"
       },
       "term": "M",
       "_label": "Registration",
@@ -316,7 +316,7 @@
     "SWSecEng": {
       "lecturer": "tbc",
       "classes": {
-        "57a71966-f013-4f8a-909e-eff8e395ff49": "part1a"
+        "21cd6c26-84d1-4706-80b8-0c1677f2dd3b": "part1a"
       },
       "term": "E",
       "hours": 11,
@@ -329,10 +329,10 @@
     "SciComp": {
       "lecturer": "awm22",
       "classes": {
-        "0151722d-822b-42ba-9b1c-349052dc89ac": "part1a"
+        "df20fd97-0475-4de3-adb0-f10c262984ae": "part1a"
       },
       "term": {
-        "782007e9-c388-4b6e-a6d4-85b04defbe42": "L",
+        "daf89867-823d-4635-8d7b-fc441802c2b1": "L",
         "_label": "M"
       },
       "hours": 1,
@@ -346,7 +346,7 @@
     "ArtInt": {
       "lecturer": "sbh11",
       "classes": {
-        "cf774baa-669e-4757-93bc-23ce0055c448": "part1b"
+        "5e1718eb-2f42-42c1-9fb7-c3ddbf9bf28e": "part1b"
       },
       "term": "E",
       "hours": 12,
@@ -355,15 +355,15 @@
       "supervision_hours": 3,
       "_label": "Artificial Intelligence",
       "prerequisites": {
-        "c951d93b-590a-4461-b7d5-d130ee336ed5": "Algorithm1",
-        "da14d60e-4cf0-49d2-bf28-42a512208583": "Algorithm2",
+        "c24ed738-7d79-486a-9dc9-683f2376ccef": "Algorithm1",
+        "0015649e-3c0e-41fc-9f52-dcb67cf9891f": "Algorithm2",
         "_label": "In addition the course requires some mathematics, in particular some use of vectors and some calculus. Part IA Natural Sciences Mathematics or equivalent and Discrete Mathematics are likely to be helpful although not essential. Similarly, elements of Machine Learning and Real World Data, Foundations of Data Science, Logic and Proof, Prolog and Complexity Theory are likely to be useful. This course is a prerequisite for the Part II courses Machine Learning and Bayesian Inference and Natural Language Processing."
       }
     },
     "CompConstr": {
       "lecturer": "jdy22",
       "classes": {
-        "e33e03b1-3a55-45a2-85b4-b2a248be792b": "part1b"
+        "be144cc4-e30e-4416-8faf-9dc671cd073b": "part1b"
       },
       "term": "L",
       "hours": 16,
@@ -372,13 +372,13 @@
       "supervision_hours": 4,
       "_label": "Compiler Construction",
       "prerequisites": {
-        "adcbe857-deff-4bbc-97a1-fc27fbac2ebd": "DiscMath"
+        "044b866b-80cd-4087-81e9-c0e7c78b96ed": "DiscMath"
       }
     },
     "CompNet": {
       "lecturer": "awm22",
       "classes": {
-        "19dfe120-4f96-4a55-8380-329e4e3995c0": "part1b"
+        "1eca854a-b0af-402a-a5dc-b077c371b546": "part1b"
       },
       "term": "L",
       "hours": 20,
@@ -390,7 +390,7 @@
     "CompTheory": {
       "lecturer": "tgg22",
       "classes": {
-        "b87ff403-bfb9-4aaa-b827-deb070abaee7": "part1b"
+        "a1b7186e-9cdf-4464-a755-dcff0a49ddd1": "part1b"
       },
       "term": "L",
       "hours": 12,
@@ -399,13 +399,13 @@
       "supervision_hours": 3,
       "_label": "Computation Theory",
       "prerequisites": {
-        "4f60763b-07a4-494c-a945-1e1d2ef00cc7": "DiscMath"
+        "f586211c-6553-4d5a-89a3-6486f2acd024": "DiscMath"
       }
     },
     "Complexity": {
       "lecturer": "tg508",
       "classes": {
-        "6c3d3c7d-dbec-4657-80dc-8f538d2bd598": "part1b"
+        "c03fdf6d-2e9e-426d-8b69-1e72fc9ae5a3": "part1b"
       },
       "term": "E",
       "hours": 12,
@@ -414,14 +414,14 @@
       "supervision_hours": 3,
       "_label": "Complexity Theory",
       "prerequisites": {
-        "1d1a575d-7db2-4869-82d3-46797289a675": "Algorithm2",
-        "f6030af8-0a22-43ba-8ab6-3c92dfc28af7": "CompTheory"
+        "aa5bb124-cd04-40d0-b63f-468d854822b0": "Algorithm2",
+        "93a7fc59-1611-407c-8215-18c7275c8190": "CompTheory"
       }
     },
     "ConcDisSys": {
       "lecturer": "mk428",
       "classes": {
-        "a7aea63b-eb71-43f0-be7a-e47fcd86acaf": "part1b"
+        "10a0c517-dad6-4862-aee5-8c25d73422e8": "part1b"
       },
       "term": "M",
       "hours": 16,
@@ -430,14 +430,14 @@
       "supervision_hours": 4,
       "_label": "Concurrent and Distributed Systems",
       "prerequisites": {
-        "8e8caab9-d527-46a6-8ba3-725ee15b8c11": "OOProg",
-        "eef15c5d-19ae-41b0-9480-f77c8b5e73bc": "OpSystems"
+        "48373612-24e5-4340-829d-9c9e36c1c2af": "OOProg",
+        "b3baeb48-e385-4e13-8426-7eb04eb9b4f9": "OpSystems"
       }
     },
     "CySecurity": {
       "lecturer": "fms27",
       "classes": {
-        "bed69f5b-1504-4145-8bb2-a40815a1ce84": "part1b"
+        "0902f33e-5f67-492c-8991-a042b65cb159": "part1b"
       },
       "term": "E",
       "hours": 12,
@@ -446,21 +446,21 @@
       "supervision_hours": 3,
       "_label": "Cybersecurity",
       "prerequisites": {
-        "dd3f9d44-1a05-45a7-8452-1ab96f86e6f6": "CompNet",
-        "e2b11bd1-c588-41c9-b52a-e26c28216173": "IntComArch",
-        "eec41c0c-676f-45c9-b489-5f2d95ecd3d7": "SWSecEng",
-        "e8233a8e-6fd5-473c-9db5-fd764ad74815": "UnixTools",
+        "88690bc7-54ca-4240-b7b4-9f0f9d8872ef": "CompNet",
+        "50d54699-aa59-4fe4-a4d8-2c93b1dc74c7": "IntComArch",
+        "487caf30-355f-4aa2-a786-75e82e7b4166": "SWSecEng",
+        "00c8da4a-d3ef-46bc-8373-59e76de18e3a": "UnixTools",
         "_label": "Introduction to Computer Architecture and Computer Networking."
       }
     },
     "DataSci": {
       "lecturer": "am2920",
       "classes": {
-        "aaede29d-427b-402b-8cd8-b40e67baf372": "part1b"
+        "323ccd4a-6a42-420c-b6f1-4e1122628175": "part1b"
       },
       "term": "M",
       "hours": {
-        "e28ddbfc-1da3-423a-a6a1-e10cd2622133": "16 lectures",
+        "3fc9da1f-5669-4cc1-94df-f3a55d515cce": "16 lectures",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -472,28 +472,28 @@
     "ECAD+Arch": {
       "lecturer": "atm26",
       "classes": {
-        "ea3fd5df-8090-43d5-b8ed-dfb73c675231": "part1b"
+        "d3acd09f-d293-41c8-9264-adac59fc69cc": "part1b"
       },
       "term": "M",
       "format": "In-person lectures",
       "moodle": 254446,
       "_label": "ECAD and Architecture Practical Classes",
       "prerequisites": {
-        "51dc5343-f000-4bc4-9536-fcdceded208a": "DigElec"
+        "b52fedd8-471a-49c9-8528-b0babb6f2a6c": "DigElec"
       },
       "supervisions": 0,
       "triposexam": 0
     },
     "EconLaw": {
       "lecturer": {
-        "07a0d4a9-2bcb-42c3-9fd6-e1e23a654c83": "afb21",
-        "71083586-e590-40e2-878e-240b94725422": "cmab3",
-        "cf1df14a-be30-4632-b0e8-d401dd44b359": "ki287",
-        "4fc068ea-8cbb-435a-8fdb-3e98556901f5": "rnc1",
-        "73560544-adae-437e-ae67-f5e566da3921": "jc2106"
+        "d0720139-76de-4dd3-a80b-a3926fde2726": "afb21",
+        "de3a2f9a-b109-488b-9696-9e78cdbacbe4": "cmab3",
+        "ebb4e68e-436c-49b5-b1db-494c58283e24": "ki287",
+        "eabb53c2-97a8-439d-84f5-8af7681802e6": "rnc1",
+        "2d9cba9a-1098-4047-8ad7-bcd9846c102c": "jc2106"
       },
       "classes": {
-        "8f124d51-6518-4363-ab60-a334c4413c6c": "part1b"
+        "e378af53-450b-443a-bcf7-53db6e83ea65": "part1b"
       },
       "term": "M",
       "hours": 8,
@@ -505,7 +505,7 @@
     "FGraphics": {
       "lecturer": "aco41",
       "classes": {
-        "db742df7-516a-4303-be91-9144521cb24d": "part1b"
+        "8fdad20b-6cb0-4540-beb1-dbf7a7c07d19": "part1b"
       },
       "term": "M",
       "hours": 8,
@@ -514,17 +514,17 @@
       "supervision_hours": 2,
       "_label": "Further Graphics",
       "prerequisites": {
-        "91d611e3-685f-4d0f-960b-18b32ac5797a": "Graphics",
+        "fb43cf69-138e-4893-9a22-cdfd89a7984c": "Graphics",
         "_label": "This course is a pre-requisite for Advanced Graphics and Image processing"
       }
     },
     "FHCI": {
       "lecturer": {
-        "11fd9f80-fa0a-4736-b302-538bc57e3ee9": "afb21",
-        "84fd60aa-57d3-4216-83ce-fc8c38f45e89": "lec40"
+        "2259b929-72f2-42fa-8963-e663a271ca14": "afb21",
+        "f85d9853-cf51-4c88-a52e-55bd23c4588f": "lec40"
       },
       "classes": {
-        "af02f4aa-8346-40de-a003-156742c14b43": "part1b"
+        "8158b949-dfde-4c30-9beb-5152b76e238a": "part1b"
       },
       "term": "L",
       "hours": 8,
@@ -533,23 +533,23 @@
       "supervision_hours": 2,
       "_label": "Further Human–Computer Interaction",
       "prerequisites": {
-        "0d057694-26d3-4c84-9306-fd6b6764e922": "IntDesign"
+        "825504df-1c5f-497a-9d14-5f92f27e1680": "IntDesign"
       }
     },
     "FJava": {
       "classes": {
-        "d7fbcd5d-0944-41bb-a0fe-e0302f59d24a": "part1b"
+        "e5d5c547-b3ed-45fd-8fa2-8d44ad304e75": "part1b"
       },
       "term": "M",
       "hours": {
-        "0b7d3029-256a-4469-8f0b-26fd836958ed": "10 hours self-study",
+        "937918a6-4158-48a5-ac34-fc9b0e78fafd": "10 hours self-study",
         "_label": "10"
       },
       "format": "Self study non-assessed course",
       "moodle": 254442,
       "_label": "Further Java",
       "prerequisites": {
-        "10738f9e-4d4a-45df-b8b5-cb0003285624": "OOProg",
+        "88be43a0-b0a7-490c-b5c0-aadefff50416": "OOProg",
         "_label": "Companion courses: Concurrent and Distributed Systems."
       },
       "supervisions": 0,
@@ -558,7 +558,7 @@
     "ForModLang": {
       "lecturer": "pjb48",
       "classes": {
-        "2d34d97b-dba7-4e16-b6f4-e5b0e6445407": "part1b"
+        "7bbf026a-742f-4a18-8155-1f01623ee2ab": "part1b"
       },
       "term": "E",
       "hours": 8,
@@ -567,21 +567,21 @@
       "supervision_hours": 2,
       "_label": "Formal Models of Language",
       "prerequisites": {
-        "c667d19f-fbef-42e6-a558-cce35e2aa0ef": "CompConstr",
-        "cf712bea-7036-46dd-933f-56a40dca57f6": "DiscMath"
+        "4f9820fb-7f9a-47a4-841f-00d7961a7cce": "CompConstr",
+        "120453ff-d073-4092-a1f6-46c1d7c5966c": "DiscMath"
       }
     },
     "GroupProj": {
       "lecturer": {
-        "18e5aaa1-273e-4c82-a0bd-22e731971fff": "afb21",
-        "b5b72a2a-2dd1-4ef9-ba1d-0db204e4b340": "rkh23",
-        "ba298708-7eb6-4993-ab4a-6ef841eefb8e": "tcg40"
+        "5b130300-cc4d-4527-a940-7afba086136e": "afb21",
+        "5820e4ca-673f-411f-9650-d3095734e092": "rkh23",
+        "a9af921f-5998-4a0b-be4b-543b3c1d0fbc": "tcg40"
       },
       "classes": {
-        "606cc899-d06f-400f-9c6f-b2edbb4a4e2d": "part1b"
+        "93980f40-e24e-4fb9-84d1-eef68098918f": "part1b"
       },
       "term": {
-        "df168cd4-913e-4f2d-a00a-87ac57a643cc": "L",
+        "41f225c4-e82a-4397-a41b-4fa33172e3d5": "L",
         "_label": "M"
       },
       "_label": "Group Project",
@@ -591,11 +591,11 @@
     },
     "IntComArch": {
       "lecturer": {
-        "7b963106-e192-4e50-8c5e-cd8637583e23": "rdm34",
-        "b7c99983-f72c-4e25-86cf-cc916af161f6": "tmj32"
+        "ab5e9a67-22c1-448d-8119-44b133afb02e": "rdm34",
+        "10b7dc93-3776-40c6-acf1-43e9e420f21b": "tmj32"
       },
       "classes": {
-        "a91a0c6e-0d3a-4fd4-932a-f124dd6a2af1": "part1b"
+        "6fb00a4d-1885-4fff-9ee9-36398ef1ae78": "part1b"
       },
       "term": "M",
       "hours": 16,
@@ -604,14 +604,14 @@
       "supervision_hours": 5,
       "_label": "Introduction to Computer Architecture",
       "prerequisites": {
-        "5c871f9f-99a2-4729-aa43-e939c242a78d": "DigElec",
+        "ed0bbf94-47cf-4eab-9c73-c0a8f9a921f8": "DigElec",
         "_label": "Companion course: Electronic Computer Aided Design (ECAD)"
       }
     },
     "LogicProof": {
       "lecturer": "mj201",
       "classes": {
-        "faccc579-61bd-4dc2-851a-0714b47630f7": "part1b"
+        "c2abba29-d3e9-4a85-ac5f-b2542828ba28": "part1b"
       },
       "term": "L",
       "hours": 12,
@@ -623,7 +623,7 @@
     "ProgC": {
       "lecturer": "djg11",
       "classes": {
-        "873c9c1d-da92-407d-bcd7-26309b916b41": "part1b"
+        "5a8732cc-881b-441f-8dfb-0f9962d1693f": "part1b"
       },
       "term": "M",
       "hours": 12,
@@ -635,7 +635,7 @@
     "Prolog": {
       "lecturer": "ijl20",
       "classes": {
-        "ece1a459-f0bd-4df3-b64a-23b27dfbfa24": "part1b"
+        "a834bdba-c0be-488c-be3b-7884abbfb72e": "part1b"
       },
       "term": "L",
       "hours": 8,
@@ -644,15 +644,15 @@
       "supervision_hours": 2,
       "_label": "Prolog",
       "prerequisites": {
-        "9ff5c1a7-8a6c-479d-a5f9-5aadef165c43": "Algorithm1",
-        "e201b06d-8c8f-446d-850d-b62a1212b820": "Algorithm2",
-        "cd78279f-498a-4b44-80be-a66214fc75e3": "FoundsCS"
+        "eea33661-e8c4-45e2-8460-ba1686eb7bfc": "Algorithm1",
+        "d7e27302-678e-48e0-a72d-43f360ad9e67": "Algorithm2",
+        "742a8416-fad7-4b6c-9f1e-7046ee649aab": "FoundsCS"
       }
     },
     "Semantics": {
       "lecturer": "pes20",
       "classes": {
-        "de799791-cc72-4508-8652-bdbeeaf3c5a3": "part1b"
+        "8d3cf441-5eab-4a9c-bf25-95ad9c2a13ce": "part1b"
       },
       "term": "M",
       "hours": 12,
@@ -665,7 +665,7 @@
     "UnixTools": {
       "lecturer": "mgk25",
       "classes": {
-        "11ec19b0-5e54-4c59-96f9-6e910ae9f29d": "part1b"
+        "3bdfd089-48fb-42a5-8523-13f1b956f52b": "part1b"
       },
       "term": "M",
       "hours": 8,
@@ -673,7 +673,7 @@
       "moodle": 254441,
       "_label": "Unix Tools",
       "prerequisites": {
-        "91c6073d-9336-4399-88cc-2ff6ed5bdb91": "OpSystems"
+        "67f37804-5686-4f5d-91b4-832fef983c7d": "OpSystems"
       },
       "supervisions": 0,
       "triposexam": 0
@@ -695,8 +695,8 @@
     },
     "ADS": {
       "lecturer": {
-        "95f48845-ada1-4768-ae53-491320259754": "ndl21",
-        "10270671-34dd-4a60-af4f-67c56f858367": "che29"
+        "a681527d-0e8b-4c02-b778-70ee353526a1": "ndl21",
+        "21162b0a-7815-46ad-b746-4366fe2699f0": "che29"
       },
       "term": "M",
       "hours": 16,
@@ -704,8 +704,8 @@
       "moodle": 254468,
       "_label": "Advanced Data Science",
       "prerequisites": {
-        "8c18b855-a287-460e-84cb-66d1162f1962": "DataSci",
-        "e7731f0f-a0ef-4ab8-9137-849ae85de52a": "MLRD",
+        "e64eb151-f8c1-4433-8ce5-39c43060f779": "DataSci",
+        "5c0d9a44-8095-4860-978a-6934aaecbeb2": "MLRD",
         "_label": "NST Mathematics"
       },
       "type": "part2-unit"
@@ -713,7 +713,7 @@
     "AdComArch": {
       "lecturer": "rdm34",
       "classes": {
-        "aae0a9df-a542-4aab-88d1-1df045017742": "part2"
+        "44e8fd2f-d3fa-4a05-812c-647e5ba39980": "part2"
       },
       "term": "L",
       "hours": 16,
@@ -722,13 +722,13 @@
       "supervision_hours": 4,
       "_label": "Advanced Computer Architecture",
       "prerequisites": {
-        "177867b8-bf8d-46dc-9a71-b14cea74be26": "IntComArch"
+        "d5b0ef11-cc11-45cd-af50-b9893e9b007a": "IntComArch"
       }
     },
     "Bioinfo": {
       "lecturer": "pl219",
       "classes": {
-        "a4a37e80-a0de-4ba2-ba41-8ef41784f585": "part2"
+        "8773487a-1583-4a7f-83cb-4c21a4b15459": "part2"
       },
       "term": "M",
       "hours": 12,
@@ -740,7 +740,7 @@
     "BusSeminrs": {
       "lecturer": "sam56",
       "classes": {
-        "ce299a5b-25f4-47f6-97f2-3276b7fc0f51": "part2"
+        "75bbaec8-fd0c-4334-8005-ee1164dadc91": "part2"
       },
       "term": "E",
       "format": "In-person lectures",
@@ -752,7 +752,7 @@
     "Business": {
       "lecturer": "sam56",
       "classes": {
-        "af8b9590-7a14-47d7-9226-28dcf67d62d6": "part2"
+        "44a3e203-76a7-45ff-b3f4-948825c02be7": "part2"
       },
       "term": "M",
       "hours": 8,
@@ -761,23 +761,23 @@
       "supervision_hours": 2,
       "_label": "Business Studies",
       "prerequisites": {
-        "08c2fdfc-6274-4bbf-bf2c-6d559df397bd": "EconLaw"
+        "82e10d64-d2d5-4e17-9b37-b276204af81d": "EconLaw"
       }
     },
     "CAT": {
       "lecturer": "mpf23",
       "term": "M",
       "hours": {
-        "696b5670-e306-47be-8669-2882e98d320d": "8 lectures (2 hours each)",
+        "450c076b-a6a5-4cf4-9a3f-85842313f8ef": "8 lectures (2 hours each)",
         "_label": "16"
       },
       "format": "In-person lectures",
       "moodle": 254469,
       "_label": "Category Theory",
       "prerequisites": {
-        "9b075b52-c895-4a9e-afac-82ec814b99c5": "DiscMath",
-        "c6e6a19a-65ca-4c13-940d-fe9f226f25c0": "FoundsCS",
-        "424d9daa-3412-4804-9aff-80815ce79b92": "Semantics"
+        "b12c0e02-7f30-4092-83fb-07715c248fd5": "DiscMath",
+        "07974472-f889-46be-ac29-7b61f1b4080d": "FoundsCS",
+        "5ffda19e-640d-4507-89e0-25465d160fb6": "Semantics"
       },
       "type": "part2-unit",
       "classmax": 15,
@@ -797,15 +797,15 @@
       "moodle": 254482,
       "_label": "Cloud Computing",
       "prerequisites": {
-        "e2574e66-d879-4327-bb73-f74753cb1867": "CompNet",
-        "2c654a98-e01e-47c8-acb9-1ff6e16f68f1": "ConcDisSys",
-        "20e0c430-17e5-42fb-9b6c-7ff52bc5f780": "ConceptsPL",
-        "2cc23955-95a9-40e3-98bc-f63d8976e6b1": "OpSystems",
-        "58c11867-33fc-44e5-9918-021eaa50b6a7": "UnixTools",
+        "a91c43af-49ae-4baa-9416-62aac0dde6b8": "CompNet",
+        "92c81c50-6c97-45d1-aefb-38e1a0762318": "ConcDisSys",
+        "7301c49a-96a1-4ef3-a14b-cd4af92122e1": "ConceptsPL",
+        "40f7c3ea-d2b1-441c-a301-c1cd722c7daa": "OpSystems",
+        "8f37196e-3f6a-49cf-b86c-8db143762067": "UnixTools",
         "_label": "Students must have a very good knowledge of Unix Tools and scripting"
       },
       "contributor": {
-        "790de12d-b520-46ba-863a-24a1ed9dd302": "avsm2"
+        "6bc1cb5d-4d09-4c75-8eb6-924c3249ecd8": "avsm2"
       },
       "type": "part2-unit",
       "classmax": 18
@@ -814,7 +814,7 @@
       "lecturer": "ss2600",
       "term": "L",
       "hours": {
-        "af2d0793-7859-445c-88df-bd2dd65b3a0d": "3x2 hour sessions + 5x2 hour school placement",
+        "85c5a1e6-3efd-4da7-ae4f-086e661939b8": "3x2 hour sessions + 5x2 hour school placement",
         "_label": "16"
       },
       "format": "In person lectures & school placement",
@@ -827,15 +827,15 @@
       "lecturer": "sk818",
       "term": "L",
       "hours": {
-        "1ddebacd-118f-45be-99cf-3028e8116c56": "online lectures and 8 examples classes",
+        "872d0c4c-5e80-45c1-89cb-658d92fcc360": "online lectures and 8 examples classes",
         "_label": "16"
       },
       "format": "In-person lectures",
       "moodle": 254470,
       "_label": "Computer Systems Modelling",
       "prerequisites": {
-        "7fa32786-53bd-4503-b8e3-72afae2fa522": "DataSci",
-        "18ba1ad6-01df-403e-b477-24b4d3bd64ef": "IntroProb"
+        "e5604a32-b91b-45c0-9ccb-6092d7273f96": "DataSci",
+        "c40807d7-5707-451e-a0ad-d35eb9cc9e00": "IntroProb"
       },
       "type": "part2-unit",
       "classmax": 20
@@ -843,7 +843,7 @@
     "Crypto": {
       "lecturer": "mgk25",
       "classes": {
-        "147887fa-0aa3-4e65-8531-40cb83e55597": "part2"
+        "91ea9d18-6a1b-407e-a46a-7d028ba54d12": "part2"
       },
       "term": "L",
       "hours": 16,
@@ -852,8 +852,8 @@
       "supervision_hours": 4,
       "_label": "Cryptography",
       "prerequisites": {
-        "9b281adf-979a-4692-a8ad-3f434c4703c2": "Complexity",
-        "3be193fb-e02b-4924-a1d5-514a5fb98def": "DiscMath",
+        "c1786fad-6f50-4117-99d1-508b1b794255": "Complexity",
+        "a4e33d4d-dd50-438c-8dbd-e20b5c01a374": "DiscMath",
         "_label": "Mathematical Methods I from the NST Mathematics course"
       }
     },
@@ -861,14 +861,14 @@
       "lecturer": "fh277",
       "term": "L",
       "hours": {
-        "b0c3cf9e-b310-4ef0-b6b8-bd8d662467ce": "14hrs lectures",
+        "e70362b8-8923-400e-a56e-76a4a1f9f92e": "14hrs lectures",
         "_label": "14"
       },
       "format": "In-person lectures",
       "moodle": 254471,
       "_label": "Deep Neural Networks",
       "contributor": {
-        "3c81afb7-0ad6-40f6-acd5-053b7fae51c0": "ndl32"
+        "67ead15e-1079-4c10-89e1-2a49ede48f18": "ndl32"
       },
       "type": "part2-unit",
       "classmax": 50
@@ -892,7 +892,7 @@
     "DenotSem": {
       "lecturer": "mgapb2",
       "classes": {
-        "6e30bfef-2309-4bd7-a2b8-f74bc5049fa9": "part2"
+        "9fd90694-847d-4fbc-b6b1-2fbfe72c7b50": "part2"
       },
       "term": "M",
       "hours": 10,
@@ -904,11 +904,11 @@
     "ECommerce": {
       "lecturer": "sam56",
       "classes": {
-        "1048db6f-d6a4-44dd-b5af-386dfd5e79c1": "part2"
+        "36c099e9-9580-4e13-9225-94c5a7c57519": "part2"
       },
       "term": "L",
       "hours": {
-        "758532d1-85c9-46cf-b7b6-f6f3b706ade7": "2 examples classes may be held if no supervisions",
+        "2511ca48-586e-4e26-a37a-ac3592970857": "2 examples classes may be held if no supervisions",
         "_label": "8"
       },
       "format": "In-person lectures",
@@ -916,27 +916,27 @@
       "supervision_hours": 2,
       "_label": "E-Commerce",
       "prerequisites": {
-        "ea0e9d19-535e-4b96-9807-187e2f204c28": "Business",
-        "59d084be-2a7e-4745-ba8d-6b6ad2504c95": "CySecurity",
-        "9d8c60c6-fef2-4555-8509-890748a948d4": "EconLaw"
+        "c77b358a-eec0-48aa-827e-1714941b1d14": "Business",
+        "9643a722-27a0-408b-979e-7d5b0493faa5": "CySecurity",
+        "d1e623bc-3b32-4e1e-b21b-1d8671573145": "EconLaw"
       }
     },
     "ER": {
       "lecturer": "aco41",
       "term": "L",
       "hours": {
-        "b4c3056b-ebf5-423f-b367-87061c46a425": "12 hrs lectures, 4hrs practicals",
+        "869f016e-d432-41c9-8443-5d773e308c1f": "12 hrs lectures, 4hrs practicals",
         "_label": "16"
       },
       "format": "In-person lectures",
       "moodle": 254473,
       "_label": "Extended Reality",
       "prerequisites": {
-        "7fb1dc9b-f66a-454e-9540-75a95c320e6b": "FGraphics",
-        "1cebb49d-b13e-4389-b92d-9628bbd03243": "Graphics"
+        "814196fb-0f2f-49a4-ba6c-e201a1d08d69": "FGraphics",
+        "e2284a36-1f56-4040-8d4f-82ccfeec5360": "Graphics"
       },
       "contributor": {
-        "7c708fb7-e749-4721-a11d-a231b176d82a": "fz261"
+        "eb6f2e03-9c2f-465a-87ff-6b4e95041971": "fz261"
       },
       "type": "part2-unit",
       "classmax": 30
@@ -945,7 +945,7 @@
       "lecturer": "ndl32",
       "term": "L",
       "hours": {
-        "7a25c332-e4e6-45ed-abd4-8da8aea15185": "8 x 1hr lectures, 4 x 1hr practicals",
+        "d2434d12-7ac3-4e96-9448-4e64f24b2f88": "8 x 1hr lectures, 4 x 1hr practicals",
         "_label": "12"
       },
       "format": "In-person lectures",
@@ -957,7 +957,7 @@
       "clone": {
         "type": "masters-shared",
         "hours": {
-          "0117d374-6956-4a55-90af-09335445af47": "8h lectures, 4h lab sessions, 4h advanced material",
+          "dd7be0bf-4301-4fe3-9c74-be3204a5b3a8": "8h lectures, 4h lab sessions, 4h advanced material",
           "_label": "16"
         },
         "synopsis": "This course aims to extend students' machine learning knowledge and allow them to understand how these concepts can manifest in a decentralized setting. The course will consider both theoretical (e.g., decentralized optimization) and practical (e.g., networking efficiency) aspects that combine to define this growing area of machine learning.",
@@ -968,23 +968,23 @@
       "lecturer": "afb21",
       "term": "M",
       "hours": {
-        "2836055d-6df0-433d-a84e-73b46dffb6e6": "8 x 2-hour sessions",
+        "87167fc7-0f71-4208-97ac-627e2af2266f": "8 x 2-hour sessions",
         "_label": "16"
       },
       "format": "In-person lectures",
       "moodle": 254479,
       "_label": "Practical Research in Human-centred AI",
       "prerequisites": {
-        "75489388-637b-43f1-aba8-92b72407b27e": "FHCI"
+        "0819f628-02ec-41dd-aaf4-940c62faa83d": "FHCI"
       },
       "contributor": {
-        "7997032f-3b88-4f0e-b515-1a9f7d594890": "as2006"
+        "f6c6598f-67ee-4ae7-be61-abc2d4982115": "as2006"
       },
       "type": "part2-unit",
       "clone": {
         "type": "masters-shared",
         "hours": {
-          "49606a97-9309-400f-bcba-7ab2c6437718": "8 x 2hr sessions",
+          "86653e5c-bfb2-46f9-8b23-33fefba70e2d": "8 x 2hr sessions",
           "_label": "16"
         },
         "prerequisites": "Basic knowledge of machine learning",
@@ -995,7 +995,7 @@
     "HLog+ModC": {
       "lecturer": "cp526",
       "classes": {
-        "389185f6-9c2d-4f42-bd80-ad3ae28a3fa5": "part2"
+        "cf09e5e8-2270-4a5e-aa97-b555fcbadeb9": "part2"
       },
       "term": "E",
       "hours": 12,
@@ -1004,14 +1004,14 @@
       "supervision_hours": 3,
       "_label": "Hoare Logic and Model Checking",
       "prerequisites": {
-        "ae56d568-02ea-4d76-9a3f-8d6499ac080a": "LogicProof",
-        "f71df6a0-6a11-4cab-9338-326670969808": "Semantics"
+        "aee865db-50ab-498b-87d1-30e8d968a8e7": "LogicProof",
+        "241fc954-0e8b-4d1c-b7cf-447c0d4e8a88": "Semantics"
       }
     },
     "InfoTheory": {
       "lecturer": "rkh23",
       "classes": {
-        "9123d815-fe17-4672-aded-dac973bc909e": "part2"
+        "85f73cc8-f42c-4cbd-bffe-c4786fe9fe01": "part2"
       },
       "term": "M",
       "hours": 12,
@@ -1022,12 +1022,12 @@
     },
     "MH": {
       "lecturer": {
-        "daa99b5a-2ef1-4b4c-ac5c-8d3e03a73d77": "cm542",
-        "4fe56536-813f-4ba1-b2d7-0e3d8c71349f": "jh2298"
+        "c4710b34-f2e4-49c8-b8bc-07fadb3c91c3": "cm542",
+        "729de5bc-692f-4547-9452-cd03c0ea789d": "jh2298"
       },
       "term": "L",
       "hours": {
-        "b3f8b091-cdad-4830-8bdd-00fa629190b4": "14 Lectures plus two practicals",
+        "075cafeb-d725-4a65-bb57-6f08fb5c7ab0": "14 Lectures plus two practicals",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1037,7 +1037,7 @@
       "clone": {
         "type": "masters-shared",
         "hours": {
-          "e97470d0-8fd0-4729-aa9c-62f8154d0736": "14h lectures and 2h practicals",
+          "45141d1e-45f5-481e-a565-ac244b8deed0": "14h lectures and 2h practicals",
           "_label": "16"
         },
         "synopsis": "The course aims to pick up knowledge developed in undergraduate courses, related to machine learning as well as basic networking and systems and develop the concepts further into their applications into mobile systems and wearable with the aim of aiding the monitoring of our health.",
@@ -1047,7 +1047,7 @@
     "MLBayInfer": {
       "lecturer": "sbh11",
       "classes": {
-        "0cae0b60-bc9a-42a2-981a-2b9f07847703": "part2"
+        "2b9f0f8b-20be-493c-80f2-73353d73f34c": "part2"
       },
       "term": "L",
       "hours": 16,
@@ -1056,37 +1056,37 @@
       "supervision_hours": 4,
       "_label": "Machine Learning and Bayesian Inference",
       "prerequisites": {
-        "fc674b59-dc61-462c-8fb0-35c44eb76e8b": "DataSci",
-        "ac1e1eec-c470-431d-8f09-c64e2f606079": "DiscMath"
+        "cd74784b-247f-4436-8bfb-981d1ad53a10": "DataSci",
+        "c81c4691-0c45-4af7-b023-5dd86a5bbd59": "DiscMath"
       }
     },
     "MSP": {
       "lecturer": {
-        "09374ecf-1436-46f9-8c41-5bd9bf0dcb00": "pes20",
-        "92c98a87-d0ae-4eb0-aa46-a76294b82e03": "tlh20"
+        "7ac4c3fd-8836-4423-b2ed-015f7c2434be": "pes20",
+        "2bf3708e-6d52-4dde-b17e-80451c9893a4": "tlh20"
       },
       "term": "L",
       "hours": {
-        "ef1dc618-dc2b-4b30-b924-d45c0779ec24": "8 x 2hr sessions",
+        "b2d57a49-f7fa-4fe4-928f-17b00292b287": "8 x 2hr sessions",
         "_label": "16"
       },
       "format": "In-person lectures",
       "moodle": 254477,
       "_label": "Multicore Semantics and Programming",
       "prerequisites": {
-        "c2b71e01-df5a-433b-b269-340110f0efed": "DiscMath",
-        "66116cf8-273f-40c0-b713-7d68359283e2": "OOProg",
-        "d4236222-2152-404c-8230-dfac09f6b7a0": "Semantics"
+        "7b530592-c04b-4aaf-ac2a-effee2531e41": "DiscMath",
+        "cd9c650c-8040-42fa-8f1b-fca0e63f4667": "OOProg",
+        "c57c3e1c-1ee1-430a-83ec-87fc76cf3116": "Semantics"
       },
       "contributor": {
-        "7b981875-9438-4d9b-86e1-213e7f7d8a2b": "cp526"
+        "be22e746-514a-445d-b1f0-3c7c6309a694": "cp526"
       },
       "type": "part2-unit",
       "classmax": 20,
       "clone": {
         "type": "masters-shared",
         "hours": {
-          "87b3d88b-3f92-4486-8315-776f11a3d690": "8 x 2h blocks, including 2 x 1h practical sessions",
+          "cf26eb51-a8cc-4779-8f08-a33e54af29ca": "8 x 2h blocks, including 2 x 1h practical sessions",
           "_label": "16"
         },
         "classmax": 10,
@@ -1099,21 +1099,21 @@
       "lecturer": "aco41",
       "term": "M",
       "hours": {
-        "bdf595a2-90c4-4aa5-8c14-cbb843c23d83": "Six 2-hour lectures",
+        "6d45264b-3b16-4463-a418-878e09208216": "Six 2-hour lectures",
         "_label": "12"
       },
       "format": "In-person lectures",
       "moodle": 254475,
       "_label": "Machine Visual Perception",
       "contributor": {
-        "7565a0fb-899b-47bb-81e7-e0dbc7fca672": "cpt23"
+        "f2cfd883-9914-4a29-8d3b-4e039e3e43df": "cpt23"
       },
       "type": "part2-unit",
       "classmax": 30,
       "clone": {
         "type": "masters-shared",
         "hours": {
-          "8828738a-a6ec-47a7-b4f2-374b0b3c278c": "12hrs lectures + 4hrs practicals",
+          "ee0688a7-c12f-4909-b298-ee19f274e41f": "12hrs lectures + 4hrs practicals",
           "_label": "16"
         },
         "classmax": 25,
@@ -1123,23 +1123,23 @@
     },
     "NLP": {
       "lecturer": {
-        "1b63ae7c-102e-4edb-8a25-b26a199a1303": "ws390",
-        "139edaba-4d6e-42a4-a2a2-97700ec864c6": "yc632"
+        "a56c32e6-c24d-422e-b7a2-cee65b709d3f": "ws390",
+        "2d64cc4b-e6cc-423b-8268-7e61a8d6d0e0": "yc632"
       },
       "term": "M",
       "hours": {
-        "901f1ad1-7de6-47d1-bd96-a780e2bc8fd4": "12 lectures + 3 practical classes",
+        "8161ad3d-1f60-47e6-b2a0-299cb6136998": "12 lectures + 3 practical classes",
         "_label": "15"
       },
       "format": "In-person lectures",
       "moodle": 254478,
       "_label": "Natural Language Processing",
       "prerequisites": {
-        "efa420e1-c023-47a5-92a9-41d53247acd9": "ArtInt",
-        "dd45734d-474e-4a01-b055-cfed4ad64838": "DataSci",
-        "1070dd5b-4870-45d9-a82d-001994f1f0a9": "ForModLang",
-        "f1133b1e-c799-4e66-b5ee-d39c00c848dd": "FoundsCS",
-        "7d3af389-c925-40ce-973b-263787bb3201": "MLRD"
+        "944fe6cd-f1a5-436d-91e5-72243e0e1ea2": "ArtInt",
+        "444b3b88-f542-4f0a-b04c-a12e983d115a": "DataSci",
+        "ab275064-f816-48af-8d84-282e1e888ce2": "ForModLang",
+        "155efff7-0573-4dcd-82d8-278fcdfe8c2c": "FoundsCS",
+        "7c74a51f-79c2-4c91-8867-f517bbbe87a7": "MLRD"
       },
       "type": "part2-unit",
       "classmax": 30,
@@ -1147,7 +1147,7 @@
         "title": "Overview of Natural Language Processing",
         "type": "masters-shared",
         "hours": {
-          "e8a65511-cc3d-48ad-82ca-e76fcf80f63f": "12 lectures and 3 x 2 hour practical sessions",
+          "cf59477f-c066-4623-858c-d85fe5a151ad": "12 lectures and 3 x 2 hour practical sessions",
           "_label": "18"
         },
         "classmax": 16,
@@ -1158,11 +1158,11 @@
     },
     "OptComp": {
       "lecturer": {
-        "0ed4ccf4-e8d3-4d9b-8ae8-1ab87bf3bf43": "tmj32",
-        "eb5d9ced-c75c-43ec-ad69-484c8d6f15e9": "tcg40"
+        "47b12be4-0c53-4884-a7b3-84cecc3c61e5": "tmj32",
+        "c1caa73b-7a0a-4003-9735-e8c023c3cee6": "tcg40"
       },
       "classes": {
-        "f6c8f8ff-cd6f-4bcc-bfd9-29b7f617b3db": "part2"
+        "5175707e-4139-47d0-b72b-310112093f56": "part2"
       },
       "term": "L",
       "hours": 16,
@@ -1171,13 +1171,13 @@
       "supervision_hours": 4,
       "_label": "Optimising Compilers",
       "prerequisites": {
-        "5f094af2-d9af-44e5-b8d2-203b52e288c4": "CompConstr"
+        "a597864c-ebe5-4d8f-b929-4e8488eeb094": "CompConstr"
       }
     },
     "PrincComm": {
       "lecturer": "jac22",
       "classes": {
-        "84070673-15ca-47f7-913b-f2b8ae5716c2": "part2"
+        "296c63fa-315d-4bce-8555-ae8c8a40466c": "part2"
       },
       "term": "M",
       "hours": 16,
@@ -1186,17 +1186,17 @@
       "supervision_hours": 4,
       "_label": "Principles of Communications",
       "prerequisites": {
-        "400b32cf-60d3-4aa9-be41-2980155b9fad": "CompNet",
+        "31d72a6e-6cb4-4360-a0e3-c1df0fe1af2a": "CompNet",
         "_label": "This course may be useful for the Part III course on Network Architectures.\\r\\nUseful related courses: Computer Systems Modelling, Information Theory, Digital Signal Processing"
       }
     },
     "QuantComp": {
       "lecturer": {
-        "c0ac0914-0807-48b2-9f30-26a0e4dd1cc9": "sjh227",
-        "a3ae66ef-07c3-420f-86e8-4c39f64f3578": "pm830"
+        "e118ffe6-427b-47ff-b24e-e74238b28005": "sjh227",
+        "b7142df9-ccdd-4113-968b-cc97ab3f86c1": "pm830"
       },
       "classes": {
-        "6196700c-030a-4ef3-a9eb-9348c3c79d04": "part2"
+        "6a4f4f3a-d513-4ffe-a3e8-4b903a6709d1": "part2"
       },
       "term": "L",
       "hours": 16,
@@ -1205,14 +1205,14 @@
       "supervision_hours": 4,
       "_label": "Quantum Computing",
       "prerequisites": {
-        "001dffb4-fcb3-4904-9983-aa1b3a5c9d5a": "CompTheory",
-        "9e762535-f692-40aa-b07f-57d277d348b6": "DataSci"
+        "582d011f-ba4e-4440-8c53-39ecd040ac4a": "CompTheory",
+        "9592af6d-7934-4b77-86f5-cb6f34f3cfed": "DataSci"
       }
     },
     "RandAlgthm": {
       "lecturer": "tms41",
       "classes": {
-        "9777ce59-bd26-4abe-9eee-3e187f8d01c5": "part2"
+        "785bc511-257b-4edc-8a3c-c62e6960c4d0": "part2"
       },
       "term": "L",
       "hours": 12,
@@ -1221,16 +1221,16 @@
       "supervision_hours": 3,
       "_label": "Randomised Algorithms",
       "prerequisites": {
-        "c7c95bd5-826a-4207-a818-3a39759b9fae": "Algorithm1",
-        "c216925b-283e-4d4d-9ea8-891039c8ebb6": "Algorithm2",
-        "4a0cfb48-eac9-42ac-a80f-ebe7da6fb616": "FoundsCS",
-        "03bbf23d-c509-4484-802d-241b783cdb40": "IntroProb"
+        "45736945-980e-409c-a41e-eea4c813d2fe": "Algorithm1",
+        "bcfb8228-5f04-4dca-9884-bb34fb406255": "Algorithm2",
+        "c2391d64-0e63-45e6-981c-f17f0481dfa2": "FoundsCS",
+        "935f43e4-56c6-4daa-9db8-b6be9b04e142": "IntroProb"
       }
     },
     "TeX+Julia": {
       "lecturer": "mgk25",
       "classes": {
-        "20ba21c4-e4b1-4f52-86ee-275b5a1649e0": "part2"
+        "f210ee57-9105-46dc-bde9-8611acc4d23d": "part2"
       },
       "term": "M",
       "hours": 2,
@@ -1243,7 +1243,7 @@
     "Types": {
       "lecturer": "nk480",
       "classes": {
-        "39e45a43-5216-4741-bd40-b83d4e27e838": "part2"
+        "c7e75b5d-4af2-4b62-a267-014abef99ba5": "part2"
       },
       "term": "M",
       "hours": 12,
@@ -1252,34 +1252,34 @@
       "supervision_hours": 3,
       "_label": "Types",
       "prerequisites": {
-        "e3162dfe-c488-4d8c-858a-8afc7d3554d4": "CompTheory",
-        "785cbbfc-22cb-4bda-840b-751dfc63d6f1": "Semantics"
+        "85c8352d-04ab-417b-bc5f-35a4f2d5daa6": "CompTheory",
+        "eb7be885-cef1-4de1-ba2f-a389ac7505ef": "Semantics"
       }
     },
     "L118": {
       "lecturer": "jv258",
       "classes": {
-        "f843ccd4-2113-4564-aacb-084a3673bfaf": "acs",
-        "144067e1-ba06-4d81-9d54-cd4038500932": "part3"
+        "ed241e21-3a3c-47fa-a730-39f6a98dc337": "acs",
+        "425ec918-d9ab-49c1-8bad-64714435b7dd": "part3"
       },
       "term": "L",
       "hours": 16,
       "moodle": 254948,
       "_label": "Advanced Topics in Category Theory",
       "prerequisites": {
-        "29c36693-c31b-48c8-9da8-ded2bd640acb": "L108"
+        "9a4a6058-be82-4daa-b67c-8bd03e542065": "L108"
       },
       "synopsis": "The module will introduce advanced topics in category theory. The aim is to train students to engage and start modern research on the mathematical foundations of higher categories, the graphical calculus, monoids and representations, type theories, and their applications in theoretical computer science, both classical and quantum."
     },
     "L130": {
       "lecturer": "tg508",
       "classes": {
-        "da082e1b-5716-4e61-a00e-f9e37cfd1287": "acs",
-        "90400688-e770-4ec3-9651-e6a75c35ff2a": "part3"
+        "a8831d03-ad65-405a-a1b5-fc3d65098418": "acs",
+        "c8aea7da-8a5c-4e41-81f3-20933c756a68": "part3"
       },
       "term": "M",
       "hours": {
-        "fb06f2db-09a8-4cab-94f5-dadf6aecb1e5": "8x1-hour lectures and 8x1-hour seminars",
+        "91f52683-5a1a-40ce-9f15-7f89e9d704a8": "8x1-hour lectures and 8x1-hour seminars",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1292,12 +1292,12 @@
     "L132": {
       "lecturer": "pm830",
       "classes": {
-        "cc13dafa-1e40-4b65-94b7-1ef069c0aad6": "acs",
-        "cbb26d81-34ed-43dd-958e-1f5ad778d9a7": "part3"
+        "dfab2c07-d2d3-4979-8550-9c0339c0f360": "acs",
+        "853b041b-c930-4687-8a4f-1d6ec856d478": "part3"
       },
       "term": "M",
       "hours": {
-        "b3f6f794-87ba-43d4-b801-8111b96fc443": "8hrs lectures, 8hrs seminars",
+        "c8108cd0-eee2-405c-bc86-42539e665067": "8hrs lectures, 8hrs seminars",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1310,12 +1310,12 @@
     "L193": {
       "lecturer": "mj201",
       "classes": {
-        "0ac67288-0874-44a2-bc50-60f6cc519e96": "acs",
-        "58a7caba-21e1-46a3-b414-37dd311f04bc": "part3"
+        "105fe94b-3e10-47ca-9c59-6bb407140d09": "acs",
+        "eaeca156-dea6-436e-b4cc-d09914cd5ef2": "part3"
       },
       "term": "L",
       "hours": {
-        "614b00fe-6d65-45a4-bf48-4f4f9fff0125": "6hrs lectures; 6 hrs presentations;4hrs practicals",
+        "05d7f429-f672-4b75-aa65-854148d49cbf": "6hrs lectures; 6 hrs presentations;4hrs practicals",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1323,8 +1323,8 @@
       "_label": "Explainable Artificial Intelligence",
       "prerequisites": "A solid background in statistics, calculus and linear algebra. We strongly recommend some experience with machine learning and deep neural networks (to the level of the first chapters of Goodfellow et al.’s “Deep Learning”). Students are expected to be comfortable reading and writing Python code for the module’s practical sessions.",
       "contributor": {
-        "d4778aec-a0c1-4e39-9b67-6bfc80b8be41": "me466",
-        "8d13f344-305a-44b3-87cd-f9837983e4d0": "zs315"
+        "001d252f-64d7-41ad-aaa8-dad712cfa38f": "me466",
+        "9feb5da7-246e-4947-b1f8-8bc57d88cbd7": "zs315"
       },
       "classmax": 20,
       "synopsis": "The recent palpable introduction of Artificial Intelligence (AI) models to everyday consumer-facing products, services, and tools brings forth several new technical challenges and ethical considerations. Amongst these is the fact that most of these models are driven by Deep Neural Networks (DNNs), models that, although extremely expressive and useful, are notoriously complex and opaque. This “black-box” nature of DNNs limits their ability to be successfully deployed in critical scenarios such as those in healthcare and law. Explainable Artificial Intelligence (XAI) is a fast-moving subfield of AI that aims to circumvent this crucial limitation of DNNs by either (i) constructing human-understandable explanations for their predictions, or (ii) designing novel neural architectures that are interpretable by construction."
@@ -1332,19 +1332,19 @@
     "L46": {
       "lecturer": "ndl32",
       "classes": {
-        "47727eae-1443-4c18-b9dd-0045c58378cd": "acs",
-        "75bb76da-d90c-4183-a283-319247e4db16": "part3"
+        "ea51606f-473e-47f2-b195-2513d6e9b63a": "acs",
+        "98fd95d0-2cb5-48c0-8808-207e0de179e6": "part3"
       },
       "term": "M",
       "hours": {
-        "c8294b9c-f831-4b4e-ac48-7c714bc47caa": "8 × two-hour sessions",
+        "ab8aaff1-2c60-421c-a6eb-3839b9c07b60": "8 × two-hour sessions",
         "_label": "16"
       },
       "moodle": 254935,
       "_label": "Principles of Machine Learning Systems",
       "prerequisites": "It is recommended that students have successfully completed introductory courses, at an undergraduate level, in: 1) operating systems, 2) computer architecture, and 3) machine learning. In addition, this course will heavily focus on deep neural network methodologies and assume familiarity with common neural architectures and related algorithms. If these topics were not covered within the machine learning course taken, students should supplement by reviewing material in a book like: \"Dive into Deep Learning\". Finally, students are assumed to be comfortable with programming in Python.",
       "contributor": {
-        "b0e32b25-d189-42d5-a52b-1cbf0e6b33ce": "tmdp2"
+        "138a1ec5-6722-493d-b686-619c20bb45a3": "tmdp2"
       },
       "classmax": 30,
       "synopsis": "This course will examine the emerging principles and methodologies that underpin scalable and efficient machine learning systems. Primarily, the course will focus on an exciting cross-section of algorithms and system techniques that are used to support the training and inference of machine learning models under a spectrum of computing systems that range from constrained embedded systems up to large-scale distributed systems. It will also touch up the new engineering practices that are developing in support of such systems at scale. When needed to appreciate issues of scalability and efficiency, the course will drill down to certain aspects of computer architecture, systems software and distributed systems and explore how these interact with the usage and deployment of state-of-the-art machine learning."
@@ -1352,8 +1352,8 @@
     "L48": {
       "lecturer": "ndl21",
       "classes": {
-        "1064fd1b-6030-480a-9847-e82acd0dfb2b": "acs",
-        "f127740a-e3d7-4a21-ac01-97e6659ecf65": "part3"
+        "68fae414-30a4-4c33-ade8-ca5300207a5d": "acs",
+        "c24b9f76-1fa7-4a64-afec-dc510f097419": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1361,7 +1361,7 @@
       "_label": "Machine Learning and the Physical World",
       "prerequisites": "A good background in statistics, calculus and linear algebra. A machine learning module such as Machine Learning and Bayesian Inference (https://www.cst.cam.ac.uk/teaching/2021/MLBayInfer) or equivalent is highly recommended.",
       "contributor": {
-        "b429009f-675c-4ee5-a61d-056334da7a45": "che29"
+        "944dc2eb-d5ed-4fc7-b886-e1dd6e40d78e": "che29"
       },
       "classmax": 30,
       "synopsis": "The module “Machine Learning and the Physical World” is focused on machine learning systems that interact directly with the real world. Building artificial systems that interact with the physical world have significantly different challenges compared to the purely digital domain. In the real world data is scares, often uncertain and decisions can have costly and irreversible consequences. However, we also have the benefit of centuries of scientific knowledge that we can draw from. This module will provide the methodological background to machine learning applied in this scenario. We will study how we can build models with a principled treatment of uncertainty, allowing us to leverage prior knowledge and provide decisions that can be interrogated."
@@ -1369,12 +1369,12 @@
     "L50": {
       "lecturer": "awm22",
       "classes": {
-        "fbb2fae5-f54b-436b-8c95-3d6e04b732d6": "acs",
-        "5abbec66-1578-438c-afb2-47b9a0e3d8cd": "part3"
+        "060cf5e8-9f49-450e-85c8-4aa20d2d7f78": "acs",
+        "6c9cfb83-2511-444a-8888-0409a845eda4": "part3"
       },
       "term": "M",
       "hours": {
-        "bb995641-229f-4d93-a721-5b5b2f76113a": "6 hrs lectures + 10 hrs supervised laboratory",
+        "4dc74861-353c-4a2a-ad12-2e4fdf1abb4f": "6 hrs lectures + 10 hrs supervised laboratory",
         "_label": "16"
       },
       "moodle": 254938,
@@ -1385,16 +1385,16 @@
     },
     "L65": {
       "lecturer": {
-        "b6235d53-8eba-4ee3-9413-dc87bacd9404": "pl219",
-        "0cff7fa8-b49f-4e0e-a04c-468bea5586bc": "pv273"
+        "0abdcf77-ec87-4c71-b62f-133a2d20295b": "pl219",
+        "3c4d6237-6a34-49b1-b57c-5b89be05c438": "pv273"
       },
       "classes": {
-        "50b80fe1-81cf-4877-8134-35cbaf24d37a": "acs",
-        "be05564f-17a8-4af0-9030-9f9079c9d781": "part3"
+        "8661fcc5-147f-40fd-82c5-bb729172b728": "acs",
+        "0a51ad08-b830-440e-841b-6b4fd71d5e2b": "part3"
       },
       "term": "L",
       "hours": {
-        "aba2af29-717d-4e1d-9688-44592f846a26": "12hrs lectures + 4hrs practicals",
+        "6da17c52-d60a-40b9-80ff-4f2ef4eb5393": "12hrs lectures + 4hrs practicals",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1406,13 +1406,13 @@
     },
     "L81": {
       "lecturer": {
-        "f2f05255-28ed-44b8-92c2-46c925cd4f18": "tb592",
-        "7a38f362-642e-4db9-a820-bb7da8c894fc": "mgapb2",
-        "995ad394-a64e-4ae7-b003-8248a42381a4": "pes20"
+        "ccd2e2b0-a3a5-4e41-b3a1-b81593afba46": "tb592",
+        "d84ac130-5024-49be-8a4c-512976a28f1e": "mgapb2",
+        "995a5efc-5be1-4b95-8940-375e0b320fd8": "pes20"
       },
       "classes": {
-        "169eb20b-9d33-4fde-9b18-3f215e6e272d": "acs",
-        "96de6d1a-a940-485e-a30d-347af2dc9635": "part3"
+        "fc5c122e-2c85-4342-ab78-4fa302b77792": "acs",
+        "7b4a2dd4-c8fd-4a36-92f7-7f3c79d93e98": "part3"
       },
       "term": "M",
       "format": "In-person lectures",
@@ -1424,8 +1424,8 @@
     "L95": {
       "lecturer": "pjb48",
       "classes": {
-        "b7f69326-ae17-466b-af9b-176da35eca1d": "acs",
-        "293152ac-6f35-43d8-af23-dc3cde1d6c80": "part3"
+        "0995ca91-9891-4b5e-b6d1-b5e442da6348": "acs",
+        "34cba7be-4b31-450b-9fe1-29379911bcc3": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1438,12 +1438,12 @@
     "L98": {
       "lecturer": "ws390",
       "classes": {
-        "f0823ca8-85f8-4352-b565-dd937a89290a": "acs",
-        "07a741b9-fe4d-46d9-8f67-d8f891aae7d7": "part3"
+        "f1f60d0d-8068-48ef-9555-5bacc9f5ffb3": "acs",
+        "92b1d5bc-239a-418d-ab7f-78a66360a033": "part3"
       },
       "term": "M",
       "hours": {
-        "c84d98f3-9c82-4eaa-bf1b-b89e8c7e0cb0": "8 x 2 hour lectures",
+        "b26cada3-a7e1-4a7f-bbfb-5653c68da451": "8 x 2 hour lectures",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1455,12 +1455,12 @@
     "P56": {
       "lecturer": "awm22",
       "classes": {
-        "a580a5c2-8c3d-490c-8a05-db2c5ab46eb6": "acs",
-        "6fba56fa-b3c5-4a52-bae7-4054109bd5c9": "part3"
+        "b0c0a5ab-1057-45b6-9bb2-2e26e4a5495a": "acs",
+        "4175936c-dc76-469d-b4c1-c72d2e91f6ce": "part3"
       },
       "term": "L",
       "hours": {
-        "e74c6c86-55ca-4527-8634-390b313a94d6": "(8 x 2hrs first half lecture, second half lab)",
+        "0abf9056-8fc6-427f-8b9d-45da380e908f": "(8 x 2hrs first half lecture, second half lab)",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1473,12 +1473,12 @@
     "P79": {
       "lecturer": "mk428",
       "classes": {
-        "03a2d28b-4a74-44b8-b34f-453c44f1e08d": "acs",
-        "aba7a526-8e3f-4230-ac80-de46cdff648c": "part3"
+        "393fb966-b7a2-428c-b5ad-b2c9fc6b433b": "acs",
+        "c779c43e-314b-4328-b85a-77ac076237f5": "part3"
       },
       "term": "L",
       "hours": {
-        "8bd8911e-76b8-4102-b14a-4cbfcf0ee1a7": "8 hours lectures + 8 hours practicals",
+        "2b65bc08-11b6-407b-a75f-1be32c2554f6": "8 hours lectures + 8 hours practicals",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1486,19 +1486,19 @@
       "_label": "Cryptography and Protocol Engineering",
       "prerequisites": "Part II Cryptography or similar, Discrete Mathematics",
       "contributor": {
-        "c6701aa9-e5e0-4cec-9b0d-8bf59ae30273": "dh623"
+        "cd0a5e57-4e4f-4841-9b1f-ed3210a66081": "dh623"
       },
       "classmax": 16,
       "synopsis": "We all use cryptographic protocols every day: whenever we access an https:// website or send a message via WhatsApp or Signal, for example. In this module, students will get hands-on experience of how those protocols are implemented. We start by writing our own secure messaging protocol from scratch, and then move on to more advanced examples of cryptographic protocols for security and privacy, such as private information retrieval (searching for data without revealing what you’re searching for)."
     },
     "R01": {
       "lecturer": {
-        "9c86f4e0-4e01-47bc-a5c7-7c92589b2bf2": "rmm1002",
-        "47566fb4-631d-48bc-acf2-be4f38e1c0bd": "rk647"
+        "2f8cf820-0c7b-4c72-bf6b-999b2b906378": "rmm1002",
+        "0c9e4ea4-74c9-421e-acf6-72e79cb87e64": "rk647"
       },
       "classes": {
-        "7b984399-ed64-44a7-a61a-84b90299f186": "acs",
-        "295d038c-37b2-482e-8614-0d5c43285e41": "part3"
+        "ce90fca6-a6c8-4ee6-b81e-b30d844a69ac": "acs",
+        "588d94e5-15f9-42f8-bcd9-7787ade2b3d4": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -1510,8 +1510,8 @@
     "R02": {
       "lecturer": "jac22",
       "classes": {
-        "9b9c8758-97b8-4027-9622-b817502b22e3": "acs",
-        "731c3a5c-3edd-4f19-a65d-353a22eff291": "part3"
+        "c9fc3ca4-8720-40b4-b751-80df89806675": "acs",
+        "5712a498-317d-4f97-83a8-836f63c8f920": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1523,12 +1523,12 @@
     },
     "R160": {
       "lecturer": {
-        "805b9b45-8a39-461b-bbc8-0fe15e2987f4": "fms27",
-        "64a9b904-a8cb-49f7-bc82-01b91bf0df6f": "fs105"
+        "6be822ac-b83f-47b1-b147-529f76527fbc": "fms27",
+        "37398d3b-f7bc-4a32-b960-04adcd9dce11": "fs105"
       },
       "classes": {
-        "5bbdacc6-473d-4c9c-ae5e-a16b3ff17d76": "acs",
-        "70b6e6d1-00e2-4cdb-ad41-b02eaee88256": "part3"
+        "d32015be-ee5b-4437-b414-945da0a0c07b": "acs",
+        "b2f4d91e-d2f0-4eb7-bea0-2797323968ad": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1541,12 +1541,12 @@
     "R171": {
       "lecturer": "ra702",
       "classes": {
-        "766fec8a-8d99-42c6-aa1d-177d39d8a23e": "acs",
-        "ce5d34ad-b93b-4d24-81f5-d84929183cc4": "part3"
+        "a758b202-4000-425b-8c87-8d2c01d3a7c0": "acs",
+        "4b9b5859-0ce1-4375-bc63-5832a7021e4b": "part3"
       },
       "term": "L",
       "hours": {
-        "02c0947b-eb42-49aa-9b03-146463dc0d91": "8 x two-hour seminars",
+        "d4b96ff1-e10e-429b-ac9a-0674c56bd613": "8 x two-hour seminars",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1558,12 +1558,12 @@
     "R181": {
       "lecturer": "asp45",
       "classes": {
-        "a4e670ae-515a-4f14-96e8-7ad7bb0bdc4a": "acs",
-        "73e95e7d-32b0-4f7d-b4c5-4624233f4086": "part3"
+        "8be5796a-0f09-48b9-a74d-160fbcce6bed": "acs",
+        "37c74b49-73a9-4265-8034-f775fdb20c25": "part3"
       },
       "term": "L",
       "hours": {
-        "a11bc29a-9c81-405b-b000-6d3adc0aa879": "8 x 1 hour lectures; 8 x 1 hour reading groups",
+        "8f11820e-13c7-4ce4-915b-8877fc0fc00e": "8 x 1 hour lectures; 8 x 1 hour reading groups",
         "_label": "16"
       },
       "format": "In-person lectures",
@@ -1576,8 +1576,8 @@
     "R225": {
       "lecturer": "afb21",
       "classes": {
-        "1314922a-4446-40fb-a422-2d1f1aed3df7": "acs",
-        "4b30452f-d635-49a5-8919-ea12f9800982": "part3"
+        "114f5e16-d25f-4bb2-ae1a-6651a9da9240": "acs",
+        "33ee4b74-a232-47a6-a13b-9210385cbc7c": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -1586,7 +1586,7 @@
       "_label": "Theories of Socio-digital Design for Human-Centred AI",
       "prerequisites": "This course is appropriate to any ACS student, and will assist in the development of critical thinking, argument and long-form writing skills. Prior experience of essay-based humanities subjects at university or secondary school will be beneficial, but not required.",
       "contributor": {
-        "50ec83ae-1127-48d5-9497-bc45fd86f7ca": "th536"
+        "5ad87ef4-a36c-4b84-9c66-f4bad991ae4e": "th536"
       },
       "classmax": 10,
       "synopsis": "This course is based on a reading group originally developed in collaboration with the Socio-DigitalSystems group at Microsoft Research Cambridge. The objective is for computer science researchers to develop facility in discussing and critiquing the aims"
@@ -1594,8 +1594,8 @@
     "R244": {
       "lecturer": "ey204",
       "classes": {
-        "085f2b8f-6f32-4c94-864d-f5e044ef5187": "acs",
-        "91dc4f63-9322-4758-b4bc-88f810351624": "part3"
+        "96abd16e-a7ed-4dbb-b9d3-d0dad89721ae": "acs",
+        "b999af11-923f-4830-a46b-3a88d922ff17": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1606,16 +1606,16 @@
     },
     "R252": {
       "lecturer": {
-        "8cb60f53-6c5d-4247-be56-2e8d720ecfed": "fh277",
-        "3aa56076-3ee9-4aa6-917a-f0323613f664": "cm2099"
+        "406e019e-a528-4e5d-bcc2-eacfc4ca0ac9": "fh277",
+        "373bbe84-0b02-4cb2-bbeb-49106ccb2d8c": "cm2099"
       },
       "classes": {
-        "4ad67922-8757-48a6-a5e6-688a31e118ac": "acs",
-        "0c19a82c-77b0-4061-8559-40dc5d734c96": "part3"
+        "a5405c59-b0b4-4047-8469-e1dd9c05ed12": "acs",
+        "9414957b-91f8-4f5d-9a31-4a3ce3d0d633": "part3"
       },
       "term": "L",
       "hours": {
-        "fbea8070-ceb7-4f15-98be-80e2361e96ac": "8x2 hour reading group sessions",
+        "f02ec338-da98-41ac-90d6-772050633691": "8x2 hour reading group sessions",
         "_label": "16"
       },
       "moodle": 254952,
@@ -1626,12 +1626,12 @@
     },
     "R255": {
       "lecturer": {
-        "9d5c5854-a94b-4859-ba86-adadbfc99fd8": "mj201",
-        "befa311b-70c2-43ff-9e38-5a6857d283c4": "che29"
+        "895a42f1-4bfb-465c-80f3-b77e1dae1412": "mj201",
+        "4de0f2a2-3f53-4163-87c1-5c032edda470": "che29"
       },
       "classes": {
-        "f6da43a8-b2f0-42fd-9731-2b599da3465d": "acs",
-        "e1782fc6-de21-4e27-a256-350ee95fc155": "part3"
+        "b6030423-a46f-4645-9c43-3550cb7c0cac": "acs",
+        "94ef672d-5da4-48db-923a-8b7db4ccdb70": "part3"
       },
       "term": "L",
       "hours": 16,
@@ -1643,23 +1643,23 @@
     },
     "R265": {
       "lecturer": {
-        "10c23717-04d3-4659-801b-c57949f37f30": "tmj32",
-        "ac23b66a-b3a5-4ce9-913f-2323b84b9112": "rdm34"
+        "e7acc156-0775-4514-86c2-f7bf5e8c4e53": "tmj32",
+        "cf998ed4-ae61-4fcb-9a21-4473b454cf65": "rdm34"
       },
       "classes": {
-        "7cad487a-e2fb-443e-a20e-abad5b6cca89": "acs",
-        "536a945e-2b41-4786-b279-4c261a5c3223": "part3"
+        "e8317d46-04d3-4448-a51b-4982a38113af": "acs",
+        "6be21f1c-85cf-418c-8d77-140825318d55": "part3"
       },
       "term": "M",
       "hours": {
-        "c81f94bd-6277-4517-b52f-2bda9ea04392": "8 x 2-hour sessions",
+        "f210a3ff-eea3-41a4-b62e-ec2ee9dd75e4": "8 x 2-hour sessions",
         "_label": "16"
       },
       "moodle": 254943,
       "_label": "Advanced Topics in Computer Architecture",
       "prerequisites": "An undergraduate course in computer architecture. A good basic understanding of computer architecture will also suffice, e.g. provided by the Patterson and Hennessy book “The Hardware/Software Interface” and/or the early chapters of their book “Computer Architecture: A Quantitative Approach”.",
       "contributor": {
-        "243d53f2-013d-46d6-bdf6-89e2c02862c8": "jdw57"
+        "bda29ae8-9aec-4791-be3c-f6c32aa6c9be": "jdw57"
       },
       "classmax": 15,
       "synopsis": "This course aims to provide students with an introduction to a range of advanced topics in computer architecture. It will explore the current and future challenges facing the architects of modern computers. These will also be used to illustrate the many different influences and trade-offs involved in computer architecture."
@@ -1667,8 +1667,8 @@
     "R269": {
       "lecturer": "cm542",
       "classes": {
-        "3862460a-1e43-49ca-87de-a0eade319904": "acs",
-        "e968f898-7731-44d9-967d-a5c743e36b9f": "part3"
+        "29c8feb7-e779-49a1-9ce7-4b4d123a7bff": "acs",
+        "1bcc0c2d-51d4-4286-af69-cd8f50c65cb2": "part3"
       },
       "term": "M",
       "hours": 16,
@@ -1676,7 +1676,7 @@
       "moodle": 254944,
       "_label": "Mobile, Wearable Systems and Machine Learning",
       "contributor": {
-        "89f6525d-6c1e-4e22-9b3b-8c2a43d44a2c": "yl868"
+        "a99b5269-2b8a-4c36-a9b1-dba3862d78e2": "yl868"
       },
       "classmax": 22,
       "synopsis": "This module aims to introduce the latest research advancements in mobile systems and mobile data machine learning, spanning a range of domains including systems, data gathering, analytics and machine learning, on device machine learning and applications such as health, transportation, behaviour monitoring, cyber-physical systems, autonomous vehicles, drones. The course will cover current and seminal research papers in the area of research."
@@ -1684,12 +1684,12 @@
     "R277": {
       "lecturer": "jdy22",
       "classes": {
-        "3a4750dc-fb14-4f8b-b813-b0ebd001a544": "acs",
-        "deb386d7-d786-4fb7-bfac-55e5ae7faaa0": "part3"
+        "b4fc8676-4b67-407e-b6a5-c4cc987851d3": "acs",
+        "b7d5cf25-a5eb-4ce5-92ce-77f660fc80ca": "part3"
       },
       "term": "M",
       "hours": {
-        "e8fce6b1-4b08-4856-82d1-2999ae67854e": "8 x 2hrs lectures",
+        "7c8402e5-e8cd-4a7c-a29c-a4fe86ad4c31": "8 x 2hrs lectures",
         "_label": "16"
       },
       "format": "In-person seminars",
@@ -1702,8 +1702,8 @@
     "R47": {
       "lecturer": "sk818",
       "classes": {
-        "a8095bc7-a5d3-41e2-9def-1f1ff0e96fb1": "acs",
-        "db5f143f-d583-4704-8b6d-21840c4b8a07": "part3"
+        "5caccbfd-6a86-4e98-bd6f-0f44a1ffcee7": "acs",
+        "c2f4ff77-9c03-463d-bf50-af144b0e2097": "part3"
       },
       "term": "L",
       "_label": "Distributed Ledger Technologies: Foundations and Applications",
@@ -1880,7 +1880,7 @@
     "nz247": "Dr Noa Zilberman",
     "ok259": "Dr Ohad Kammar",
     "others": {
-      "e07c952b-a942-4226-81cb-aa94faa242e0": "url",
+      "3017e821-ebc3-4bbe-a355-55ccf1de1e85": "url",
       "_label": " (and others)"
     },
     "pat40": "Dr Paul Taylor",
@@ -1947,7 +1947,7 @@
     "swm11": "Prof Simon Moore",
     "tb592": "Dr Thomas Bauereiss",
     "tbc": {
-      "7fe7162f-22d9-4860-8227-bad0a6943029": "url",
+      "1d6f1d33-ef7e-4787-a589-4017bb569768": "url",
       "_label": "(to be confirmed)"
     },
     "tcg40": "Dr Tobias Grosser",
@@ -1977,12 +1977,12 @@
     "masters-nfc": {
       "assessmentpage": 0,
       "classes": {
-        "053a1438-3014-4547-b438-f18ce816a17c": "acs",
-        "3fd03d7e-9830-4256-a4ec-61876759f252": "part3"
+        "c91da2c0-c3c2-48b7-89a7-7d9125adb8fd": "acs",
+        "1830c931-dcb6-482d-bb0a-587e1783b292": "part3"
       },
       "heading": "Not-for-credit modules",
       "syllabus-footnote": {
-        "7de3d2e4-1034-4514-8687-a3d3ae1435b9": "This module is offered as background for some Lent Term ACS modules but cannot be taken for credit.",
+        "f5129d63-db5f-4928-a577-67159e6d69c7": "This module is offered as background for some Lent Term ACS modules but cannot be taken for credit.",
         "_label": "*p"
       },
       "_label": "Masters module, not for credit"
@@ -1990,8 +1990,8 @@
     "masters-nfc-shared": {
       "assessmentpage": 0,
       "classes": {
-        "8893399c-5a39-45ed-926a-df77c80cc020": "acs",
-        "8684843c-0b93-4d62-8d19-3eb735d70152": "part3"
+        "433c10e8-5c3e-47fd-a3e1-3f04ca1706bc": "acs",
+        "b1738deb-99e0-457c-8a26-33d0ba5f7fd0": "part3"
       },
       "heading": "Not-for-credit modules",
       "materials": "clone",
@@ -1999,13 +1999,13 @@
       "supervisions": 0,
       "syllabus": "clone",
       "syllabus-footnote": {
-        "54176443-9735-4024-88a0-2926cb729f90": "This course is borrowed from ",
-        "e0167afc-cd33-4431-8beb-db5ea37fae6c": {
+        "2cd09fe9-0a65-4a45-934d-fa0804b89472": "This course is borrowed from ",
+        "afeac147-cac2-4581-8014-75693841cd23": {
           "href": "../part2.html",
-          "549675e2-b0c0-41c8-8f13-c97eff3d777e": "Part II of the Computer Science Tripos",
+          "4fb6d5c3-c001-4a45-ab42-1bd3c9a9cd78": "Part II of the Computer Science Tripos",
           "_label": "*a"
         },
-        "e6308408-9dc5-4b9f-b5a6-eea0622a319c": ". This module is offered as background for some Lent Term ACS modules but cannot be taken for credit.",
+        "53a89cec-3c39-484d-bc76-063eb6280433": ". This module is offered as background for some Lent Term ACS modules but cannot be taken for credit.",
         "_label": "*p"
       },
       "triposexam": 0,
@@ -2014,35 +2014,35 @@
     "masters-shared": {
       "assessmentpage": 1,
       "classes": {
-        "173e9f20-bda6-4d39-8f25-cfda26eaec7f": "acs",
-        "eff1ba60-b1aa-4664-a664-9415a19e4f23": "part3"
+        "9e5f346f-17e3-467d-84eb-bad164f4805d": "acs",
+        "fefafaac-4a4c-47e2-bb69-a66a93eb5625": "part3"
       },
-      "abb81848-97ee-4de7-809e-0b758e7546c7": "heading",
+      "eb129ef7-7175-45e2-9664-8d1e6bff303f": "heading",
       "materials": "clone",
       "recordings": "clone",
       "supervisions": 0,
       "syllabus": {
-        "1f5138ea-2d6c-492b-9806-ae9812e66679": "clone",
-        "0c1a4ed4-bffa-4282-b5fb-42d5cfa6783c": {
+        "5bd03e92-576e-417e-8d75-45973a1347f6": "clone",
+        "e99b229b-7245-4794-9ee3-4ce441f2832f": {
           "url": "http://webadmin.cst.cam.ac.uk/teaching/course/%m/%s/%s_%m_syllabus.html",
-          "fcb1dbb3-7109-44e1-ac7c-161532b9bf9e": "syllabus-html",
+          "24761c61-c31a-4b49-b3da-35adbd75c049": "syllabus-html",
           "_label": "htmlinclude"
         }
       },
       "syllabus-footnote": {
-        "f628fc3c-e34e-44a6-b94a-6c8e598e3513": "This module is shared with ",
-        "7ab7ec02-5e9b-44ce-9a33-1ac827eb9589": {
+        "e3afff3f-3c9b-46dd-a6fc-61b30106965c": "This module is shared with ",
+        "99224a5e-6729-47b3-a529-87e37e2948f4": {
           "href": "../part2.html",
-          "c4cba92d-8a58-4f27-93e8-46d2012ba44e": "Part II of the Computer Science Tripos",
+          "a0f2b461-d711-4986-bc51-85e1c4af889e": "Part II of the Computer Science Tripos",
           "_label": "*a"
         },
-        "f64c3955-782c-4121-8186-e7be6a8d7d8b": ". Assessment will be adjusted for the two groups of students to be at an appropriate level for whichever course the student is enrolled on. ",
-        "d8c1cffe-7331-4614-8c34-0fab249441ce": {
+        "554771ef-b6d6-4cbd-8db8-d2fab9163900": ". Assessment will be adjusted for the two groups of students to be at an appropriate level for whichever course the student is enrolled on. ",
+        "e86a309e-e41d-4af9-958a-4170f0a9a12c": {
           "href": "assessment.html",
-          "e1e76345-9333-4dc2-bd93-40aecae1adc3": "Further information about assessment and practicals",
+          "4ecbbcac-0454-4b64-af88-f2a6e051d009": "Further information about assessment and practicals",
           "_label": "*a"
         },
-        "dd408fc1-b0b2-49ae-ba4a-da54faecce1d": " will follow at the first lecture.",
+        "eab0d587-42b6-42d5-bb7a-aeb6a76da049": " will follow at the first lecture.",
         "_label": "*p"
       },
       "triposexam": 0,
@@ -2051,7 +2051,7 @@
     "part2-unit": {
       "assessmentpage": 1,
       "classes": {
-        "4d5a2b35-1b58-4089-90a8-740b7fc9ce3b": "part2"
+        "754f7599-7db2-4205-b2ae-a4b2b6a1db84": "part2"
       },
       "heading": "Modules",
       "showcode": 1,

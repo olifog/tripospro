@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["scripts/report-parser/parsed.json"],
+      "url": "./scripts/report-parser/parsed.schema.json"
+    }
+  ]
+}

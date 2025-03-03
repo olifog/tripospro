@@ -66,10 +66,7 @@ const CourseSchema = z.intersection(
 
 const LecturerSchema = z.record(
   z.string(),
-  z.union([
-    z.string(),
-    z.record(z.string(), z.any())
-  ])
+  z.union([z.string(), z.record(z.string(), z.any())])
 );
 
 export const CourseDBSchema = z.intersection(

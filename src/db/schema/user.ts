@@ -29,7 +29,9 @@ export const usersRelations = relations(usersTable, ({ one, many }) => ({
     fields: [usersTable.id],
     references: [userSettingsTable.userId]
   }),
-  questionsAuthored: many(questionAuthorTable, { relationName: "questionsAuthored" }),
+  questionsAuthored: many(questionAuthorTable, {
+    relationName: "questionsAuthored"
+  }),
   userQuestionAnswers: many(userQuestionAnswerTable),
   courseYearLecturers: many(courseYearLecturerTable)
 }));

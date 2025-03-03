@@ -39,7 +39,7 @@ export function NavUser() {
   const { data: userData, isLoading: userDataLoading } =
     trpc.user.getUserByClerkId.useQuery(
       { clerkId: user?.id as string },
-      { enabled: isLoaded }
+      { enabled: isLoaded, retry: false }
     );
   const { signOut, openUserProfile } = useClerk();
 

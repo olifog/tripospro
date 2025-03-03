@@ -1,11 +1,11 @@
 import { partCache } from "./search-params";
 
-type WithSearchParams = {
+type WithSearchParams<T = { [key: string]: string }> = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-  params: Promise<{ [key: string]: string }>;
+  params: Promise<T>;
 };
 
-export const withParamsCache = <P extends WithSearchParams>(
+export const withParamsCache = <P extends WithSearchParams<unknown>>(
   Component: React.ComponentType<P>
 ) => {
   return async function WithParamsCache(props: P) {
