@@ -3,7 +3,15 @@ import { db } from "@/db";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { generateObject } from "ai";
 import { and, eq } from "drizzle-orm";
-import { model, reader } from "./index";
+import { model } from "./index";
+import { LlamaParseReader } from "@llamaindex/cloud/reader";
+import { env } from "@/env";
+
+const reader = new LlamaParseReader({
+  apiKey: env.LLAMA_CLOUD_API_KEY,
+  resultType: "markdown",
+  maxTimeout: 10000
+});
 
 import { z } from "zod";
 

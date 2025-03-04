@@ -5,19 +5,12 @@ import path from "node:path";
 import { createOpenAI } from "@ai-sdk/openai";
 import { env } from "../../src/env";
 
-import { LlamaParseReader } from "@llamaindex/cloud";
 import { digestComments } from "./comment";
 import { uploadComments } from "./comment";
 import { digestReport } from "./report";
 import { uploadReport } from "./report";
 import { digestSummary } from "./summary";
 import { uploadSummary } from "./summary";
-
-export const reader = new LlamaParseReader({
-  apiKey: env.LLAMA_CLOUD_API_KEY,
-  resultType: "markdown",
-  maxTimeout: 10000
-});
 
 const openai = createOpenAI({
   compatibility: "strict",
@@ -64,10 +57,6 @@ const years = () => {
 };
 
 export const ingestYear = async (year: string) => {
-  if (!["2022", "2021"].includes(year)) {
-    return;
-  }
-
   const yearData = years()[year];
   if (!yearData) throw new Error(`Year ${year} not found`);
 
@@ -98,9 +87,7 @@ export const ingestYear = async (year: string) => {
     } else if (!seenUrls.has(summaryUrl)) {
       seenUrls.add(summaryUrl);
       const summaryOutput = await digestSummary(summaryUrl);
-      console.log(summaryOutput);
       await uploadSummary(year, summaryOutput);
     }
-    throw new Error("Not implemented");
   }
 };

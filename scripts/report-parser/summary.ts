@@ -1,11 +1,12 @@
-import fs from "node:fs";
 import { db } from "@/db";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
 import { generateObject } from "ai";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
-import { model, reader } from ".";
+import { model } from ".";
+
+import { fromBuffer } from "pdf2pic";
 
 const outputSchema = z.object({
   results: z.record(
@@ -24,15 +25,20 @@ const outputSchema = z.object({
 
 export const digestSummary = async (summaryUrl: string) => {
   const summaryPdf = await fetch(summaryUrl);
-  const file = new File([await summaryPdf.blob()], "summary.pdf", {
-    type: "application/pdf"
-  });
-  const fileBuffer = await file.arrayBuffer();
-  fs.writeFileSync("/tmp/summary.pdf", Buffer.from(fileBuffer));
+  const blob = await summaryPdf.blob();
+  const fileBuffer = await blob.arrayBuffer();
+  
+  const convert = fromBuffer(Buffer.from(fileBuffer), {
+    format: "png",
+    width: undefined,
+    height: undefined,
+    density: 150,
+    quality: 100
+  })
 
-  const summary = await reader.loadData("/tmp/summary.pdf");
-  const jsonOutput = summary.map((doc) => doc.toJSON());
-  console.log(jsonOutput);
+  const images = await convert.bulk(-1, {
+    responseType: "buffer"
+  })
 
   const result = await generateObject({
     model,
@@ -62,6 +68,8 @@ export const digestSummary = async (summaryUrl: string) => {
 
         The paper number should JUST be the paper number, without any other text. e.g. "1" instead of "Part IA Paper 1".
         The question number should be the question number, without any other text. e.g. "1" instead of "Question 1".
+        If there are multiple different tables for the same paper, e.g. Part II (50%) and Part IB both having a
+        Paper 7 table, you should aggregate the results into a single "7" table.
         `
       },
       {
@@ -69,12 +77,17 @@ export const digestSummary = async (summaryUrl: string) => {
         content: [
           {
             type: "text",
-            text: "Extract the exam statistics from the following document."
+            text: "Extract the exam statistics from the following images of the document."
           },
-          {
-            type: "text",
-            text: JSON.stringify(jsonOutput, null, 2)
-          }
+          ...images.reduce<{ type: "image"; image: Buffer }[]>((acc, image) => {
+            if (image.buffer) {
+              acc.push({
+                type: "image",
+                image: image.buffer
+              });
+            }
+            return acc;
+          }, [])
         ]
       }
     ]
@@ -88,7 +101,6 @@ export const uploadSummary = async (
   summaryOutput: z.infer<typeof outputSchema>["results"]
 ) => {
   console.log("Uploading summary...");
-  console.log(summaryOutput);
   for (const [paperNumber, questions] of Object.entries(summaryOutput)) {
     const paper = await db.query.paperTable.findFirst({
       where: eq(paperTable.name, paperNumber)

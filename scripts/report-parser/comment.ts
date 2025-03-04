@@ -5,7 +5,15 @@ import { questionTable } from "@/db/schema/question";
 import { generateObject } from "ai";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
-import { model, reader } from ".";
+import { model } from ".";
+import { LlamaParseReader } from "@llamaindex/cloud/reader";
+import { env } from "@/env";
+
+const reader = new LlamaParseReader({
+  apiKey: env.LLAMA_CLOUD_API_KEY,
+  resultType: "text",
+  maxTimeout: 10000
+});
 
 const outputSchema = z.object({
   comments: z.record(z.string(), z.record(z.string(), z.string()))
@@ -74,7 +82,6 @@ export const uploadComments = async (
   commentsOutput: z.infer<typeof outputSchema>["comments"]
 ) => {
   console.log("Uploading comments...");
-  console.log(commentsOutput);
   for (const [paperNumber, questions] of Object.entries(commentsOutput)) {
     const paper = await db.query.paperTable.findFirst({
       where: eq(paperTable.name, paperNumber)
