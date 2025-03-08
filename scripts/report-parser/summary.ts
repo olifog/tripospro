@@ -27,18 +27,18 @@ export const digestSummary = async (summaryUrl: string) => {
   const summaryPdf = await fetch(summaryUrl);
   const blob = await summaryPdf.blob();
   const fileBuffer = await blob.arrayBuffer();
-  
+
   const convert = fromBuffer(Buffer.from(fileBuffer), {
     format: "png",
     width: undefined,
     height: undefined,
     density: 150,
     quality: 100
-  })
+  });
 
   const images = await convert.bulk(-1, {
     responseType: "buffer"
-  })
+  });
 
   const result = await generateObject({
     model,

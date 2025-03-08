@@ -14,23 +14,27 @@ export const SplitQuestionLayout = ({
   if (mobile) {
     return (
       <div className="flex h-full w-full flex-col gap-4">
-        {right}
         {left}
+        {right}
       </div>
     );
   }
 
   return (
-    <PanelGroup direction="horizontal">
-      <Panel defaultSize={50} minSize={50}>
-        {left}
-      </Panel>
-      <PanelResizeHandle className="ml-1 flex w-2 items-center justify-center rounded-md bg-slate-700">
-        <EllipsisVertical className="absolute h-4 w-4 text-slate-300" />
-      </PanelResizeHandle>
-      <Panel defaultSize={50} maxSize={50} minSize={20}>
-        {right}
-      </Panel>
-    </PanelGroup>
+    <div className="relative flex h-full max-h-[calc(100vh-4rem)] w-full">
+      <PanelGroup direction="horizontal" className="flex-1">
+        <Panel defaultSize={50} minSize={50}>
+          {left}
+        </Panel>
+        <PanelResizeHandle className="ml-1 flex w-2 items-center justify-center rounded-md bg-slate-700">
+          <EllipsisVertical className="absolute h-4 w-4 text-slate-300" />
+        </PanelResizeHandle>
+        <Panel defaultSize={50} maxSize={50} minSize={20} collapsible>
+          <div className="ml-1 h-full overflow-x-hidden overflow-y-scroll bg-slate-50 dark:bg-slate-950">
+            {right}
+          </div>
+        </Panel>
+      </PanelGroup>
+    </div>
   );
 };

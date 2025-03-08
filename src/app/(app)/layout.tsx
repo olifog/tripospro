@@ -1,5 +1,6 @@
 import { AppSidebar } from "@/components/layout/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SavedSidebarProvider } from "@/components/layout/sidebar-client";
+import { SidebarInset } from "@/components/ui/sidebar";
 import type { SearchParams } from "nuqs/server";
 
 interface AppLayoutProps {
@@ -12,9 +13,9 @@ export default async function AppLayout({
   searchParams
 }: AppLayoutProps) {
   return (
-    <SidebarProvider>
+    <SavedSidebarProvider>
       <AppSidebar />
       <SidebarInset>{children}</SidebarInset>
-    </SidebarProvider>
+    </SavedSidebarProvider>
   );
 }

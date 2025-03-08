@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { notFound } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorMessage } from "../error";
 import { Skeleton } from "../ui/skeleton";
@@ -14,20 +14,40 @@ const QuestionRendererInner = ({
   questionNumber
 }: { paperNumber: string; year: string; questionNumber: string }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const loadingTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [question] = trpc.question.getQuestion.useSuspenseQuery({
     paperNumber,
     year,
     questionNumber
   });
 
-  console.log(question);
-
   if (!question) {
     return notFound();
   }
 
+  useEffect(() => {
+    setIsLoading(true);
+    if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current);
+    loadingTimerRef.current = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => {
+      if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current);
+    };
+  }, [question.url]);
+
+  const handleIframeLoad = () => {
+    if (loadingTimerRef.current) {
+      clearTimeout(loadingTimerRef.current);
+      loadingTimerRef.current = null;
+    }
+    setIsLoading(false);
+  };
+
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full min-h-3/4 w-full">
       {isLoading && (
         <div className="absolute inset-0 z-40">
           <QuestionRendererSkeleton />
@@ -35,10 +55,11 @@ const QuestionRendererInner = ({
       )}
 
       <iframe
+        ref={iframeRef}
         src={question.url}
         className={cn("h-full w-full", isLoading && "hidden")}
         title="PDF Viewer"
-        onLoad={() => setIsLoading(false)}
+        onLoad={handleIframeLoad}
       >
         {question.url}
       </iframe>

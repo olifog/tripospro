@@ -3,6 +3,22 @@ import { Question } from "@/components/question";
 import { withParamsCache } from "@/lib/with-params-cache";
 import { trpc } from "@/trpc/server";
 
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{
+    paperNumber: string;
+    year: string;
+    questionNumber: string;
+  }>;
+}) {
+  const { paperNumber, year, questionNumber } = await params;
+
+  return {
+    title: `${year} P${paperNumber} Question ${questionNumber}`
+  };
+}
+
 async function QuestionPage({
   params
 }: {
@@ -15,6 +31,11 @@ async function QuestionPage({
 }) {
   const { paperNumber, year, questionNumber } = await params;
   trpc.question.getQuestion.prefetch({
+    paperNumber,
+    year,
+    questionNumber
+  });
+  trpc.question.getUserAnswers.prefetch({
     paperNumber,
     year,
     questionNumber

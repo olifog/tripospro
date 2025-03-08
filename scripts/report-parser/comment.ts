@@ -2,12 +2,12 @@ import fs from "node:fs";
 import { db } from "@/db";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
+import { env } from "@/env";
+import { LlamaParseReader } from "@llamaindex/cloud/reader";
 import { generateObject } from "ai";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { model } from ".";
-import { LlamaParseReader } from "@llamaindex/cloud/reader";
-import { env } from "@/env";
 
 const reader = new LlamaParseReader({
   apiKey: env.LLAMA_CLOUD_API_KEY,

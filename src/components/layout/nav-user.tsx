@@ -28,9 +28,11 @@ import {
   useSidebar
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { usePart } from "@/hooks/use-params";
 import { trpc } from "@/trpc/client";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { useClerk } from "@clerk/nextjs";
+import { getHrefWithPart } from "../link/_shared";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
@@ -42,6 +44,7 @@ export function NavUser() {
       { enabled: isLoaded, retry: false }
     );
   const { signOut, openUserProfile } = useClerk();
+  const [part] = usePart();
 
   if (!isLoaded || userDataLoading) {
     return (
@@ -174,7 +177,16 @@ export function NavUser() {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => signOut()}>
+              <DropdownMenuItem
+                onClick={() =>
+                  signOut({
+                    redirectUrl: getHrefWithPart(
+                      window.location.href,
+                      part ?? ""
+                    )
+                  })
+                }
+              >
                 <LogOut />
                 Log out
               </DropdownMenuItem>

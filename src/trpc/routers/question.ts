@@ -1,9 +1,12 @@
+import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperYearTable } from "@/db/schema/paper";
 import { paperTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
+import { triposPartYearTable } from "@/db/schema/tripos";
+import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
-import { baseProcedure } from "../init";
+import { baseProcedure, protectedProcedure } from "../init";
 import { createTRPCRouter } from "../init";
 
 export const questionRouter = createTRPCRouter({
@@ -21,9 +24,18 @@ export const questionRouter = createTRPCRouter({
         .from(paperTable)
         .leftJoin(paperYearTable, eq(paperTable.id, paperYearTable.paperId))
         .leftJoin(
+          triposPartYearTable,
+          eq(paperYearTable.triposPartYearId, triposPartYearTable.id)
+        )
+        .leftJoin(
           questionTable,
           eq(paperYearTable.id, questionTable.paperYearId)
         )
+        .leftJoin(
+          courseYearTable,
+          eq(questionTable.courseYearId, courseYearTable.id)
+        )
+        .leftJoin(courseTable, eq(courseYearTable.courseId, courseTable.id))
         .where(
           and(
             eq(paperTable.name, input.paperNumber),
@@ -40,8 +52,18 @@ export const questionRouter = createTRPCRouter({
       const question = questionResponse[0].question;
       if (!question) throw new Error("Question not found");
 
+      const courseName = questionResponse[0].course?.name ?? "";
+      const courseId = questionResponse[0].course?.id ?? "";
+      const paperCandidates =
+        questionResponse[0].tripos_part_year?.candidates ?? 0;
+
       if (ctx.userId) {
-        return question;
+        return {
+          ...question,
+          courseName,
+          courseId,
+          paperCandidates
+        };
       }
 
       return {
@@ -52,7 +74,116 @@ export const questionRouter = createTRPCRouter({
         url: question.url,
         solutionUrl: question.solutionUrl,
         createdAt: question.createdAt,
-        updatedAt: question.updatedAt
+        updatedAt: question.updatedAt,
+        courseName,
+        courseId,
+        paperCandidates
       };
+    }),
+  getUserAnswers: protectedProcedure
+    .input(
+      z.object({
+        paperNumber: z.string(),
+        year: z.string(),
+        questionNumber: z.string()
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const question = await ctx.db
+        .select()
+        .from(questionTable)
+        .leftJoin(
+          paperYearTable,
+          eq(questionTable.paperYearId, paperYearTable.id)
+        )
+        .leftJoin(paperTable, eq(paperYearTable.paperId, paperTable.id))
+        .where(
+          and(
+            eq(paperTable.name, input.paperNumber),
+            eq(paperYearTable.year, Number.parseInt(input.year)),
+            eq(
+              questionTable.questionNumber,
+              Number.parseInt(input.questionNumber)
+            )
+          )
+        );
+      if (question.length !== 1) throw new Error("Question not found");
+
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      const userAnswers = await ctx.db
+        .select()
+        .from(userQuestionAnswerTable)
+        .where(
+          and(
+            eq(userQuestionAnswerTable.userId, user.id),
+            eq(userQuestionAnswerTable.questionId, question[0].question.id)
+          )
+        );
+
+      return userAnswers.map((answer) => ({
+        id: answer.id,
+        timeTaken: answer.timeTaken,
+        mark: answer.mark,
+        note: answer.note,
+        createdAt: answer.createdAt
+      }));
+    }),
+  postUserAnswer: protectedProcedure
+    .input(
+      z.object({
+        questionId: z.number(),
+        timeTaken: z.number().optional(),
+        mark: z.number().optional(),
+        note: z.string().optional()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      const userAnswer = await ctx.db
+        .insert(userQuestionAnswerTable)
+        .values({
+          userId: user.id,
+          questionId: input.questionId,
+          timeTaken: input.timeTaken ?? null,
+          mark: input.mark ?? null,
+          note: input.note ?? null
+        })
+        .returning();
+
+      if (userAnswer.length !== 1)
+        throw new Error("User answer failed to insert");
+
+      return {
+        id: userAnswer[0].id
+      };
+    }),
+  deleteUserAnswer: protectedProcedure
+    .input(
+      z.object({
+        id: z.number()
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      await ctx.db
+        .delete(userQuestionAnswerTable)
+        .where(
+          and(
+            eq(userQuestionAnswerTable.id, input.id),
+            eq(userQuestionAnswerTable.userId, user.id)
+          )
+        );
     })
 });

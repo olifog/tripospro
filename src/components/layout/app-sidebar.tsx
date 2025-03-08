@@ -1,32 +1,23 @@
-import { NavMain } from "@/components/layout/nav-main";
-import { NavUser } from "@/components/layout/nav-user";
-import { PartSwitcher } from "@/components/layout/part-switcher";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail
-} from "@/components/ui/sidebar";
 import { HydrateClient, trpc } from "@/trpc/server";
+import type { Sidebar } from "../ui/sidebar";
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
+import { PartSwitcher } from "./part-switcher";
+import { SidebarClient } from "./sidebar-client";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   trpc.tripos.getTriposParts.prefetch();
 
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+    <SidebarClient
+      {...props}
+      header={
         <HydrateClient>
           <PartSwitcher />
         </HydrateClient>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+      }
+      _content={<NavMain />}
+      footer={<NavUser />}
+    />
   );
 }

@@ -1,17 +1,13 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 
-export const MarkDistributionGraph = () => {
-  // Sample data - replace with your actual data
-  const [data, setData] = useState({
-    minimum: 8,
-    maximum: 20,
-    median: 16,
-    attempts: 50
-  });
-
+export const MarkDistributionGraph = (data: {
+  minimum: number;
+  maximum: number;
+  median: number;
+  attempts: number;
+}) => {
   // State for calculated statistics
   const [stats, setStats] = useState({
     mean: 0,
@@ -84,131 +80,119 @@ export const MarkDistributionGraph = () => {
     .map((point, i) => `${i === 0 ? "M" : "L"} ${point[0]},${point[1]}`)
     .join(" ");
 
-  // Handle input changes
-  const handleInputChange = (field: string, value: string) => {
-    setData((prev) => ({ ...prev, [field]: Number(value) }));
-  };
-
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Exam Mark Distribution</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="relative h-48">
-          <svg width="100%" height="100%" viewBox="0 0 300 175">
-            {/* Gradient definition */}
-            <defs>
-              <linearGradient id="curveGradient" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.05" />
-              </linearGradient>
-            </defs>
+    <div className="relative h-32 w-full max-w-[18rem]">
+      <svg width="100%" height="100%" viewBox="-10 0 320 175">
+        {/* Gradient definition */}
+        <defs>
+          <linearGradient id="curveGradient" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.05" />
+          </linearGradient>
+        </defs>
 
-            {/* Distribution curve with fill */}
-            <path
-              d={`${pathData} L 300,150 L 0,150 Z`}
-              fill="url(#curveGradient)"
-            />
-            <path d={pathData} fill="none" stroke="#4F46E5" strokeWidth="4" />
+        {/* Distribution curve with fill */}
+        <path
+          d={`${pathData} L 300,150 L 0,150 Z`}
+          fill="url(#curveGradient)"
+        />
+        <path d={pathData} fill="none" stroke="#4F46E5" strokeWidth="4" />
 
-            {/* Bottom line */}
-            <line
-              x1="0"
-              y1="150"
-              x2="300"
-              y2="150"
-              stroke="#94A3B8"
-              strokeWidth="1"
-            />
+        {/* Bottom line */}
+        <line
+          x1="0"
+          y1="150"
+          x2="300"
+          y2="150"
+          stroke="#94A3B8"
+          strokeWidth="1"
+        />
 
-            {/* Mark vertical lines */}
-            <line
-              x1={(data.minimum / 20) * 300}
-              y1="40"
-              x2={(data.minimum / 20) * 300}
-              y2="150"
-              stroke="#94A3B8"
-              strokeWidth="1"
-              strokeDasharray="2,2"
-            />
-            <line
-              x1={(data.median / 20) * 300}
-              y1="40"
-              x2={(data.median / 20) * 300}
-              y2="150"
-              stroke="#94A3B8"
-              strokeWidth="1"
-              strokeDasharray="2,2"
-            />
-            <line
-              x1={(data.maximum / 20) * 300}
-              y1="40"
-              x2={(data.maximum / 20) * 300}
-              y2="150"
-              stroke="#94A3B8"
-              strokeWidth="1"
-              strokeDasharray="2,2"
-            />
+        {/* Mark vertical lines */}
+        <line
+          x1={(data.minimum / 20) * 300}
+          y1="40"
+          x2={(data.minimum / 20) * 300}
+          y2="150"
+          stroke="#94A3B8"
+          strokeWidth="1"
+          strokeDasharray="2,2"
+        />
+        <line
+          x1={(data.median / 20) * 300}
+          y1="40"
+          x2={(data.median / 20) * 300}
+          y2="150"
+          stroke="#94A3B8"
+          strokeWidth="1"
+          strokeDasharray="2,2"
+        />
+        <line
+          x1={(data.maximum / 20) * 300}
+          y1="40"
+          x2={(data.maximum / 20) * 300}
+          y2="150"
+          stroke="#94A3B8"
+          strokeWidth="1"
+          strokeDasharray="2,2"
+        />
 
-            {/* Axis labels */}
-            <text x="0" y="165" className="fill-gray-500 text-xs">
-              0
-            </text>
-            <text x="147" y="165" className="fill-gray-500 text-xs">
-              10
-            </text>
-            <text x="295" y="165" className="fill-gray-500 text-xs">
-              20
-            </text>
+        {/* Axis labels */}
+        <text x="-5 " y="168" className="fill-gray-500 text-md">
+          0
+        </text>
+        <text x="142" y="168" className="fill-gray-500 text-md">
+          10
+        </text>
+        <text x="290" y="168" className="fill-gray-500 text-md">
+          20
+        </text>
 
-            {/* Data point labels */}
-            <text
-              x={(data.minimum / 20) * 300 - 11}
-              y="20"
-              className="fill-gray-500 text-xs"
-            >
-              Min
-            </text>
-            <text
-              x={(data.minimum / 20) * 300 - 4}
-              y="34"
-              className="fill-gray-400 text-xs"
-            >
-              {data.minimum}
-            </text>
-            <text
-              x={(data.median / 20) * 300 - 13}
-              y="20"
-              className="fill-gray-500 text-xs"
-            >
-              Med
-            </text>
-            <text
-              x={(data.median / 20) * 300 - 7}
-              y="34"
-              className="fill-gray-400 text-xs"
-            >
-              {data.median}
-            </text>
-            <text
-              x={(data.maximum / 20) * 300 - 13}
-              y="20"
-              className="fill-gray-500 text-xs"
-            >
-              Max
-            </text>
-            <text
-              x={(data.maximum / 20) * 300 - 7}
-              y="34"
-              className="fill-gray-400 text-xs"
-            >
-              {data.maximum}
-            </text>
-          </svg>
-        </div>
-      </CardContent>
-    </Card>
+        {/* Data point labels */}
+        <text
+          x={(data.minimum / 20) * 300 - 13}
+          y="18"
+          className="fill-gray-500 text-md"
+        >
+          Min
+        </text>
+        <text
+          x={(data.minimum / 20) * 300 - 4}
+          y="34"
+          className="fill-gray-800 text-md dark:fill-gray-400"
+        >
+          {data.minimum}
+        </text>
+        <text
+          x={(data.median / 20) * 300 - 14}
+          y="18"
+          className="fill-gray-500 text-md"
+        >
+          Med
+        </text>
+        <text
+          x={(data.median / 20) * 300 - 8}
+          y="34"
+          className="fill-gray-800 text-md dark:fill-gray-400"
+        >
+          {data.median}
+        </text>
+        <text
+          x={(data.maximum / 20) * 300 - 15}
+          y="18"
+          className="fill-gray-500 text-md"
+        >
+          Max
+        </text>
+        <text
+          x={(data.maximum / 20) * 300 - 9}
+          y="34"
+          className="fill-gray-800 text-md dark:fill-gray-400"
+        >
+          {data.maximum}
+        </text>
+      </svg>
+    </div>
   );
 };
 
