@@ -9,6 +9,7 @@ import { Command } from "commander";
 import { eq } from "drizzle-orm";
 import type { z } from "zod";
 import { type CourseDBSchema, parseCourseDB } from "./coursedb-parser/parse";
+import { linkOldPapers } from "./link-old";
 import {
   type QuestionSchema,
   QuestionsSchema,
@@ -415,10 +416,21 @@ const reportsCommand = new Command("reports")
     }
   });
 
+const linkOldPapersCommand = new Command("link-old-papers")
+  .description("Create TriposPartYears for old papers")
+  .action(async () => {
+    console.log("Linking old papers to the new papers...");
+
+    await linkOldPapers();
+
+    console.log("Done!");
+  });
+
 dbCommand.addCommand(ingestCommand);
 ingestCommand.addCommand(coursedbCommand);
 ingestCommand.addCommand(questionsCommand);
 ingestCommand.addCommand(reportsCommand);
+ingestCommand.addCommand(linkOldPapersCommand);
 
 const seedCommand = new Command("seed")
   .description("Seed the database with sample data")
