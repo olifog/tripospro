@@ -1,6 +1,10 @@
 "use client";
 
-import { partSearchParam } from "@/lib/search-params";
-import { useQueryState } from "nuqs";
+import { partSearchParam, questionsFilterSearchParams } from "@/lib/search-params";
+import { useQueryState, useQueryStates } from "nuqs";
 
 export const usePart = () => useQueryState("part", partSearchParam);
+
+export const useQuestionsFilter = () => useQueryStates(questionsFilterSearchParams, {
+  clearOnDefault: false
+});

@@ -1,0 +1,126 @@
+"use client";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
+import { Link } from "../link/client";
+
+export type CourseCardData = {
+  courseId: number;
+  courseName: string;
+  courseCode: string;
+  years: {
+    year: number;
+    questions: {
+      questionNumber: number;
+      paperName: string;
+      answers?: number;
+    }[];
+  }[];
+};
+
+export const CourseCard = ({ course }: { course: CourseCardData }) => {
+  console.log(course);
+  const sortedYears = course.years.sort((a, b) => b.year - a.year);
+
+  const sortedQuestions = Object.values(
+    sortedYears.reduce(
+      (acc, year) => {
+        for (const question of year.questions) {
+          acc[`${question.paperName}-${question.questionNumber}`] = {
+            questionNumber: question.questionNumber,
+            paperName: question.paperName
+          };
+        }
+        return acc;
+      },
+      {} as Record<string, { questionNumber: number; paperName: string }>
+    )
+  ).sort(
+    (a, b) =>
+      a.paperName.localeCompare(b.paperName) ||
+      a.questionNumber - b.questionNumber
+  );
+
+  return (
+    <div className="absolute m-1 flex w-fit min-w-32 flex-col rounded-md border bg-card px-2 py-1 text-card-foreground shadow-sm">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            {course.courseCode.length > 10 ? (
+              <h2 className="w-fit font-semibold text-sm">
+                {course.courseCode.slice(0, 10).trim()}...
+              </h2>
+            ) : (
+              <h2 className="w-fit font-semibold text-sm">
+                {course.courseCode}
+              </h2>
+            )}
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{course.courseName}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <div className="flex gap-1">
+        <div className="flex flex-col gap-1 pt-[44px]">
+          {sortedQuestions.map((question) => (
+            <span
+              key={`${question.paperName}-${question.questionNumber}`}
+              className="flex h-5 w-10 items-center justify-end text-sm"
+            >
+              <span className="text-muted-foreground">p</span>
+              {question.paperName}
+              <span className="text-muted-foreground">q</span>
+              {question.questionNumber}
+            </span>
+          ))}
+        </div>
+        <div className="flex max-w-96 gap-1 overflow-x-auto">
+          {sortedYears.map((year) => (
+            <div key={year.year} className="flex flex-col gap-1">
+              <div className="relative h-10 w-5">
+                <Link href="#">
+                  <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
+                    {year.year}
+                  </span>
+                </Link>
+              </div>
+              {sortedQuestions.map((question) => {
+                const matchedQuestion = year.questions.find(
+                  (q) =>
+                    q.questionNumber === question.questionNumber &&
+                    q.paperName === question.paperName
+                );
+                if (!matchedQuestion)
+                  return (
+                    <div
+                      key={`${question.paperName}-${question.questionNumber}`}
+                      className="h-5 w-5"
+                    />
+                  );
+                return (
+                  <Link
+                    key={`${question.paperName}-${question.questionNumber}`}
+                    href={`/p/${question.paperName}/${year.year}/${question.questionNumber}`}
+                  >
+                    <div
+                      className={`h-5 w-5 rounded-md ${
+                        matchedQuestion.answers && matchedQuestion.answers > 0
+                          ? "bg-green-700"
+                          : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
+                      }`}
+                    />
+                  </Link>
+                )
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

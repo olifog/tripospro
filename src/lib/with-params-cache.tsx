@@ -1,4 +1,4 @@
-import { partCache } from "./search-params";
+import { partCache, questionsFilterCache } from "./search-params";
 
 type WithSearchParams<T = { [key: string]: string }> = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -10,6 +10,7 @@ export const withParamsCache = <P extends WithSearchParams<unknown>>(
 ) => {
   return async function WithParamsCache(props: P) {
     await partCache.parse(props.searchParams);
+    await questionsFilterCache.parse(props.searchParams);
     return <Component {...props} />;
   };
 };

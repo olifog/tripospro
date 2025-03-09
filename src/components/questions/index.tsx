@@ -1,5 +1,9 @@
 import { QuestionsGrid } from "./questions-grid";
 
 export const Questions = () => {
-  return <QuestionsGrid />;
+  return (
+    <div className="flex h-full w-full flex-col">
+      <QuestionsGrid />
+    </div>
+  );
 };

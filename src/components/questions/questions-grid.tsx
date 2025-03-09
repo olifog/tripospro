@@ -1,19 +1,137 @@
 "use client";
 
-import { usePart } from "@/hooks/use-params";
-import { defaultPartCode } from "@/lib/search-params";
+import { usePart, useQuestionsFilter } from "@/hooks/use-params";
+import { defaultPartCode, defaultQuestionsFilter } from "@/lib/search-params";
 import { trpc } from "@/trpc/client";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { MuuriGrid } from "../muuri-grid";
+import { type CourseCardData, CourseCard } from "./course-card";
 
 const QuestionsGridInner = () => {
   const [part] = usePart();
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
+  const [{ view }] = useQuestionsFilter();
 
-  console.log(questions);
-  return <div>{JSON.stringify(questions, null, 2)}</div>;
+  return (
+    <div className="relative w-full">
+      {view === "course" ? <CourseGrid /> : <PaperGrid />}
+    </div>
+  );
+};
+
+const CourseGrid = () => {
+  const [part] = usePart();
+  const [{ search, yearCutoff, onlyCurrent }] = useQuestionsFilter();
+  const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
+    part: part ?? defaultPartCode
+  });
+
+  const currentYear = useMemo(() => {
+    return questions.years.reduce((acc, year) => {
+      return Math.max(acc, year.year);
+    }, 0);
+  }, [questions.years]);
+
+  const courses = useMemo(
+    () =>
+      questions.years.reduce<Record<string, CourseCardData>>(
+        (acc, year) => {
+          if (year.year < (yearCutoff ?? defaultQuestionsFilter.yearCutoff))
+            return acc;
+
+          for (const paper of year.papers) {
+            for (const course of paper.courses) {
+              if (
+                course.courseId === null ||
+                course.courseName === undefined ||
+                course.courseCode === undefined ||
+                !paper.paperName
+              )
+                continue;
+              
+              const courseQuestions = paper.questions.reduce<{
+                questionNumber: number;
+                paperName: string;
+                answers: number | undefined;
+              }[]>((acc, question) => {
+                if (question.courseYearId === course.courseYearId) {
+                  acc.push({
+                    questionNumber: question.number,
+                    paperName: paper.paperName!,
+                    answers: question.answers
+                  });
+                }
+                return acc;
+              }, []);
+
+              if (acc[course.courseId]) {
+                if (
+                  acc[course.courseId].years.some((y) => y.year === year.year)
+                ) {
+                  acc[course.courseId].years.find(
+                    (y) => y.year === year.year
+                  )?.questions.push(...courseQuestions);
+                } else {
+                  acc[course.courseId].years.push({
+                    year: year.year,
+                    questions: courseQuestions
+                  });
+                }
+              } else {
+                acc[course.courseId] = {
+                  courseId: course.courseId,
+                  courseName: course.courseName,
+                  courseCode: course.courseCode,
+                  years: [
+                    {
+                      year: year.year,
+                      questions: courseQuestions
+                    }
+                  ]
+                };
+              }
+            }
+          }
+          return acc;
+        },
+        {} as Record<string, CourseCardData>
+      ),
+    [questions, yearCutoff]
+  );
+
+  const filteredCourses = onlyCurrent
+    ? Object.values(courses).filter((course) =>
+        course.years.some((year) => year.year === currentYear)
+      )
+    : Object.values(courses);
+  const searchFilteredCourses = search
+    ? filteredCourses.filter(
+        (course) =>
+          course.courseName.toLowerCase().includes(search.toLowerCase()) ||
+          course.courseCode.toLowerCase().includes(search.toLowerCase())
+      )
+    : filteredCourses;
+
+  return (
+    <MuuriGrid>
+      {searchFilteredCourses.map((course) => (
+        <CourseCard key={course.courseId} course={course} />
+      ))}
+    </MuuriGrid>
+  );
+};
+
+const PaperGrid = () => {
+  const [part] = usePart();
+  const [{ view }] = useQuestionsFilter();
+  const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
+    part: part ?? defaultPartCode
+  });
+
+  return <div>PaperGrid</div>;
 };
 
 export const QuestionsGrid = () => {

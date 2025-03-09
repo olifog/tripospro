@@ -1,0 +1,128 @@
+"use client";
+
+import { useQuestionsFilter } from "@/hooks/use-params";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger
+} from "../ui/collapsible";
+import { ChevronDown, Info } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { defaultQuestionsFilter } from "@/lib/search-params";
+import { useState } from "react";
+import { Label } from "@radix-ui/react-dropdown-menu";
+import { Switch } from "../ui/switch";
+import { Input } from "../ui/input";
+import {
+  TooltipContent,
+  Tooltip,
+  TooltipTrigger,
+  TooltipProvider
+} from "../ui/tooltip";
+import { Slider } from "../ui/slider";
+
+export const ViewOptions = () => {
+  const [filter, setFilter] = useQuestionsFilter();
+  const [open, setOpen] = useState(true);
+
+  return (
+    <Collapsible
+      open={open}
+      onOpenChange={setOpen}
+      className="flex flex-col gap-2"
+    >
+      <div className="flex items-center gap-8">
+        <CollapsibleTrigger className="flex cursor-pointer items-center gap-1 text-sm">
+          Options
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 transition-transform duration-200",
+              !open && "rotate-[-90deg]"
+            )}
+          />
+        </CollapsibleTrigger>
+        <div className="flex items-center gap-2">
+          <Input
+            placeholder="Search"
+            value={filter.search ?? defaultQuestionsFilter.search}
+            onChange={(e) => {
+              setFilter({
+                ...filter,
+                search: e.target.value
+              });
+            }}
+          />
+        </div>
+      </div>
+      <CollapsibleContent>
+        <div className="flex flex-wrap items-center gap-5">
+          <div className="flex items-center gap-2">
+            <Label className="text-sm">Group by:</Label>
+            <Tabs
+              value={filter.view ?? defaultQuestionsFilter.view}
+              onValueChange={(value) => {
+                if (value === "course" || value === "paper") {
+                  setFilter({
+                    ...filter,
+                    view: value
+                  });
+                }
+              }}
+            >
+              <TabsList>
+                <TabsTrigger value="course">Course</TabsTrigger>
+                <TabsTrigger value="paper">Paper</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Label className="w-[150px] text-sm">
+              Only 'current' {filter.view}s:
+            </Label>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="h-3 w-3 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    {filter.view === "course"
+                      ? `Filter to only courses that are currently taught.
+                      This will hide irrelevant old courses, but will also hide old versions of current
+                      courses that used to have a different name.`
+                      : `Only show papers that are currently taught for this Tripos Part.
+                      This will hide any old papers that used to be examined for this part.`}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <Switch
+              checked={filter.onlyCurrent ?? defaultQuestionsFilter.onlyCurrent}
+              onCheckedChange={(checked) => {
+                setFilter({ ...filter, onlyCurrent: checked });
+              }}
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Label className="text-sm">Year cutoff:</Label>
+            <span className="w-8 text-muted-foreground text-sm">
+              {filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff}
+            </span>
+            <Slider
+              className="w-24"
+              min={1993}
+              max={new Date().getFullYear()}
+              value={[filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff]}
+              onValueChange={(value) => {
+                setFilter({ ...filter, yearCutoff: value[0] });
+              }}
+            />
+          </div>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
