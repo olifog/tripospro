@@ -24,7 +24,10 @@ const outputSchema = z.object({
 });
 
 export const digestSummary = async (summaryUrl: string) => {
+  console.log("Digesting summary...");
+  console.log(summaryUrl);
   const summaryPdf = await fetch(summaryUrl);
+  console.log(summaryPdf.status);
   const blob = await summaryPdf.blob();
   const fileBuffer = await blob.arrayBuffer();
 
@@ -39,6 +42,8 @@ export const digestSummary = async (summaryUrl: string) => {
   const images = await convert.bulk(-1, {
     responseType: "buffer"
   });
+
+  console.log("Images:", images.length);
 
   const result = await generateObject({
     model,
