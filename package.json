@@ -41,7 +41,7 @@
     "@trpc/client": "11.0.0-rc.730",
     "@trpc/react-query": "11.0.0-rc.730",
     "@trpc/server": "11.0.0-rc.730",
-    "ai": "^4.1.50",
+    "ai": "^4.1.54",
     "class-variance-authority": "^0.7.1",
     "client-only": "^0.0.1",
     "clsx": "^2.1.1",
