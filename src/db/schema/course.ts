@@ -22,7 +22,6 @@ export const courseYearTable = pgTable("course_year", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   year: integer().notNull(),
   courseId: integer().references(() => courseTable.id),
-  paperYearId: integer().references(() => paperYearTable.id),
   url: varchar({ length: 255 }).notNull(),
 
   michaelmas: boolean().notNull().default(false),
@@ -45,12 +44,29 @@ export const courseYearRelations = relations(
       fields: [courseYearTable.courseId],
       references: [courseTable.id]
     }),
-    paperYear: one(paperYearTable, {
-      fields: [courseYearTable.paperYearId],
-      references: [paperYearTable.id]
-    }),
+    courseYearPaperYears: many(courseYearPaperYearTable),
     courseYearLecturers: many(courseYearLecturerTable),
     questions: many(questionTable)
+  })
+);
+
+export const courseYearPaperYearTable = pgTable("course_year_paper_year", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  courseYearId: integer().references(() => courseYearTable.id),
+  paperYearId: integer().references(() => paperYearTable.id)
+});
+
+export const courseYearPaperYearRelations = relations(
+  courseYearPaperYearTable,
+  ({ one }) => ({
+    courseYear: one(courseYearTable, {
+      fields: [courseYearPaperYearTable.courseYearId],
+      references: [courseYearTable.id]
+    }),
+    paperYear: one(paperYearTable, {
+      fields: [courseYearPaperYearTable.paperYearId],
+      references: [paperYearTable.id]
+    })
   })
 );
 

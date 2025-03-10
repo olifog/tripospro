@@ -6,7 +6,8 @@ import { trpc } from "@/trpc/client";
 import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { MuuriGrid } from "../muuri-grid";
-import { type CourseCardData, CourseCard } from "./course-card";
+import { CourseCard, type CourseCardData } from "./course-card";
+import { PaperCard, type PaperCardData } from "./paper-card";
 
 const QuestionsGridInner = () => {
   const [part] = usePart();
@@ -46,17 +47,20 @@ const CourseGrid = () => {
             for (const course of paper.courses) {
               if (
                 course.courseId === null ||
+                course.courseId === undefined ||
                 course.courseName === undefined ||
                 course.courseCode === undefined ||
                 !paper.paperName
               )
                 continue;
-              
-              const courseQuestions = paper.questions.reduce<{
-                questionNumber: number;
-                paperName: string;
-                answers: number | undefined;
-              }[]>((acc, question) => {
+
+              const courseQuestions = paper.questions.reduce<
+                {
+                  questionNumber: number;
+                  paperName: string;
+                  answers: number | undefined;
+                }[]
+              >((acc, question) => {
                 if (question.courseYearId === course.courseYearId) {
                   acc.push({
                     questionNumber: question.number,
@@ -71,9 +75,9 @@ const CourseGrid = () => {
                 if (
                   acc[course.courseId].years.some((y) => y.year === year.year)
                 ) {
-                  acc[course.courseId].years.find(
-                    (y) => y.year === year.year
-                  )?.questions.push(...courseQuestions);
+                  acc[course.courseId].years
+                    .find((y) => y.year === year.year)
+                    ?.questions.push(...courseQuestions);
                 } else {
                   acc[course.courseId].years.push({
                     year: year.year,
@@ -126,12 +130,72 @@ const CourseGrid = () => {
 
 const PaperGrid = () => {
   const [part] = usePart();
-  const [{ view }] = useQuestionsFilter();
+  const [{ search, yearCutoff, onlyCurrent }] = useQuestionsFilter();
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
 
-  return <div>PaperGrid</div>;
+  const currentYear = useMemo(() => {
+    return questions.years.reduce((acc, year) => {
+      return Math.max(acc, year.year);
+    }, 0);
+  }, [questions.years]);
+
+  const papers = useMemo(
+    () =>
+      questions.years.reduce<Record<string, PaperCardData>>((acc, year) => {
+        if (year.year < (yearCutoff ?? defaultQuestionsFilter.yearCutoff))
+          return acc;
+
+        for (const paper of year.papers) {
+          if (!paper.paperName || paper.paperId === null) continue;
+
+          const paperQuestions = paper.questions.map((question) => ({
+            questionNumber: question.number,
+            answers: question.answers
+          }));
+
+          if (acc[paper.paperId]) {
+            acc[paper.paperId].years.push({
+              year: year.year,
+              questions: paperQuestions
+            });
+          } else {
+            acc[paper.paperId] = {
+              paperId: paper.paperId,
+              paperName: paper.paperName,
+              years: [
+                {
+                  year: year.year,
+                  questions: paperQuestions
+                }
+              ]
+            };
+          }
+        }
+        return acc;
+      }, {}),
+    [questions, yearCutoff]
+  );
+
+  const filteredPapers = onlyCurrent
+    ? Object.values(papers).filter((paper) =>
+        paper.years.some((year) => year.year === currentYear)
+      )
+    : Object.values(papers);
+  const searchFilteredPapers = search
+    ? filteredPapers.filter((paper) =>
+        paper.paperName.toLowerCase().includes(search.toLowerCase())
+      )
+    : filteredPapers;
+
+  return (
+    <MuuriGrid>
+      {searchFilteredPapers.map((paper) => (
+        <PaperCard key={paper.paperId} paper={paper} />
+      ))}
+    </MuuriGrid>
+  );
 };
 
 export const QuestionsGrid = () => {

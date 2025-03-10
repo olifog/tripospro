@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import type Muuri from "muuri";
 import { useQuestionsFilter } from "@/hooks/use-params";
+import type Muuri from "muuri";
+import { useEffect, useRef } from "react";
 
 export const MuuriGrid = ({ children }: { children: React.ReactNode }) => {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -47,8 +47,8 @@ export const MuuriGrid = ({ children }: { children: React.ReactNode }) => {
           muuriRef.current = new Grid(gridRef.current, {
             dragEnabled: isWideEnough,
             layout: {
-              fillGaps: true,
-            },
+              fillGaps: true
+            }
           });
         } catch (error) {
           // console.error("Error loading Muuri:", error);

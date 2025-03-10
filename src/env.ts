@@ -8,7 +8,9 @@ export const env = createEnv({
     CLERK_SECRET_KEY: z.string(),
     CLERK_SIGNING_SECRET: z.string(),
     OPENAI_API_KEY: z.string(),
-    LLAMA_CLOUD_API_KEY: z.string()
+    LLAMA_CLOUD_API_KEY: z.string(),
+    PINECONE_API_KEY: z.string(),
+    PINECONE_HOST: z.string()
   },
 
   client: {
@@ -34,6 +36,8 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL,
     NODE_ENV: process.env.NODE_ENV,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-    LLAMA_CLOUD_API_KEY: process.env.LLAMA_CLOUD_API_KEY
+    LLAMA_CLOUD_API_KEY: process.env.LLAMA_CLOUD_API_KEY,
+    PINECONE_API_KEY: process.env.PINECONE_API_KEY,
+    PINECONE_HOST: process.env.PINECONE_HOST
   }
 });

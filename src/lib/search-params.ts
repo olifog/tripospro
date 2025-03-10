@@ -4,31 +4,31 @@ import {
   parseAsBoolean,
   parseAsInteger,
   parseAsString,
-  parseAsStringEnum,
+  parseAsStringEnum
 } from "nuqs/server";
 
 export const partSearchParam = parseAsString.withOptions({
-  shallow: false,
+  shallow: false
 });
 export const defaultPartCode = "part1a";
 
 export const getPart = () => partCache.get("part");
 export const partCache = createSearchParamsCache({
-  part: partSearchParam,
+  part: partSearchParam
 });
 
 export const questionsFilterSearchParams = {
   yearCutoff: parseAsInteger,
   onlyCurrent: parseAsBoolean,
   view: parseAsStringEnum(["course", "paper"]),
-  search: parseAsString,
+  search: parseAsString
 };
 
 export const defaultQuestionsFilter = {
   yearCutoff: 2019,
   onlyCurrent: false,
   view: "course",
-  search: "",
+  search: ""
 } as const;
 
 export const questionsFilterCache = createSearchParamsCache(
@@ -39,7 +39,7 @@ export const getQuestionsFilter = () => {
     Object.entries(questionsFilterCache.all()).map(([key, value]) => [
       key,
       value ??
-        defaultQuestionsFilter[key as keyof typeof defaultQuestionsFilter],
+        defaultQuestionsFilter[key as keyof typeof defaultQuestionsFilter]
     ])
   ) as inferParserType<typeof questionsFilterSearchParams>;
 };

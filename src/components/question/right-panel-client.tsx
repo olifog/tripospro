@@ -3,7 +3,13 @@
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronDown, ChevronRight, Loader2, Trash } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  Loader2,
+  Trash,
+  TriangleAlert
+} from "lucide-react";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Suspense, useState } from "react";
@@ -39,6 +45,14 @@ import { Skeleton } from "../ui/skeleton";
 import { Textarea } from "../ui/textarea";
 import MarkDistributionGraph from "./mark-distribution";
 import TimerComponent from "./timer";
+
+const covidWarnings: {
+  [key: string]: number[];
+} = {
+  part1a: [2021, 2022],
+  part1b: [2021, 2022],
+  part2: [2021, 2022, 2023]
+};
 
 const TitleInner = ({
   paperNumber,
@@ -105,32 +119,54 @@ export const ActionBarInner = ({
     questionNumber
   });
 
+  console.log(question.triposPartCode);
+  console.log(
+    covidWarnings[question.triposPartCode as keyof typeof covidWarnings]
+  );
+  console.log(Number.parseInt(year));
+
+  const isCovidYear = covidWarnings[
+    question.triposPartCode as keyof typeof covidWarnings
+  ]?.includes(Number.parseInt(year));
+
   return (
-    <div className="flex w-full flex-wrap items-center justify-center gap-2">
-      <Button asChild variant="outline">
-        {question.solutionUrl ? (
-          <Link href={question.solutionUrl} target="_blank">
-            Solution
+    <div className="flex w-full flex-col items-center gap-4">
+      <div className="flex w-full flex-wrap items-center justify-center gap-2">
+        <Button asChild variant="outline">
+          {question.solutionUrl ? (
+            <Link href={question.solutionUrl} target="_blank">
+              Solution
+              <ExternalLink className="h-4 w-4" />
+            </Link>
+          ) : (
+            <Button variant="outline" disabled className="cursor-not-allowed">
+              Solution
+              <ExternalLink className="h-4 w-4" />
+            </Button>
+          )}
+        </Button>
+        <Button asChild variant="outline">
+          <Link href={`${question.url}`} target="_blank">
+            CST Link
             <ExternalLink className="h-4 w-4" />
           </Link>
-        ) : (
-          <Button variant="outline" disabled className="cursor-not-allowed">
-            Solution
-            <ExternalLink className="h-4 w-4" />
-          </Button>
-        )}
-      </Button>
-      <Button asChild variant="outline">
-        <Link href={`${question.url}`} target="_blank">
-          CST Link
-          <ExternalLink className="h-4 w-4" />
-        </Link>
-      </Button>
-      <Button asChild variant="secondary">
-        <Link href={`/course/${question.courseId}`} target="_blank">
-          Course
-        </Link>
-      </Button>
+        </Button>
+        <Button asChild variant="secondary">
+          <Link href={`/course/${question.courseId}`} target="_blank">
+            Course
+          </Link>
+        </Button>
+      </div>
+      {isCovidYear && (
+        <div className="flex w-full max-w-96 items-center justify-center gap-2 rounded-md border border-orange-900 bg-orange-500/60 p-1">
+          <div className="flex h-6 w-6 items-center justify-center">
+            <TriangleAlert className="h-5 w-5 text-orange-400" />
+          </div>
+          <p className="text-foreground text-xs">
+            {year} {question.triposPartName} was open book for COVID.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

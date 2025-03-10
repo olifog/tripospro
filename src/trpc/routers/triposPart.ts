@@ -1,4 +1,4 @@
-import { triposPartTable } from "@/db/schema/tripos";
+import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { usersTable } from "@/db/schema/user";
 import { userQuestionAnswerTable } from "@/db/schema/user";
 import { eq } from "drizzle-orm";
@@ -19,22 +19,26 @@ export const triposPartRouter = createTRPCRouter({
         return user;
       })();
 
-      const questions = await ctx.db.query.triposPartTable.findMany({
-        where: eq(triposPartTable.code, input.part),
+      const triposPart = await ctx.db.query.triposPartTable.findFirst({
+        where: eq(triposPartTable.code, input.part)
+      });
+
+      const triposPartYears = await ctx.db.query.triposPartYearTable.findMany({
+        where: eq(triposPartYearTable.triposPartId, triposPart?.id ?? 0),
         with: {
-          triposPartYears: {
+          paperYears: {
             with: {
-              paperYears: {
+              paper: true,
+              questions: {
                 with: {
-                  paper: true,
-                  questions: {
-                    with: {
-                      userQuestionAnswers: {
-                        where: eq(userQuestionAnswerTable.userId, user?.id ?? 0)
-                      }
-                    }
-                  },
-                  courseYears: {
+                  userQuestionAnswers: {
+                    where: eq(userQuestionAnswerTable.userId, user?.id ?? 0)
+                  }
+                }
+              },
+              courseYearPaperYears: {
+                with: {
+                  courseYear: {
                     with: {
                       course: true
                     }
@@ -45,21 +49,19 @@ export const triposPartRouter = createTRPCRouter({
           }
         }
       });
-      if (questions.length !== 1) throw new Error("Invalid part");
-      const response = questions[0];
 
       return {
-        years: response.triposPartYears.map((year) => ({
+        years: triposPartYears.map((year) => ({
           year: year.year,
           triposPartYearId: year.id,
           papers: year.paperYears.map((paper) => ({
             paperId: paper.paperId,
             paperName: paper.paper?.name,
-            courses: paper.courseYears.map((course) => ({
-              courseId: course.courseId,
-              courseYearId: course.id,
-              courseName: course.course?.name,
-              courseCode: course.course?.code
+            courses: paper.courseYearPaperYears.map((course) => ({
+              courseId: course.courseYear?.courseId,
+              courseYearId: course.courseYear?.id,
+              courseName: course.courseYear?.course?.name,
+              courseCode: course.courseYear?.course?.code
             })),
             questions: paper.questions.map((question) => ({
               questionId: question.id,

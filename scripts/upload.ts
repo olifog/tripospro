@@ -1,5 +1,9 @@
 import { db } from "@/db";
-import { courseTable, courseYearTable } from "@/db/schema/course";
+import {
+  courseTable,
+  courseYearPaperYearTable,
+  courseYearTable
+} from "@/db/schema/course";
 import { courseYearLecturerTable } from "@/db/schema/course";
 import { paperTable } from "@/db/schema/paper";
 import { paperYearTable } from "@/db/schema/paper";
@@ -9,8 +13,13 @@ import {
   triposPartYearTable,
   triposTable
 } from "@/db/schema/tripos";
-import { usersTable } from "@/db/schema/user";
+import {
+  userQuestionAnswerTable,
+  userSettingsTable,
+  usersTable
+} from "@/db/schema/user";
 import { and, eq } from "drizzle-orm";
+import { uploadQuestionToVectorDb } from "./vectordb";
 
 const cache = {
   papers: new Map<string, typeof paperTable.$inferSelect>(),
@@ -336,7 +345,6 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
     .values({
       year: Number.parseInt(data.year),
       courseId: course.id,
-      paperYearId: paperYear.id,
       url: data.course.url,
       michaelmas: data.course.michaelmas,
       lent: data.course.lent,
@@ -363,9 +371,45 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
   return newCourseYear[0];
 };
 
+export const getOrPatchCourseYearPaperYear = async (
+  data: PatchQuestionData
+) => {
+  const paperYear = await getOrPatchPaperYear(data);
+  const courseYear = await getOrPatchCourseYear(data);
+
+  const courseYearPaperYear = await db.query.courseYearPaperYearTable.findFirst(
+    {
+      where: and(
+        eq(courseYearPaperYearTable.courseYearId, courseYear.id),
+        eq(courseYearPaperYearTable.paperYearId, paperYear.id)
+      )
+    }
+  );
+
+  if (courseYearPaperYear) {
+    return courseYearPaperYear;
+  }
+
+  const newCourseYearPaperYear = await db
+    .insert(courseYearPaperYearTable)
+    .values({
+      courseYearId: courseYear.id,
+      paperYearId: paperYear.id
+    })
+    .returning();
+
+  if (newCourseYearPaperYear.length !== 1)
+    throw new Error(
+      `Failed to create course year paper year ${courseYear.id} ${paperYear.id}`
+    );
+
+  return newCourseYearPaperYear[0];
+};
+
 export const getOrPatchQuestion = async (data: PatchQuestionData) => {
   const paperYear = await getOrPatchPaperYear(data);
   const courseYear = await getOrPatchCourseYear(data);
+  await getOrPatchCourseYearPaperYear(data);
 
   const authors = await Promise.all(
     data.authors?.map((author) =>
@@ -421,6 +465,8 @@ export const getOrPatchQuestion = async (data: PatchQuestionData) => {
       `Failed to create question ${paperYear.id} ${courseYear.id} ${data.questionNumber}`
     );
 
+  await uploadQuestionToVectorDb(newQuestion[0]);
+
   cache.questions.set(
     [paperYear.id, courseYear.id, data.questionNumber].join(":"),
     newQuestion[0]
@@ -432,7 +478,9 @@ export const resetDatabase = async () => {
   console.log("Resetting database...");
   await db.delete(questionAuthorTable);
   await db.delete(courseYearLecturerTable);
+  await db.delete(userQuestionAnswerTable);
   await db.delete(questionTable);
+  await db.delete(courseYearPaperYearTable);
   await db.delete(courseYearTable);
   await db.delete(paperYearTable);
   await db.delete(triposPartYearTable);
@@ -440,6 +488,7 @@ export const resetDatabase = async () => {
   await db.delete(paperTable);
   await db.delete(triposTable);
   await db.delete(courseTable);
+  await db.delete(userSettingsTable);
   await db.delete(usersTable);
   console.log("Database reset");
 };

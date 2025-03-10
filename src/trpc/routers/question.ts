@@ -2,7 +2,7 @@ import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperYearTable } from "@/db/schema/paper";
 import { paperTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
-import { triposPartYearTable } from "@/db/schema/tripos";
+import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
@@ -26,6 +26,10 @@ export const questionRouter = createTRPCRouter({
         .leftJoin(
           triposPartYearTable,
           eq(paperYearTable.triposPartYearId, triposPartYearTable.id)
+        )
+        .leftJoin(
+          triposPartTable,
+          eq(triposPartYearTable.triposPartId, triposPartTable.id)
         )
         .leftJoin(
           questionTable,
@@ -56,13 +60,17 @@ export const questionRouter = createTRPCRouter({
       const courseId = questionResponse[0].course?.id ?? "";
       const paperCandidates =
         questionResponse[0].tripos_part_year?.candidates ?? 0;
+      const triposPartCode = questionResponse[0].tripos_part?.code;
+      const triposPartName = questionResponse[0].tripos_part?.name;
 
       if (ctx.userId) {
         return {
           ...question,
           courseName,
           courseId,
-          paperCandidates
+          paperCandidates,
+          triposPartCode,
+          triposPartName
         };
       }
 
@@ -77,10 +85,36 @@ export const questionRouter = createTRPCRouter({
         updatedAt: question.updatedAt,
         courseName,
         courseId,
-        paperCandidates
+        triposPartCode,
+        triposPartName
       };
     }),
-  getUserAnswers: protectedProcedure
+  getQuestionWithContextById: baseProcedure
+    .input(z.object({ questionId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const question = await ctx.db.query.questionTable.findFirst({
+        where: eq(questionTable.id, input.questionId),
+        with: {
+          courseYear: {
+            with: {
+              course: true
+            }
+          },
+          paperYear: {
+            with: {
+              paper: true,
+              triposPartYear: {
+                with: {
+                  triposPart: true
+                }
+              }
+            }
+          }
+        }
+      });
+      return question;
+    }),
+  getUserAnswers: baseProcedure
     .input(
       z.object({
         paperNumber: z.string(),
@@ -109,6 +143,10 @@ export const questionRouter = createTRPCRouter({
         );
       if (question.length !== 1) throw new Error("Question not found");
 
+      if (!ctx.userId) {
+        throw new Error("User not found");
+      }
+
       const user = await ctx.db.query.usersTable.findFirst({
         where: eq(usersTable.clerkId, ctx.userId)
       });
@@ -131,6 +169,25 @@ export const questionRouter = createTRPCRouter({
         note: answer.note,
         createdAt: answer.createdAt
       }));
+    }),
+  getUserAnswersByQuestionId: baseProcedure
+    .input(z.object({ questionId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      if (!ctx.userId) throw new Error("Must be logged in");
+
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      const userAnswers = await ctx.db.query.userQuestionAnswerTable.findMany({
+        where: and(
+          eq(userQuestionAnswerTable.userId, user.id),
+          eq(userQuestionAnswerTable.questionId, input.questionId)
+        )
+      });
+
+      return userAnswers;
     }),
   postUserAnswer: protectedProcedure
     .input(

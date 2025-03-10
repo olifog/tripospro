@@ -6,6 +6,8 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from "@/components/ui/tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 import { Link } from "../link/client";
 
 export type CourseCardData = {
@@ -23,8 +25,9 @@ export type CourseCardData = {
 };
 
 export const CourseCard = ({ course }: { course: CourseCardData }) => {
-  console.log(course);
   const sortedYears = course.years.sort((a, b) => b.year - a.year);
+
+  const isMobile = useIsMobile();
 
   const sortedQuestions = Object.values(
     sortedYears.reduce(
@@ -79,7 +82,9 @@ export const CourseCard = ({ course }: { course: CourseCardData }) => {
             </span>
           ))}
         </div>
-        <div className="flex max-w-96 gap-1 overflow-x-auto">
+        <div
+          className={cn("flex gap-1", isMobile && "max-w-96 overflow-x-auto")}
+        >
           {sortedYears.map((year) => (
             <div key={year.year} className="flex flex-col gap-1">
               <div className="relative h-10 w-5">
@@ -115,7 +120,7 @@ export const CourseCard = ({ course }: { course: CourseCardData }) => {
                       }`}
                     />
                   </Link>
-                )
+                );
               })}
             </div>
           ))}

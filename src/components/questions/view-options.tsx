@@ -1,26 +1,26 @@
 "use client";
 
 import { useQuestionsFilter } from "@/hooks/use-params";
+import { defaultQuestionsFilter } from "@/lib/search-params";
+import { cn } from "@/lib/utils";
+import { Label } from "@radix-ui/react-dropdown-menu";
+import { ChevronDown, Info } from "lucide-react";
+import { useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger
 } from "../ui/collapsible";
-import { ChevronDown, Info } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { defaultQuestionsFilter } from "@/lib/search-params";
-import { useState } from "react";
-import { Label } from "@radix-ui/react-dropdown-menu";
-import { Switch } from "../ui/switch";
 import { Input } from "../ui/input";
-import {
-  TooltipContent,
-  Tooltip,
-  TooltipTrigger,
-  TooltipProvider
-} from "../ui/tooltip";
 import { Slider } from "../ui/slider";
+import { Switch } from "../ui/switch";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "../ui/tooltip";
 
 export const ViewOptions = () => {
   const [filter, setFilter] = useQuestionsFilter();

@@ -92,7 +92,7 @@ function InnerPartSwitcher() {
         setPart(defaultPartCode);
       }
     }
-  }, []);
+  }, [part, parts]);
 
   const changePart = (part: string) => {
     setPart(part);

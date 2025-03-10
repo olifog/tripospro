@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { userSettingsTable, usersTable } from "@/db/schema/user";
 import { env } from "@/env";
 import type { WebhookEvent } from "@clerk/nextjs/server";
+import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 
@@ -56,6 +57,25 @@ export async function POST(req: Request) {
         (e) => e.id === evt.data.primary_email_address_id
       )?.email_address ?? evt.data.email_addresses[0].email_address;
     const crsid = email?.split("@")[0];
+
+    const existingUser = await db.query.usersTable.findFirst({
+      where: eq(usersTable.crsid, crsid)
+    });
+
+    if (existingUser) {
+      await db
+        .update(usersTable)
+        .set({
+          clerkId: evt.data.id,
+          name: `${evt.data.first_name} ${evt.data.last_name}`,
+          email: email,
+          picture: evt.data.image_url,
+          crsid: crsid
+        })
+        .where(eq(usersTable.id, existingUser.id));
+      return new Response("User already exists", { status: 200 });
+    }
+
     const [user] = await db
       .insert(usersTable)
       .values({

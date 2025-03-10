@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { pgTable } from "drizzle-orm/pg-core";
 import { integer, timestamp, varchar } from "drizzle-orm/pg-core";
-import { courseYearTable } from "./course";
+import { courseYearPaperYearTable } from "./course";
 import { questionTable } from "./question";
 import { triposTable } from "./tripos";
 import { triposPartYearTable } from "./tripos";
@@ -46,6 +46,6 @@ export const paperYearRelations = relations(
       references: [triposPartYearTable.id]
     }),
     questions: many(questionTable),
-    courseYears: many(courseYearTable)
+    courseYearPaperYears: many(courseYearPaperYearTable)
   })
 );

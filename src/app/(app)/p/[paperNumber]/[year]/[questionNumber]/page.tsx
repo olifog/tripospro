@@ -35,11 +35,17 @@ async function QuestionPage({
     year,
     questionNumber
   });
-  trpc.question.getUserAnswers.prefetch({
-    paperNumber,
-    year,
-    questionNumber
-  });
+  trpc.question.getUserAnswers.prefetch(
+    {
+      paperNumber,
+      year,
+      questionNumber
+    },
+    {
+      retry: false,
+      retryDelay: 20000
+    }
+  );
 
   return (
     <PageLayout
