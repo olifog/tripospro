@@ -17,7 +17,7 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^1.1.15",
+    "@ai-sdk/openai": "^1.2.5",
     "@clerk/nextjs": "^6.12.0",
     "@clerk/themes": "^2.2.19",
     "@hookform/resolvers": "^4.1.3",
