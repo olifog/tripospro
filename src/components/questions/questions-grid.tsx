@@ -14,13 +14,19 @@ const QuestionsGridInner = () => {
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
-  const [{ view }] = useQuestionsFilter();
+  // const [{ view }] = useQuestionsFilter();
 
   return (
     <div className="relative w-full">
-      {view === "course" ? <CourseGrid /> : <PaperGrid />}
+      <PaperGrid />
     </div>
   );
+
+  // return (
+  //   <div className="relative w-full">
+  //     {view === "course" ? <CourseGrid /> : <PaperGrid />}
+  //   </div>
+  // );
 };
 
 const CourseGrid = () => {
@@ -130,7 +136,7 @@ const CourseGrid = () => {
 
 const PaperGrid = () => {
   const [part] = usePart();
-  const [{ search, yearCutoff, onlyCurrent }] = useQuestionsFilter();
+  // const [{ search, yearCutoff, onlyCurrent }] = useQuestionsFilter();
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
@@ -141,12 +147,9 @@ const PaperGrid = () => {
     }, 0);
   }, [questions.years]);
 
-  const papers = useMemo(
-    () =>
-      questions.years.reduce<Record<string, PaperCardData>>((acc, year) => {
-        if (year.year < (yearCutoff ?? defaultQuestionsFilter.yearCutoff))
-          return acc;
-
+  const papers = useMemo(() => {
+    return questions.years.reduce<Record<string, PaperCardData>>(
+      (acc, year) => {
         for (const paper of year.papers) {
           if (!paper.paperName || paper.paperId === null) continue;
 
@@ -174,24 +177,45 @@ const PaperGrid = () => {
           }
         }
         return acc;
-      }, {}),
-    [questions, yearCutoff]
-  );
+      },
+      {}
+    );
+  }, [JSON.stringify(questions)]);
 
-  const filteredPapers = onlyCurrent
-    ? Object.values(papers).filter((paper) =>
-        paper.years.some((year) => year.year === currentYear)
-      )
-    : Object.values(papers);
-  const searchFilteredPapers = search
-    ? filteredPapers.filter((paper) =>
-        paper.paperName.toLowerCase().includes(search.toLowerCase())
-      )
-    : filteredPapers;
+  // const yearFilteredPapers = useMemo(() => {
+  //   return Object.values(papers).reduce<Record<string, PaperCardData>>((acc, paper) => {
+  //     const paperYears = paper.years.filter((year) => year.year >= (yearCutoff ?? defaultQuestionsFilter.yearCutoff));
+
+  //     if (paperYears.length === 0) return acc;
+
+  //     acc[paper.paperId] = {
+  //       ...paper,
+  //       years: paperYears
+  //     };
+
+  //     return acc;
+  //   }, {});
+  // }, [yearCutoff])
+
+  // const onlyCurrentFilteredPapers = useMemo(() => {
+  //   return onlyCurrent
+  //     ? Object.values(yearFilteredPapers).filter((paper) =>
+  //         paper.years.some((year) => year.year === currentYear)
+  //       )
+  //     : Object.values(yearFilteredPapers);
+  // }, [yearFilteredPapers, currentYear, onlyCurrent]);
+
+  // const searchFilteredPapers = useMemo(() => {
+  //   return search
+  //     ? onlyCurrentFilteredPapers.filter((paper) =>
+  //         paper.paperName.toLowerCase().includes(search.toLowerCase())
+  //       )
+  //     : onlyCurrentFilteredPapers;
+  // }, [onlyCurrentFilteredPapers, search]);
 
   return (
     <MuuriGrid>
-      {searchFilteredPapers.map((paper) => (
+      {Object.values(papers).map((paper) => (
         <PaperCard key={paper.paperId} paper={paper} />
       ))}
     </MuuriGrid>
