@@ -7,8 +7,11 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useQuestionsFilter } from "@/hooks/use-params";
+import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
-import { Link } from "../link/client";
+import { useMemo } from "react";
+import { useClientHref } from "../link/client";
 
 export type CourseCardData = {
   courseId: number;
@@ -24,29 +27,66 @@ export type CourseCardData = {
   }[];
 };
 
-export const CourseCard = ({ course }: { course: CourseCardData }) => {
-  const sortedYears = course.years.sort((a, b) => b.year - a.year);
+export const CourseCard = ({
+  course,
+  currentYear
+}: { course: CourseCardData; currentYear: number }) => {
+  const [{ search, yearCutoff, onlyCurrent, showQuestionNumbers }] =
+    useQuestionsFilter();
+  const getHref = useClientHref();
+
+  const isCurrent = useMemo(() => {
+    return course.years.some((year) => year.year === currentYear);
+  }, [JSON.stringify(course.years), currentYear]);
+
+  const matchesSearch = useMemo(() => {
+    return course.courseName
+      .toLowerCase()
+      .includes(search?.toLowerCase() ?? "");
+  }, [search, course.courseName]);
+
+  const [sortedYears, sortedQuestions, questionMap] = useMemo(() => {
+    const filteredYears = course.years.filter(
+      (year) => year.year >= (yearCutoff ?? defaultQuestionsFilter.yearCutoff)
+    );
+
+    const sortedYears = filteredYears.sort((a, b) => b.year - a.year);
+
+    const sortedQuestions = Object.values(
+      sortedYears.reduce(
+        (acc, year) => {
+          for (const question of year.questions) {
+            acc[`${question.paperName}-${question.questionNumber}`] = {
+              questionNumber: question.questionNumber,
+              paperName: question.paperName
+            };
+          }
+          return acc;
+        },
+        {} as Record<string, { questionNumber: number; paperName: string }>
+      )
+    ).sort(
+      (a, b) =>
+        a.paperName.localeCompare(b.paperName) ||
+        a.questionNumber - b.questionNumber
+    );
+
+    const questionMap: Record<number, Record<number, number | undefined>> = {};
+    for (const year of sortedYears) {
+      questionMap[year.year] = {};
+      for (const question of year.questions) {
+        questionMap[year.year][question.questionNumber] = question.answers ?? 0;
+      }
+    }
+
+    return [sortedYears, sortedQuestions, questionMap];
+  }, [JSON.stringify(course), yearCutoff]);
 
   const isMobile = useIsMobile();
 
-  const sortedQuestions = Object.values(
-    sortedYears.reduce(
-      (acc, year) => {
-        for (const question of year.questions) {
-          acc[`${question.paperName}-${question.questionNumber}`] = {
-            questionNumber: question.questionNumber,
-            paperName: question.paperName
-          };
-        }
-        return acc;
-      },
-      {} as Record<string, { questionNumber: number; paperName: string }>
-    )
-  ).sort(
-    (a, b) =>
-      a.paperName.localeCompare(b.paperName) ||
-      a.questionNumber - b.questionNumber
-  );
+  if (search && !matchesSearch) return null;
+  if (onlyCurrent && !isCurrent) return null;
+  if (sortedYears.length === 0) return null;
 
   return (
     <div className="absolute m-1 flex w-fit min-w-32 flex-col rounded-md border bg-card px-2 py-1 text-card-foreground shadow-sm">
@@ -69,57 +109,58 @@ export const CourseCard = ({ course }: { course: CourseCardData }) => {
         </Tooltip>
       </TooltipProvider>
       <div className="flex gap-1">
-        <div className="flex flex-col gap-1 pt-[44px]">
-          {sortedQuestions.map((question) => (
-            <span
-              key={`${question.paperName}-${question.questionNumber}`}
-              className="flex h-5 w-10 items-center justify-end text-sm"
-            >
-              <span className="text-muted-foreground">p</span>
-              {question.paperName}
-              <span className="text-muted-foreground">q</span>
-              {question.questionNumber}
-            </span>
-          ))}
-        </div>
+        {showQuestionNumbers && (
+          <div className="flex flex-col gap-1 pt-[44px]">
+            {sortedQuestions.map((question) => (
+              <span
+                key={`${question.paperName}-${question.questionNumber}`}
+                className="flex h-5 w-10 items-center justify-end text-sm"
+              >
+                <span className="text-muted-foreground">p</span>
+                {question.paperName}
+                <span className="text-muted-foreground">q</span>
+                {question.questionNumber}
+              </span>
+            ))}
+          </div>
+        )}
         <div
           className={cn("flex gap-1", isMobile && "max-w-96 overflow-x-auto")}
         >
           {sortedYears.map((year) => (
             <div key={year.year} className="flex flex-col gap-1">
               <div className="relative h-10 w-5">
-                <Link href="#">
+                <a href={getHref(`/c/${course.courseCode}/${year.year}`)}>
                   <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
                     {year.year}
                   </span>
-                </Link>
+                </a>
               </div>
               {sortedQuestions.map((question) => {
-                const matchedQuestion = year.questions.find(
-                  (q) =>
-                    q.questionNumber === question.questionNumber &&
-                    q.paperName === question.paperName
-                );
-                if (!matchedQuestion)
-                  return (
+                const matchedQuestionAnswers =
+                  questionMap[year.year]?.[question.questionNumber];
+                if (typeof matchedQuestionAnswers !== "number")
+                  return showQuestionNumbers ? (
                     <div
                       key={`${question.paperName}-${question.questionNumber}`}
                       className="h-5 w-5"
                     />
-                  );
+                  ) : null;
                 return (
-                  <Link
+                  <a
                     key={`${question.paperName}-${question.questionNumber}`}
-                    href={`/p/${question.paperName}/${year.year}/${question.questionNumber}`}
+                    href={getHref(
+                      `/p/${question.paperName}/${year.year}/${question.questionNumber}`
+                    )}
                   >
                     <div
                       className={`h-5 w-5 rounded-md ${
-                        matchedQuestion.answers && matchedQuestion.answers > 0
+                        matchedQuestionAnswers > 0
                           ? "bg-green-700"
                           : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
                       }`}
                     />
-                  </Link>
+                  </a>
                 );
               })}
             </div>

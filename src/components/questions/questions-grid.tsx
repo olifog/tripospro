@@ -1,7 +1,7 @@
 "use client";
 
 import { usePart, useQuestionsFilter } from "@/hooks/use-params";
-import { defaultPartCode, defaultQuestionsFilter } from "@/lib/search-params";
+import { defaultPartCode } from "@/lib/search-params";
 import { trpc } from "@/trpc/client";
 import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -10,28 +10,17 @@ import { CourseCard, type CourseCardData } from "./course-card";
 import { PaperCard, type PaperCardData } from "./paper-card";
 
 const QuestionsGridInner = () => {
-  const [part] = usePart();
-  const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
-    part: part ?? defaultPartCode
-  });
-  // const [{ view }] = useQuestionsFilter();
+  const [{ view }] = useQuestionsFilter();
 
   return (
     <div className="relative w-full">
-      <PaperGrid />
+      {view === "course" ? <CourseGrid /> : <PaperGrid />}
     </div>
   );
-
-  // return (
-  //   <div className="relative w-full">
-  //     {view === "course" ? <CourseGrid /> : <PaperGrid />}
-  //   </div>
-  // );
 };
 
 const CourseGrid = () => {
   const [part] = usePart();
-  const [{ search, yearCutoff, onlyCurrent }] = useQuestionsFilter();
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
@@ -46,9 +35,6 @@ const CourseGrid = () => {
     () =>
       questions.years.reduce<Record<string, CourseCardData>>(
         (acc, year) => {
-          if (year.year < (yearCutoff ?? defaultQuestionsFilter.yearCutoff))
-            return acc;
-
           for (const paper of year.papers) {
             for (const course of paper.courses) {
               if (
@@ -109,26 +95,17 @@ const CourseGrid = () => {
         },
         {} as Record<string, CourseCardData>
       ),
-    [questions, yearCutoff]
+    [JSON.stringify(questions)]
   );
-
-  const filteredCourses = onlyCurrent
-    ? Object.values(courses).filter((course) =>
-        course.years.some((year) => year.year === currentYear)
-      )
-    : Object.values(courses);
-  const searchFilteredCourses = search
-    ? filteredCourses.filter(
-        (course) =>
-          course.courseName.toLowerCase().includes(search.toLowerCase()) ||
-          course.courseCode.toLowerCase().includes(search.toLowerCase())
-      )
-    : filteredCourses;
 
   return (
     <MuuriGrid>
-      {searchFilteredCourses.map((course) => (
-        <CourseCard key={course.courseId} course={course} />
+      {Object.values(courses).map((course) => (
+        <CourseCard
+          key={course.courseId}
+          course={course}
+          currentYear={currentYear}
+        />
       ))}
     </MuuriGrid>
   );
@@ -136,7 +113,6 @@ const CourseGrid = () => {
 
 const PaperGrid = () => {
   const [part] = usePart();
-  // const [{ search, yearCutoff, onlyCurrent }] = useQuestionsFilter();
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
@@ -182,41 +158,14 @@ const PaperGrid = () => {
     );
   }, [JSON.stringify(questions)]);
 
-  // const yearFilteredPapers = useMemo(() => {
-  //   return Object.values(papers).reduce<Record<string, PaperCardData>>((acc, paper) => {
-  //     const paperYears = paper.years.filter((year) => year.year >= (yearCutoff ?? defaultQuestionsFilter.yearCutoff));
-
-  //     if (paperYears.length === 0) return acc;
-
-  //     acc[paper.paperId] = {
-  //       ...paper,
-  //       years: paperYears
-  //     };
-
-  //     return acc;
-  //   }, {});
-  // }, [yearCutoff])
-
-  // const onlyCurrentFilteredPapers = useMemo(() => {
-  //   return onlyCurrent
-  //     ? Object.values(yearFilteredPapers).filter((paper) =>
-  //         paper.years.some((year) => year.year === currentYear)
-  //       )
-  //     : Object.values(yearFilteredPapers);
-  // }, [yearFilteredPapers, currentYear, onlyCurrent]);
-
-  // const searchFilteredPapers = useMemo(() => {
-  //   return search
-  //     ? onlyCurrentFilteredPapers.filter((paper) =>
-  //         paper.paperName.toLowerCase().includes(search.toLowerCase())
-  //       )
-  //     : onlyCurrentFilteredPapers;
-  // }, [onlyCurrentFilteredPapers, search]);
-
   return (
     <MuuriGrid>
       {Object.values(papers).map((paper) => (
-        <PaperCard key={paper.paperId} paper={paper} />
+        <PaperCard
+          key={paper.paperId}
+          paper={paper}
+          currentYear={currentYear}
+        />
       ))}
     </MuuriGrid>
   );

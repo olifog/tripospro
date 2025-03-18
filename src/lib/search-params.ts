@@ -21,14 +21,16 @@ export const questionsFilterSearchParams = {
   yearCutoff: parseAsInteger,
   onlyCurrent: parseAsBoolean,
   view: parseAsStringEnum(["course", "paper"]),
-  search: parseAsString
+  search: parseAsString,
+  showQuestionNumbers: parseAsBoolean
 };
 
 export const defaultQuestionsFilter = {
   yearCutoff: 2019,
   onlyCurrent: false,
   view: "course",
-  search: ""
+  search: "",
+  showQuestionNumbers: false
 } as const;
 
 export const questionsFilterCache = createSearchParamsCache(

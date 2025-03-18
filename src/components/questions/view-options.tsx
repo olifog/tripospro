@@ -1,11 +1,12 @@
 "use client";
 
+import { useDebounce } from "@/hooks/use-debounce";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { ChevronDown, Info } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -25,6 +26,14 @@ import {
 export const ViewOptions = () => {
   const [filter, setFilter] = useQuestionsFilter();
   const [open, setOpen] = useState(true);
+  const [sliderValue, setSliderValue] = useState(
+    filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff
+  );
+  const debouncedSliderValue = useDebounce(sliderValue, 300);
+
+  useEffect(() => {
+    setFilter({ ...filter, yearCutoff: debouncedSliderValue });
+  }, [debouncedSliderValue]);
 
   return (
     <Collapsible
@@ -109,15 +118,28 @@ export const ViewOptions = () => {
           <div className="flex items-center gap-2">
             <Label className="text-sm">Year cutoff:</Label>
             <span className="w-8 text-muted-foreground text-sm">
-              {filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff}
+              {sliderValue}
             </span>
             <Slider
               className="w-24"
               min={1993}
               max={new Date().getFullYear()}
-              value={[filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff]}
+              value={[sliderValue]}
               onValueChange={(value) => {
-                setFilter({ ...filter, yearCutoff: value[0] });
+                setSliderValue(value[0]);
+              }}
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Label className="text-sm">Show question numbers:</Label>
+            <Switch
+              checked={
+                filter.showQuestionNumbers ??
+                defaultQuestionsFilter.showQuestionNumbers
+              }
+              onCheckedChange={(checked) => {
+                setFilter({ ...filter, showQuestionNumbers: checked });
               }}
             />
           </div>
