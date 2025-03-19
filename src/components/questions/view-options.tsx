@@ -26,11 +26,13 @@ import {
 export const ViewOptions = () => {
   const [filter, setFilter] = useQuestionsFilter();
   const [open, setOpen] = useState(true);
-  const [sliderValue, setSliderValue] = useState(
-    filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff
-  );
+  const [sliderValue, setSliderValue] = useState(filter.yearCutoff);
   const debouncedSliderValue = useDebounce(sliderValue, 300);
 
+  useEffect(() => {
+    setSliderValue(filter.yearCutoff);
+  }, [filter.yearCutoff]);
+  
   useEffect(() => {
     setFilter({ ...filter, yearCutoff: debouncedSliderValue });
   }, [debouncedSliderValue]);
@@ -124,7 +126,7 @@ export const ViewOptions = () => {
               className="w-24"
               min={1993}
               max={new Date().getFullYear()}
-              value={[sliderValue]}
+              value={[sliderValue ?? defaultQuestionsFilter.yearCutoff]}
               onValueChange={(value) => {
                 setSliderValue(value[0]);
               }}
