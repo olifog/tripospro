@@ -5,7 +5,7 @@ import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
 import { useMemo } from "react";
-import { useClientHref } from "../link/client";
+import { Link } from "../link/client";
 
 export type PaperCardData = {
   paperId: number;
@@ -25,7 +25,6 @@ export const PaperCard = ({
 }: { paper: PaperCardData; currentYear: number }) => {
   const [{ search, yearCutoff, onlyCurrent, showQuestionNumbers }] =
     useQuestionsFilter();
-  const getHref = useClientHref();
 
   const isCurrent = useMemo(() => {
     return paper.years.some((year) => year.year === currentYear);
@@ -91,11 +90,11 @@ export const PaperCard = ({
           {sortedYears.map((year) => (
             <div key={year.year} className="flex flex-col gap-1">
               <div className="relative h-10 w-5">
-                <a href={getHref(`/p/${paper.paperName}/${year.year}`)}>
+                <Link href={`/p/${paper.paperName}/${year.year}`}>
                   <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
                     {year.year}
                   </span>
-                </a>
+                </Link>
               </div>
               {sortedQuestions.map((question) => {
                 const matchedQuestionAnswers =
@@ -105,11 +104,9 @@ export const PaperCard = ({
                     <div key={question} className="h-5 w-5" />
                   ) : null;
                 return (
-                  <a
+                  <Link
                     key={question}
-                    href={getHref(
-                      `/p/${paper.paperName}/${year.year}/${question}`
-                    )}
+                    href={`/p/${paper.paperName}/${year.year}/${question}`}
                   >
                     <div
                       className={`h-5 w-5 rounded-md ${
@@ -118,7 +115,7 @@ export const PaperCard = ({
                           : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
                       }`}
                     />
-                  </a>
+                  </Link>
                 );
               })}
             </div>
