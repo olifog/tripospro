@@ -184,8 +184,8 @@ importers:
         specifier: ^4.0.12
         version: 4.0.12
       '@types/node':
-        specifier: ^22.13.5
-        version: 22.13.5
+        specifier: ^22.13.11
+        version: 22.13.11
       '@types/react':
         specifier: ^19.0.10
         version: 19.0.10
@@ -1598,11 +1598,11 @@ packages:
   '@types/node-fetch@2.6.12':
     resolution: {integrity: sha512-8nneRWKCg3rMtF69nLQJnOYUcbafYeFSjqkw3jCRLsqkWFlHaoQrr5mXmofFGOx3DKn7UfmBMyov8ySvLRVldA==}
 
-  '@types/node@18.19.78':
-    resolution: {integrity: sha512-m1ilZCTwKLkk9rruBJXFeYN0Bc5SbjirwYX/Td3MqPfioYbgun3IvK/m8dQxMCnrPGZPg1kvXjp3SIekCN/ynw==}
+  '@types/node@18.19.81':
+    resolution: {integrity: sha512-7KO9oZ2//ivtSsryp0LQUqq79zyGXzwq1WqfywpC9ucjY7YyltMMmxWgtRFRKCxwa7VPxVBVy4kHf5UC1E8Lug==}
 
-  '@types/node@22.13.5':
-    resolution: {integrity: sha512-+lTU0PxZXn0Dr1NBtC7Y8cR21AJr87dLLU953CWA6pMxxv/UDc7jYAY90upcrie1nRcD6XNG5HOYEDtgW5TxAg==}
+  '@types/node@22.13.11':
+    resolution: {integrity: sha512-iEUCUJoU0i3VnrCmgoWCXttklWcvoCIx4jzcP22fioIVSdTmjgoEvmAO/QPw6TcS9k5FrNgn4w7q5lGOd1CT5g==}
 
   '@types/pg@8.11.6':
     resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
@@ -3358,7 +3358,7 @@ snapshots:
   '@llamaindex/core@0.5.4(gpt-tokenizer@2.8.1)':
     dependencies:
       '@llamaindex/env': 0.1.28(gpt-tokenizer@2.8.1)
-      '@types/node': 22.13.5
+      '@types/node': 22.13.11
       magic-bytes.js: 1.10.0
       zod: 3.24.2
       zod-to-json-schema: 3.24.3(zod@3.24.2)
@@ -3973,20 +3973,20 @@ snapshots:
 
   '@types/node-fetch@2.6.12':
     dependencies:
-      '@types/node': 22.13.5
+      '@types/node': 22.13.11
       form-data: 4.0.2
 
-  '@types/node@18.19.78':
+  '@types/node@18.19.81':
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.13.5':
+  '@types/node@22.13.11':
     dependencies:
       undici-types: 6.20.0
 
   '@types/pg@8.11.6':
     dependencies:
-      '@types/node': 22.13.5
+      '@types/node': 22.13.11
       pg-protocol: 1.7.0
       pg-types: 4.0.2
 
@@ -4550,7 +4550,7 @@ snapshots:
       '@llamaindex/node-parser': 1.0.4(@llamaindex/core@0.5.4(gpt-tokenizer@2.8.1))(@llamaindex/env@0.1.28(gpt-tokenizer@2.8.1))(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)
       '@llamaindex/openai': 0.1.56(gpt-tokenizer@2.8.1)(zod@3.24.2)
       '@types/lodash': 4.17.16
-      '@types/node': 22.13.5
+      '@types/node': 22.13.11
       ajv: 8.17.1
       gpt-tokenizer: 2.8.1
       lodash: 4.17.21
@@ -4884,7 +4884,7 @@ snapshots:
 
   openai@4.86.2(zod@3.24.2):
     dependencies:
-      '@types/node': 18.19.78
+      '@types/node': 18.19.81
       '@types/node-fetch': 2.6.12
       abort-controller: 3.0.0
       agentkeepalive: 4.6.0
@@ -5191,7 +5191,7 @@ snapshots:
   svix@1.61.3:
     dependencies:
       '@stablelib/base64': 1.0.1
-      '@types/node': 22.13.5
+      '@types/node': 22.13.11
       es6-promise: 4.2.8
       fast-sha256: 1.3.0
       svix-fetch: 3.0.0
