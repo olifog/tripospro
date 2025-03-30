@@ -32,7 +32,7 @@ export const ViewOptions = () => {
   useEffect(() => {
     setSliderValue(filter.yearCutoff);
   }, [filter.yearCutoff]);
-  
+
   useEffect(() => {
     setFilter({ ...filter, yearCutoff: debouncedSliderValue });
   }, [debouncedSliderValue]);
