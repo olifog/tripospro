@@ -21,8 +21,8 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3(react-hook-form@7.55.0(react@19.1.0))
       '@llamaindex/cloud':
-        specifier: ^3.0.9
-        version: 3.0.9(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))
+        specifier: ^4.0.2
+        version: 4.0.2(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))
       '@neondatabase/serverless':
         specifier: ^0.10.4
         version: 0.10.4
@@ -912,16 +912,16 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@llamaindex/cloud@3.0.9':
-    resolution: {integrity: sha512-QBKKfzhbbzre2/csWDva2uCqdCkBlq1PjX3flLHUcGGP+UurAkyzB/Zabqz30jNGa7j6bEz97b5c9aAI1hIy+A==}
-    peerDependencies:
-      '@llamaindex/core': 0.5.8
-      '@llamaindex/env': 0.1.29
-
   '@llamaindex/cloud@4.0.0':
     resolution: {integrity: sha512-wnVZx+oQFf9GxbbpKaBkPPnbDGQ+Y6VBa62Rfwrhljx69va2962j7NUOly0BkfaqqW3wm/hDiSUObbMsdeZwoA==}
     peerDependencies:
       '@llamaindex/core': 0.6.0
+      '@llamaindex/env': 0.1.29
+
+  '@llamaindex/cloud@4.0.2':
+    resolution: {integrity: sha512-/uAuGXFvrzt/GbIXHyc2PHZWWcP+sKFKM6YTaYj7iQnhjJzwKB0HEWJ7lp4teh610VeP7nUiZXEC610iGNFKPA==}
+    peerDependencies:
+      '@llamaindex/core': 0.6.2
       '@llamaindex/env': 0.1.29
 
   '@llamaindex/core@0.6.0':
@@ -3374,12 +3374,12 @@ snapshots:
   '@img/sharp-win32-x64@0.33.5':
     optional: true
 
-  '@llamaindex/cloud@3.0.9(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
+  '@llamaindex/cloud@4.0.0(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
     dependencies:
       '@llamaindex/core': 0.6.0(gpt-tokenizer@2.9.0)
       '@llamaindex/env': 0.1.29(gpt-tokenizer@2.9.0)
 
-  '@llamaindex/cloud@4.0.0(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
+  '@llamaindex/cloud@4.0.2(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
     dependencies:
       '@llamaindex/core': 0.6.0(gpt-tokenizer@2.9.0)
       '@llamaindex/env': 0.1.29(gpt-tokenizer@2.9.0)
