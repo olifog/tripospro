@@ -108,8 +108,8 @@ importers:
         specifier: ^0.9.13
         version: 0.9.13(tree-sitter@0.22.4)(web-tree-sitter@0.24.7)(zod@3.24.2)
       lucide-react:
-        specifier: ^0.479.0
-        version: 0.479.0(react@19.1.0)
+        specifier: ^0.509.0
+        version: 0.509.0(react@19.1.0)
       muuri:
         specifier: ^0.9.5
         version: 0.9.5
@@ -2268,8 +2268,8 @@ packages:
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
 
-  lucide-react@0.479.0:
-    resolution: {integrity: sha512-aBhNnveRhorBOK7uA4gDjgaf+YlHMdMhQ/3cupk6exM10hWlEU+2QtWYOfhXhjAsmdb6LeKR+NZnow4UxRRiTQ==}
+  lucide-react@0.509.0:
+    resolution: {integrity: sha512-xCJHn6Uh5qF6PGml25vveCTrHJZcqS1G1MVzWZK54ZQsOiCVJk4fwY3oyo5EXS2S+aqvTpWYIfJN+PesJ0quxg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -2430,6 +2430,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -4629,7 +4630,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  lucide-react@0.479.0(react@19.1.0):
+  lucide-react@0.509.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 
