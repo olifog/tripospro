@@ -21,8 +21,8 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3(react-hook-form@7.55.0(react@19.1.0))
       '@llamaindex/cloud':
-        specifier: ^3.0.9
-        version: 3.0.9(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))
+        specifier: ^4.0.7
+        version: 4.0.7(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))
       '@neondatabase/serverless':
         specifier: ^0.10.4
         version: 0.10.4
@@ -912,17 +912,17 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@llamaindex/cloud@3.0.9':
-    resolution: {integrity: sha512-QBKKfzhbbzre2/csWDva2uCqdCkBlq1PjX3flLHUcGGP+UurAkyzB/Zabqz30jNGa7j6bEz97b5c9aAI1hIy+A==}
-    peerDependencies:
-      '@llamaindex/core': 0.5.8
-      '@llamaindex/env': 0.1.29
-
   '@llamaindex/cloud@4.0.0':
     resolution: {integrity: sha512-wnVZx+oQFf9GxbbpKaBkPPnbDGQ+Y6VBa62Rfwrhljx69va2962j7NUOly0BkfaqqW3wm/hDiSUObbMsdeZwoA==}
     peerDependencies:
       '@llamaindex/core': 0.6.0
       '@llamaindex/env': 0.1.29
+
+  '@llamaindex/cloud@4.0.7':
+    resolution: {integrity: sha512-6Ghryb1M8YHDisy4MgGHTpoUY9WQVAS1wBOI8j9fySIf/E2O50tkc15I3Tw5oTeffSdvVE9El3/L8PhZnLM48A==}
+    peerDependencies:
+      '@llamaindex/core': 0.6.5
+      '@llamaindex/env': 0.1.30
 
   '@llamaindex/core@0.6.0':
     resolution: {integrity: sha512-d4YWmWkzSm+BJQPphCAMMV+LxafeiJKd9Q8qN/ML5bRoh4cw/G4WB/CtyKjnHJ99OZuVyeDRGrKQUAlecBwUtA==}
@@ -1637,6 +1637,9 @@ packages:
   '@types/react@19.0.12':
     resolution: {integrity: sha512-V6Ar115dBDrjbtXSrS+/Oruobc+qVbbUxDFC1RSbRqLt5SYvxxyIDrSC85RWml54g+jfNeEMZhEj7wW07ONQhA==}
 
+  '@types/retry@0.12.2':
+    resolution: {integrity: sha512-XISRgDJ2Tc5q4TRqvgJtzsRkFYNJzZrhTdtMoGVBttwzzQJkPnS3WWTFc7kuDRoPtPakl+T+OfdEUjYJj7Jbow==}
+
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
 
@@ -2142,6 +2145,10 @@ packages:
   is-hexadecimal@2.0.1:
     resolution: {integrity: sha512-DgZQp241c8oO6cA1SbTEWiXeoxV42vlcJxgH+B3hi1AiqqKruZR3ZGF8In3fj4+/y/7rHvlOZLZtgJ/4ttYGZg==}
 
+  is-network-error@1.1.0:
+    resolution: {integrity: sha512-tUdRRAnhT+OtCZR/LxZelH/C7QtjtFrTu5tXCA8pl55eTUElUHT+GPYV8MBMBvea/j+NxQqVt3LbWMRir7Gx9g==}
+    engines: {node: '>=16'}
+
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
@@ -2430,6 +2437,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -2476,6 +2484,10 @@ packages:
         optional: true
       zod:
         optional: true
+
+  p-retry@6.2.1:
+    resolution: {integrity: sha512-hEt02O4hUct5wtwg4H4KcWgDdm+l1bOaEy/hWzd8xtXB9BqxTWBBhb+2ImAtH4Cv4rPjV76xN3Zumqk3k3AhhQ==}
+    engines: {node: '>=16.17'}
 
   parse-entities@4.0.2:
     resolution: {integrity: sha512-GG2AQYWoLgL877gQIKeRPGO1xF9+eG1ujIb5soS5gPvLQ1y2o8FL90w2QWNdf9I361Mpp7726c+lj3U0qK1uGw==}
@@ -2637,6 +2649,10 @@ packages:
 
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
+
+  retry@0.13.1:
+    resolution: {integrity: sha512-XQBQ3I8W1Cge0Seh+6gjj03LbmRFWuoszgK9ooCpwYIrhhoO80pfq4cUkU5DkknwfOfFteRwlZ56PYOGYyFWdg==}
+    engines: {node: '>= 4'}
 
   scheduler@0.26.0:
     resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
@@ -3374,15 +3390,16 @@ snapshots:
   '@img/sharp-win32-x64@0.33.5':
     optional: true
 
-  '@llamaindex/cloud@3.0.9(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
-    dependencies:
-      '@llamaindex/core': 0.6.0(gpt-tokenizer@2.9.0)
-      '@llamaindex/env': 0.1.29(gpt-tokenizer@2.9.0)
-
   '@llamaindex/cloud@4.0.0(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
     dependencies:
       '@llamaindex/core': 0.6.0(gpt-tokenizer@2.9.0)
       '@llamaindex/env': 0.1.29(gpt-tokenizer@2.9.0)
+
+  '@llamaindex/cloud@4.0.7(@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0))(@llamaindex/env@0.1.29(gpt-tokenizer@2.9.0))':
+    dependencies:
+      '@llamaindex/core': 0.6.0(gpt-tokenizer@2.9.0)
+      '@llamaindex/env': 0.1.29(gpt-tokenizer@2.9.0)
+      p-retry: 6.2.1
 
   '@llamaindex/core@0.6.0(gpt-tokenizer@2.9.0)':
     dependencies:
@@ -4047,6 +4064,8 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
+  '@types/retry@0.12.2': {}
+
   '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
@@ -4520,6 +4539,8 @@ snapshots:
 
   is-hexadecimal@2.0.1: {}
 
+  is-network-error@1.1.0: {}
+
   is-plain-obj@4.1.0: {}
 
   is-what@4.1.16: {}
@@ -4944,6 +4965,12 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
+  p-retry@6.2.1:
+    dependencies:
+      '@types/retry': 0.12.2
+      is-network-error: 1.1.0
+      retry: 0.13.1
+
   parse-entities@4.0.2:
     dependencies:
       '@types/unist': 2.0.11
@@ -5118,6 +5145,8 @@ snapshots:
   requires-port@1.0.0: {}
 
   resolve-pkg-maps@1.0.0: {}
+
+  retry@0.13.1: {}
 
   scheduler@0.26.0: {}
 
