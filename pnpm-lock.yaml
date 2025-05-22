@@ -69,14 +69,14 @@ importers:
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.0.17)
       '@tanstack/react-query':
-        specifier: ^5.71.0
-        version: 5.71.0(react@19.1.0)
+        specifier: ^5.76.2
+        version: 5.76.2(react@19.1.0)
       '@trpc/client':
         specifier: 11.0.0-rc.730
         version: 11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/react-query':
         specifier: 11.0.0-rc.730
-        version: 11.0.0-rc.730(@tanstack/react-query@5.71.0(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)
+        version: 11.0.0-rc.730(@tanstack/react-query@5.76.2(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)
       '@trpc/server':
         specifier: 11.0.0-rc.730
         version: 11.0.0-rc.730(typescript@5.8.2)
@@ -1564,11 +1564,11 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
-  '@tanstack/query-core@5.71.0':
-    resolution: {integrity: sha512-p4+T7CIEe1kMhii4booWiw42nuaiYI9La/bRCNzBaj1P3PDb0dEZYDhc/7oBifKJfHYN+mtS1ynW1qsmzQW7Og==}
+  '@tanstack/query-core@5.76.2':
+    resolution: {integrity: sha512-PFGwWh5ss9cJQ67l6bZ7hqXbisX2gy13G2jP+VGY1bgdbCfOMWh6UBVnN62QbFXro6CCoX9hYzTnZHr6Rz00YQ==}
 
-  '@tanstack/react-query@5.71.0':
-    resolution: {integrity: sha512-Udhlz9xHwk0iB7eLDchIqvu666NZFxPZZF80KnL8sZy+5J0kMvnJkzQNYRJwF70g8Vc1nn0TSMkPJgvx6+Pn4g==}
+  '@tanstack/react-query@5.76.2':
+    resolution: {integrity: sha512-rGkWberCrFdIxMdvSAJM/UOKeu0O/JVTbMmfhQoJpiU9Uq0EDx2EMCadnNuJWbXR4smDA2t7DY3NKkYFmDVS5A==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -2430,6 +2430,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -3971,11 +3972,11 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.0.17
 
-  '@tanstack/query-core@5.71.0': {}
+  '@tanstack/query-core@5.76.2': {}
 
-  '@tanstack/react-query@5.71.0(react@19.1.0)':
+  '@tanstack/react-query@5.76.2(react@19.1.0)':
     dependencies:
-      '@tanstack/query-core': 5.71.0
+      '@tanstack/query-core': 5.76.2
       react: 19.1.0
 
   '@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2)':
@@ -3983,9 +3984,9 @@ snapshots:
       '@trpc/server': 11.0.0-rc.730(typescript@5.8.2)
       typescript: 5.8.2
 
-  '@trpc/react-query@11.0.0-rc.730(@tanstack/react-query@5.71.0(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)':
+  '@trpc/react-query@11.0.0-rc.730(@tanstack/react-query@5.76.2(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)':
     dependencies:
-      '@tanstack/react-query': 5.71.0(react@19.1.0)
+      '@tanstack/react-query': 5.76.2(react@19.1.0)
       '@trpc/client': 11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/server': 11.0.0-rc.730(typescript@5.8.2)
       react: 19.1.0
