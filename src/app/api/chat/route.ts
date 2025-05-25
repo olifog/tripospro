@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 
           const results = await index.query({
             vector: vector.data[0].embedding,
-            topK: 10,
+            topK: 15,
             includeMetadata: true,
             includeValues: false
           });
