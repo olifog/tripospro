@@ -1,6 +1,7 @@
 import { HydrateClient } from "@/trpc/server";
 import { Separator } from "../ui/separator";
 import { SplitQuestionLayout } from "./panel-layout";
+import { QuestionCourseCard } from "./question-course-card";
 import PdfViewer from "./question-renderer";
 import {
   ActionBar,
@@ -96,6 +97,14 @@ export const RightPanel = ({
       </HydrateClient>
 
       <Separator className="my-4" />
+
+      <HydrateClient>
+        <QuestionCourseCard
+          paperNumber={paperNumber}
+          year={year}
+          questionNumber={questionNumber}
+        />
+      </HydrateClient>
 
       <div className="w-full pt-12 pb-24 text-center text-muted-foreground text-sm">
         Discussion coming soon!

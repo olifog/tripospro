@@ -27,12 +27,36 @@ export type CourseCardData = {
   }[];
 };
 
+export type QuestionsFilter = {
+  yearCutoff?: number;
+  search?: string;
+  onlyCurrent?: boolean;
+  showQuestionNumbers?: boolean;
+};
+
 export const CourseCard = ({
   course,
-  currentYear
-}: { course: CourseCardData; currentYear: number }) => {
+  currentYear,
+  overrideFilters,
+  highlight
+}: {
+  course: CourseCardData;
+  currentYear: number;
+  overrideFilters?: QuestionsFilter;
+  highlight?: { year: number; questionNumber: number; paperNumber: string };
+}) => {
   const [{ search, yearCutoff, onlyCurrent, showQuestionNumbers }] =
-    useQuestionsFilter();
+    overrideFilters
+      ? [
+          {
+            search: "",
+            yearCutoff: 1993,
+            onlyCurrent: false,
+            showQuestionNumbers: true,
+            ...overrideFilters
+          }
+        ]
+      : useQuestionsFilter();
 
   const isCurrent = useMemo(() => {
     return course.years.some((year) => year.year === currentYear);
@@ -148,6 +172,12 @@ export const CourseCard = ({
                       className="h-5 w-5"
                     />
                   ) : null;
+
+                const isHighlighted =
+                  highlight?.year === year.year &&
+                  highlight?.questionNumber === question.questionNumber &&
+                  highlight?.paperNumber === question.paperName;
+
                 return (
                   <Link
                     key={`${question.paperName}-${question.questionNumber}`}
@@ -156,9 +186,11 @@ export const CourseCard = ({
                   >
                     <div
                       className={`h-5 w-5 rounded-md ${
-                        matchedQuestionAnswers > 0
-                          ? "bg-green-700"
-                          : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
+                        isHighlighted
+                          ? "bg-blue-700"
+                          : matchedQuestionAnswers > 0
+                            ? "bg-green-700"
+                            : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
                       }`}
                     />
                   </Link>

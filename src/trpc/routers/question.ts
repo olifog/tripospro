@@ -89,6 +89,85 @@ export const questionRouter = createTRPCRouter({
         triposPartName
       };
     }),
+  getQuestionCourse: baseProcedure
+    .input(
+      z.object({
+        paperNumber: z.string(),
+        year: z.string(),
+        questionNumber: z.string()
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const user = await (async () => {
+        if (!ctx.userId) return null;
+        const user = await ctx.db.query.usersTable.findFirst({
+          where: eq(usersTable.clerkId, ctx.userId)
+        });
+        if (!user) throw new Error("User not found");
+        return user;
+      })();
+
+      const question = await ctx.db
+        .select()
+        .from(paperTable)
+        .leftJoin(paperYearTable, eq(paperTable.id, paperYearTable.paperId))
+        .leftJoin(
+          questionTable,
+          eq(paperYearTable.id, questionTable.paperYearId)
+        )
+        .leftJoin(
+          courseYearTable,
+          eq(questionTable.courseYearId, courseYearTable.id)
+        )
+        .leftJoin(courseTable, eq(courseYearTable.courseId, courseTable.id))
+        .where(
+          and(
+            eq(paperTable.name, input.paperNumber),
+            eq(paperYearTable.year, Number.parseInt(input.year)),
+            eq(
+              questionTable.questionNumber,
+              Number.parseInt(input.questionNumber)
+            )
+          )
+        );
+      if (question.length !== 1) throw new Error("Question not found");
+
+      const course = question[0].course;
+      if (!course) throw new Error("Course not found");
+
+      // get all questions for the course, grouped by courseYear
+      const courseYears = await ctx.db.query.courseYearTable.findMany({
+        where: eq(courseYearTable.courseId, course.id),
+        with: {
+          questions: {
+            with: {
+              paperYear: {
+                with: {
+                  paper: true
+                }
+              },
+              userQuestionAnswers: {
+                where: eq(userQuestionAnswerTable.userId, user?.id ?? 0)
+              }
+            }
+          }
+        }
+      });
+
+      return {
+        courseId: course.id,
+        courseName: course.name,
+        courseCode: course.code,
+        years: courseYears.map((year) => ({
+          year: year.year,
+          questions: year.questions.map((question) => ({
+            questionNumber: question.questionNumber,
+            paperName: question.paperYear?.paper?.name ?? "",
+            answers: question.userQuestionAnswers.length || undefined
+          }))
+        }))
+      };
+    }),
   getQuestionWithContextById: baseProcedure
     .input(z.object({ questionId: z.number() }))
     .query(async ({ ctx, input }) => {
