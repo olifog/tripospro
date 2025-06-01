@@ -129,14 +129,14 @@ export const CourseCard = ({
           {sortedYears.map((year) => (
             <div key={year.year} className="flex flex-col gap-1">
               <div className="relative h-10 w-5">
-                <Link
+                {/* <Link
                   href={`/c/${course.courseCode}/${year.year}`}
                   prefetch={false}
-                >
-                  <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
-                    {year.year}
-                  </span>
-                </Link>
+                > */}
+                <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
+                  {year.year}
+                </span>
+                {/* </Link> */}
               </div>
               {sortedQuestions.map((question) => {
                 const matchedQuestionAnswers =
