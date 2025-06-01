@@ -1,14 +1,11 @@
 "use client";
 
 import {
-  Bot,
-  Bug,
   ChevronRight,
-  GraduationCap,
+  Info,
+  Bot,
   type LucideIcon,
-  Presentation,
   ScrollText,
-  Trophy
 } from "lucide-react";
 
 import {
@@ -49,30 +46,35 @@ const navMain: NavMainItem[] = [
     icon: Bot
   },
   {
-    title: "Leaderboard",
-    url: "/leaderboard",
-    icon: Trophy,
-    disabled: true
-  },
-  {
-    title: "Part II",
-    url: "#",
-    icon: GraduationCap,
-    items: [
-      {
-        title: "Projects",
-        url: "/part2/projects",
-        icon: Bug,
-        disabled: true
-      },
-      {
-        title: "Modules",
-        url: "/part2/modules",
-        icon: Presentation,
-        disabled: true
-      }
-    ]
+    title: "About",
+    url: "/about",
+    icon: Info
   }
+  // {
+  //   title: "Leaderboard",
+  //   url: "/leaderboard",
+  //   icon: Trophy,
+  //   disabled: true
+  // },
+  // {
+  //   title: "Part II",
+  //   url: "#",
+  //   icon: GraduationCap,
+  //   items: [
+  //     {
+  //       title: "Projects",
+  //       url: "/part2/projects",
+  //       icon: Bug,
+  //       disabled: true
+  //     },
+  //     {
+  //       title: "Modules",
+  //       url: "/part2/modules",
+  //       icon: Presentation,
+  //       disabled: true
+  //     }
+  //   ]
+  // }
 ];
 
 export function NavMain() {

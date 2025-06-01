@@ -26,22 +26,27 @@ const QuestionCourseCardInner = ({
   }, [course.years]);
 
   return (
-    <div className="relative h-full w-full overflow-x-scroll">
-      <CourseCard
-        course={course}
-        currentYear={lastYear}
-        overrideFilters={{
-          yearCutoff: 1993,
-          search: "",
-          onlyCurrent: false,
-          showQuestionNumbers: true
-        }}
-        highlight={{
-          year: Number.parseInt(year),
-          questionNumber: Number.parseInt(questionNumber),
-          paperNumber: paperNumber
-        }}
-      />
+    <div className="flex h-full w-full flex-col gap-2">
+      <span className="text-muted-foreground text-xs italic">
+        The below is a little buggy at the moment and might show some extra questions -- WIP!!
+      </span>
+      <div className="relative h-full w-full overflow-x-scroll">
+        <CourseCard
+          course={course}
+          currentYear={lastYear}
+          overrideFilters={{
+            yearCutoff: 1993,
+            search: "",
+            onlyCurrent: false,
+            showQuestionNumbers: true
+          }}
+          highlight={{
+            year: Number.parseInt(year),
+            questionNumber: Number.parseInt(questionNumber),
+            paperNumber: paperNumber
+          }}
+        />
+      </div>
     </div>
   );
 };
