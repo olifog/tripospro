@@ -26,7 +26,7 @@ const QuestionCourseCardInner = ({
   }, [course.years]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative h-full w-full overflow-x-scroll">
       <CourseCard
         course={course}
         currentYear={lastYear}

@@ -105,10 +105,6 @@ export const RightPanel = ({
           questionNumber={questionNumber}
         />
       </HydrateClient>
-
-      <div className="w-full pt-12 pb-24 text-center text-muted-foreground text-sm">
-        Discussion coming soon!
-      </div>
     </div>
   );
 };
