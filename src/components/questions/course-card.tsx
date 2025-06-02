@@ -94,11 +94,13 @@ export const CourseCard = ({
         a.questionNumber - b.questionNumber
     );
 
-    const questionMap: Record<number, Record<number, number | undefined>> = {};
+    const questionMap: Record<number, Record<string, number | undefined>> = {};
     for (const year of sortedYears) {
       questionMap[year.year] = {};
       for (const question of year.questions) {
-        questionMap[year.year][question.questionNumber] = question.answers ?? 0;
+        questionMap[year.year][
+          `${question.paperName}-${question.questionNumber}`
+        ] = question.answers ?? 0;
       }
     }
 
@@ -164,7 +166,9 @@ export const CourseCard = ({
               </div>
               {sortedQuestions.map((question) => {
                 const matchedQuestionAnswers =
-                  questionMap[year.year]?.[question.questionNumber];
+                  questionMap[year.year]?.[
+                    `${question.paperName}-${question.questionNumber}`
+                  ];
                 if (typeof matchedQuestionAnswers !== "number")
                   return showQuestionNumbers ? (
                     <div
