@@ -21,7 +21,7 @@
     "@clerk/nextjs": "^6.12.12",
     "@clerk/themes": "^2.2.26",
     "@hookform/resolvers": "^4.1.3",
-    "@llamaindex/cloud": "^3.0.9",
+    "@llamaindex/cloud": "^4.0.22",
     "@neondatabase/serverless": "^0.10.4",
     "@pinecone-database/pinecone": "^5.1.1",
     "@radix-ui/react-avatar": "^1.1.3",
