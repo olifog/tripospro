@@ -69,14 +69,14 @@ importers:
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.0.17)
       '@tanstack/react-query':
-        specifier: ^5.71.0
-        version: 5.71.0(react@19.1.0)
+        specifier: ^5.90.3
+        version: 5.90.3(react@19.1.0)
       '@trpc/client':
         specifier: 11.0.0-rc.730
         version: 11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/react-query':
         specifier: 11.0.0-rc.730
-        version: 11.0.0-rc.730(@tanstack/react-query@5.71.0(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)
+        version: 11.0.0-rc.730(@tanstack/react-query@5.90.3(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)
       '@trpc/server':
         specifier: 11.0.0-rc.730
         version: 11.0.0-rc.730(typescript@5.8.2)
@@ -1564,11 +1564,11 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
-  '@tanstack/query-core@5.71.0':
-    resolution: {integrity: sha512-p4+T7CIEe1kMhii4booWiw42nuaiYI9La/bRCNzBaj1P3PDb0dEZYDhc/7oBifKJfHYN+mtS1ynW1qsmzQW7Og==}
+  '@tanstack/query-core@5.90.3':
+    resolution: {integrity: sha512-HtPOnCwmx4dd35PfXU8jjkhwYrsHfuqgC8RCJIwWglmhIUIlzPP0ZcEkDAc+UtAWCiLm7T8rxeEfHZlz3hYMCA==}
 
-  '@tanstack/react-query@5.71.0':
-    resolution: {integrity: sha512-Udhlz9xHwk0iB7eLDchIqvu666NZFxPZZF80KnL8sZy+5J0kMvnJkzQNYRJwF70g8Vc1nn0TSMkPJgvx6+Pn4g==}
+  '@tanstack/react-query@5.90.3':
+    resolution: {integrity: sha512-i/LRL6DtuhG6bjGzavIMIVuKKPWx2AnEBIsBfuMm3YoHne0a20nWmsatOCBcVSaT0/8/5YFjNkebHAPLVUSi0Q==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -2423,13 +2423,14 @@ packages:
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
-  node-addon-api@8.3.1:
-    resolution: {integrity: sha512-lytcDEdxKjGJPTLEfW4mYMigRezMlyJY8W4wxJK8zE533Jlb8L8dRuObJFWg2P+AuOIxoCgKF+2Oq4d4Zd0OUA==}
+  node-addon-api@8.5.0:
+    resolution: {integrity: sha512-/bRZty2mXUIFY/xU5HLvveNHlswNJej+RnxBjOMkidWfwZzgTbPG1E3K5TOxRLOR+5hX7bSofy8yf1hZevMS8A==}
     engines: {node: ^18 || ^20 || >= 21}
 
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -3971,11 +3972,11 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.0.17
 
-  '@tanstack/query-core@5.71.0': {}
+  '@tanstack/query-core@5.90.3': {}
 
-  '@tanstack/react-query@5.71.0(react@19.1.0)':
+  '@tanstack/react-query@5.90.3(react@19.1.0)':
     dependencies:
-      '@tanstack/query-core': 5.71.0
+      '@tanstack/query-core': 5.90.3
       react: 19.1.0
 
   '@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2)':
@@ -3983,9 +3984,9 @@ snapshots:
       '@trpc/server': 11.0.0-rc.730(typescript@5.8.2)
       typescript: 5.8.2
 
-  '@trpc/react-query@11.0.0-rc.730(@tanstack/react-query@5.71.0(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)':
+  '@trpc/react-query@11.0.0-rc.730(@tanstack/react-query@5.90.3(react@19.1.0))(@trpc/client@11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2))(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)':
     dependencies:
-      '@tanstack/react-query': 5.71.0(react@19.1.0)
+      '@tanstack/react-query': 5.90.3(react@19.1.0)
       '@trpc/client': 11.0.0-rc.730(@trpc/server@11.0.0-rc.730(typescript@5.8.2))(typescript@5.8.2)
       '@trpc/server': 11.0.0-rc.730(typescript@5.8.2)
       react: 19.1.0
@@ -4911,7 +4912,7 @@ snapshots:
       lower-case: 2.0.2
       tslib: 2.8.1
 
-  node-addon-api@8.3.1: {}
+  node-addon-api@8.5.0: {}
 
   node-domexception@1.0.0: {}
 
@@ -5268,7 +5269,7 @@ snapshots:
 
   tree-sitter@0.22.4:
     dependencies:
-      node-addon-api: 8.3.1
+      node-addon-api: 8.5.0
       node-gyp-build: 4.8.4
 
   trim-lines@3.0.1: {}
