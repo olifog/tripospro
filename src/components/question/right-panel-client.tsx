@@ -647,7 +647,7 @@ const AttemptsInner = ({
               />
 
               <div className="flex justify-end gap-3">
-                <Button variant="outline" onClick={() => setModalOpen(false)}>
+                <Button type="button" variant="outline" onClick={() => setModalOpen(false)}>
                   Cancel
                 </Button>
                 <Button
