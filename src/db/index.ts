@@ -1,5 +1,11 @@
-import { env } from "@/env";
+import { setDefaultAutoSelectFamily } from "node:net";
+
+// goofy temp fix
+setDefaultAutoSelectFamily(false);
+
+import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
+import { env } from "@/env";
 
 import * as courseSchema from "./schema/course";
 import * as paperSchema from "./schema/paper";
@@ -15,4 +21,5 @@ const schema = {
   ...triposSchema
 };
 
-export const db = drizzle(env.DATABASE_URL, { schema: { ...schema } });
+const sql = neon(env.DATABASE_URL);
+export const db = drizzle({ client: sql, schema });

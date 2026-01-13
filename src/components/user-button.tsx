@@ -1,10 +1,10 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
 import { UserButton as ClerkUserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 export function UserButton(props: {
   showName?: boolean;

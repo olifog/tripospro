@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -10,7 +11,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
-import { useMemo } from "react";
 import { Link } from "../link/client";
 
 export type CourseCardData = {
@@ -45,18 +45,20 @@ export const CourseCard = ({
   overrideFilters?: QuestionsFilter;
   highlight?: { year: number; questionNumber: number; paperNumber: string };
 }) => {
-  const [{ search, yearCutoff, onlyCurrent, showQuestionNumbers }] =
+  // Always call the hook unconditionally
+  const [filterFromHook] = useQuestionsFilter();
+
+  // Then decide which values to use
+  const { search, yearCutoff, onlyCurrent, showQuestionNumbers } =
     overrideFilters
-      ? [
-          {
-            search: "",
-            yearCutoff: 1993,
-            onlyCurrent: false,
-            showQuestionNumbers: true,
-            ...overrideFilters
-          }
-        ]
-      : useQuestionsFilter();
+      ? {
+          search: "",
+          yearCutoff: 1993,
+          onlyCurrent: false,
+          showQuestionNumbers: true,
+          ...overrideFilters
+        }
+      : filterFromHook;
 
   const isCurrent = useMemo(() => {
     return course.years.some((year) => year.year === currentYear);
@@ -159,7 +161,7 @@ export const CourseCard = ({
                   href={`/c/${course.courseCode}/${year.year}`}
                   prefetch={false}
                 > */}
-                <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
+                <span className="absolute top-3 -left-1.5 -rotate-90 text-foreground text-sm">
                   {year.year}
                 </span>
                 {/* </Link> */}

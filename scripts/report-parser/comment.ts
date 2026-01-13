@@ -1,12 +1,12 @@
 import fs from "node:fs";
-import { db } from "@/db";
-import { paperTable, paperYearTable } from "@/db/schema/paper";
-import { questionTable } from "@/db/schema/question";
-import { env } from "@/env";
 import { LlamaParseReader } from "@llamaindex/cloud/reader";
 import { generateObject } from "ai";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
+import { db } from "@/db";
+import { paperTable, paperYearTable } from "@/db/schema/paper";
+import { questionTable } from "@/db/schema/question";
+import { env } from "@/env";
 import { model } from ".";
 
 const reader = new LlamaParseReader({
@@ -95,7 +95,7 @@ export const uploadComments = async (
     const paperYear = await db.query.paperYearTable.findFirst({
       where: and(
         eq(paperYearTable.paperId, paper.id),
-        eq(paperYearTable.year, Number.parseInt(year))
+        eq(paperYearTable.year, Number.parseInt(year, 10))
       )
     });
 
@@ -113,7 +113,10 @@ export const uploadComments = async (
         .where(
           and(
             eq(questionTable.paperYearId, paperYear.id),
-            eq(questionTable.questionNumber, Number.parseInt(questionNumber))
+            eq(
+              questionTable.questionNumber,
+              Number.parseInt(questionNumber, 10)
+            )
           )
         );
     }

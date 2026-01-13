@@ -1,15 +1,14 @@
-import { db } from "@/db";
-import { paperYearTable } from "@/db/schema/paper";
-import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { env } from "@/env";
 import { createOpenAI } from "@ai-sdk/openai";
 import { generateObject } from "ai";
 import { eq, isNull } from "drizzle-orm";
 import { fromBuffer } from "pdf2pic";
 import { z } from "zod";
+import { db } from "@/db";
+import { paperYearTable } from "@/db/schema/paper";
+import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
+import { env } from "@/env";
 
 const openai = createOpenAI({
-  compatibility: "strict",
   apiKey: env.OPENAI_API_KEY
 });
 

@@ -1,12 +1,11 @@
+import { generateObject } from "ai";
+import { and, eq } from "drizzle-orm";
+import { fromBuffer } from "pdf2pic";
+import { z } from "zod";
 import { db } from "@/db";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
-import { generateObject } from "ai";
-import { and, eq } from "drizzle-orm";
-import { z } from "zod";
 import { model } from ".";
-
-import { fromBuffer } from "pdf2pic";
 
 const outputSchema = z.object({
   results: z.record(
@@ -119,7 +118,7 @@ export const uploadSummary = async (
     const paperYear = await db.query.paperYearTable.findFirst({
       where: and(
         eq(paperYearTable.paperId, paper.id),
-        eq(paperYearTable.year, Number.parseInt(year))
+        eq(paperYearTable.year, Number.parseInt(year, 10))
       )
     });
 
@@ -134,21 +133,28 @@ export const uploadSummary = async (
         .set({
           attempts:
             typeof stats.attempts === "string"
-              ? Number.parseInt(stats.attempts)
+              ? Number.parseInt(stats.attempts, 10)
               : null,
           minimumMark:
-            typeof stats.min === "string" ? Number.parseInt(stats.min) : null,
+            typeof stats.min === "string"
+              ? Number.parseInt(stats.min, 10)
+              : null,
           maximumMark:
-            typeof stats.max === "string" ? Number.parseInt(stats.max) : null,
+            typeof stats.max === "string"
+              ? Number.parseInt(stats.max, 10)
+              : null,
           medianMark:
             typeof stats.median === "string"
-              ? Number.parseInt(stats.median)
+              ? Number.parseInt(stats.median, 10)
               : null
         })
         .where(
           and(
             eq(questionTable.paperYearId, paperYear.id),
-            eq(questionTable.questionNumber, Number.parseInt(questionNumber))
+            eq(
+              questionTable.questionNumber,
+              Number.parseInt(questionNumber, 10)
+            )
           )
         );
     }

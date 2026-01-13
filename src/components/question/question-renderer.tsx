@@ -1,10 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { trpc } from "@/trpc/client";
 import { notFound } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { cn } from "@/lib/utils";
+import { trpc } from "@/trpc/client";
 import { ErrorMessage } from "../error";
 import { Skeleton } from "../ui/skeleton";
 
@@ -12,7 +12,11 @@ const QuestionRendererInner = ({
   paperNumber,
   year,
   questionNumber
-}: { paperNumber: string; year: string; questionNumber: string }) => {
+}: {
+  paperNumber: string;
+  year: string;
+  questionNumber: string;
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const loadingTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -22,11 +26,10 @@ const QuestionRendererInner = ({
     questionNumber
   });
 
-  if (!question) {
-    return notFound();
-  }
-
+  // All hooks must be called before any early returns
   useEffect(() => {
+    if (!question) return;
+
     setIsLoading(true);
     if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current);
     loadingTimerRef.current = setTimeout(() => {
@@ -36,7 +39,11 @@ const QuestionRendererInner = ({
     return () => {
       if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current);
     };
-  }, [question.url]);
+  }, [question?.url]);
+
+  if (!question) {
+    return notFound();
+  }
 
   const handleIframeLoad = () => {
     if (loadingTimerRef.current) {
@@ -84,7 +91,11 @@ const QuestionRenderer = ({
   paperNumber,
   year,
   questionNumber
-}: { paperNumber: string; year: string; questionNumber: string }) => {
+}: {
+  paperNumber: string;
+  year: string;
+  questionNumber: string;
+}) => {
   return (
     <ErrorBoundary fallback={<QuestionRendererError />}>
       <Suspense fallback={<QuestionRendererSkeleton />}>

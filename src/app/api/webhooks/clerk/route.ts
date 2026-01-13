@@ -1,10 +1,10 @@
-import { db } from "@/db";
-import { userSettingsTable, usersTable } from "@/db/schema/user";
-import { env } from "@/env";
 import type { WebhookEvent } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
+import { db } from "@/db";
+import { userSettingsTable, usersTable } from "@/db/schema/user";
+import { env } from "@/env";
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = env.CLERK_SIGNING_SECRET;

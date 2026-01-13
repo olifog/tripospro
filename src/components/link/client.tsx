@@ -1,7 +1,7 @@
 "use client";
 
-import { usePart } from "@/hooks/use-params";
 import NextLink from "next/link";
+import { usePart } from "@/hooks/use-params";
 import { getHrefWithPart } from "./_shared";
 
 export const useClientHref = () => {

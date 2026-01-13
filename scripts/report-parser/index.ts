@@ -1,19 +1,13 @@
 import fs from "node:fs";
-import { z } from "zod";
-
 import path from "node:path";
 import { createOpenAI } from "@ai-sdk/openai";
+import { z } from "zod";
 import { env } from "../../src/env";
-
-import { digestComments } from "./comment";
-import { uploadComments } from "./comment";
-import { digestReport } from "./report";
-import { uploadReport } from "./report";
-import { digestSummary } from "./summary";
-import { uploadSummary } from "./summary";
+import { digestComments, uploadComments } from "./comment";
+import { digestReport, uploadReport } from "./report";
+import { digestSummary, uploadSummary } from "./summary";
 
 const openai = createOpenAI({
-  compatibility: "strict",
   apiKey: env.OPENAI_API_KEY
 });
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -8,7 +9,6 @@ import {
   SidebarRail
 } from "@/components/ui/sidebar";
 import { loadSidebarState, saveSidebarState } from "@/lib/save-sidebar";
-import { useEffect, useState } from "react";
 import { SidebarProvider } from "../ui/sidebar";
 
 export function SidebarClient({
@@ -30,7 +30,9 @@ export function SidebarClient({
 
 export function SavedSidebarProvider({
   children
-}: { children: React.ReactNode }) {
+}: {
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 "use client";
 
+import { useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
-import { useMemo } from "react";
 import { Link } from "../link/client";
 
 export type PaperCardData = {
@@ -22,7 +22,10 @@ export type PaperCardData = {
 export const PaperCard = ({
   paper,
   currentYear
-}: { paper: PaperCardData; currentYear: number }) => {
+}: {
+  paper: PaperCardData;
+  currentYear: number;
+}) => {
   const [{ search, yearCutoff, onlyCurrent, showQuestionNumbers }] =
     useQuestionsFilter();
 
@@ -94,7 +97,7 @@ export const PaperCard = ({
                   href={`/p/${paper.paperName}/${year.year}`}
                   prefetch={false}
                 >
-                  <span className="-rotate-90 -left-1.5 absolute top-3 text-foreground text-sm">
+                  <span className="absolute top-3 -left-1.5 -rotate-90 text-foreground text-sm">
                     {year.year}
                   </span>
                 </Link>

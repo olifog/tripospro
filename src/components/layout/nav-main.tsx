@@ -1,13 +1,13 @@
 "use client";
 
 import {
+  Bot,
   ChevronRight,
   Info,
-  Bot,
   type LucideIcon,
-  ScrollText,
+  ScrollText
 } from "lucide-react";
-
+import { usePathname } from "next/navigation";
 import {
   Collapsible,
   CollapsibleContent,
@@ -23,7 +23,6 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from "@/components/ui/sidebar";
-import { usePathname } from "next/navigation";
 import { Link } from "../link/client";
 
 type NavMainItem = {

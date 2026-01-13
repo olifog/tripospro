@@ -1,7 +1,7 @@
+import { ExternalLink, Github } from "lucide-react";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { ExternalLink, Github } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -9,9 +9,11 @@ export default function AboutPage() {
       <div className="max-w-2xl space-y-8">
         {/* Main description */}
         <div className="">
-          <p className="text-foreground text-sm leading-relaxed">
-            Tripos Pro is a study tool for Cambridge Computer Science students.
-            It consists of:
+          <div className="text-foreground text-sm leading-relaxed">
+            <p>
+              Tripos Pro is a study tool for Cambridge Computer Science
+              students. It consists of:
+            </p>
             <ul className="list-inside list-disc">
               <li>A database of all past questions, across all years</li>
               <li>A chatbot that can answer questions about past questions</li>
@@ -20,14 +22,16 @@ export default function AboutPage() {
                 and solution links
               </li>
             </ul>
-          </p>
+          </div>
           <br />
-          <p className="text-foreground text-sm leading-relaxed">
-            <span className="font-bold">Protip:</span> you can go directly from
-            a CST question page to the corresponding
-            <span className="font-bold"> tripos.pro </span>
-            question page by changing the page's domain name to{" "}
-            <span className="font-bold">tripos.pro</span>. e.g.
+          <div className="text-foreground text-sm leading-relaxed">
+            <p>
+              <span className="font-bold">Protip:</span> you can go directly
+              from a CST question page to the corresponding
+              <span className="font-bold"> tripos.pro </span>
+              question page by changing the page's domain name to{" "}
+              <span className="font-bold">tripos.pro</span>. e.g.
+            </p>
             <div className="flex flex-col pl-4">
               <br />
               <span className="font-bold">
@@ -41,7 +45,7 @@ export default function AboutPage() {
               </span>{" "}
               (the www. is optional)
             </div>
-          </p>
+          </div>
         </div>
 
         <Separator />

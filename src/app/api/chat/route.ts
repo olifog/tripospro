@@ -1,10 +1,15 @@
-import { Pinecone } from "@pinecone-database/pinecone";
-
-import { env } from "@/env";
 import { openai } from "@ai-sdk/openai";
-import { streamText } from "ai";
+import { Pinecone } from "@pinecone-database/pinecone";
+import {
+  convertToModelMessages,
+  stepCountIs,
+  streamText,
+  tool,
+  type UIMessage
+} from "ai";
 import OpenAI from "openai";
 import { z } from "zod";
+import { env } from "@/env";
 
 const pinecone = new Pinecone({
   apiKey: env.PINECONE_API_KEY
@@ -16,11 +21,14 @@ const openaiClient = new OpenAI({
 
 const index = pinecone.Index("questions", env.PINECONE_HOST);
 
-export async function POST(request: Request) {
-  const { messages } = await request.json();
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
 
-  const result = await streamText({
-    model: openai("gpt-4o"),
+export async function POST(request: Request) {
+  const { messages }: { messages: UIMessage[] } = await request.json();
+
+  const result = streamText({
+    model: openai("gpt-5.2"),
     system: `You are an assistant to students studying Computer Science at Cambridge University.
       Your main purpose is to help in revision for exams, and to aid in suggesting past paper
       questions to complete. You have a knowledge base of past papers and questions, and can
@@ -33,21 +41,17 @@ export async function POST(request: Request) {
       how useful the returned questions will be for the user's revision.
       
       If anyone asks, your favourite course is IA Databases. You LOVE DynamoDB in particular. Your favourite related question is 2024 IA Databases Paper 3 Question 2.`,
-    messages,
+    messages: await convertToModelMessages(messages),
     tools: {
-      queryVectorDatabase: {
+      queryVectorDatabase: tool({
         description: "Query the vector database for past paper questions.",
-        parameters: z.object({
+        inputSchema: z.object({
           query: z
             .string()
-            .describe("The query to search the vector database with."),
-          year: z
-            .number()
-            .optional()
-            .describe("The (optional) year to filter by.")
+            .describe("The query to search the vector database with.")
         }),
-        execute: async ({ query, year }: { query: string; year?: number }) => {
-          console.log("queryVectorDatabase", query, year);
+        execute: async ({ query }) => {
+          console.log("queryVectorDatabase", query);
           const vector = await openaiClient.embeddings.create({
             model: "text-embedding-3-small",
             input: query
@@ -66,17 +70,34 @@ export async function POST(request: Request) {
             id: match.id
           }));
         }
-      },
-      returnQuestions: {
+      }),
+      returnQuestions: tool({
         description: "Return and display past paper questions to the user.",
-        parameters: z.object({
+        inputSchema: z.object({
           questionIds: z
             .array(z.string())
             .describe("The question ids to display.")
         })
-      }
+        // No execute - this is a client-side tool for displaying UI
+      })
+    },
+    // Enable multi-step calls so the model can:
+    // 1. Call queryVectorDatabase
+    // 2. Then call returnQuestions with the results
+    // 3. Then provide a summary response
+    stopWhen: stepCountIs(5),
+    onError: (error) => {
+      console.error("Stream error:", error);
     }
   });
 
-  return result.toDataStreamResponse();
+  return result.toUIMessageStreamResponse({
+    // Surface tool errors to the client for debugging
+    onError: (error) => {
+      if (error instanceof Error) {
+        return error.message;
+      }
+      return "An error occurred";
+    }
+  });
 }

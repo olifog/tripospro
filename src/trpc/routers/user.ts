@@ -1,10 +1,9 @@
-import { db } from "@/db";
-import { userSettingsTable, usersTable } from "@/db/schema/user";
 import type { User } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { baseProcedure, protectedProcedure } from "../init";
-import { createTRPCRouter } from "../init";
+import { db } from "@/db";
+import { userSettingsTable, usersTable } from "@/db/schema/user";
+import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
 
 const filterClerkUser = (clerkUser: User) => {
   return {

@@ -1,9 +1,8 @@
 "use client";
 
 import { ChevronsUpDown } from "lucide-react";
-
-import { Suspense } from "react";
-
+import { Suspense, useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { ErrorMessage } from "@/components/error";
 import {
   DropdownMenu,
@@ -22,8 +21,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { usePart } from "@/hooks/use-params";
 import { defaultPartCode } from "@/lib/search-params";
 import { trpc } from "@/trpc/client";
-import { useEffect } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 
 const partAbbreviations = {
   part1a: "IA",
@@ -134,7 +131,7 @@ function InnerPartSwitcher() {
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Parts
             </DropdownMenuLabel>
-            {sortedParts.map((part, index) => (
+            {sortedParts.map((part, _index) => (
               <DropdownMenuItem
                 key={part.name}
                 onClick={() => changePart(part.code)}

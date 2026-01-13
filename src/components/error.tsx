@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { AlertTriangle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const errorMessageVariants = cva("flex items-center text-left", {
   variants: {

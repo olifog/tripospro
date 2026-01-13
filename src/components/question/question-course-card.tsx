@@ -1,8 +1,8 @@
 "use client";
 
-import { trpc } from "@/trpc/client";
 import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { trpc } from "@/trpc/client";
 import { CourseCard } from "../questions/course-card";
 import { Skeleton } from "../ui/skeleton";
 
@@ -28,7 +28,8 @@ const QuestionCourseCardInner = ({
   return (
     <div className="flex h-full w-full flex-col gap-2">
       <span className="text-muted-foreground text-xs italic">
-        The below is a little buggy at the moment and might show some extra questions -- WIP!!
+        The below is a little buggy at the moment and might show some extra
+        questions -- WIP!!
       </span>
       <div className="relative h-full w-full overflow-x-scroll">
         <CourseCard
@@ -41,8 +42,8 @@ const QuestionCourseCardInner = ({
             showQuestionNumbers: true
           }}
           highlight={{
-            year: Number.parseInt(year),
-            questionNumber: Number.parseInt(questionNumber),
+            year: Number.parseInt(year, 10),
+            questionNumber: Number.parseInt(questionNumber, 10),
             paperNumber: paperNumber
           }}
         />
@@ -59,7 +60,11 @@ const QuestionCourseCardSkeleton = () => {
   );
 };
 
-const QuestionCourseCardError = ({ message }: { message: string }) => {
+const QuestionCourseCardError = ({
+  message: _message
+}: {
+  message: string;
+}) => {
   return (
     <div className="text-muted-foreground text-sm">
       An error occurred while fetching the course card

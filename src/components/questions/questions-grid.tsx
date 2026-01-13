@@ -1,10 +1,10 @@
 "use client";
 
+import { Suspense, useMemo } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { usePart, useQuestionsFilter } from "@/hooks/use-params";
 import { defaultPartCode } from "@/lib/search-params";
 import { trpc } from "@/trpc/client";
-import { Suspense, useMemo } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import { MuuriGrid } from "../muuri-grid";
 import { CourseCard, type CourseCardData } from "./course-card";
 import { PaperCard, type PaperCardData } from "./paper-card";

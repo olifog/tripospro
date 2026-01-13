@@ -1,12 +1,12 @@
+import { and, eq } from "drizzle-orm";
 import { db } from "@/db";
 import {
   courseTable,
+  courseYearLecturerTable,
   courseYearPaperYearTable,
   courseYearTable
 } from "@/db/schema/course";
-import { courseYearLecturerTable } from "@/db/schema/course";
-import { paperTable } from "@/db/schema/paper";
-import { paperYearTable } from "@/db/schema/paper";
+import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionAuthorTable, questionTable } from "@/db/schema/question";
 import {
   triposPartTable,
@@ -18,7 +18,6 @@ import {
   userSettingsTable,
   usersTable
 } from "@/db/schema/user";
-import { and, eq } from "drizzle-orm";
 import { uploadQuestionToVectorDb } from "./vectordb";
 
 const cache = {
@@ -223,7 +222,7 @@ export const getOrPatchTriposPartYear = async (data: PatchQuestionData) => {
   const triposPartYear = await db.query.triposPartYearTable.findFirst({
     where: and(
       eq(triposPartYearTable.triposPartId, triposPart.id),
-      eq(triposPartYearTable.year, Number.parseInt(data.year))
+      eq(triposPartYearTable.year, Number.parseInt(data.year, 10))
     )
   });
 
@@ -238,7 +237,7 @@ export const getOrPatchTriposPartYear = async (data: PatchQuestionData) => {
   const newTriposPartYear = await db
     .insert(triposPartYearTable)
     .values({
-      year: Number.parseInt(data.year),
+      year: Number.parseInt(data.year, 10),
       triposPartId: triposPart.id
     })
     .returning();
@@ -266,7 +265,7 @@ export const getOrPatchPaperYear = async (data: PatchQuestionData) => {
   const paperYear = await db.query.paperYearTable.findFirst({
     where: and(
       eq(paperYearTable.paperId, paper.id),
-      eq(paperYearTable.year, Number.parseInt(data.year))
+      eq(paperYearTable.year, Number.parseInt(data.year, 10))
     )
   });
   if (paperYear) {
@@ -279,7 +278,7 @@ export const getOrPatchPaperYear = async (data: PatchQuestionData) => {
   const newPaperYear = await db
     .insert(paperYearTable)
     .values({
-      year: Number.parseInt(data.year),
+      year: Number.parseInt(data.year, 10),
       paperId: paper.id,
       triposPartYearId: triposPartYear?.id,
       url: `https://www.cl.cam.ac.uk/teaching/exams/pastpapers/y${data.year}PAPER${paper.name}.pdf`
@@ -320,7 +319,7 @@ export const getOrPatchCourse = async (data: PatchQuestionData) => {
 };
 
 export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
-  const paperYear = await getOrPatchPaperYear(data);
+  const _paperYear = await getOrPatchPaperYear(data);
   const course = await getOrPatchCourse(data);
 
   if (cache.courseYears.has([course.id, data.year].join(":"))) {
@@ -331,7 +330,7 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
   const courseYear = await db.query.courseYearTable.findFirst({
     where: and(
       eq(courseYearTable.courseId, course.id),
-      eq(courseYearTable.year, Number.parseInt(data.year))
+      eq(courseYearTable.year, Number.parseInt(data.year, 10))
     )
   });
 
@@ -343,7 +342,7 @@ export const getOrPatchCourseYear = async (data: PatchQuestionData) => {
   const newCourseYear = await db
     .insert(courseYearTable)
     .values({
-      year: Number.parseInt(data.year),
+      year: Number.parseInt(data.year, 10),
       courseId: course.id,
       url: data.course.url,
       michaelmas: data.course.michaelmas,
@@ -432,7 +431,7 @@ export const getOrPatchQuestion = async (data: PatchQuestionData) => {
     where: and(
       eq(questionTable.paperYearId, paperYear.id),
       eq(questionTable.courseYearId, courseYear.id),
-      eq(questionTable.questionNumber, Number.parseInt(data.questionNumber))
+      eq(questionTable.questionNumber, Number.parseInt(data.questionNumber, 10))
     )
   });
 
@@ -445,7 +444,7 @@ export const getOrPatchQuestion = async (data: PatchQuestionData) => {
     .values({
       paperYearId: paperYear.id,
       courseYearId: courseYear.id,
-      questionNumber: Number.parseInt(data.questionNumber),
+      questionNumber: Number.parseInt(data.questionNumber, 10),
       solutionUrl: data.solutionUrl ?? "",
       url: data.url ?? ""
     })

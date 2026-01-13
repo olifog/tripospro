@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
-import { useEffect } from "react";
 
 export function LoadLocalFilters() {
   const [filter, setFilter] = useQuestionsFilter();

@@ -2,8 +2,10 @@
 
 // made by v0.dev :-)
 
+// import { Switch } from "@/components/ui/switch"
+import { Pause, Play, Timer } from "lucide-react";
 import type React from "react";
-
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,9 +15,6 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-// import { Switch } from "@/components/ui/switch"
-import { Pause, Play, Timer } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 
 export default function TimerComponent({
   markDone
@@ -25,7 +24,7 @@ export default function TimerComponent({
   const [time, setTime] = useState(30 * 60); // 30 minutes in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [isCountingUp, setIsCountingUp] = useState(false);
-  const [playSound, setPlaySound] = useState(true);
+  const [playSound, _setPlaySound] = useState(true);
   const [editableTime, setEditableTime] = useState("30:00");
   const [isEditing, setIsEditing] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);

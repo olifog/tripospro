@@ -1,10 +1,10 @@
 import fs from "node:fs";
-import { db } from "@/db";
-import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { env } from "@/env";
 import { LlamaParseReader } from "@llamaindex/cloud/reader";
 import { generateObject } from "ai";
 import { and, eq } from "drizzle-orm";
+import { db } from "@/db";
+import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
+import { env } from "@/env";
 import { model } from "./index";
 
 const reader = new LlamaParseReader({
@@ -106,7 +106,7 @@ export const uploadReport = async (
     if (!triposPart) throw new Error(`Tripos part ${part} not found`);
     const triposPartYear = await db.query.triposPartYearTable.findFirst({
       where: and(
-        eq(triposPartYearTable.year, Number.parseInt(year)),
+        eq(triposPartYearTable.year, Number.parseInt(year, 10)),
         eq(triposPartYearTable.triposPartId, triposPart.id)
       )
     });

@@ -1,7 +1,11 @@
-import { pgTable } from "drizzle-orm/pg-core";
-
 import { relations } from "drizzle-orm";
-import { integer, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  varchar
+} from "drizzle-orm/pg-core";
 import { courseYearTable } from "./course";
 import { paperYearTable } from "./paper";
 import { userQuestionAnswerTable, usersTable } from "./user";

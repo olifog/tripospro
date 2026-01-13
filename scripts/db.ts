@@ -1,19 +1,19 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { cwd } from "node:process";
+import { Command } from "commander";
+import { eq } from "drizzle-orm";
+import type { z } from "zod";
 import { db } from "@/db";
 import { courseTable } from "@/db/schema/course";
 import { seed } from "@/db/seed";
 import { calendarYearToAcademicYear } from "@/lib/utils";
-import { Command } from "commander";
-import { eq } from "drizzle-orm";
-import type { z } from "zod";
 import { type CourseDBSchema, parseCourseDB } from "./coursedb-parser/parse";
 import { linkOldPapers } from "./link-old";
 import {
+  parseQuestions,
   type QuestionSchema,
-  QuestionsSchema,
-  parseQuestions
+  QuestionsSchema
 } from "./questions-parser";
 import { ingestYear } from "./report-parser";
 import { getOrPatchQuestion, resetDatabase } from "./upload";
@@ -131,7 +131,7 @@ const ingestCommand = new Command("ingest")
         );
         coursedbMap.set((year + 1).toString(), applyCourseDbRemaps(coursedb));
         year++;
-      } catch (error) {
+      } catch (_error) {
         break;
       }
     }
@@ -187,7 +187,7 @@ const ingestCommand = new Command("ingest")
             );
 
       const course = Object.entries(coursedb?.courses ?? {}).find(
-        ([key, value]) => {
+        ([_key, value]) => {
           return value._label === question.topic;
         }
       )?.[0];
@@ -251,7 +251,7 @@ const ingestCommand = new Command("ingest")
               typeof coursedb.courses[course].hours === "number"
                 ? coursedb.courses[course].hours
                 : coursedb.courses[course].hours?._label
-                  ? Number.parseInt(coursedb.courses[course].hours._label)
+                  ? Number.parseInt(coursedb.courses[course].hours._label, 10)
                   : undefined,
             moodleId: coursedb.courses[course].moodle
               ? coursedb.courses[course].moodle.toString()
@@ -343,7 +343,7 @@ const coursedbCommand = new Command("coursedb")
   )
   .action(async (options) => {
     const year = options.year
-      ? calendarYearToAcademicYear(Number.parseInt(options.year))
+      ? calendarYearToAcademicYear(Number.parseInt(options.year, 10))
       : "current";
 
     const outputPath = options.output
@@ -388,11 +388,11 @@ const reportsCommand = new Command("reports")
   .option("-y, --year <year>", "The year to ingest the exam statistics of")
   .option("-a, --all", "Ingest all years")
   .action(async (options) => {
-    let startYear = undefined;
-    let endYear = undefined;
+    let startYear: number | undefined;
+    let endYear: number | undefined;
 
     if (options.year) {
-      startYear = Number.parseInt(options.year);
+      startYear = Number.parseInt(options.year, 10);
       endYear = startYear;
     }
     if (options.all) {

@@ -1,13 +1,11 @@
-import { generateObject } from "ai";
-
-import type { questionTable } from "@/db/schema/question";
-import { env } from "@/env";
 import { openai } from "@ai-sdk/openai";
 import { Pinecone } from "@pinecone-database/pinecone";
-import { embed } from "ai";
+import { embed, generateObject } from "ai";
 import { fromBuffer } from "pdf2pic";
 import type { BufferResponse } from "pdf2pic/dist/types/convertResponse";
 import { z } from "zod";
+import type { questionTable } from "@/db/schema/question";
+import { env } from "@/env";
 
 const pc = new Pinecone({
   apiKey: env.PINECONE_API_KEY

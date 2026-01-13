@@ -1,13 +1,11 @@
+import { and, eq } from "drizzle-orm";
+import { z } from "zod";
 import { courseTable, courseYearTable } from "@/db/schema/course";
-import { paperYearTable } from "@/db/schema/paper";
-import { paperTable } from "@/db/schema/paper";
+import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
-import { and, eq } from "drizzle-orm";
-import { z } from "zod";
-import { baseProcedure, protectedProcedure } from "../init";
-import { createTRPCRouter } from "../init";
+import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
 
 export const questionRouter = createTRPCRouter({
   getQuestion: baseProcedure
@@ -43,10 +41,10 @@ export const questionRouter = createTRPCRouter({
         .where(
           and(
             eq(paperTable.name, input.paperNumber),
-            eq(paperYearTable.year, Number.parseInt(input.year)),
+            eq(paperYearTable.year, Number.parseInt(input.year, 10)),
             eq(
               questionTable.questionNumber,
-              Number.parseInt(input.questionNumber)
+              Number.parseInt(input.questionNumber, 10)
             )
           )
         );
@@ -123,10 +121,10 @@ export const questionRouter = createTRPCRouter({
         .where(
           and(
             eq(paperTable.name, input.paperNumber),
-            eq(paperYearTable.year, Number.parseInt(input.year)),
+            eq(paperYearTable.year, Number.parseInt(input.year, 10)),
             eq(
               questionTable.questionNumber,
-              Number.parseInt(input.questionNumber)
+              Number.parseInt(input.questionNumber, 10)
             )
           )
         );
@@ -213,10 +211,10 @@ export const questionRouter = createTRPCRouter({
         .where(
           and(
             eq(paperTable.name, input.paperNumber),
-            eq(paperYearTable.year, Number.parseInt(input.year)),
+            eq(paperYearTable.year, Number.parseInt(input.year, 10)),
             eq(
               questionTable.questionNumber,
-              Number.parseInt(input.questionNumber)
+              Number.parseInt(input.questionNumber, 10)
             )
           )
         );

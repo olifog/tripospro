@@ -1,8 +1,8 @@
 "use client";
 
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TRPCProvider } from "@/trpc/client";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { ClerkProvider } from "./clerk-provider";
 
 export function Providers({ children }: { children: React.ReactNode }) {

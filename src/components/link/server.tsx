@@ -1,5 +1,5 @@
-import { getPart } from "@/lib/search-params";
 import NextLink from "next/link";
+import { getPart } from "@/lib/search-params";
 import { getHrefWithPart } from "./_shared";
 
 export function Link({

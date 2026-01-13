@@ -1,10 +1,8 @@
-import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { usersTable } from "@/db/schema/user";
-import { userQuestionAnswerTable } from "@/db/schema/user";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { baseProcedure } from "../init";
-import { createTRPCRouter } from "../init";
+import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
+import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
+import { baseProcedure, createTRPCRouter } from "../init";
 
 export const triposPartRouter = createTRPCRouter({
   getQuestions: baseProcedure

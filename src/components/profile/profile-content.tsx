@@ -7,7 +7,7 @@ const TopProfile = ({ crsid }: { crsid: string }) => {
       <HydrateClient>
         <ProfilePicture crsid={crsid} />
       </HydrateClient>
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <h1 className="font-bold text-xl">{crsid}</h1>
         <HydrateClient>
           <ProfileDetails crsid={crsid} />

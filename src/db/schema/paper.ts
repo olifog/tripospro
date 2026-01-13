@@ -1,10 +1,8 @@
 import { relations } from "drizzle-orm";
-import { pgTable } from "drizzle-orm/pg-core";
-import { integer, timestamp, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { courseYearPaperYearTable } from "./course";
 import { questionTable } from "./question";
-import { triposTable } from "./tripos";
-import { triposPartYearTable } from "./tripos";
+import { triposPartYearTable, triposTable } from "./tripos";
 
 export const paperTable = pgTable("paper", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),

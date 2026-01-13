@@ -1,7 +1,7 @@
 import "dotenv/config";
+import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { triposPartTable, triposTable } from "@/db/schema/tripos";
-import { eq } from "drizzle-orm";
 
 export async function seed() {
   // Check if Computer Science tripos already exists

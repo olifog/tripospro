@@ -1,14 +1,16 @@
 "use client";
 
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-
-import { useIsMobile } from "@/hooks/use-mobile";
 import { EllipsisVertical } from "lucide-react";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const SplitQuestionLayout = ({
   left,
   right
-}: { left: React.ReactNode; right: React.ReactNode }) => {
+}: {
+  left: React.ReactNode;
+  right: React.ReactNode;
+}) => {
   const mobile = useIsMobile();
 
   if (mobile) {

@@ -1,5 +1,6 @@
 "use client";
 
+import { SignInButton, useClerk, useUser } from "@clerk/nextjs";
 import {
   BadgeCheck,
   ChevronsUpDown,
@@ -8,7 +9,6 @@ import {
   Settings,
   User
 } from "lucide-react";
-
 import { Link } from "@/components/link/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -30,8 +30,6 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePart } from "@/hooks/use-params";
 import { trpc } from "@/trpc/client";
-import { SignInButton, useUser } from "@clerk/nextjs";
-import { useClerk } from "@clerk/nextjs";
 import { getHrefWithPart } from "../link/_shared";
 
 export function NavUser() {

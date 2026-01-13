@@ -15,7 +15,11 @@ export const Question = async ({
   paperNumber,
   year,
   questionNumber
-}: { paperNumber: string; year: string; questionNumber: string }) => {
+}: {
+  paperNumber: string;
+  year: string;
+  questionNumber: string;
+}) => {
   return (
     <SplitQuestionLayout
       left={

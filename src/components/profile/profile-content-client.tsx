@@ -1,9 +1,9 @@
 "use client";
 
-import { trpc } from "@/trpc/client";
 import Image from "next/image";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { trpc } from "@/trpc/client";
 import { ErrorMessage } from "../error";
 import { Skeleton } from "../ui/skeleton";
 

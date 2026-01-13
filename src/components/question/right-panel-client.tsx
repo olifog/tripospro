@@ -1,22 +1,22 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ChevronDown,
   ChevronRight,
+  ExternalLink,
   Loader2,
   Trash,
   TriangleAlert
 } from "lucide-react";
-import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { cn } from "@/lib/utils";
+import { trpc } from "@/trpc/client";
 import { ErrorMessage } from "../error";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -123,11 +123,11 @@ export const ActionBarInner = ({
   console.log(
     covidWarnings[question.triposPartCode as keyof typeof covidWarnings]
   );
-  console.log(Number.parseInt(year));
+  console.log(Number.parseInt(year, 10));
 
   const isCovidYear = covidWarnings[
     question.triposPartCode as keyof typeof covidWarnings
-  ]?.includes(Number.parseInt(year));
+  ]?.includes(Number.parseInt(year, 10));
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
@@ -415,7 +415,7 @@ const ExaminerCommentsError = ({ message }: { message: string }) => {
 
 const ExaminerCommentsSkeleton = () => {
   return (
-    <div className="flex w-full flex-col items-center justify-center ">
+    <div className="flex w-full flex-col items-center justify-center">
       <Card className="w-full max-w-md gap-1 py-2">
         <CardHeader>
           <CardTitle className="flex cursor-pointer items-center gap-1 text-sm">
@@ -550,7 +550,7 @@ const AttemptsInner = ({
       });
       toast.success("Attempt submitted successfully!");
       refetch();
-    } catch (error) {
+    } catch (_error) {
       toast.error("Failed to submit attempt.");
     }
     setModalOpen(false);
@@ -560,7 +560,10 @@ const AttemptsInner = ({
     <div className="flex flex-col items-center gap-6">
       <TimerComponent
         markDone={(time) => {
-          form.setValue("timeTaken", Number.parseInt((time / 60).toFixed(1)));
+          form.setValue(
+            "timeTaken",
+            Number.parseInt((time / 60).toFixed(1), 10)
+          );
           setModalOpen(true);
         }}
       />
@@ -647,7 +650,11 @@ const AttemptsInner = ({
               />
 
               <div className="flex justify-end gap-3">
-                <Button type="button" variant="outline" onClick={() => setModalOpen(false)}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setModalOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button
