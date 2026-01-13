@@ -5,6 +5,7 @@ import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
+import { calendarYearToAcademicYear } from "@/lib/utils";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
 
 export const questionRouter = createTRPCRouter({
@@ -55,7 +56,13 @@ export const questionRouter = createTRPCRouter({
       if (!question) throw new Error("Question not found");
 
       const courseName = questionResponse[0].course?.name ?? "";
-      const courseId = questionResponse[0].course?.id ?? "";
+      const courseId = questionResponse[0].course?.id;
+      const courseCode = questionResponse[0].course?.code ?? "";
+      const courseYearNum = questionResponse[0].course_year?.year;
+      const courseUrl =
+        courseCode && courseYearNum
+          ? `https://www.cl.cam.ac.uk/teaching/${calendarYearToAcademicYear(courseYearNum - 1)}/${courseCode}`
+          : "";
       const paperCandidates =
         questionResponse[0].tripos_part_year?.candidates ?? 0;
       const triposPartCode = questionResponse[0].tripos_part?.code;
@@ -66,6 +73,7 @@ export const questionRouter = createTRPCRouter({
           ...question,
           courseName,
           courseId,
+          courseUrl,
           paperCandidates,
           triposPartCode,
           triposPartName
@@ -83,6 +91,7 @@ export const questionRouter = createTRPCRouter({
         updatedAt: question.updatedAt,
         courseName,
         courseId,
+        courseUrl,
         triposPartCode,
         triposPartName
       };

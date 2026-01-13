@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
+import { useRouter } from "next/navigation";
+import { useMemo, useRef } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -45,6 +46,10 @@ export const CourseCard = ({
   overrideFilters?: QuestionsFilter;
   highlight?: { year: number; questionNumber: number; paperNumber: string };
 }) => {
+  const router = useRouter();
+  const isDraggingRef = useRef(false);
+  const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
+
   // Always call the hook unconditionally
   const [filterFromHook] = useQuestionsFilter();
 
@@ -115,20 +120,55 @@ export const CourseCard = ({
   if (onlyCurrent && !isCurrent) return null;
   if (sortedYears.length === 0) return null;
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
+    isDraggingRef.current = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (mouseDownPosRef.current) {
+      const dx = Math.abs(e.clientX - mouseDownPosRef.current.x);
+      const dy = Math.abs(e.clientY - mouseDownPosRef.current.y);
+      // If moved more than 5px, consider it a drag
+      if (dx > 5 || dy > 5) {
+        isDraggingRef.current = true;
+      }
+    }
+  };
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (isDraggingRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      router.push(`/course/${course.courseId}`);
+    }
+    mouseDownPosRef.current = null;
+    isDraggingRef.current = false;
+  };
+
   return (
     <div className="absolute m-1 flex w-fit min-w-32 flex-col rounded-md border bg-card px-2 py-1 text-card-foreground shadow-sm">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            {course.courseCode.length > 10 ? (
-              <h2 className="w-fit font-semibold text-sm">
-                {course.courseCode.slice(0, 10).trim()}...
-              </h2>
-            ) : (
-              <h2 className="w-fit font-semibold text-sm">
-                {course.courseCode}
-              </h2>
-            )}
+            <button
+              type="button"
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onClick={handleClick}
+              className="w-fit cursor-pointer text-left hover:underline"
+            >
+              {course.courseCode.length > 10 ? (
+                <h2 className="w-fit font-semibold text-sm">
+                  {course.courseCode.slice(0, 10).trim()}...
+                </h2>
+              ) : (
+                <h2 className="w-fit font-semibold text-sm">
+                  {course.courseCode}
+                </h2>
+              )}
+            </button>
           </TooltipTrigger>
           <TooltipContent>
             <p>{course.courseName}</p>

@@ -9,7 +9,7 @@ import { Skeleton } from "../ui/skeleton";
 const QuestionCourseCardInner = ({
   paperNumber,
   year,
-  questionNumber
+  questionNumber,
 }: {
   paperNumber: string;
   year: string;
@@ -18,7 +18,7 @@ const QuestionCourseCardInner = ({
   const [course] = trpc.question.getQuestionCourse.useSuspenseQuery({
     paperNumber,
     year,
-    questionNumber
+    questionNumber,
   });
 
   const lastYear = useMemo(() => {
@@ -27,10 +27,6 @@ const QuestionCourseCardInner = ({
 
   return (
     <div className="flex h-full w-full flex-col gap-2">
-      <span className="text-muted-foreground text-xs italic">
-        The below is a little buggy at the moment and might show some extra
-        questions -- WIP!!
-      </span>
       <div className="relative h-full w-full overflow-x-scroll">
         <CourseCard
           course={course}
@@ -39,12 +35,12 @@ const QuestionCourseCardInner = ({
             yearCutoff: 1993,
             search: "",
             onlyCurrent: false,
-            showQuestionNumbers: true
+            showQuestionNumbers: true,
           }}
           highlight={{
             year: Number.parseInt(year, 10),
             questionNumber: Number.parseInt(questionNumber, 10),
-            paperNumber: paperNumber
+            paperNumber: paperNumber,
           }}
         />
       </div>
@@ -61,7 +57,7 @@ const QuestionCourseCardSkeleton = () => {
 };
 
 const QuestionCourseCardError = ({
-  message: _message
+  message: _message,
 }: {
   message: string;
 }) => {
@@ -75,7 +71,7 @@ const QuestionCourseCardError = ({
 export const QuestionCourseCard = ({
   paperNumber,
   year,
-  questionNumber
+  questionNumber,
 }: {
   paperNumber: string;
   year: string;

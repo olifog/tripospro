@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger
+  CollapsibleTrigger,
 } from "../ui/collapsible";
 import { Input } from "../ui/input";
 import { Slider } from "../ui/slider";
@@ -20,7 +20,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
+  TooltipTrigger,
 } from "../ui/tooltip";
 
 export const ViewOptions = () => {
@@ -49,7 +49,7 @@ export const ViewOptions = () => {
           <ChevronDown
             className={cn(
               "h-4 w-4 transition-transform duration-200",
-              !open && "rotate-[-90deg]"
+              !open && "rotate-[-90deg]",
             )}
           />
         </CollapsibleTrigger>
@@ -60,7 +60,7 @@ export const ViewOptions = () => {
             onChange={(e) => {
               setFilter({
                 ...filter,
-                search: e.target.value
+                search: e.target.value,
               });
             }}
           />
@@ -76,7 +76,7 @@ export const ViewOptions = () => {
                 if (value === "course" || value === "paper") {
                   setFilter({
                     ...filter,
-                    view: value
+                    view: value,
                   });
                 }
               }}
@@ -89,7 +89,7 @@ export const ViewOptions = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Label className="w-[150px] text-sm">
+            <Label className="w-40 text-sm">
               Only 'current' {filter.view}s:
             </Label>
             <TooltipProvider>

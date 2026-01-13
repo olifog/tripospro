@@ -151,11 +151,11 @@ export const ActionBarInner = ({
             <ExternalLink className="h-4 w-4" />
           </Link>
         </Button>
-        <Button asChild variant="secondary">
-          <Link href={`/course/${question.courseId}`} target="_blank">
-            Course
-          </Link>
-        </Button>
+        {question.courseId && (
+          <Button asChild variant="secondary">
+            <Link href={`/course/${question.courseId}`}>Course</Link>
+          </Button>
+        )}
       </div>
       {isCovidYear && (
         <div className="flex w-full max-w-96 items-center justify-center gap-2 rounded-md border border-orange-900 bg-orange-500/60 p-1">

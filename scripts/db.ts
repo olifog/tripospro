@@ -231,7 +231,7 @@ const ingestCommand = new Command("ingest")
             }
           },
           course: {
-            url: `https://www.cl.cam.ac.uk/teaching/${question.year}/${course}`,
+            url: `https://www.cl.cam.ac.uk/teaching/${calendarYearToAcademicYear(Number.parseInt(question.year, 10))}/${course}`,
             michaelmas:
               (typeof coursedb.courses[course].term === "string" &&
                 coursedb.courses[course].term === "M") ||
