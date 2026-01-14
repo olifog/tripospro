@@ -87,8 +87,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1(next@16.1.1(@opentelemetry/api@1.9.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
       ai:
-        specifier: ^6.0.31
-        version: 6.0.31(zod@3.25.76)
+        specifier: ^6.0.33
+        version: 6.0.33(zod@3.25.76)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1841,6 +1841,12 @@ packages:
 
   ai@6.0.31:
     resolution: {integrity: sha512-aAn62jsDueAK7oiY4jeqJcA4zFctDqVHGyEaUDaWxEXzz4kbMdoByfYlYZhO1V3nhkeVoI8qNyFfiZusAubQLQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
+  ai@6.0.33:
+    resolution: {integrity: sha512-bVokbmy2E2QF6Efl+5hOJx5MRWoacZ/CZY/y1E+VcewknvGlgaiCzMu8Xgddz6ArFJjiMFNUPHKxAhIePE4rmg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -4262,6 +4268,14 @@ snapshots:
       humanize-ms: 1.2.1
 
   ai@6.0.31(zod@3.25.76):
+    dependencies:
+      '@ai-sdk/gateway': 3.0.13(zod@3.25.76)
+      '@ai-sdk/provider': 3.0.2
+      '@ai-sdk/provider-utils': 4.0.5(zod@3.25.76)
+      '@opentelemetry/api': 1.9.0
+      zod: 3.25.76
+
+  ai@6.0.33(zod@3.25.76):
     dependencies:
       '@ai-sdk/gateway': 3.0.13(zod@3.25.76)
       '@ai-sdk/provider': 3.0.2
