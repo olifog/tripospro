@@ -30,8 +30,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@pinecone-database/pinecone':
-        specifier: ^5.1.2
-        version: 5.1.2
+        specifier: ^6.1.3
+        version: 6.1.3
       '@radix-ui/react-avatar':
         specifier: ^1.1.11
         version: 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.8))(@types/react@19.2.8)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1093,8 +1093,8 @@ packages:
   '@petamoriken/float16@3.9.3':
     resolution: {integrity: sha512-8awtpHXCx/bNpFt4mt2xdkgtgVvKqty8VbjHI/WWWQuEw+KLzFot3f4+LkQY9YmOtq7A5GdOnqoIC8Pdygjk2g==}
 
-  '@pinecone-database/pinecone@5.1.2':
-    resolution: {integrity: sha512-z7737KUA1hXwd508q1+o4bnRxj0NpMmzA2beyaFm7Y+EC2TYLT5ABuYsn/qhiwiEsYp8v1qS596eBhhvgNagig==}
+  '@pinecone-database/pinecone@6.1.3':
+    resolution: {integrity: sha512-EegC8sLP40+xdq3bu80TR6OZe3Sc4LuJFSFZb8RbMr3xvODEsvXe4QoS+kFx2PDR5g3dokP44NFR9AxseCeVQA==}
     engines: {node: '>=18.0.0'}
 
   '@radix-ui/number@1.1.1':
@@ -3608,7 +3608,7 @@ snapshots:
   '@petamoriken/float16@3.9.3':
     optional: true
 
-  '@pinecone-database/pinecone@5.1.2': {}
+  '@pinecone-database/pinecone@6.1.3': {}
 
   '@radix-ui/number@1.1.1': {}
 
