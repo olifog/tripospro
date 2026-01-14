@@ -50,7 +50,7 @@
     "commander": "^13.1.0",
     "dotenv": "^16.6.1",
     "drizzle-orm": "^0.45.1",
-    "llamaindex": "^0.9.19",
+    "llamaindex": "^0.12.1",
     "lucide-react": "^0.562.0",
     "muuri": "^0.9.5",
     "next": "16.1.1",
