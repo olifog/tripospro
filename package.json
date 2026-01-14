@@ -65,7 +65,7 @@
     "react-error-boundary": "^6.0.3",
     "react-hook-form": "^7.71.0",
     "react-markdown": "^10.1.0",
-    "react-resizable-panels": "^2.1.9",
+    "react-resizable-panels": "^4.4.1",
     "server-only": "^0.0.1",
     "sonner": "^2.0.7",
     "superjson": "^2.2.6",
