@@ -48,7 +48,7 @@
     "client-only": "^0.0.1",
     "clsx": "^2.1.1",
     "commander": "^14.0.2",
-    "dotenv": "^16.6.1",
+    "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
     "llamaindex": "^0.12.1",
     "lucide-react": "^0.562.0",
