@@ -59,7 +59,7 @@
     "openai": "^6.16.0",
     "pdf": "link:@llamaindex/readers/pdf",
     "pdf2pic": "^3.2.0",
-    "peggy": "^4.2.0",
+    "peggy": "^5.0.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-error-boundary": "^6.0.3",
