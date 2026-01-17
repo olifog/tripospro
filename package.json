@@ -43,7 +43,7 @@
     "@trpc/react-query": "11.8.1",
     "@trpc/server": "11.8.1",
     "@vercel/analytics": "^1.6.1",
-    "ai": "^6.0.33",
+    "ai": "^6.0.39",
     "class-variance-authority": "^0.7.1",
     "client-only": "^0.0.1",
     "clsx": "^2.1.1",
