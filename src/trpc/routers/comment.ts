@@ -521,9 +521,21 @@ export const commentRouter = createTRPCRouter({
           questionId,
           courseId,
           content: input.content,
-          depth
+          depth,
+          score: 1
         })
         .returning();
+
+      await ctx.db.insert(commentVoteTable).values({
+        userId: user.id,
+        commentId: created.id,
+        value: 1
+      });
+
+      await ctx.db
+        .update(usersTable)
+        .set({ karma: sql`${usersTable.karma} + 1` })
+        .where(eq(usersTable.id, user.id));
 
       return created;
     }),
@@ -620,14 +632,6 @@ export const commentRouter = createTRPCRouter({
           code: "NOT_FOUND",
           message: "Comment not found"
         });
-
-      // Prevent self-voting
-      if (comment.authorId === user.id) {
-        throw new TRPCError({
-          code: "FORBIDDEN",
-          message: "Cannot vote on your own comment"
-        });
-      }
 
       const existingVote = await ctx.db.query.commentVoteTable.findFirst({
         where: and(

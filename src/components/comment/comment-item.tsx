@@ -7,9 +7,8 @@ import {
   CornerDownRight,
   Edit2,
   Loader2,
-  MessageSquare,
-  MoreHorizontal,
-  Pin,
+  Minus,
+  Plus,
   Trash2
 } from "lucide-react";
 import Link from "next/link";
@@ -17,15 +16,15 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
-import { Avatar, AvatarFallback } from "../ui/avatar";
-import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from "../ui/dropdown-menu";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from "../ui/dialog";
 import { Textarea } from "../ui/textarea";
 import { CommentContent } from "./comment-content";
 import { CommentForm } from "./comment-form";
@@ -88,10 +87,16 @@ export function CommentItem({
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [editing, setEditing] = useState(false);
   const [editContent, setEditContent] = useState(comment.content);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const utils = trpc.useUtils();
 
-  const userCrsid = clerkUser?.primaryEmailAddress?.emailAddress?.split("@")[0];
-  const isOwn = !!(userCrsid && comment.author.crsid && userCrsid === comment.author.crsid);
+  const userCrsid =
+    clerkUser?.primaryEmailAddress?.emailAddress?.split("@")[0];
+  const isOwn = !!(
+    userCrsid &&
+    comment.author.crsid &&
+    userCrsid === comment.author.crsid
+  );
 
   const updateMutation = trpc.comment.update.useMutation({
     onSuccess: () => {
@@ -105,6 +110,7 @@ export function CommentItem({
   const deleteMutation = trpc.comment.delete.useMutation({
     onSuccess: () => {
       toast.success("Comment deleted.");
+      setConfirmDelete(false);
       invalidateAll();
     },
     onError: () => toast.error("Failed to delete comment.")
@@ -131,8 +137,9 @@ export function CommentItem({
   }
 
   return (
-    <div className="flex gap-1.5">
-      <div className="flex flex-col items-center">
+    <div className="flex gap-1">
+      {/* Left gutter: vote + collapse line */}
+      <div className="flex w-5 shrink-0 flex-col items-center">
         <CommentVote
           commentId={comment.id}
           score={comment.score}
@@ -141,66 +148,55 @@ export function CommentItem({
           courseId={courseId}
           sort={sort}
         />
-        {!collapsed && comment.replies.length > 0 && (
+        {!collapsed ? (
           <button
             type="button"
-            className="mt-1 flex-1 w-px bg-border hover:bg-primary transition-colors cursor-pointer"
+            className="mt-0.5 flex-1 w-px bg-border hover:bg-primary transition-colors cursor-pointer"
             onClick={() => setCollapsed(true)}
             aria-label="Collapse thread"
           />
+        ) : (
+          <button
+            type="button"
+            className="mt-0.5 flex items-center justify-center"
+            onClick={() => setCollapsed(false)}
+            aria-label="Expand thread"
+          >
+            <Plus className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+          </button>
         )}
       </div>
 
+      {/* Right: content */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="flex items-center gap-1.5">
-          {collapsed && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-4 w-4"
-              onClick={() => setCollapsed(false)}
-            >
-              <ChevronRight className="h-3 w-3" />
-            </Button>
-          )}
-          <Avatar className="h-5 w-5">
-            <AvatarFallback className="text-[10px]">
-              {comment.author.crsid?.slice(0, 2).toUpperCase() ?? "?"}
-            </AvatarFallback>
-          </Avatar>
+        {/* Author line */}
+        <div className="flex items-center gap-1.5 text-xs">
           {comment.author.crsid ? (
             <Link
               href={`/profile/${comment.author.crsid}`}
-              className="font-medium text-xs hover:underline"
+              className="font-medium hover:underline"
             >
               {comment.author.crsid}
             </Link>
           ) : (
-            <span className="text-muted-foreground text-xs">[unknown]</span>
+            <span className="text-muted-foreground">[unknown]</span>
           )}
-          <span className="text-muted-foreground text-xs">
+          <span className="text-muted-foreground">
             {timeAgo(comment.createdAt)}
           </span>
           {comment.isEdited && (
-            <span className="text-muted-foreground text-xs">(edited)</span>
+            <span className="text-muted-foreground">(edited)</span>
           )}
           {comment.isPinned && (
-            <Badge variant="secondary" className="h-4 gap-0.5 px-1 text-[10px]">
-              <Pin className="h-2.5 w-2.5" />
-              Pinned
-            </Badge>
-          )}
-          {comment.isDeleted && (
-            <span className="text-muted-foreground text-xs italic">
-              [deleted]
-            </span>
+            <span className="font-medium text-primary">pinned</span>
           )}
         </div>
 
         {!collapsed && (
           <>
+            {/* Content or edit form */}
             {editing ? (
-              <div className="my-1 flex flex-col gap-1.5">
+              <div className="my-1 flex flex-col gap-1">
                 <Textarea
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
@@ -209,16 +205,14 @@ export function CommentItem({
                 <div className="flex gap-1.5">
                   <Button
                     size="sm"
-                    className="h-6 text-xs"
+                    className="h-5 px-2 text-xs"
                     onClick={() =>
                       updateMutation.mutate({
                         commentId: comment.id,
                         content: editContent
                       })
                     }
-                    disabled={
-                      updateMutation.isPending || !editContent.trim()
-                    }
+                    disabled={updateMutation.isPending || !editContent.trim()}
                   >
                     {updateMutation.isPending ? (
                       <Loader2 className="h-3 w-3 animate-spin" />
@@ -229,7 +223,7 @@ export function CommentItem({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 text-xs"
+                    className="h-5 px-2 text-xs"
                     onClick={() => {
                       setEditing(false);
                       setEditContent(comment.content);
@@ -250,52 +244,76 @@ export function CommentItem({
               </div>
             )}
 
+            {/* Action row: reply · edit · delete — all inline text */}
             {!comment.isDeleted && !editing && (
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
                 {clerkUser && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-5 gap-1 px-1.5 text-muted-foreground text-xs hover:text-foreground"
+                  <button
+                    type="button"
+                    className="hover:text-foreground"
                     onClick={() => setShowReplyForm(!showReplyForm)}
                   >
-                    <MessageSquare className="h-3 w-3" />
-                    Reply
-                  </Button>
+                    reply
+                  </button>
                 )}
                 {isOwn && (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-5 w-5 px-0 text-muted-foreground"
-                      >
-                        <MoreHorizontal className="h-3 w-3" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
-                      <DropdownMenuItem onClick={() => setEditing(true)}>
-                        <Edit2 className="mr-1.5 h-3 w-3" />
-                        Edit
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="text-destructive"
-                        onClick={() =>
-                          deleteMutation.mutate({ commentId: comment.id })
-                        }
-                      >
-                        <Trash2 className="mr-1.5 h-3 w-3" />
-                        Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <>
+                    <button
+                      type="button"
+                      className="hover:text-foreground"
+                      onClick={() => setEditing(true)}
+                    >
+                      edit
+                    </button>
+                    <button
+                      type="button"
+                      className="hover:text-destructive"
+                      onClick={() => setConfirmDelete(true)}
+                    >
+                      delete
+                    </button>
+                  </>
                 )}
               </div>
             )}
 
+            {/* Delete confirmation */}
+            <Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Delete comment?</DialogTitle>
+                  <DialogDescription>
+                    This will replace your comment with [deleted]. Replies will
+                    remain visible.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <Button
+                    variant="outline"
+                    onClick={() => setConfirmDelete(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() =>
+                      deleteMutation.mutate({ commentId: comment.id })
+                    }
+                    disabled={deleteMutation.isPending}
+                  >
+                    {deleteMutation.isPending ? (
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                    ) : (
+                      "Delete"
+                    )}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Reply form */}
             {showReplyForm && (
-              <div className="mt-1 mb-2">
+              <div className="mt-1 mb-1">
                 <CommentForm
                   parentId={comment.id}
                   questionId={comment.questionId ?? undefined}
@@ -308,8 +326,9 @@ export function CommentItem({
               </div>
             )}
 
+            {/* Nested replies */}
             {comment.replies.length > 0 && (
-              <div className="flex flex-col">
+              <div className="mt-1 flex flex-col">
                 {comment.replies.map((reply) => (
                   <CommentItem
                     key={reply.id}
@@ -411,11 +430,11 @@ function LoadMoreReplies({
     return (
       <button
         type="button"
-        className="flex items-center gap-1 py-1 text-primary text-xs hover:underline"
+        className="flex items-center gap-1 py-0.5 text-primary text-xs hover:underline"
         onClick={() => setLoaded(true)}
       >
         <ChevronDown className="h-3 w-3" />
-        Load more replies
+        more replies
       </button>
     );
   }

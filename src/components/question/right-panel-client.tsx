@@ -12,7 +12,7 @@ import {
   TriangleAlert
 } from "lucide-react";
 import Link from "next/link";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -210,14 +210,22 @@ export const Header = ({
 
 const ExaminerCommentText = ({ text }: { text: string }) => {
   const [open, setOpen] = useState(false);
-  const isLong = text.length > 200;
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [isTruncated, setIsTruncated] = useState(false);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (el) {
+      setIsTruncated(el.scrollHeight > el.clientHeight);
+    }
+  }, [text]);
 
   return (
     <>
-      <p className="line-clamp-4 text-xs leading-relaxed">
+      <p ref={textRef} className="line-clamp-4 text-xs leading-relaxed">
         {text}
       </p>
-      {isLong && (
+      {isTruncated && (
         <button
           type="button"
           className="mt-0.5 text-primary text-xs hover:underline"
@@ -269,9 +277,9 @@ const StatsAndCommentsInner = ({
       : null;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="@container flex flex-col gap-2">
       {hasMarks && (
-        <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-[auto_1fr]">
+        <div className="grid grid-cols-1 gap-3 @md:grid-cols-[auto_1fr]">
           <MarkDistributionGraph
             minimum={question.minimumMark!}
             maximum={question.maximumMark!}
@@ -281,7 +289,7 @@ const StatsAndCommentsInner = ({
             }
             attempts={question.attempts ?? 1}
           />
-          <div className="flex flex-col gap-1">
+          <div className="flex min-w-0 flex-col gap-1">
             <span className="font-medium text-muted-foreground text-xs">
               Examiner Comments
             </span>
