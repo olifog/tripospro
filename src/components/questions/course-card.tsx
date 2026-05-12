@@ -72,8 +72,28 @@ export const CourseCard = ({
 
   const isStarred = starredCourseIds?.has(course.courseId) ?? false;
 
-  const toggleStar = trpc.course.toggleStarCourse.useMutation();
   const utils = trpc.useUtils();
+  const toggleStar = trpc.course.toggleStarCourse.useMutation({
+    onMutate: async ({ courseId }) => {
+      await utils.course.getStarredCourses.cancel();
+      const previous = utils.course.getStarredCourses.getData();
+      utils.course.getStarredCourses.setData(undefined, (old) => {
+        if (!old) return old;
+        return old.includes(courseId)
+          ? old.filter((id) => id !== courseId)
+          : [...old, courseId];
+      });
+      return { previous };
+    },
+    onError: (_err, _vars, context) => {
+      if (context?.previous) {
+        utils.course.getStarredCourses.setData(undefined, context.previous);
+      }
+    },
+    onSettled: () => {
+      utils.course.getStarredCourses.invalidate();
+    }
+  });
 
   const isCurrent = useMemo(() => {
     return course.years.some((year) => year.year === currentYear);
@@ -174,10 +194,7 @@ export const CourseCard = ({
   const handleStarClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleStar.mutate(
-      { courseId: course.courseId },
-      { onSuccess: () => utils.course.getStarredCourses.invalidate() }
-    );
+    toggleStar.mutate({ courseId: course.courseId });
   };
 
   return (

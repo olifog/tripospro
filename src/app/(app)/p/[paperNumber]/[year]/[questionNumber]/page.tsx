@@ -35,6 +35,11 @@ async function QuestionPage({
     year,
     questionNumber
   });
+  trpc.question.getQuestionCourse.prefetch({
+    paperNumber,
+    year,
+    questionNumber
+  });
   trpc.question.getUserAnswers.prefetch(
     {
       paperNumber,

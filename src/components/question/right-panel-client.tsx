@@ -108,15 +108,32 @@ export const Title = ({
 };
 
 const FlagButton = ({ questionId }: { questionId: number }) => {
-  const { data, refetch } = trpc.question.getFlag.useQuery(
+  const { data } = trpc.question.getFlag.useQuery(
     { questionId },
     { retry: false }
   );
-  const toggleFlag = trpc.question.toggleFlag.useMutation();
+  const utils = trpc.useUtils();
+  const toggleFlag = trpc.question.toggleFlag.useMutation({
+    onMutate: async ({ questionId }) => {
+      await utils.question.getFlag.cancel({ questionId });
+      const previous = utils.question.getFlag.getData({ questionId });
+      utils.question.getFlag.setData({ questionId }, (old) =>
+        old ? { flagged: !old.flagged } : old
+      );
+      return { previous };
+    },
+    onError: (_err, { questionId }, context) => {
+      if (context?.previous) {
+        utils.question.getFlag.setData({ questionId }, context.previous);
+      }
+    },
+    onSettled: (_data, _err, { questionId }) => {
+      utils.question.getFlag.invalidate({ questionId });
+    }
+  });
 
-  const handleToggle = async () => {
-    await toggleFlag.mutateAsync({ questionId });
-    refetch();
+  const handleToggle = () => {
+    toggleFlag.mutate({ questionId });
   };
 
   return (
@@ -548,21 +565,35 @@ const AttemptsInner = ({
   year: string;
   questionNumber: string;
 }) => {
-  const [userAnswers, { refetch }] =
-    trpc.question.getUserAnswers.useSuspenseQuery({
-      paperNumber,
-      year,
-      questionNumber
-    });
+  const queryKey = { paperNumber, year, questionNumber };
+  const [userAnswers] = trpc.question.getUserAnswers.useSuspenseQuery(queryKey);
 
-  const [question] = trpc.question.getQuestion.useSuspenseQuery({
-    paperNumber,
-    year,
-    questionNumber
+  const [question] = trpc.question.getQuestion.useSuspenseQuery(queryKey);
+
+  const utils = trpc.useUtils();
+  const postUserAnswer = trpc.question.postUserAnswer.useMutation({
+    onSettled: () => {
+      utils.question.getUserAnswers.invalidate(queryKey);
+    }
   });
-
-  const postUserAnswer = trpc.question.postUserAnswer.useMutation();
-  const deleteUserAnswer = trpc.question.deleteUserAnswer.useMutation();
+  const deleteUserAnswer = trpc.question.deleteUserAnswer.useMutation({
+    onMutate: async ({ id }) => {
+      await utils.question.getUserAnswers.cancel(queryKey);
+      const previous = utils.question.getUserAnswers.getData(queryKey);
+      utils.question.getUserAnswers.setData(queryKey, (old) =>
+        old ? old.filter((a) => a.id !== id) : old
+      );
+      return { previous };
+    },
+    onError: (_err, _vars, context) => {
+      if (context?.previous) {
+        utils.question.getUserAnswers.setData(queryKey, context.previous);
+      }
+    },
+    onSettled: () => {
+      utils.question.getUserAnswers.invalidate(queryKey);
+    }
+  });
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -584,7 +615,6 @@ const AttemptsInner = ({
         note: values.note
       });
       toast.success("Attempt submitted successfully!");
-      refetch();
     } catch (_error) {
       toast.error("Failed to submit attempt.");
     }
@@ -759,12 +789,14 @@ const AttemptsInner = ({
                           <button
                             type="button"
                             className="cursor-pointer"
-                            onClick={async () => {
-                              await deleteUserAnswer.mutateAsync({
-                                id: answer.id
-                              });
-                              toast.success("Attempt deleted");
-                              refetch();
+                            onClick={() => {
+                              deleteUserAnswer.mutate(
+                                { id: answer.id },
+                                {
+                                  onSuccess: () =>
+                                    toast.success("Attempt deleted")
+                                }
+                              );
                             }}
                           >
                             <Trash className="h-3 w-3" />

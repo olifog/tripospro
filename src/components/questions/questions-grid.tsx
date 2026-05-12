@@ -27,7 +27,7 @@ const CourseGrid = () => {
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
-  const { data: starredIds = [] } = trpc.course.getStarredCourses.useQuery();
+  const [starredIds] = trpc.course.getStarredCourses.useSuspenseQuery();
   const starredSet = useMemo(() => new Set(starredIds), [starredIds]);
 
   const currentYear = useMemo(() => {
