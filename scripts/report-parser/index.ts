@@ -14,7 +14,7 @@ const bedrock = createAmazonBedrock({
   region: "eu-west-2"
 });
 
-export const model = bedrock("anthropic.claude-opus-4-6-v1");
+export const model = bedrock("global.anthropic.claude-opus-4-6-v1");
 
 export const fetchWithAuth = (url: string) =>
   fetch(url, {

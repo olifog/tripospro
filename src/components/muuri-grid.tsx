@@ -14,8 +14,9 @@ export const MuuriGrid = ({
   const gridRef = useRef<HTMLDivElement>(null);
   const muuriRef = useRef<Muuri | null>(null);
 
-  const [{ onlyCurrent, onlyStarred, yearCutoff, search, view }] =
-    useQuestionsFilter();
+  const [
+    { onlyCurrent, onlyStarred, yearCutoff, search, view, showQuestionNumbers }
+  ] = useQuestionsFilter();
 
   const syncItems = useCallback(() => {
     if (!muuriRef.current || !gridRef.current) return;
@@ -63,8 +64,16 @@ export const MuuriGrid = ({
   }, []);
 
   useEffect(() => {
-    syncItems();
-  }, [onlyCurrent, onlyStarred, yearCutoff, search, view, syncItems]);
+    requestAnimationFrame(() => syncItems());
+  }, [
+    onlyCurrent,
+    onlyStarred,
+    yearCutoff,
+    search,
+    view,
+    showQuestionNumbers,
+    syncItems
+  ]);
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -73,7 +82,7 @@ export const MuuriGrid = ({
       syncItems();
     });
 
-    observer.observe(gridRef.current, { childList: true });
+    observer.observe(gridRef.current, { childList: true, subtree: true });
 
     return () => observer.disconnect();
   }, [syncItems]);

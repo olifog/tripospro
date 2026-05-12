@@ -65,7 +65,7 @@ export const digestSummary = async (summaryUrl: string) => {
           },
           {
             type: "file",
-            data: pdfBuffer,
+            data: pdfBuffer.toString("base64"),
             mediaType: "application/pdf"
           }
         ]

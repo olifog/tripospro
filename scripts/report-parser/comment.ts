@@ -45,7 +45,7 @@ export const digestComments = async (commentsUrl: string) => {
           },
           {
             type: "file",
-            data: pdfBuffer,
+            data: pdfBuffer.toString("base64"),
             mediaType: "application/pdf"
           }
         ]

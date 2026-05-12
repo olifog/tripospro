@@ -22,6 +22,13 @@
       "when": 1778591203423,
       "tag": "0002_early_chat",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1778601317512,
+      "tag": "0003_overconfident_the_phantom",
+      "breakpoints": true
     }
   ]
 }

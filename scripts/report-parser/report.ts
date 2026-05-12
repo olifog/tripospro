@@ -54,7 +54,7 @@ export const digestReport = async (reportUrl: string) => {
           },
           {
             type: "file",
-            data: pdfBuffer,
+            data: pdfBuffer.toString("base64"),
             mediaType: "application/pdf"
           }
         ]

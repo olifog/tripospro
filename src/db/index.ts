@@ -7,6 +7,7 @@ import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { env } from "@/env";
 
+import * as chatSchema from "./schema/chat";
 import * as courseSchema from "./schema/course";
 import * as paperSchema from "./schema/paper";
 import * as questionSchema from "./schema/question";
@@ -14,6 +15,7 @@ import * as triposSchema from "./schema/tripos";
 import * as userSchema from "./schema/user";
 
 const schema = {
+  ...chatSchema,
   ...courseSchema,
   ...paperSchema,
   ...questionSchema,
