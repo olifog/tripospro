@@ -2,7 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 
@@ -24,18 +24,20 @@ export function CommentVote({
   const { isSignedIn } = useUser();
   const utils = trpc.useUtils();
 
-  // Track our local optimistic state to avoid flicker between
-  // mutation settling and query refetch completing
-  const optimistic = useRef<{ vote: number; scoreDelta: number } | null>(null);
+  // Local state tracks what we believe the current vote and score to be,
+  // accounting for optimistic mutations that haven't refetched yet.
+  const local = useRef({
+    vote: userVote ?? 0,
+    score,
+    synced: true
+  });
+
+  // When props update from a refetch, sync local state
+  useEffect(() => {
+    local.current = { vote: userVote ?? 0, score, synced: true };
+  }, [userVote, score]);
 
   const voteMutation = trpc.comment.vote.useMutation({
-    onMutate: ({ value }) => {
-      const oldValue = userVote ?? 0;
-      optimistic.current = {
-        vote: value,
-        scoreDelta: value - oldValue
-      };
-    },
     onSettled: () => {
       if (questionId) {
         utils.comment.getByQuestion.invalidate({
@@ -53,27 +55,30 @@ export function CommentVote({
     }
   });
 
-  const handleVote = (value: 1 | -1) => {
-    const newValue = userVote === value ? 0 : value;
+  const handleVote = (direction: 1 | -1) => {
+    // Use local state for toggle logic, not stale props
+    const currentVote = local.current.vote;
+    const newValue = currentVote === direction ? 0 : direction;
+    const delta = newValue - currentVote;
+
+    // Update local state immediately
+    local.current = {
+      vote: newValue,
+      score: local.current.score + delta,
+      synced: false
+    };
+
     voteMutation.mutate({ commentId, value: newValue });
   };
 
-  // If we have a pending optimistic update and the server data hasn't
-  // caught up yet (score still reflects pre-vote), keep showing optimistic.
-  // Clear optimistic once server data matches.
-  const opt = optimistic.current;
-  let displayVote = userVote ?? 0;
-  let displayScore = score;
-
-  if (opt !== null) {
-    const expectedScore = score + opt.scoreDelta;
-    if (score !== expectedScore || voteMutation.isPending) {
-      displayVote = opt.vote;
-      displayScore = score + opt.scoreDelta;
-    } else {
-      optimistic.current = null;
-    }
-  }
+  // Display from local state when we have unsynced optimistic updates,
+  // otherwise from props
+  const displayVote = local.current.synced
+    ? (userVote ?? 0)
+    : local.current.vote;
+  const displayScore = local.current.synced
+    ? score
+    : local.current.score;
 
   return (
     <div className="flex flex-col items-center">
@@ -84,7 +89,7 @@ export function CommentVote({
           displayVote === 1 && "text-orange-500 hover:text-orange-600"
         )}
         onClick={() => handleVote(1)}
-        disabled={voteMutation.isPending || !isSignedIn}
+        disabled={!isSignedIn}
       >
         <ChevronUp className="h-3.5 w-3.5" />
       </button>
@@ -104,7 +109,7 @@ export function CommentVote({
           displayVote === -1 && "text-blue-500 hover:text-blue-600"
         )}
         onClick={() => handleVote(-1)}
-        disabled={voteMutation.isPending || !isSignedIn}
+        disabled={!isSignedIn}
       >
         <ChevronDown className="h-3.5 w-3.5" />
       </button>

@@ -640,9 +640,6 @@ export const commentRouter = createTRPCRouter({
         )
       });
 
-      const oldValue = existingVote?.value ?? 0;
-      const scoreDelta = input.value - oldValue;
-
       if (existingVote) {
         if (input.value === 0) {
           await ctx.db
@@ -662,23 +659,30 @@ export const commentRouter = createTRPCRouter({
         });
       }
 
-      if (scoreDelta !== 0) {
-        await ctx.db
-          .update(commentTable)
-          .set({
-            score: sql`${commentTable.score} + ${scoreDelta}`
-          })
-          .where(eq(commentTable.id, input.commentId));
+      // Recompute score from actual votes — race-safe, no delta math
+      const [scoreResult] = await ctx.db
+        .select({ total: sql<number>`coalesce(sum(${commentVoteTable.value}), 0)` })
+        .from(commentVoteTable)
+        .where(eq(commentVoteTable.commentId, input.commentId));
+      const newScore = Number(scoreResult?.total ?? 0);
 
-        await ctx.db
-          .update(usersTable)
-          .set({
-            karma: sql`${usersTable.karma} + ${scoreDelta}`
-          })
-          .where(eq(usersTable.id, comment.authorId));
-      }
+      await ctx.db
+        .update(commentTable)
+        .set({ score: newScore })
+        .where(eq(commentTable.id, input.commentId));
 
-      return { success: true, newScore: comment.score + scoreDelta };
+      // Recompute author karma from all their comments' scores
+      const [karmaResult] = await ctx.db
+        .select({ total: sql<number>`coalesce(sum(${commentTable.score}), 0)` })
+        .from(commentTable)
+        .where(eq(commentTable.authorId, comment.authorId));
+
+      await ctx.db
+        .update(usersTable)
+        .set({ karma: Number(karmaResult?.total ?? 0) })
+        .where(eq(usersTable.id, comment.authorId));
+
+      return { success: true, newScore };
     }),
 
   pin: protectedProcedure
