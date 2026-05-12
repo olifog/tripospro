@@ -8,6 +8,7 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { env } from "@/env";
 
 import * as chatSchema from "./schema/chat";
+import * as commentSchema from "./schema/comment";
 import * as courseSchema from "./schema/course";
 import * as paperSchema from "./schema/paper";
 import * as questionSchema from "./schema/question";
@@ -16,6 +17,7 @@ import * as userSchema from "./schema/user";
 
 const schema = {
   ...chatSchema,
+  ...commentSchema,
   ...courseSchema,
   ...paperSchema,
   ...questionSchema,

@@ -1,26 +1,10 @@
 import { HydrateClient } from "@/trpc/server";
-import { ProfileDetails, ProfilePicture } from "./profile-content-client";
-
-const TopProfile = ({ crsid }: { crsid: string }) => {
-  return (
-    <div className="flex gap-3">
-      <HydrateClient>
-        <ProfilePicture crsid={crsid} />
-      </HydrateClient>
-      <div className="flex flex-col">
-        <h1 className="font-bold text-lg">{crsid}</h1>
-        <HydrateClient>
-          <ProfileDetails crsid={crsid} />
-        </HydrateClient>
-      </div>
-    </div>
-  );
-};
+import { ProfileContentClient } from "./profile-content-client";
 
 export async function ProfileContent({ crsid }: { crsid: string }) {
   return (
-    <div className="flex h-full w-full flex-col gap-4">
-      <TopProfile crsid={crsid} />
-    </div>
+    <HydrateClient>
+      <ProfileContentClient crsid={crsid} />
+    </HydrateClient>
   );
 }

@@ -25,7 +25,8 @@ export const MarkDistributionGraph = (data: {
     }
 
     const standardDeviation = Math.sqrt(variance);
-    const skewness = standardDeviation > 0 ? (mean - m) / standardDeviation : 0;
+    const skewness =
+      standardDeviation > 0 ? (mean - m) / standardDeviation : 0;
 
     return { mean, standardDeviation, skewness };
   }, [data.minimum, data.maximum, data.median, data.attempts]);
@@ -58,12 +59,16 @@ export const MarkDistributionGraph = (data: {
   if (curvePoints.length === 0) return null;
 
   return (
-    <div className="relative h-32 w-full max-w-[18rem]">
-      <svg width="100%" height="100%" viewBox="-10 0 320 175">
+    <div className="h-28 w-48">
+      <svg width="100%" height="100%" viewBox="-5 0 310 160">
         <defs>
           <linearGradient id={gradientId} x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stopColor="var(--chart-1)" stopOpacity="0.2" />
-            <stop offset="100%" stopColor="var(--chart-1)" stopOpacity="0.05" />
+            <stop
+              offset="100%"
+              stopColor="var(--chart-1)"
+              stopOpacity="0.05"
+            />
           </linearGradient>
         </defs>
 
@@ -89,7 +94,7 @@ export const MarkDistributionGraph = (data: {
 
         <line
           x1={(data.minimum / 20) * 300}
-          y1="40"
+          y1="10"
           x2={(data.minimum / 20) * 300}
           y2="150"
           stroke="var(--muted-foreground)"
@@ -98,7 +103,7 @@ export const MarkDistributionGraph = (data: {
         />
         <line
           x1={(data.median / 20) * 300}
-          y1="40"
+          y1="10"
           x2={(data.median / 20) * 300}
           y2="150"
           stroke="var(--muted-foreground)"
@@ -107,7 +112,7 @@ export const MarkDistributionGraph = (data: {
         />
         <line
           x1={(data.maximum / 20) * 300}
-          y1="40"
+          y1="10"
           x2={(data.maximum / 20) * 300}
           y2="150"
           stroke="var(--muted-foreground)"
@@ -115,57 +120,11 @@ export const MarkDistributionGraph = (data: {
           strokeDasharray="2,2"
         />
 
-        <text x="-5" y="168" className="fill-muted-foreground text-md">
+        <text x="-5" y="158" className="fill-muted-foreground text-[10px]">
           0
         </text>
-        <text x="142" y="168" className="fill-muted-foreground text-md">
-          10
-        </text>
-        <text x="290" y="168" className="fill-muted-foreground text-md">
+        <text x="290" y="158" className="fill-muted-foreground text-[10px]">
           20
-        </text>
-
-        <text
-          x={(data.minimum / 20) * 300 - 13}
-          y="18"
-          className="fill-muted-foreground text-md"
-        >
-          Min
-        </text>
-        <text
-          x={(data.minimum / 20) * 300 - 4}
-          y="34"
-          className="fill-foreground text-md"
-        >
-          {data.minimum}
-        </text>
-        <text
-          x={(data.median / 20) * 300 - 14}
-          y="18"
-          className="fill-muted-foreground text-md"
-        >
-          Med
-        </text>
-        <text
-          x={(data.median / 20) * 300 - 8}
-          y="34"
-          className="fill-foreground text-md"
-        >
-          {data.median}
-        </text>
-        <text
-          x={(data.maximum / 20) * 300 - 15}
-          y="18"
-          className="fill-muted-foreground text-md"
-        >
-          Max
-        </text>
-        <text
-          x={(data.maximum / 20) * 300 - 9}
-          y="34"
-          className="fill-foreground text-md"
-        >
-          {data.maximum}
         </text>
       </svg>
     </div>

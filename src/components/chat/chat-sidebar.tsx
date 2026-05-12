@@ -33,7 +33,7 @@ export function ChatSidebar({ activeChatId }: { activeChatId: string | null }) {
   });
 
   return (
-    <div className="flex h-full w-56 shrink-0 flex-col border-border border-r">
+    <div className="flex h-full w-56 shrink-0 flex-col overflow-hidden border-border border-r">
       <div className="flex items-center justify-between border-border border-b px-3 py-2">
         <span className="font-medium text-foreground text-xs">History</span>
         <Button asChild variant="ghost" size="icon" className="h-6 w-6">

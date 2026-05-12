@@ -7,6 +7,7 @@ import {
   timestamp,
   varchar
 } from "drizzle-orm/pg-core";
+import { commentTable, commentVoteTable } from "./comment";
 import { courseYearLecturerTable } from "./course";
 import { questionAuthorTable, questionTable } from "./question";
 import { triposPartTable } from "./tripos";
@@ -18,6 +19,7 @@ export const usersTable = pgTable("users", {
   email: varchar({ length: 255 }).notNull().unique(),
   admin: boolean().notNull().default(false),
   picture: varchar({ length: 255 }),
+  karma: integer().notNull().default(0),
   clerkId: varchar({ length: 255 }).unique(),
 
   createdAt: timestamp().notNull().defaultNow(),
@@ -33,7 +35,9 @@ export const usersRelations = relations(usersTable, ({ one, many }) => ({
     relationName: "questionsAuthored"
   }),
   userQuestionAnswers: many(userQuestionAnswerTable),
-  courseYearLecturers: many(courseYearLecturerTable)
+  courseYearLecturers: many(courseYearLecturerTable),
+  comments: many(commentTable),
+  commentVotes: many(commentVoteTable)
 }));
 
 export const userQuestionAnswerTable = pgTable("user_question_answer", {

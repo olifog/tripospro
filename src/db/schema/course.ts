@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 import { pgTable, unique } from "drizzle-orm/pg-core";
 import { boolean, integer, timestamp, varchar } from "drizzle-orm/pg-core";
+import { commentTable } from "./comment";
 import { paperYearTable } from "./paper";
 import { questionTable } from "./question";
 import { usersTable } from "./user";
@@ -16,7 +17,8 @@ export const courseTable = pgTable("course", {
 
 export const courseRelations = relations(courseTable, ({ many }) => ({
   courseYears: many(courseYearTable),
-  starredBy: many(userStarredCourseTable)
+  starredBy: many(userStarredCourseTable),
+  comments: many(commentTable)
 }));
 
 export const courseYearTable = pgTable("course_year", {

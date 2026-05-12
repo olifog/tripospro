@@ -8,6 +8,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { courseYearTable } from "./course";
 import { paperYearTable } from "./paper";
+import { commentTable } from "./comment";
 import {
   userQuestionAnswerTable,
   userQuestionFlagTable,
@@ -44,7 +45,8 @@ export const questionRelations = relations(questionTable, ({ one, many }) => ({
   }),
   authors: many(questionAuthorTable),
   userQuestionAnswers: many(userQuestionAnswerTable),
-  userQuestionFlags: many(userQuestionFlagTable)
+  userQuestionFlags: many(userQuestionFlagTable),
+  comments: many(commentTable)
 }));
 
 export const questionAuthorTable = pgTable("question_author", {

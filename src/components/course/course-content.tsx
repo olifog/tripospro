@@ -7,6 +7,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { markTextColor } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
+import { CommentThread } from "../comment";
 import { ErrorMessage } from "../error";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -155,6 +156,11 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
 
       {/* Questions Grid */}
       <CourseQuestionsGrid years={course.years} />
+
+      {/* Discussion */}
+      <div className="mt-2">
+        <CommentThread courseId={courseId} />
+      </div>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { Check, ChevronDown, Loader, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import "./chat.css";
 import { Streamdown } from "streamdown";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
@@ -126,7 +127,7 @@ const AssistantMessage = ({ message }: { message: UIMessage }) => {
         height={36}
         className="rounded-lg"
       />
-      <div className="max-w-lg rounded-lg bg-muted px-3 py-1.5 text-foreground text-sm">
+      <div className="chat-message max-w-lg rounded-lg bg-muted px-3 py-1.5 text-foreground text-sm">
         <Streamdown>{textContent}</Streamdown>
       </div>
     </div>
@@ -560,7 +561,6 @@ const ChatCore = ({
         createPromiseRef.current = createChat
           .mutateAsync({ chatId })
           .then(() => {
-            window.history.replaceState(null, "", `/chat/${chatId}`);
             utils.chat.list.invalidate();
           });
 
@@ -613,9 +613,9 @@ const ChatCore = ({
   const isThinking = status !== "ready" && lastMessageHasNoText;
 
   return (
-    <div className="flex h-full gap-0">
+    <div className="flex h-full overflow-hidden">
       <ChatSidebar activeChatId={isNew ? null : chatId} />
-      <div className="mx-auto flex h-full w-full max-w-screen-md flex-col">
+      <div className="mx-auto flex h-full w-full max-w-screen-md flex-col overflow-hidden">
         <div className="flex flex-1 flex-col gap-3 overflow-y-auto pb-4">
           {messages?.map((m) => (
             <RenderMessage key={m.id} message={m} />
