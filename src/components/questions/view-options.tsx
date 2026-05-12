@@ -29,35 +29,41 @@ const ScoreLegend = () => (
     <Tooltip>
       <TooltipTrigger asChild>
         <div className="flex cursor-default items-center gap-1">
-          {[
-            { color: "bg-score-distinction", label: "≥16" },
-            { color: "bg-score-merit", label: "12–15" },
-            { color: "bg-score-pass", label: "8–11" },
-            { color: "bg-score-fail", label: "<8" },
-            { color: "bg-score-unattempted/30", label: "unattempted" }
-          ].map(({ color, label }) => (
-            <div key={label} className="flex items-center gap-0.5">
-              <div className={cn("h-3 w-3 rounded-sm", color)} />
-            </div>
-          ))}
+          <div
+            className="h-3 w-16 rounded-sm"
+            style={{
+              background:
+                "linear-gradient(to right, oklch(0.55 0.17 0), oklch(0.55 0.17 40), oklch(0.55 0.17 80), oklch(0.55 0.17 120))"
+            }}
+          />
+          <div className="h-3 w-3 rounded-sm bg-score-unattempted/30" />
           <Info className="ml-0.5 h-3 w-3 text-muted-foreground" />
         </div>
       </TooltipTrigger>
-      <TooltipContent side="bottom" className="flex flex-col gap-1 p-2">
-        <p className="mb-1 font-medium text-xs">Score colors (/20)</p>
-        {[
-          { color: "bg-score-distinction", label: "16–20 (distinction)" },
-          { color: "bg-score-merit", label: "12–15 (merit)" },
-          { color: "bg-score-pass", label: "8–11 (pass)" },
-          { color: "bg-score-fail", label: "0–7 (needs work)" },
-          { color: "bg-score-done", label: "attempted (no mark)" },
-          { color: "bg-score-unattempted/30", label: "unattempted" }
-        ].map(({ color, label }) => (
-          <div key={label} className="flex items-center gap-2">
-            <div className={cn("h-3 w-3 shrink-0 rounded-sm", color)} />
-            <span className="text-xs">{label}</span>
-          </div>
-        ))}
+      <TooltipContent side="bottom" className="flex flex-col gap-1.5 p-2">
+        <p className="mb-0.5 font-medium text-xs">Score colors (/20)</p>
+        <div className="flex items-center gap-2">
+          <div
+            className="h-3 w-24 shrink-0 rounded-sm"
+            style={{
+              background:
+                "linear-gradient(to right, oklch(0.55 0.17 0), oklch(0.55 0.17 40), oklch(0.55 0.17 80), oklch(0.55 0.17 120))"
+            }}
+          />
+        </div>
+        <div className="flex justify-between text-[10px] text-muted-foreground" style={{ width: "6rem" }}>
+          <span>0</span>
+          <span>10</span>
+          <span>20</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="h-3 w-3 shrink-0 rounded-sm bg-score-done" />
+          <span className="text-xs">attempted (no mark)</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="h-3 w-3 shrink-0 rounded-sm bg-score-unattempted/30" />
+          <span className="text-xs">unattempted</span>
+        </div>
       </TooltipContent>
     </Tooltip>
   </TooltipProvider>

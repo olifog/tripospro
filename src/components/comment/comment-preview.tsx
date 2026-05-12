@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
-import { Avatar, AvatarFallback } from "../ui/avatar";
 import { CommentContent } from "./comment-content";
 
 function CommentPreviewInner({
@@ -22,10 +21,10 @@ function CommentPreviewInner({
   if (!topComment) return null;
 
   return (
-    <div className="flex flex-col gap-1.5 rounded-lg border p-2.5">
+    <div className="flex flex-col gap-1 rounded-lg border p-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <MessageSquare className="h-3.5 w-3.5 text-muted-foreground" />
+          <MessageSquare className="h-3 w-3 text-muted-foreground" />
           <span className="font-medium text-xs">Top Comment</span>
         </div>
         {onNavigateToDiscussion ? (
@@ -38,29 +37,22 @@ function CommentPreviewInner({
           </button>
         ) : null}
       </div>
-      <div className="flex items-start gap-2">
-        <Avatar className="mt-0.5 h-4 w-4">
-          <AvatarFallback className="text-[8px]">
-            {topComment.author.crsid?.slice(0, 2).toUpperCase() ?? "?"}
-          </AvatarFallback>
-        </Avatar>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5">
-            {topComment.author.crsid && (
-              <Link
-                href={`/profile/${topComment.author.crsid}`}
-                className="font-medium text-xs hover:underline"
-              >
-                {topComment.author.crsid}
-              </Link>
-            )}
-            <span className="text-muted-foreground text-xs">
-              +{topComment.score}
-            </span>
-          </div>
-          <div className="line-clamp-2 text-sm">
-            <CommentContent content={topComment.content} />
-          </div>
+      <div className="min-w-0">
+        <div className="flex items-center gap-1.5 text-xs">
+          {topComment.author.crsid && (
+            <Link
+              href={`/profile/${topComment.author.crsid}`}
+              className="font-medium hover:underline"
+            >
+              {topComment.author.crsid}
+            </Link>
+          )}
+          <span className="text-muted-foreground">
+            +{topComment.score}
+          </span>
+        </div>
+        <div className="line-clamp-2 text-xs">
+          <CommentContent content={topComment.content} />
         </div>
       </div>
     </div>

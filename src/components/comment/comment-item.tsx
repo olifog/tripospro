@@ -3,13 +3,8 @@
 import { useUser } from "@clerk/nextjs";
 import {
   ChevronDown,
-  ChevronRight,
   CornerDownRight,
-  Edit2,
-  Loader2,
-  Minus,
-  Plus,
-  Trash2
+  Loader2
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -69,6 +64,14 @@ function timeAgo(date: Date): string {
   const months = Math.floor(days / 30);
   if (months < 12) return `${months}mo ago`;
   return `${Math.floor(months / 12)}y ago`;
+}
+
+function countAllReplies(comment: Comment): number {
+  let count = comment.replies.length;
+  for (const reply of comment.replies) {
+    count += countAllReplies(reply);
+  }
+  return count;
 }
 
 export function CommentItem({
@@ -136,10 +139,42 @@ export function CommentItem({
     );
   }
 
+  // Reddit-style collapsed: single line with [+] crsid · time · (N children)
+  if (collapsed) {
+    const childCount = countAllReplies(comment);
+    return (
+      <div className="flex items-center gap-1.5 py-0.5 text-xs text-muted-foreground">
+        <button
+          type="button"
+          className="font-mono text-[10px] hover:text-foreground"
+          onClick={() => setCollapsed(false)}
+        >
+          [+]
+        </button>
+        {comment.author.crsid ? (
+          <Link
+            href={`/profile/${comment.author.crsid}`}
+            className="font-medium text-foreground hover:underline"
+          >
+            {comment.author.crsid}
+          </Link>
+        ) : (
+          <span>[unknown]</span>
+        )}
+        <span>{timeAgo(comment.createdAt)}</span>
+        {childCount > 0 && (
+          <span>
+            ({childCount} {childCount === 1 ? "child" : "children"})
+          </span>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1.5 pt-1.5">
       {/* Left gutter: vote + collapse line */}
-      <div className="flex w-5 shrink-0 flex-col items-center">
+      <div className="flex w-4 shrink-0 flex-col items-center">
         <CommentVote
           commentId={comment.id}
           score={comment.score}
@@ -148,29 +183,20 @@ export function CommentItem({
           courseId={courseId}
           sort={sort}
         />
-        {!collapsed ? (
-          <button
-            type="button"
-            className="mt-0.5 flex-1 w-px bg-border hover:bg-primary transition-colors cursor-pointer"
-            onClick={() => setCollapsed(true)}
-            aria-label="Collapse thread"
-          />
-        ) : (
-          <button
-            type="button"
-            className="mt-0.5 flex items-center justify-center"
-            onClick={() => setCollapsed(false)}
-            aria-label="Expand thread"
-          >
-            <Plus className="h-3 w-3 text-muted-foreground hover:text-foreground" />
-          </button>
-        )}
+        <button
+          type="button"
+          className="group mt-0.5 flex flex-1 cursor-pointer items-center justify-center px-1"
+          onClick={() => setCollapsed(true)}
+          aria-label="Collapse thread"
+        >
+          <div className="h-full w-0.5 rounded-full bg-border group-hover:bg-primary transition-colors" />
+        </button>
       </div>
 
       {/* Right: content */}
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Author line */}
-        <div className="flex items-center gap-1.5 text-xs">
+        <div className="flex items-center gap-1.5 text-[11px]">
           {comment.author.crsid ? (
             <Link
               href={`/profile/${comment.author.crsid}`}
@@ -192,168 +218,165 @@ export function CommentItem({
           )}
         </div>
 
-        {!collapsed && (
-          <>
-            {/* Content or edit form */}
-            {editing ? (
-              <div className="my-1 flex flex-col gap-1">
-                <Textarea
-                  value={editContent}
-                  onChange={(e) => setEditContent(e.target.value)}
-                  className="min-h-[3rem] text-sm"
-                />
-                <div className="flex gap-1.5">
-                  <Button
-                    size="sm"
-                    className="h-5 px-2 text-xs"
-                    onClick={() =>
-                      updateMutation.mutate({
-                        commentId: comment.id,
-                        content: editContent
-                      })
-                    }
-                    disabled={updateMutation.isPending || !editContent.trim()}
-                  >
-                    {updateMutation.isPending ? (
-                      <Loader2 className="h-3 w-3 animate-spin" />
-                    ) : (
-                      "Save"
-                    )}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-5 px-2 text-xs"
-                    onClick={() => {
-                      setEditing(false);
-                      setEditContent(comment.content);
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="py-0.5">
-                <CommentContent
-                  content={comment.content}
-                  className={cn(
-                    comment.isDeleted && "italic text-muted-foreground"
-                  )}
-                />
-              </div>
-            )}
-
-            {/* Action row: reply · edit · delete — all inline text */}
-            {!comment.isDeleted && !editing && (
-              <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                {clerkUser && (
-                  <button
-                    type="button"
-                    className="hover:text-foreground"
-                    onClick={() => setShowReplyForm(!showReplyForm)}
-                  >
-                    reply
-                  </button>
+        {/* Content or edit form */}
+        {editing ? (
+          <div className="my-0.5 flex flex-col gap-1">
+            <Textarea
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
+              className="min-h-[3rem] text-xs"
+            />
+            <div className="flex gap-1.5">
+              <Button
+                size="sm"
+                className="h-5 px-2 text-xs"
+                onClick={() =>
+                  updateMutation.mutate({
+                    commentId: comment.id,
+                    content: editContent
+                  })
+                }
+                disabled={updateMutation.isPending || !editContent.trim()}
+              >
+                {updateMutation.isPending ? (
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                ) : (
+                  "Save"
                 )}
-                {isOwn && (
-                  <>
-                    <button
-                      type="button"
-                      className="hover:text-foreground"
-                      onClick={() => setEditing(true)}
-                    >
-                      edit
-                    </button>
-                    <button
-                      type="button"
-                      className="hover:text-destructive"
-                      onClick={() => setConfirmDelete(true)}
-                    >
-                      delete
-                    </button>
-                  </>
-                )}
-              </div>
-            )}
-
-            {/* Delete confirmation */}
-            <Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Delete comment?</DialogTitle>
-                  <DialogDescription>
-                    This will replace your comment with [deleted]. Replies will
-                    remain visible.
-                  </DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <Button
-                    variant="outline"
-                    onClick={() => setConfirmDelete(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    onClick={() =>
-                      deleteMutation.mutate({ commentId: comment.id })
-                    }
-                    disabled={deleteMutation.isPending}
-                  >
-                    {deleteMutation.isPending ? (
-                      <Loader2 className="h-3 w-3 animate-spin" />
-                    ) : (
-                      "Delete"
-                    )}
-                  </Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-
-            {/* Reply form */}
-            {showReplyForm && (
-              <div className="mt-1 mb-1">
-                <CommentForm
-                  parentId={comment.id}
-                  questionId={comment.questionId ?? undefined}
-                  courseId={comment.courseId ?? undefined}
-                  autoFocus
-                  placeholder={`Reply to ${comment.author.crsid ?? "anonymous"}...`}
-                  onSuccess={() => setShowReplyForm(false)}
-                  onCancel={() => setShowReplyForm(false)}
-                />
-              </div>
-            )}
-
-            {/* Nested replies */}
-            {comment.replies.length > 0 && (
-              <div className="mt-1 flex flex-col">
-                {comment.replies.map((reply) => (
-                  <CommentItem
-                    key={reply.id}
-                    comment={reply}
-                    sort={sort}
-                    questionId={questionId}
-                    courseId={courseId}
-                  />
-                ))}
-              </div>
-            )}
-
-            {comment.hasMoreReplies &&
-              comment.replies.length > 0 &&
-              comment.depth < MAX_VISIBLE_DEPTH && (
-                <LoadMoreReplies
-                  parentId={comment.id}
-                  offset={comment.replies.length}
-                  questionId={questionId}
-                  courseId={courseId}
-                  sort={sort}
-                />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-5 px-2 text-xs"
+                onClick={() => {
+                  setEditing(false);
+                  setEditContent(comment.content);
+                }}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <div className="text-xs">
+            <CommentContent
+              content={comment.content}
+              className={cn(
+                "prose-p:my-0 prose-ul:my-0 prose-ol:my-0",
+                comment.isDeleted && "italic text-muted-foreground"
               )}
-          </>
+            />
+          </div>
         )}
+
+        {/* Action row */}
+        {!comment.isDeleted && !editing && (
+          <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+            {clerkUser && (
+              <button
+                type="button"
+                className="hover:text-foreground"
+                onClick={() => setShowReplyForm(!showReplyForm)}
+              >
+                reply
+              </button>
+            )}
+            {isOwn && (
+              <>
+                <button
+                  type="button"
+                  className="hover:text-foreground"
+                  onClick={() => setEditing(true)}
+                >
+                  edit
+                </button>
+                <button
+                  type="button"
+                  className="hover:text-destructive"
+                  onClick={() => setConfirmDelete(true)}
+                >
+                  delete
+                </button>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* Delete confirmation */}
+        <Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Delete comment?</DialogTitle>
+              <DialogDescription>
+                This will replace your comment with [deleted]. Replies will
+                remain visible.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button
+                variant="outline"
+                onClick={() => setConfirmDelete(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={() =>
+                  deleteMutation.mutate({ commentId: comment.id })
+                }
+                disabled={deleteMutation.isPending}
+              >
+                {deleteMutation.isPending ? (
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                ) : (
+                  "Delete"
+                )}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Reply form */}
+        {showReplyForm && (
+          <div className="mt-0.5 mb-0.5">
+            <CommentForm
+              parentId={comment.id}
+              questionId={comment.questionId ?? undefined}
+              courseId={comment.courseId ?? undefined}
+              autoFocus
+              placeholder={`Reply to ${comment.author.crsid ?? "anonymous"}...`}
+              onSuccess={() => setShowReplyForm(false)}
+              onCancel={() => setShowReplyForm(false)}
+            />
+          </div>
+        )}
+
+        {/* Nested replies */}
+        {comment.replies.length > 0 && (
+          <div className="flex flex-col">
+            {comment.replies.map((reply) => (
+              <CommentItem
+                key={reply.id}
+                comment={reply}
+                sort={sort}
+                questionId={questionId}
+                courseId={courseId}
+              />
+            ))}
+          </div>
+        )}
+
+        {comment.hasMoreReplies &&
+          comment.replies.length > 0 &&
+          comment.depth < MAX_VISIBLE_DEPTH && (
+            <LoadMoreReplies
+              parentId={comment.id}
+              offset={comment.replies.length}
+              questionId={questionId}
+              courseId={courseId}
+              sort={sort}
+            />
+          )}
       </div>
     </div>
   );
@@ -378,7 +401,7 @@ function ContinueThread({
     return (
       <button
         type="button"
-        className="flex items-center gap-1 py-1 text-primary text-xs hover:underline"
+        className="flex items-center gap-1 py-0.5 text-primary text-xs hover:underline"
         onClick={() => setExpanded(true)}
       >
         <CornerDownRight className="h-3 w-3" />

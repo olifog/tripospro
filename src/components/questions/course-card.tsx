@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuestionsFilter } from "@/hooks/use-params";
-import { scoreColor } from "@/lib/score-colors";
+import { scoreColorClass, scoreColorStyle } from "@/lib/score-colors";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
@@ -297,10 +297,15 @@ export const CourseCard = ({
                         isHighlighted
                           ? "bg-ring"
                           : entry.answers > 0
-                            ? scoreColor(entry.bestMark)
+                            ? scoreColorClass(entry.bestMark)
                             : "bg-score-unattempted/30 hover:bg-score-unattempted/50",
                         entry.flagged && "ring-2 ring-warning"
                       )}
+                      style={
+                        !isHighlighted && entry.answers > 0
+                          ? scoreColorStyle(entry.bestMark)
+                          : undefined
+                      }
                     />
                   </Link>
                 );

@@ -1,22 +1,18 @@
-export function scoreColor(bestMark?: number): string {
-  if (bestMark === undefined) return "bg-score-done hover:bg-score-done/80";
-  if (bestMark >= 16)
-    return "bg-score-distinction hover:bg-score-distinction/80";
-  if (bestMark >= 12) return "bg-score-merit hover:bg-score-merit/80";
-  if (bestMark >= 8) return "bg-score-pass hover:bg-score-pass/80";
-  return "bg-score-fail hover:bg-score-fail/80";
+function scoreHue(mark: number): number {
+  const clamped = Math.max(0, Math.min(20, mark));
+  return (clamped / 20) * 120;
 }
 
-export function scoreColorStatic(bestMark?: number): string {
+export function scoreColorStyle(bestMark?: number): React.CSSProperties {
+  if (bestMark === undefined) return {};
+  return { backgroundColor: `oklch(0.55 0.17 ${scoreHue(bestMark)})` };
+}
+
+export function scoreColorClass(bestMark?: number): string {
   if (bestMark === undefined) return "bg-score-done";
-  if (bestMark >= 16) return "bg-score-distinction";
-  if (bestMark >= 12) return "bg-score-merit";
-  if (bestMark >= 8) return "bg-score-pass";
-  return "bg-score-fail";
+  return "";
 }
 
-export function markTextColor(value: number): string {
-  if (value >= 15) return "text-score-distinction";
-  if (value >= 10) return "text-score-merit";
-  return "text-score-fail";
+export function markTextColorStyle(value: number): React.CSSProperties {
+  return { color: `oklch(0.55 0.17 ${scoreHue(value)})` };
 }

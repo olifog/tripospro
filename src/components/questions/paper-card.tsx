@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuestionsFilter } from "@/hooks/use-params";
-import { scoreColorStatic } from "@/lib/score-colors";
+import { scoreColorClass, scoreColorStyle } from "@/lib/score-colors";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
 import { Link } from "../link/client";
@@ -131,10 +131,15 @@ export const PaperCard = ({
                       className={cn(
                         "h-5 w-5 rounded-sm",
                         entry.answers > 0
-                          ? scoreColorStatic(entry.bestMark)
+                          ? scoreColorClass(entry.bestMark)
                           : "bg-score-unattempted/30 hover:bg-score-unattempted/50",
                         entry.flagged && "ring-2 ring-warning"
                       )}
+                      style={
+                        entry.answers > 0
+                          ? scoreColorStyle(entry.bestMark)
+                          : undefined
+                      }
                     />
                   </Link>
                 );

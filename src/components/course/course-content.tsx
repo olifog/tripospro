@@ -4,7 +4,7 @@ import { ExternalLink, Info } from "lucide-react";
 import Link from "next/link";
 import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { markTextColor } from "@/lib/score-colors";
+import { markTextColorStyle } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { CommentThread } from "../comment";
@@ -285,7 +285,8 @@ const OverallStatsCard = ({
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Min</span>
             <span
-              className={cn("font-mono text-base", getMarkColor(stats.min))}
+              className="font-mono text-base"
+              style={getMarkStyle(stats.min)}
             >
               {stats.min.toFixed(1)}
             </span>
@@ -293,7 +294,8 @@ const OverallStatsCard = ({
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Median</span>
             <span
-              className={cn("font-mono text-base", getMarkColor(stats.median))}
+              className="font-mono text-base"
+              style={getMarkStyle(stats.median)}
             >
               {stats.median.toFixed(1)}
             </span>
@@ -301,7 +303,8 @@ const OverallStatsCard = ({
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Max</span>
             <span
-              className={cn("font-mono text-base", getMarkColor(stats.max))}
+              className="font-mono text-base"
+              style={getMarkStyle(stats.max)}
             >
               {stats.max.toFixed(1)}
             </span>
@@ -320,7 +323,7 @@ const OverallStatsCard = ({
   );
 };
 
-const getMarkColor = markTextColor;
+const getMarkStyle = markTextColorStyle;
 
 // Course history - horizontal years, vertical terms
 const CourseHistoryStats = ({
@@ -463,10 +466,8 @@ const CourseMarksTable = ({
                 <div className="flex h-5 w-6 items-center justify-center">
                   {year.marksStats ? (
                     <span
-                      className={cn(
-                        "font-mono text-xs",
-                        getMarkColor(year.marksStats.avgMinMark)
-                      )}
+                      className="font-mono text-xs"
+                      style={getMarkStyle(year.marksStats.avgMinMark)}
                     >
                       {year.marksStats.avgMinMark.toFixed(0)}
                     </span>
@@ -480,10 +481,8 @@ const CourseMarksTable = ({
                 <div className="flex h-5 w-6 items-center justify-center">
                   {year.marksStats ? (
                     <span
-                      className={cn(
-                        "font-mono text-xs",
-                        getMarkColor(year.marksStats.avgMedianMark)
-                      )}
+                      className="font-mono text-xs"
+                      style={getMarkStyle(year.marksStats.avgMedianMark)}
                     >
                       {year.marksStats.avgMedianMark.toFixed(0)}
                     </span>
@@ -497,10 +496,8 @@ const CourseMarksTable = ({
                 <div className="flex h-5 w-6 items-center justify-center">
                   {year.marksStats ? (
                     <span
-                      className={cn(
-                        "font-mono text-xs",
-                        getMarkColor(year.marksStats.avgMaxMark)
-                      )}
+                      className="font-mono text-xs"
+                      style={getMarkStyle(year.marksStats.avgMaxMark)}
                     >
                       {year.marksStats.avgMaxMark.toFixed(0)}
                     </span>

@@ -2,9 +2,9 @@
 
 import { useUser } from "@clerk/nextjs";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
-import { Button } from "../ui/button";
 
 export function CommentVote({
   commentId,
@@ -24,7 +24,18 @@ export function CommentVote({
   const { isSignedIn } = useUser();
   const utils = trpc.useUtils();
 
+  // Track our local optimistic state to avoid flicker between
+  // mutation settling and query refetch completing
+  const optimistic = useRef<{ vote: number; scoreDelta: number } | null>(null);
+
   const voteMutation = trpc.comment.vote.useMutation({
+    onMutate: ({ value }) => {
+      const oldValue = userVote ?? 0;
+      optimistic.current = {
+        vote: value,
+        scoreDelta: value - oldValue
+      };
+    },
     onSettled: () => {
       if (questionId) {
         utils.comment.getByQuestion.invalidate({
@@ -47,52 +58,56 @@ export function CommentVote({
     voteMutation.mutate({ commentId, value: newValue });
   };
 
-  const displayScore = (() => {
-    if (!voteMutation.isPending) return score;
-    const oldValue = userVote ?? 0;
-    const newValue = voteMutation.variables?.value ?? 0;
-    return score + (newValue - oldValue);
-  })();
+  // If we have a pending optimistic update and the server data hasn't
+  // caught up yet (score still reflects pre-vote), keep showing optimistic.
+  // Clear optimistic once server data matches.
+  const opt = optimistic.current;
+  let displayVote = userVote ?? 0;
+  let displayScore = score;
 
-  const currentVote = voteMutation.isPending
-    ? (voteMutation.variables?.value ?? 0)
-    : (userVote ?? 0);
+  if (opt !== null) {
+    const expectedScore = score + opt.scoreDelta;
+    if (score !== expectedScore || voteMutation.isPending) {
+      displayVote = opt.vote;
+      displayScore = score + opt.scoreDelta;
+    } else {
+      optimistic.current = null;
+    }
+  }
 
   return (
-    <div className="flex flex-col items-center gap-0.5">
-      <Button
-        variant="ghost"
-        size="icon"
+    <div className="flex flex-col items-center">
+      <button
+        type="button"
         className={cn(
-          "h-5 w-5",
-          currentVote === 1 && "text-orange-500 hover:text-orange-600"
+          "flex h-4 w-4 items-center justify-center text-muted-foreground hover:text-foreground",
+          displayVote === 1 && "text-orange-500 hover:text-orange-600"
         )}
         onClick={() => handleVote(1)}
         disabled={voteMutation.isPending || !isSignedIn}
       >
-        <ChevronUp className="h-4 w-4" />
-      </Button>
+        <ChevronUp className="h-3.5 w-3.5" />
+      </button>
       <span
         className={cn(
-          "text-xs font-medium",
-          currentVote === 1 && "text-orange-500",
-          currentVote === -1 && "text-blue-500"
+          "text-[10px] font-medium leading-tight",
+          displayVote === 1 && "text-orange-500",
+          displayVote === -1 && "text-blue-500"
         )}
       >
         {displayScore}
       </span>
-      <Button
-        variant="ghost"
-        size="icon"
+      <button
+        type="button"
         className={cn(
-          "h-5 w-5",
-          currentVote === -1 && "text-blue-500 hover:text-blue-600"
+          "flex h-4 w-4 items-center justify-center text-muted-foreground hover:text-foreground",
+          displayVote === -1 && "text-blue-500 hover:text-blue-600"
         )}
         onClick={() => handleVote(-1)}
         disabled={voteMutation.isPending || !isSignedIn}
       >
-        <ChevronDown className="h-4 w-4" />
-      </Button>
+        <ChevronDown className="h-3.5 w-3.5" />
+      </button>
     </div>
   );
 }
