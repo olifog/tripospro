@@ -4,9 +4,14 @@ import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
+import {
+  userQuestionAnswerTable,
+  userQuestionFlagTable,
+  usersTable
+} from "@/db/schema/user";
+import { baseProcedure, protectedProcedure } from "../init";
+import { createTRPCRouter } from "../init";
 import { calendarYearToAcademicYear } from "@/lib/utils";
-import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
 
 export const questionRouter = createTRPCRouter({
   getQuestion: baseProcedure
@@ -200,7 +205,7 @@ export const questionRouter = createTRPCRouter({
       });
       return question;
     }),
-  getUserAnswers: baseProcedure
+  getUserAnswers: protectedProcedure
     .input(
       z.object({
         paperNumber: z.string(),
@@ -229,10 +234,6 @@ export const questionRouter = createTRPCRouter({
         );
       if (question.length !== 1) throw new Error("Question not found");
 
-      if (!ctx.userId) {
-        throw new Error("User not found");
-      }
-
       const user = await ctx.db.query.usersTable.findFirst({
         where: eq(usersTable.clerkId, ctx.userId)
       });
@@ -256,11 +257,9 @@ export const questionRouter = createTRPCRouter({
         createdAt: answer.createdAt
       }));
     }),
-  getUserAnswersByQuestionId: baseProcedure
+  getUserAnswersByQuestionId: protectedProcedure
     .input(z.object({ questionId: z.number() }))
     .query(async ({ ctx, input }) => {
-      if (!ctx.userId) throw new Error("Must be logged in");
-
       const user = await ctx.db.query.usersTable.findFirst({
         where: eq(usersTable.clerkId, ctx.userId)
       });
@@ -328,5 +327,49 @@ export const questionRouter = createTRPCRouter({
             eq(userQuestionAnswerTable.userId, user.id)
           )
         );
+    }),
+  toggleFlag: protectedProcedure
+    .input(z.object({ questionId: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      const existing = await ctx.db.query.userQuestionFlagTable.findFirst({
+        where: and(
+          eq(userQuestionFlagTable.userId, user.id),
+          eq(userQuestionFlagTable.questionId, input.questionId)
+        )
+      });
+
+      if (existing) {
+        await ctx.db
+          .delete(userQuestionFlagTable)
+          .where(eq(userQuestionFlagTable.id, existing.id));
+        return { flagged: false };
+      }
+
+      await ctx.db.insert(userQuestionFlagTable).values({
+        userId: user.id,
+        questionId: input.questionId
+      });
+      return { flagged: true };
+    }),
+  getFlag: protectedProcedure
+    .input(z.object({ questionId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      const flag = await ctx.db.query.userQuestionFlagTable.findFirst({
+        where: and(
+          eq(userQuestionFlagTable.userId, user.id),
+          eq(userQuestionFlagTable.questionId, input.questionId)
+        )
+      });
+      return { flagged: !!flag };
     })
 });

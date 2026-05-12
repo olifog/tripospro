@@ -56,11 +56,7 @@ const QuestionCourseCardSkeleton = () => {
   );
 };
 
-const QuestionCourseCardError = ({
-  message: _message,
-}: {
-  message: string;
-}) => {
+const QuestionCourseCardError = () => {
   return (
     <div className="text-muted-foreground text-sm">
       An error occurred while fetching the course card
@@ -78,7 +74,7 @@ export const QuestionCourseCard = ({
   questionNumber: string;
 }) => {
   return (
-    <ErrorBoundary fallback={<QuestionCourseCardError message="" />}>
+    <ErrorBoundary fallback={<QuestionCourseCardError />}>
       <Suspense fallback={<QuestionCourseCardSkeleton />}>
         <QuestionCourseCardInner
           paperNumber={paperNumber}

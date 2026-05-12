@@ -1,10 +1,14 @@
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
-import { courseTable, courseYearTable } from "@/db/schema/course";
+import {
+  courseTable,
+  courseYearTable,
+  userStarredCourseTable
+} from "@/db/schema/course";
 import { triposPartYearTable } from "@/db/schema/tripos";
 import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
 import { calendarYearToAcademicYear } from "@/lib/utils";
-import { baseProcedure, createTRPCRouter } from "../init";
+import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
 
 export const courseRouter = createTRPCRouter({
   getCourse: baseProcedure
@@ -20,7 +24,6 @@ export const courseRouter = createTRPCRouter({
 
       if (!course) throw new Error("Course not found");
 
-      // Get global current year from tripos part years
       const latestTriposPartYear = await ctx.db
         .select({ year: triposPartYearTable.year })
         .from(triposPartYearTable)
@@ -37,7 +40,6 @@ export const courseRouter = createTRPCRouter({
         return user ?? null;
       })();
 
-      // Get all course years with their data
       const courseYears = await ctx.db.query.courseYearTable.findMany({
         where: eq(courseYearTable.courseId, course.id),
         with: {
@@ -65,9 +67,7 @@ export const courseRouter = createTRPCRouter({
         orderBy: (courseYear, { desc }) => [desc(courseYear.year)]
       });
 
-      // Process the data for the course page
       const years = courseYears.map((cy) => {
-        // Calculate marks statistics for this year
         const questionsWithMarks = cy.questions.filter(
           (q) =>
             q.minimumMark !== null &&
@@ -96,8 +96,6 @@ export const courseRouter = createTRPCRouter({
               }
             : null;
 
-        // Calculate popularity (% of students attempting this course's questions)
-        // We need both attempts and candidates to compute this
         const questionsWithAttempts = cy.questions.filter(
           (q) =>
             q.attempts !== null &&
@@ -108,7 +106,6 @@ export const courseRouter = createTRPCRouter({
 
         let popularity: number | null = null;
         if (questionsWithAttempts.length > 0) {
-          // Average the percentage across all questions for this course year
           const totalPercentage = questionsWithAttempts.reduce((sum, q) => {
             const attempts = q.attempts!;
             const candidates = q.paperYear!.triposPartYear!.candidates!;
@@ -147,7 +144,6 @@ export const courseRouter = createTRPCRouter({
         };
       });
 
-      // Calculate overall course statistics
       const allMarksStats = years.filter((y) => y.marksStats !== null);
       const overallStats =
         allMarksStats.length > 0
@@ -170,7 +166,6 @@ export const courseRouter = createTRPCRouter({
             }
           : null;
 
-      // Get unique lecturers across all years
       const allLecturers = new Map<
         number,
         {
@@ -208,5 +203,53 @@ export const courseRouter = createTRPCRouter({
           (a, b) => Math.max(...b.years) - Math.max(...a.years)
         )
       };
+    }),
+
+  getStarredCourses: baseProcedure.query(async ({ ctx }) => {
+    if (!ctx.userId) return [];
+
+    const user = await ctx.db.query.usersTable.findFirst({
+      where: eq(usersTable.clerkId, ctx.userId)
+    });
+    if (!user) return [];
+
+    const starred = await ctx.db.query.userStarredCourseTable.findMany({
+      where: eq(userStarredCourseTable.userId, user.id)
+    });
+    return starred.map((s) => s.courseId);
+  }),
+
+  toggleStarCourse: protectedProcedure
+    .input(z.object({ courseId: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      const user = await ctx.db.query.usersTable.findFirst({
+        where: eq(usersTable.clerkId, ctx.userId)
+      });
+      if (!user) throw new Error("User not found");
+
+      const course = await ctx.db.query.courseTable.findFirst({
+        where: eq(courseTable.id, input.courseId)
+      });
+      if (!course) throw new Error("Course not found");
+
+      const existing = await ctx.db.query.userStarredCourseTable.findFirst({
+        where: and(
+          eq(userStarredCourseTable.userId, user.id),
+          eq(userStarredCourseTable.courseId, input.courseId)
+        )
+      });
+
+      if (existing) {
+        await ctx.db
+          .delete(userStarredCourseTable)
+          .where(eq(userStarredCourseTable.id, existing.id));
+        return { starred: false };
+      }
+
+      await ctx.db.insert(userStarredCourseTable).values({
+        userId: user.id,
+        courseId: input.courseId
+      });
+      return { starred: true };
     })
 });

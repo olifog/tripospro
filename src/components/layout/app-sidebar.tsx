@@ -16,7 +16,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <PartSwitcher />
         </HydrateClient>
       }
-      _content={<NavMain />}
+      nav={<NavMain />}
       footer={<NavUser />}
     />
   );

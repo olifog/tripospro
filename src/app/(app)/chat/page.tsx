@@ -5,7 +5,7 @@ import { withParamsCache } from "@/lib/with-params-cache";
 function ChatPage() {
   return (
     <PageLayout header={<h1>Chat</h1>}>
-      <div className="h-full w-full pt-32">
+      <div className="h-full w-full">
         <Chat />
       </div>
     </PageLayout>

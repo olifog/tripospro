@@ -11,7 +11,7 @@ async function ProfilePage({
 }) {
   const { crsid } = await params;
 
-  trpc.user.getUserByCrsid.prefetch({ crsid });
+  await trpc.user.getUserByCrsid.prefetch({ crsid });
 
   return (
     <PageLayout

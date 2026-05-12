@@ -1,12 +1,32 @@
 {
+  "2025": {
+    "part1a": {
+      "commentsUrl": "comments2025.pdf",
+      "summaryUrl": "summary2025.pdf"
+    },
+    "part1b": {
+      "commentsUrl": "comments2025.pdf",
+      "summaryUrl": "summary2025.pdf"
+    },
+    "part2": {
+      "commentsUrl": "comments2025.pdf",
+      "summaryUrl": "summary2025.pdf"
+    }
+  },
   "2024": {
     "part1a": {
+      "reportUrl": "report2024.pdf",
+      "commentsUrl": "comments2024.pdf",
       "summaryUrl": "summary2024.pdf"
     },
     "part1b": {
+      "reportUrl": "report2024.pdf",
+      "commentsUrl": "comments2024.pdf",
       "summaryUrl": "summary2024.pdf"
     },
     "part2": {
+      "reportUrl": "report2024.pdf",
+      "commentsUrl": "comments2024.pdf",
       "summaryUrl": "summary2024.pdf"
     }
   },

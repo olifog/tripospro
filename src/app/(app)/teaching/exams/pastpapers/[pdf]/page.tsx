@@ -7,23 +7,16 @@ export default async function PastPaperPage({
 }) {
   const { pdf } = await params;
 
-  // pdf is of the form y2014p6q4.pdf
-  // we need to extract the year, paper number, question number with a regex
-
   const matcher = /y(\d{4})p(\d+)q(\d+)\.pdf/;
   const match = pdf.match(matcher);
 
-  if (!match) {
-    return <div>Invalid PDF name</div>;
+  if (!match || !match[1] || !match[2] || !match[3]) {
+    notFound();
   }
 
   const year = match[1];
   const paperNumber = match[2];
   const questionNumber = match[3];
-
-  if (!year || !paperNumber || !questionNumber) {
-    return notFound();
-  }
 
   return redirect(`/p/${paperNumber}/${year}/${questionNumber}`);
 }

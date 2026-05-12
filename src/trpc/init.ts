@@ -1,13 +1,16 @@
-import { createClerkClient, type getAuth } from "@clerk/nextjs/server";
-import { initTRPC, TRPCError } from "@trpc/server";
+import { db } from "@/db";
+import { env } from "@/env";
+import { type auth, createClerkClient } from "@clerk/nextjs/server";
+import { TRPCError, initTRPC } from "@trpc/server";
 import { cache } from "react";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { db } from "@/db";
-import { env } from "@/env";
 
 export const createTRPCContext = cache(
-  async (opts: { headers: Headers; auth: ReturnType<typeof getAuth> }) => {
+  async (opts: {
+    headers: Headers;
+    auth: Awaited<ReturnType<typeof auth>>;
+  }) => {
     const clerkClient = createClerkClient({ secretKey: env.CLERK_SECRET_KEY });
     return {
       db,

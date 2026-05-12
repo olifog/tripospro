@@ -51,14 +51,15 @@ export const userRouter = createTRPCRouter({
       };
     }),
   getUserSettings: protectedProcedure.query(async ({ ctx }) => {
-    const [userSettings] = await Promise.all([
-      db.query.userSettingsTable.findFirst({
-        with: {
-          user: true
-        },
-        where: eq(usersTable.clerkId, ctx.userId)
-      })
-    ]);
+    const user = await db.query.usersTable.findFirst({
+      where: eq(usersTable.clerkId, ctx.userId)
+    });
+    if (!user) throw new Error("User not found");
+
+    const userSettings = await db.query.userSettingsTable.findFirst({
+      with: { user: true },
+      where: eq(userSettingsTable.userId, user.id)
+    });
     return userSettings;
   }),
   updateUserSettings: protectedProcedure

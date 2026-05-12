@@ -9,6 +9,7 @@ import { trpc } from "@/trpc/server";
 function QuestionsPage() {
   const part = getPart();
   trpc.triposPart.getQuestions.prefetch({ part: part ?? defaultPartCode });
+  trpc.course.getStarredCourses.prefetch();
 
   return (
     <PageLayout header={<h1>Questions</h1>}>

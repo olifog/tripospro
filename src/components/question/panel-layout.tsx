@@ -1,7 +1,12 @@
 "use client";
 
+import {
+  Group as PanelGroup,
+  Panel,
+  Separator as PanelResizeHandle
+} from "react-resizable-panels";
+
 import { EllipsisVertical } from "lucide-react";
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export const SplitQuestionLayout = ({
@@ -24,15 +29,15 @@ export const SplitQuestionLayout = ({
 
   return (
     <div className="relative flex h-full max-h-[calc(100vh-4rem)] w-full">
-      <PanelGroup direction="horizontal" className="flex-1">
-        <Panel defaultSize={50} minSize={50}>
+      <PanelGroup orientation="horizontal" className="flex-1">
+        <Panel defaultSize={50} minSize={30}>
           {left}
         </Panel>
-        <PanelResizeHandle className="ml-1 flex w-2 items-center justify-center rounded-md bg-slate-700">
-          <EllipsisVertical className="absolute h-4 w-4 text-slate-300" />
+        <PanelResizeHandle className="ml-1 flex w-2 items-center justify-center rounded-md bg-border">
+          <EllipsisVertical className="absolute h-4 w-4 text-muted-foreground" />
         </PanelResizeHandle>
-        <Panel defaultSize={50} maxSize={50} minSize={20} collapsible>
-          <div className="ml-1 h-full overflow-x-hidden overflow-y-scroll bg-slate-50 dark:bg-slate-950">
+        <Panel defaultSize={50} minSize={20} collapsible>
+          <div className="ml-1 h-full overflow-x-hidden overflow-y-scroll bg-muted/30">
             {right}
           </div>
         </Panel>

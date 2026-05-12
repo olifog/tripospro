@@ -1,7 +1,11 @@
+import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
+import {
+  userQuestionAnswerTable,
+  userQuestionFlagTable,
+  usersTable
+} from "@/db/schema/user";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
 import { baseProcedure, createTRPCRouter } from "../init";
 
 export const triposPartRouter = createTRPCRouter({
@@ -20,9 +24,10 @@ export const triposPartRouter = createTRPCRouter({
       const triposPart = await ctx.db.query.triposPartTable.findFirst({
         where: eq(triposPartTable.code, input.part)
       });
+      if (!triposPart) throw new Error(`Tripos part "${input.part}" not found`);
 
       const triposPartYears = await ctx.db.query.triposPartYearTable.findMany({
-        where: eq(triposPartYearTable.triposPartId, triposPart?.id ?? 0),
+        where: eq(triposPartYearTable.triposPartId, triposPart.id),
         with: {
           paperYears: {
             with: {
@@ -31,6 +36,9 @@ export const triposPartRouter = createTRPCRouter({
                 with: {
                   userQuestionAnswers: {
                     where: eq(userQuestionAnswerTable.userId, user?.id ?? 0)
+                  },
+                  userQuestionFlags: {
+                    where: eq(userQuestionFlagTable.userId, user?.id ?? 0)
                   }
                 }
               },
@@ -61,12 +69,23 @@ export const triposPartRouter = createTRPCRouter({
               courseName: course.courseYear?.course?.name,
               courseCode: course.courseYear?.course?.code
             })),
-            questions: paper.questions.map((question) => ({
-              questionId: question.id,
-              number: question.questionNumber,
-              courseYearId: question.courseYearId,
-              answers: question.userQuestionAnswers.length || undefined
-            }))
+            questions: paper.questions.map((question) => {
+              const answers = question.userQuestionAnswers;
+              const marksWithValues = answers
+                .map((a) => a.mark)
+                .filter((m): m is number => m !== null);
+              const bestMark = marksWithValues.length > 0
+                ? Math.max(...marksWithValues)
+                : undefined;
+              return {
+                questionId: question.id,
+                number: question.questionNumber,
+                courseYearId: question.courseYearId,
+                answers: answers.length || undefined,
+                bestMark,
+                flagged: question.userQuestionFlags.length > 0
+              };
+            })
           }))
         }))
       };

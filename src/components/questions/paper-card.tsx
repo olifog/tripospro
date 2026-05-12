@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useQuestionsFilter } from "@/hooks/use-params";
+import { scoreColorStatic } from "@/lib/score-colors";
 import { defaultQuestionsFilter } from "@/lib/search-params";
 import { cn } from "@/lib/utils";
 import { Link } from "../link/client";
@@ -15,6 +16,8 @@ export type PaperCardData = {
     questions: {
       questionNumber: number;
       answers?: number;
+      bestMark?: number;
+      flagged: boolean;
     }[];
   }[];
 };
@@ -31,7 +34,7 @@ export const PaperCard = ({
 
   const isCurrent = useMemo(() => {
     return paper.years.some((year) => year.year === currentYear);
-  }, [JSON.stringify(paper.years), currentYear]);
+  }, [paper.years, currentYear]);
 
   const matchesSearch = useMemo(() => {
     return paper.paperName.toLowerCase().includes(search?.toLowerCase() ?? "");
@@ -53,16 +56,26 @@ export const PaperCard = ({
       }, new Set<number>())
     ).sort((a, b) => a - b);
 
-    const questionMap: Record<number, Record<number, number | undefined>> = {};
+    const questionMap: Record<
+      number,
+      Record<
+        number,
+        { answers: number; bestMark?: number; flagged: boolean } | undefined
+      >
+    > = {};
     for (const year of sortedYears) {
       questionMap[year.year] = {};
       for (const question of year.questions) {
-        questionMap[year.year][question.questionNumber] = question.answers ?? 0;
+        questionMap[year.year][question.questionNumber] = {
+          answers: question.answers ?? 0,
+          bestMark: question.bestMark,
+          flagged: question.flagged
+        };
       }
     }
 
     return [sortedYears, sortedQuestions, questionMap];
-  }, [JSON.stringify(paper), yearCutoff]);
+  }, [paper, yearCutoff]);
 
   const isMobile = useIsMobile();
 
@@ -103,9 +116,8 @@ export const PaperCard = ({
                 </Link>
               </div>
               {sortedQuestions.map((question) => {
-                const matchedQuestionAnswers =
-                  questionMap[year.year]?.[question];
-                if (typeof matchedQuestionAnswers !== "number")
+                const entry = questionMap[year.year]?.[question];
+                if (!entry)
                   return showQuestionNumbers ? (
                     <div key={question} className="h-5 w-5" />
                   ) : null;
@@ -116,11 +128,13 @@ export const PaperCard = ({
                     prefetch={false}
                   >
                     <div
-                      className={`h-5 w-5 rounded-md ${
-                        matchedQuestionAnswers > 0
-                          ? "bg-green-700"
-                          : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
-                      }`}
+                      className={cn(
+                        "h-5 w-5 rounded-md",
+                        entry.answers > 0
+                          ? scoreColorStatic(entry.bestMark)
+                          : "bg-score-unattempted/30 hover:bg-score-unattempted/50",
+                        entry.flagged && "ring-2 ring-warning"
+                      )}
                     />
                   </Link>
                 );

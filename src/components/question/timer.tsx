@@ -1,8 +1,5 @@
 "use client";
 
-// made by v0.dev :-)
-
-// import { Switch } from "@/components/ui/switch"
 import { Pause, Play, Timer } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -21,18 +18,15 @@ export default function TimerComponent({
 }: {
   markDone: (time: number) => void;
 }) {
-  const [time, setTime] = useState(30 * 60); // 30 minutes in seconds
+  const [time, setTime] = useState(30 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isCountingUp, setIsCountingUp] = useState(false);
-  const [playSound, _setPlaySound] = useState(true);
   const [editableTime, setEditableTime] = useState("30:00");
   const [isEditing, setIsEditing] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
   const originalStartTime = useRef(30 * 60);
 
-  // Initialize audio
   useEffect(() => {
     audioRef.current = new Audio("/alarm.wav");
     return () => {
@@ -40,7 +34,6 @@ export default function TimerComponent({
     };
   }, []);
 
-  // Timer logic
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
@@ -50,11 +43,7 @@ export default function TimerComponent({
           }
           if (prevTime <= 1) {
             setIsRunning(false);
-            if (playSound && audioRef.current) {
-              audioRef.current
-                .play()
-                .catch((e) => console.error("Error playing sound:", e));
-            }
+            audioRef.current?.play().catch(() => {});
             return 0;
           }
           return prevTime - 1;
@@ -67,9 +56,8 @@ export default function TimerComponent({
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isRunning, isCountingUp, playSound]);
+  }, [isRunning, isCountingUp]);
 
-  // Format time for display
   useEffect(() => {
     if (!isEditing) {
       const minutes = Math.floor(time / 60);
@@ -80,12 +68,10 @@ export default function TimerComponent({
     }
   }, [time, isEditing]);
 
-  // Handle time input change
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditableTime(e.target.value);
   };
 
-  // Handle time input blur
   const handleTimeBlur = () => {
     setIsEditing(false);
     const [minutesStr, secondsStr] = editableTime.split(":");
@@ -97,7 +83,6 @@ export default function TimerComponent({
       setTime(newTime);
       originalStartTime.current = newTime;
     } else {
-      // If input is invalid, reset to current time
       const minutes = Math.floor(time / 60);
       const seconds = time % 60;
       setEditableTime(
@@ -106,24 +91,20 @@ export default function TimerComponent({
     }
   };
 
-  // Handle time input focus
   const handleTimeFocus = () => {
     setIsEditing(true);
   };
 
-  // Handle time input key press
   const handleTimeKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleTimeBlur();
     }
   };
 
-  // Toggle timer
   const toggleTimer = () => {
     setIsRunning(!isRunning);
   };
 
-  // Toggle stopwatch mode
   const stopwatchMode = () => {
     if (isCountingUp) {
       setIsCountingUp(false);
@@ -136,7 +117,7 @@ export default function TimerComponent({
   };
 
   return (
-    <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-4 px-8">
+    <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 px-4">
       <div className="flex-shrink-0">
         <Input
           value={editableTime}
@@ -187,25 +168,6 @@ export default function TimerComponent({
               <p>Stopwatch mode</p>
             </TooltipContent>
           </Tooltip>
-
-          {/* <Tooltip delayDuration={300}>
-            <TooltipTrigger asChild>
-              <div className="flex items-center gap-2">
-                <Switch
-                  checked={playSound}
-                  onCheckedChange={setPlaySound}
-                  id="sound-mode"
-                  aria-label="Play sound when timer ends"
-                />
-                <label htmlFor="sound-mode" className="text-muted-foreground text-sm">
-                  Sound
-                </label>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{playSound ? "Disable sound alert" : "Enable sound alert"}</p>
-            </TooltipContent>
-          </Tooltip> */}
 
           <Button
             variant="outline"

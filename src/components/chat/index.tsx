@@ -1,6 +1,7 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import {
   DefaultChatTransport,
   lastAssistantMessageIsCompleteWithToolCalls,
@@ -12,12 +13,11 @@ import Link from "next/link";
 import { useState } from "react";
 import Markdown from "react-markdown";
 import { trpc } from "@/trpc/client";
+import { Button } from "../ui/button";
 
 const QuestionCard = ({ questionId }: { questionId: number }) => {
   const { data: question, isLoading } =
-    trpc.question.getQuestionWithContextById.useQuery({
-      questionId
-    });
+    trpc.question.getQuestionWithContextById.useQuery({ questionId });
 
   const { data: answers } = trpc.question.getUserAnswersByQuestionId.useQuery({
     questionId
@@ -25,35 +25,37 @@ const QuestionCard = ({ questionId }: { questionId: number }) => {
 
   if (isLoading) {
     return (
-      <div className="h-10 w-40 animate-pulse rounded-2xl border border-gray-700 bg-gray-800 shadow-xl" />
+      <div className="h-10 w-40 animate-pulse rounded-lg border border-border bg-muted shadow-sm" />
     );
   }
 
   if (!question) {
-    return <span className="text-gray-500 text-sm">Failed to load.</span>;
+    return (
+      <span className="text-muted-foreground text-sm">Failed to load.</span>
+    );
   }
 
   const questionUrl = `/p/${question.paperYear?.paper?.name}/${question.paperYear?.year}/${question.questionNumber}`;
 
   return (
     <Link href={questionUrl} target="_blank" rel="noopener noreferrer">
-      <div className="flex h-10 w-46 items-center gap-2 rounded-2xl border border-gray-700 bg-gray-800 px-2 text-sm shadow-xl hover:bg-gray-900">
+      <div className="flex h-10 w-46 items-center gap-2 rounded-lg border border-border bg-muted px-2 text-sm shadow-sm hover:bg-accent">
         <div className="flex flex-1 flex-col">
-          <span className="text-gray-400 text-xs">
+          <span className="text-muted-foreground text-xs">
             {question.paperYear?.triposPartYear?.triposPart?.name}{" "}
             {question.courseYear?.course?.code}
           </span>
-          <span className="text-gray-200 text-xs">
+          <span className="text-foreground text-xs">
             {question.paperYear?.year} P{question.paperYear?.paper?.name} Q
             {question.questionNumber}
           </span>
         </div>
-        <div className="relative flex h-5 w-5 items-center justify-center rounded-md border border-gray-200">
+        <div className="relative flex h-5 w-5 items-center justify-center rounded-md border border-border">
           {answers && answers.length > 0 && (
-            <Check className="h-5 w-5 text-green-600" />
+            <Check className="h-5 w-5 text-score-distinction" />
           )}
           {answers && answers.length > 1 && (
-            <span className="absolute right-6 text-gray-400 text-xs">
+            <span className="absolute right-6 text-muted-foreground text-xs">
               {answers.length}x
             </span>
           )}
@@ -64,21 +66,21 @@ const QuestionCard = ({ questionId }: { questionId: number }) => {
 };
 
 const UserMessage = ({ message }: { message: UIMessage }) => {
+  const text = message.parts
+    .filter((p) => p.type === "text")
+    .map((p) => p.text)
+    .join("");
+
   return (
     <div className="flex w-full justify-end">
-      <div className="max-w-md rounded-xl bg-blue-700 px-3 py-2 text-sm text-white">
-        {message.parts.map((part, index) =>
-          part.type === "text" ? (
-            <Markdown key={`text-${message.id}-${index}`}>{part.text}</Markdown>
-          ) : null
-        )}
+      <div className="max-w-md rounded-lg bg-primary px-3 py-2 text-primary-foreground text-sm">
+        <Markdown>{text}</Markdown>
       </div>
     </div>
   );
 };
 
 const AssistantMessage = ({ message }: { message: UIMessage }) => {
-  // Get text content from parts
   const textContent = message.parts
     .filter(
       (part): part is typeof part & { type: "text"; text: string } =>
@@ -98,14 +100,14 @@ const AssistantMessage = ({ message }: { message: UIMessage }) => {
         height={86}
         className="rounded-lg"
       />
-      <div className="prose prose-invert max-w-md rounded-xl bg-slate-800 px-3 py-2 text-slate-200 text-sm dark:bg-slate-950">
+      <div className="prose dark:prose-invert max-w-md rounded-lg bg-muted px-3 py-2 text-foreground text-sm">
         <Markdown>{textContent}</Markdown>
       </div>
     </div>
   );
 };
 
-export const RenderMessage = ({ message }: { message: UIMessage }) => {
+const RenderMessage = ({ message }: { message: UIMessage }) => {
   if (message.role === "user") {
     return <UserMessage message={message} />;
   }
@@ -114,7 +116,6 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
     <>
       <AssistantMessage message={message} />
       {message.parts.map((part, index) => {
-        // Handle tool parts using the typed tool-{toolName} pattern
         switch (part.type) {
           case "tool-queryVectorDatabase": {
             const toolPart = part as typeof part & {
@@ -132,8 +133,8 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
                     key={toolPart.toolCallId}
                     className="flex items-center gap-2"
                   >
-                    <Loader className="h-4 w-4 animate-spin text-slate-400" />
-                    <p className="text-slate-400 text-sm">
+                    <Loader className="h-4 w-4 animate-spin text-muted-foreground" />
+                    <p className="text-muted-foreground text-sm">
                       Searching for questions
                       {toolPart.input?.query
                         ? ` about "${toolPart.input.query}"`
@@ -148,8 +149,8 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
                     key={toolPart.toolCallId}
                     className="flex items-center gap-2"
                   >
-                    <Check className="h-4 w-4 text-slate-400" />
-                    <p className="text-slate-400 text-sm">
+                    <Check className="h-4 w-4 text-muted-foreground" />
+                    <p className="text-muted-foreground text-sm">
                       Searched the vector DB.
                     </p>
                   </div>
@@ -160,7 +161,7 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
                     key={toolPart.toolCallId}
                     className="flex items-center gap-2"
                   >
-                    <p className="text-red-400 text-sm">
+                    <p className="text-destructive text-sm">
                       Error searching database.
                     </p>
                   </div>
@@ -185,22 +186,21 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
                     key={toolPart.toolCallId}
                     className="flex items-center gap-2"
                   >
-                    <Loader className="h-4 w-4 animate-spin text-slate-400" />
-                    <p className="text-slate-400 text-sm">
+                    <Loader className="h-4 w-4 animate-spin text-muted-foreground" />
+                    <p className="text-muted-foreground text-sm">
                       Preparing questions...
                     </p>
                   </div>
                 );
               case "input-available":
               case "output-available": {
-                // Use input for client-side tools since we provide output via addToolOutput
                 const questionIds =
                   toolPart.output?.questionIds ?? toolPart.input?.questionIds;
                 if (!questionIds || questionIds.length === 0) {
                   return (
                     <div
                       key={toolPart.toolCallId}
-                      className="text-slate-400 text-sm"
+                      className="text-muted-foreground text-sm"
                     >
                       No questions to display.
                     </div>
@@ -224,7 +224,7 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
                 return (
                   <div
                     key={toolPart.toolCallId}
-                    className="text-red-400 text-sm"
+                    className="text-destructive text-sm"
                   >
                     Error displaying questions.
                   </div>
@@ -234,32 +234,59 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
             }
           }
 
-          // Handle dynamic tools (MCP, etc.) if any
-          case "dynamic-tool": {
-            const dynamicPart = part as typeof part & {
-              toolName: string;
+          case "tool-getQuestionDetails": {
+            const toolPart = part as typeof part & {
               toolCallId: string;
               state: string;
+              input?: {
+                paperNumber: string;
+                year: number;
+                questionNumber: number;
+              };
             };
-            return (
-              <div
-                key={dynamicPart.toolCallId}
-                className="flex items-center gap-2"
-              >
-                <Loader className="h-4 w-4 animate-spin text-slate-400" />
-                <p className="text-slate-400 text-sm">
-                  Running {dynamicPart.toolName}...
-                </p>
-              </div>
-            );
+
+            if (
+              toolPart.state === "input-streaming" ||
+              toolPart.state === "input-available"
+            ) {
+              return (
+                <div
+                  key={toolPart.toolCallId}
+                  className="flex items-center gap-2"
+                >
+                  <Loader className="h-4 w-4 animate-spin text-muted-foreground" />
+                  <p className="text-muted-foreground text-sm">
+                    Looking up question details
+                    {toolPart.input
+                      ? ` for ${toolPart.input.year} P${toolPart.input.paperNumber} Q${toolPart.input.questionNumber}`
+                      : ""}
+                    ...
+                  </p>
+                </div>
+              );
+            }
+
+            if (toolPart.state === "output-available") {
+              return (
+                <div
+                  key={toolPart.toolCallId}
+                  className="flex items-center gap-2"
+                >
+                  <Check className="h-4 w-4 text-muted-foreground" />
+                  <p className="text-muted-foreground text-sm">
+                    Fetched question details.
+                  </p>
+                </div>
+              );
+            }
+
+            return null;
           }
 
-          // Handle step boundaries for multi-step tool calls
           case "step-start":
-            // Don't show step boundaries for the first step
             return index > 0 ? (
-              <div key={`step-${message.id}-${index}`} className="my-2">
-                <hr className="border-slate-700" />
+              <div key={`step-${message.id}-${index}`} className="my-1">
+                <hr className="border-border" />
               </div>
             ) : null;
 
@@ -272,6 +299,23 @@ export const RenderMessage = ({ message }: { message: UIMessage }) => {
 };
 
 export const Chat = () => {
+  const { isSignedIn, isLoaded } = useUser();
+
+  if (isLoaded && !isSignedIn) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-4">
+        <p className="text-muted-foreground">Sign in to use the RAG Bot.</p>
+        <Button asChild variant="secondary">
+          <SignInButton mode="modal" />
+        </Button>
+      </div>
+    );
+  }
+
+  return <ChatInner />;
+};
+
+const ChatInner = () => {
   const [input, setInput] = useState("");
   const { messages, sendMessage, addToolOutput, status } = useChat({
     transport: new DefaultChatTransport({
@@ -289,28 +333,13 @@ export const Chat = () => {
         ]
       }
     ],
-
-    // Automatically continue the conversation when all tool results are available
-    // This enables the multi-step RAG flow:
-    // 1. User asks question
-    // 2. Model calls queryVectorDatabase (server-side, auto-executed)
-    // 3. Model calls returnQuestions (client-side, we provide output)
-    // 4. Model provides summary response
     sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
-
-    // Handle client-side tool execution
     onToolCall({ toolCall }) {
-      // Check for dynamic tools first (for proper type narrowing)
       if (toolCall.dynamic) {
         return;
       }
 
-      // returnQuestions is a client-side tool - we need to provide output
-      // The input contains the questionIds to display
       if (toolCall.toolName === "returnQuestions") {
-        // Provide the tool output (this doesn't execute anything,
-        // just acknowledges the tool call and provides the result)
-        // We return the same input as output since this tool just displays data
         addToolOutput({
           tool: "returnQuestions",
           toolCallId: toolCall.toolCallId,
@@ -318,11 +347,17 @@ export const Chat = () => {
         });
       }
     },
-
     onError(error) {
       console.error("Chat error:", error);
     }
   });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    sendMessage({ text: input });
+    setInput("");
+  };
 
   return (
     <div className="mx-auto flex h-full w-full max-w-screen-md flex-col items-center gap-4">
@@ -333,17 +368,11 @@ export const Chat = () => {
       </div>
 
       <form
-        className="fixed bottom-0 flex w-full justify-center"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (input.trim()) {
-            sendMessage({ text: input });
-            setInput("");
-          }
-        }}
+        className="sticky bottom-0 flex w-full justify-center pb-8"
+        onSubmit={handleSubmit}
       >
         <input
-          className="mb-8 w-full max-w-md rounded border border-gray-300 p-2 shadow-xl"
+          className="w-full max-w-md rounded border border-border bg-background p-2 text-foreground shadow-sm placeholder:text-muted-foreground"
           value={input}
           placeholder="Say something..."
           onChange={(e) => setInput(e.target.value)}

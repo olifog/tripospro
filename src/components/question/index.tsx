@@ -52,7 +52,7 @@ export const RightPanel = ({
   questionNumber: string;
 }) => {
   return (
-    <div className="flex h-full w-full flex-col rounded-xl p-2">
+    <div className="flex h-full w-full flex-col rounded-lg p-2">
       <div className="mb-3 flex justify-center">
         <HydrateClient>
           <Title

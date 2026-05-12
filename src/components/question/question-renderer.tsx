@@ -26,10 +26,8 @@ const QuestionRendererInner = ({
     questionNumber
   });
 
-  // All hooks must be called before any early returns
   useEffect(() => {
     if (!question) return;
-
     setIsLoading(true);
     if (loadingTimerRef.current) clearTimeout(loadingTimerRef.current);
     loadingTimerRef.current = setTimeout(() => {
@@ -42,7 +40,7 @@ const QuestionRendererInner = ({
   }, [question?.url]);
 
   if (!question) {
-    return notFound();
+    notFound();
   }
 
   const handleIframeLoad = () => {

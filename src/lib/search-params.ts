@@ -20,6 +20,7 @@ export const partCache = createSearchParamsCache({
 export const questionsFilterSearchParams = {
   yearCutoff: parseAsInteger,
   onlyCurrent: parseAsBoolean,
+  onlyStarred: parseAsBoolean,
   view: parseAsStringEnum(["course", "paper"]),
   search: parseAsString,
   showQuestionNumbers: parseAsBoolean
@@ -28,6 +29,7 @@ export const questionsFilterSearchParams = {
 export const defaultQuestionsFilter = {
   yearCutoff: 2019,
   onlyCurrent: false,
+  onlyStarred: false,
   view: "course",
   search: "",
   showQuestionNumbers: false

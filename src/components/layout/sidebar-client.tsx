@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -9,20 +8,24 @@ import {
   SidebarRail
 } from "@/components/ui/sidebar";
 import { loadSidebarState, saveSidebarState } from "@/lib/save-sidebar";
+import { useEffect, useRef, useState } from "react";
 import { SidebarProvider } from "../ui/sidebar";
 
 export function SidebarClient({
+  header,
+  nav,
+  footer,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   header: React.ReactNode;
-  _content: React.ReactNode;
+  nav: React.ReactNode;
   footer: React.ReactNode;
 }) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>{props.header}</SidebarHeader>
-      <SidebarContent>{props._content}</SidebarContent>
-      <SidebarFooter>{props.footer}</SidebarFooter>
+      <SidebarHeader>{header}</SidebarHeader>
+      <SidebarContent>{nav}</SidebarContent>
+      <SidebarFooter>{footer}</SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
@@ -34,13 +37,15 @@ export function SavedSidebarProvider({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(true);
+  const isInitialRender = useRef(true);
 
   useEffect(() => {
     const savedState = loadSidebarState();
     if (savedState) {
       setOpen(savedState.open);
     }
-  }, [setOpen]);
+    isInitialRender.current = false;
+  }, []);
 
   return (
     <SidebarProvider
@@ -49,6 +54,11 @@ export function SavedSidebarProvider({
         setOpen(newOpen);
         saveSidebarState({ open: newOpen });
       }}
+      style={
+        isInitialRender.current
+          ? { ["--sidebar-transition-duration" as string]: "0ms" }
+          : undefined
+      }
     >
       {children}
     </SidebarProvider>

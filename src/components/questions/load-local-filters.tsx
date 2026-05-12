@@ -1,24 +1,33 @@
 "use client";
 
-import { useEffect } from "react";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
+import { useEffect, useRef } from "react";
 
 export function LoadLocalFilters() {
   const [filter, setFilter] = useQuestionsFilter();
+  const initialized = useRef(false);
 
   useEffect(() => {
-    const localFilters = localStorage.getItem("questionsFilter");
+    if (initialized.current) {
+      localStorage.setItem("questionsFilter", JSON.stringify(filter));
+      return;
+    }
+
     const allNull = Object.values(filter).every((value) => value === null);
     if (allNull) {
-      if (localFilters) {
-        setFilter(JSON.parse(localFilters));
-      } else {
+      try {
+        const localFilters = localStorage.getItem("questionsFilter");
+        if (localFilters) {
+          setFilter(JSON.parse(localFilters));
+        } else {
+          setFilter(defaultQuestionsFilter);
+        }
+      } catch {
         setFilter(defaultQuestionsFilter);
       }
-    } else {
-      localStorage.setItem("questionsFilter", JSON.stringify(filter));
     }
+    initialized.current = true;
   }, [filter, setFilter]);
 
   return null;

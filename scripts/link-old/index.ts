@@ -1,18 +1,16 @@
-import { createOpenAI } from "@ai-sdk/openai";
+import { db } from "@/db";
+import { createAmazonBedrock } from "@ai-sdk/amazon-bedrock";
 import { generateObject } from "ai";
 import { eq, isNull } from "drizzle-orm";
-import { fromBuffer } from "pdf2pic";
 import { z } from "zod";
-import { db } from "@/db";
 import { paperYearTable } from "@/db/schema/paper";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { env } from "@/env";
 
-const openai = createOpenAI({
-  apiKey: env.OPENAI_API_KEY
+const bedrock = createAmazonBedrock({
+  region: "eu-west-2"
 });
 
-const model = openai("gpt-4o");
+const model = bedrock("anthropic.claude-opus-4-6-v1");
 
 const outputSchema = z.object({
   part: z.enum(["part1a", "part1b", "part2"])
@@ -59,45 +57,25 @@ export const linkOldPapers = async () => {
   for (const paperYear of paperYearsToLink) {
     console.log(`Linking paper ${paperYear.paperId} year ${paperYear.year}...`);
     const paperPdf = await fetch(paperYear.url);
-    const paperPdfBlob = await paperPdf.blob();
-    const paperPdfBuffer = await paperPdfBlob.arrayBuffer();
-
-    const convert = fromBuffer(Buffer.from(paperPdfBuffer), {
-      format: "png",
-      width: undefined,
-      height: undefined,
-      density: 150,
-      quality: 100
-    });
-
-    const image = await convert(1, {
-      responseType: "buffer"
-    });
-
-    if (!image.buffer) {
-      console.error(`Failed to convert paper ${paperYear.id} to image`);
-      continue;
-    }
+    const pdfBuffer = Buffer.from(await paperPdf.arrayBuffer());
 
     const result = await generateObject({
       model,
       schema: outputSchema,
+      system: `You are a helpful assistant that extracts the Tripos Part that a given exam paper belongs to,
+          out of part1a, part1b, and part2.`,
       messages: [
-        {
-          role: "system",
-          content: `You are a helpful assistant that extracts the Tripos Part that a given exam paper belongs to,
-          out of part1a, part1b, and part2.`
-        },
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "Extract the Tripos Part from the following image of the document."
+              text: "Extract the Tripos Part from the following PDF document."
             },
             {
-              type: "image",
-              image: image.buffer
+              type: "file",
+              data: pdfBuffer,
+              mediaType: "application/pdf"
             }
           ]
         }

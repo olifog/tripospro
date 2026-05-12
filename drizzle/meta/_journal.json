@@ -15,6 +15,13 @@
       "when": 1739589315149,
       "tag": "0001_silly_kitty_pryde",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1778591203423,
+      "tag": "0002_early_chat",
+      "breakpoints": true
     }
   ]
 }

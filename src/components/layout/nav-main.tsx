@@ -30,6 +30,7 @@ type NavMainItem = {
   url: string;
   icon: LucideIcon;
   disabled?: boolean;
+  activePatterns?: string[];
   items?: NavMainItem[];
 };
 
@@ -37,7 +38,8 @@ const navMain: NavMainItem[] = [
   {
     title: "Questions",
     url: "/questions",
-    icon: ScrollText
+    icon: ScrollText,
+    activePatterns: ["/questions", "/p/"]
   },
   {
     title: "RAG Bot",
@@ -49,31 +51,6 @@ const navMain: NavMainItem[] = [
     url: "/about",
     icon: Info
   }
-  // {
-  //   title: "Leaderboard",
-  //   url: "/leaderboard",
-  //   icon: Trophy,
-  //   disabled: true
-  // },
-  // {
-  //   title: "Part II",
-  //   url: "#",
-  //   icon: GraduationCap,
-  //   items: [
-  //     {
-  //       title: "Projects",
-  //       url: "/part2/projects",
-  //       icon: Bug,
-  //       disabled: true
-  //     },
-  //     {
-  //       title: "Modules",
-  //       url: "/part2/modules",
-  //       icon: Presentation,
-  //       disabled: true
-  //     }
-  //   ]
-  // }
 ];
 
 export function NavMain() {
@@ -84,7 +61,8 @@ export function NavMain() {
       <SidebarGroupLabel>Tools</SidebarGroupLabel>
       <SidebarMenu>
         {navMain.map((item) => {
-          const isActive = pathname.startsWith(item.url);
+          const patterns = item.activePatterns ?? [item.url];
+          const isActive = patterns.some((p) => pathname.startsWith(p));
 
           if (item.items) {
             return (
@@ -134,7 +112,7 @@ export function NavMain() {
 
           return (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} asChild>
+              <SidebarMenuButton tooltip={item.title} isActive={isActive} asChild>
                 {item.disabled ? (
                   <div className="flex cursor-not-allowed items-center gap-2 opacity-50">
                     {item.icon && <item.icon />}

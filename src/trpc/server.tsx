@@ -1,9 +1,8 @@
 import "server-only";
 
-import { getAuth } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { createHydrationHelpers } from "@trpc/react-query/rsc";
-import { cookies, headers } from "next/headers";
-import { NextRequest } from "next/server";
+import { cookies } from "next/headers";
 import { cache } from "react";
 import { createCallerFactory, createTRPCContext } from "./init";
 import { makeQueryClient } from "./query-client";
@@ -19,9 +18,7 @@ const caller = createCallerFactory(appRouter)(async () =>
       cookie: (await cookies()).toString(),
       "x-trpc-source": "rsc"
     }),
-    auth: getAuth(
-      new NextRequest("https://notused.com", { headers: await headers() })
-    )
+    auth: await auth()
   })
 );
 

@@ -1,5 +1,815 @@
 [
   {
+    "year": "2025",
+    "paper": "1",
+    "question": "1",
+    "author": "avsm2",
+    "topic": "Foundations of Computer Science",
+    "pdf": "y2025p1q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "2",
+    "author": "avsm2+jjl25",
+    "topic": "Foundations of Computer Science",
+    "pdf": "y2025p1q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "3",
+    "author": "rkh23",
+    "topic": "Object-Oriented Programming",
+    "pdf": "y2025p1q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "4",
+    "author": "rkh23",
+    "topic": "Object-Oriented Programming",
+    "pdf": "y2025p1q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "5",
+    "author": "mj201+tms41",
+    "topic": "Introduction to Probability",
+    "pdf": "y2025p1q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "6",
+    "author": "mj201+tms41",
+    "topic": "Introduction to Probability",
+    "pdf": "y2025p1q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "7",
+    "author": "jkf21",
+    "topic": "Algorithms 1",
+    "pdf": "y2025p1q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "8",
+    "author": "jkf21",
+    "topic": "Algorithms 1",
+    "pdf": "y2025p1q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "9",
+    "author": "jkf21",
+    "topic": "Algorithms 2",
+    "pdf": "y2025p1q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "1",
+    "question": "10",
+    "author": "jkf21",
+    "topic": "Algorithms 2",
+    "pdf": "y2025p1q10.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p01-q10-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "1",
+    "author": "ijw24",
+    "topic": "Digital Electronics",
+    "pdf": "y2025p2q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "2",
+    "author": "ijw24",
+    "topic": "Digital Electronics",
+    "pdf": "y2025p2q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "3",
+    "author": "rmm1002",
+    "topic": "Operating Systems",
+    "pdf": "y2025p2q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "4",
+    "author": "rmm1002",
+    "topic": "Operating Systems",
+    "pdf": "y2025p2q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "5",
+    "author": "avsm2+arb33+mk428",
+    "topic": "Software and Security Engineering",
+    "pdf": "y2025p2q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "6",
+    "author": "avsm2+arb33+mk428+rws26",
+    "topic": "Software and Security Engineering",
+    "pdf": "y2025p2q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "7",
+    "author": "mpf23",
+    "topic": "Discrete Mathematics",
+    "pdf": "y2025p2q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "8",
+    "author": "mpf23",
+    "topic": "Discrete Mathematics",
+    "pdf": "y2025p2q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "9",
+    "author": "js2878",
+    "topic": "Discrete Mathematics",
+    "pdf": "y2025p2q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "2",
+    "question": "10",
+    "author": "js2878",
+    "topic": "Discrete Mathematics",
+    "pdf": "y2025p2q10.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p02-q10-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "1",
+    "author": "djg11",
+    "topic": "Databases",
+    "pdf": "y2025p3q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "2",
+    "author": "djg11",
+    "topic": "Databases",
+    "pdf": "y2025p3q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "3",
+    "author": "fz261",
+    "topic": "Introduction to Graphics",
+    "pdf": "y2025p3q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "4",
+    "author": "fz261",
+    "topic": "Introduction to Graphics",
+    "pdf": "y2025p3q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "5",
+    "author": "hg410",
+    "topic": "Interaction Design",
+    "pdf": "y2025p3q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "6",
+    "author": "hg410",
+    "topic": "Interaction Design",
+    "pdf": "y2025p3q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "7",
+    "author": "fm611",
+    "topic": "Machine Learning and Real-world Data",
+    "pdf": "y2025p3q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "8",
+    "author": "fm611",
+    "topic": "Machine Learning and Real-world Data",
+    "pdf": "y2025p3q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "3",
+    "question": "9",
+    "author": "fm611",
+    "topic": "Machine Learning and Real-world Data",
+    "pdf": "y2025p3q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p03-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "1",
+    "author": "jdy22",
+    "topic": "Compiler Construction",
+    "pdf": "y2025p4q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "2",
+    "author": "jdy22",
+    "topic": "Compiler Construction",
+    "pdf": "y2025p4q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "3",
+    "author": "pes20",
+    "topic": "Semantics of Programming Languages",
+    "pdf": "y2025p4q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "4",
+    "author": "ijl20",
+    "topic": "Prolog",
+    "pdf": "y2025p4q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "5",
+    "author": "djg11",
+    "topic": "Programming in C and C++",
+    "pdf": "y2025p4q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "6",
+    "author": "djg11",
+    "topic": "Programming in C and C++",
+    "pdf": "y2025p4q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "7",
+    "author": "fms27",
+    "topic": "Cybersecurity",
+    "pdf": "y2025p4q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "4",
+    "question": "8",
+    "author": "fms27",
+    "topic": "Cybersecurity",
+    "pdf": "y2025p4q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p04-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "1",
+    "author": "awm22",
+    "topic": "Computer Networking",
+    "pdf": "y2025p5q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "2",
+    "author": "awm22",
+    "topic": "Computer Networking",
+    "pdf": "y2025p5q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "3",
+    "author": "awm22",
+    "topic": "Computer Networking",
+    "pdf": "y2025p5q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "4",
+    "author": "mk428",
+    "topic": "Concurrent and Distributed Systems",
+    "pdf": "y2025p5q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "5",
+    "author": "mk428",
+    "topic": "Concurrent and Distributed Systems",
+    "pdf": "y2025p5q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "6",
+    "author": "rdm34",
+    "topic": "Introduction to Computer Architecture",
+    "pdf": "y2025p5q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "7",
+    "author": "rdm34",
+    "topic": "Introduction to Computer Architecture",
+    "pdf": "y2025p5q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "5",
+    "question": "8",
+    "author": "rdm34",
+    "topic": "Introduction to Computer Architecture",
+    "pdf": "y2025p5q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p05-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "1",
+    "author": "tg508",
+    "topic": "Complexity Theory",
+    "pdf": "y2025p6q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "2",
+    "author": "tg508",
+    "topic": "Complexity Theory",
+    "pdf": "y2025p6q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "3",
+    "author": "tgg22",
+    "topic": "Computation Theory",
+    "pdf": "y2025p6q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "4",
+    "author": "tgg22",
+    "topic": "Computation Theory",
+    "pdf": "y2025p6q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "5",
+    "author": "djw1005",
+    "topic": "Data Science",
+    "pdf": "y2025p6q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "6",
+    "author": "djw1005",
+    "topic": "Data Science",
+    "pdf": "y2025p6q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "7",
+    "author": "mj201",
+    "topic": "Logic and Proof",
+    "pdf": "y2025p6q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "8",
+    "author": "mj201",
+    "topic": "Logic and Proof",
+    "pdf": "y2025p6q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "6",
+    "question": "9",
+    "author": "pes20",
+    "topic": "Semantics of Programming Languages",
+    "pdf": "y2025p6q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p06-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "1",
+    "author": "sbh11",
+    "topic": "Artificial Intelligence",
+    "pdf": "y2025p7q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "2",
+    "author": "sbh11",
+    "topic": "Artificial Intelligence",
+    "pdf": "y2025p7q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "3",
+    "author": "ki287",
+    "topic": "Economics, Law and Ethics",
+    "pdf": "y2025p7q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "4",
+    "author": "js573",
+    "topic": "Economics, Law and Ethics",
+    "pdf": "y2025p7q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "5",
+    "author": "pjb48",
+    "topic": "Formal Models of Language",
+    "pdf": "y2025p7q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "6",
+    "author": "pjb48",
+    "topic": "Formal Models of Language",
+    "pdf": "y2025p7q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "7",
+    "author": "aco41",
+    "topic": "Further Graphics",
+    "pdf": "y2025p7q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "8",
+    "author": "aco41",
+    "topic": "Further Graphics",
+    "pdf": "y2025p7q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "9",
+    "author": "afb21",
+    "topic": "Further Human–Computer Interaction",
+    "pdf": "y2025p7q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "7",
+    "question": "10",
+    "author": "afb21",
+    "topic": "Further Human–Computer Interaction",
+    "pdf": "y2025p7q10.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p07-q10-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "1",
+    "author": "rdm34",
+    "topic": "Advanced Computer Architecture",
+    "pdf": "y2025p8q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "2",
+    "author": "pl219",
+    "topic": "Bioinformatics",
+    "pdf": "y2025p8q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "3",
+    "author": "mgk25",
+    "topic": "Cryptography",
+    "pdf": "y2025p8q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "4",
+    "author": "mgapb2",
+    "topic": "Denotational Semantics",
+    "pdf": "y2025p8q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "5",
+    "author": "sam56",
+    "topic": "E-Commerce",
+    "pdf": "y2025p8q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "6",
+    "author": "cp526",
+    "topic": "Hoare Logic and Model Checking",
+    "pdf": "y2025p8q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "7",
+    "author": "rkh23",
+    "topic": "Information Theory",
+    "pdf": "y2025p8q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "8",
+    "author": "sbh11",
+    "topic": "Machine Learning and Bayesian Inference",
+    "pdf": "y2025p8q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "9",
+    "author": "tcg40",
+    "topic": "Optimising Compilers",
+    "pdf": "y2025p8q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "10",
+    "author": "jac22",
+    "topic": "Principles of Communications",
+    "pdf": "y2025p8q10.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q10-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "11",
+    "author": "pm830",
+    "topic": "Quantum Computing",
+    "pdf": "y2025p8q11.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q11-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "12",
+    "author": "tms41",
+    "topic": "Randomised Algorithms",
+    "pdf": "y2025p8q12.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q12-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "8",
+    "question": "13",
+    "author": "nk480",
+    "topic": "Types",
+    "pdf": "y2025p8q13.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p08-q13-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "1",
+    "author": "rdm34",
+    "topic": "Advanced Computer Architecture",
+    "pdf": "y2025p9q1.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q01-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "2",
+    "author": "pl219",
+    "topic": "Bioinformatics",
+    "pdf": "y2025p9q2.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q02-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "3",
+    "author": "sam56",
+    "topic": "Business Studies",
+    "pdf": "y2025p9q3.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q03-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "4",
+    "author": "mgk25",
+    "topic": "Cryptography",
+    "pdf": "y2025p9q4.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q04-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "5",
+    "author": "mgapb2",
+    "topic": "Denotational Semantics",
+    "pdf": "y2025p9q5.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q05-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "6",
+    "author": "cp526",
+    "topic": "Hoare Logic and Model Checking",
+    "pdf": "y2025p9q6.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q06-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "7",
+    "author": "rkh23",
+    "topic": "Information Theory",
+    "pdf": "y2025p9q7.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q07-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "8",
+    "author": "sbh11",
+    "topic": "Machine Learning and Bayesian Inference",
+    "pdf": "y2025p9q8.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q08-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "9",
+    "author": "tmj32",
+    "topic": "Optimising Compilers",
+    "pdf": "y2025p9q9.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q09-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "10",
+    "author": "jac22",
+    "topic": "Principles of Communications",
+    "pdf": "y2025p9q10.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q10-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "11",
+    "author": "pm830",
+    "topic": "Quantum Computing",
+    "pdf": "y2025p9q11.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q11-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "12",
+    "author": "tms41",
+    "topic": "Randomised Algorithms",
+    "pdf": "y2025p9q12.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q12-solutions.pdf"
+  },
+  {
+    "year": "2025",
+    "paper": "9",
+    "question": "13",
+    "author": "nk480",
+    "topic": "Types",
+    "pdf": "y2025p9q13.pdf",
+    "solutions": "https://www.cl.cam.ac.uk/teaching/exams/solutions/2025/2025-p09-q13-solutions.pdf"
+  },
+  {
     "year": "2024",
     "paper": "1",
     "question": "1",

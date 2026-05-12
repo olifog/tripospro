@@ -12,14 +12,14 @@ import type { AppRouter } from "./routers/_app";
 
 export const trpc = createTRPCReact<AppRouter>();
 
-let clientQueryClientSingleton: QueryClient;
+let clientQueryClientSingleton: QueryClient | undefined;
 function getQueryClient() {
   if (typeof window === "undefined") {
-    // Server: always make a new query client
     return makeQueryClient();
   }
-  // Browser: use singleton pattern to keep the same query client
-  clientQueryClientSingleton = makeQueryClient();
+  if (!clientQueryClientSingleton) {
+    clientQueryClientSingleton = makeQueryClient();
+  }
   return clientQueryClientSingleton;
 }
 function getUrl() {

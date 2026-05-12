@@ -4,6 +4,7 @@ import { ExternalLink, Info } from "lucide-react";
 import Link from "next/link";
 import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { markTextColor } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { ErrorMessage } from "../error";
@@ -32,7 +33,7 @@ export const CourseContent = ({ courseId }: { courseId: number }) => {
 
 const CourseContentSkeleton = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <Skeleton className="h-12 w-64" />
       <Skeleton className="h-32 w-full" />
       <Skeleton className="h-64 w-full" />
@@ -110,7 +111,7 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
   }, [course.years]);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       {/* Header with course name and external link */}
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
@@ -274,7 +275,7 @@ const OverallStatsCard = ({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex gap-6">
+        <div className="flex gap-4">
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Min</span>
             <span className={cn("font-mono text-lg", getMarkColor(stats.min))}>
@@ -309,11 +310,7 @@ const OverallStatsCard = ({
   );
 };
 
-function getMarkColor(value: number): string {
-  if (value >= 15) return "text-green-600 dark:text-green-400";
-  if (value >= 10) return "text-yellow-600 dark:text-yellow-400";
-  return "text-red-600 dark:text-red-400";
-}
+const getMarkColor = markTextColor;
 
 // Course history - horizontal years, vertical terms
 const CourseHistoryStats = ({
@@ -628,8 +625,8 @@ const CourseQuestionsGrid = ({
                         className={cn(
                           "h-5 w-5 rounded-md transition-colors",
                           userAnswers > 0
-                            ? "bg-green-700"
-                            : "bg-slate-400 hover:bg-slate-500 dark:bg-slate-700 dark:hover:bg-slate-600"
+                            ? "bg-score-done"
+                            : "bg-score-unattempted/30 hover:bg-score-unattempted/50"
                         )}
                       />
                     </Link>

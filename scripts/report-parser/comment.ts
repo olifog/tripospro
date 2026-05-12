@@ -1,44 +1,23 @@
-import fs from "node:fs";
-import { LlamaParseReader } from "@llamaindex/cloud/reader";
-import { generateObject } from "ai";
-import { and, eq } from "drizzle-orm";
-import { z } from "zod";
 import { db } from "@/db";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
-import { env } from "@/env";
-import { model } from ".";
-
-const reader = new LlamaParseReader({
-  apiKey: env.LLAMA_CLOUD_API_KEY,
-  resultType: "text",
-  maxTimeout: 10000
-});
+import { generateObject } from "ai";
+import { and, eq } from "drizzle-orm";
+import { z } from "zod";
+import { fetchWithAuth, model } from ".";
 
 const outputSchema = z.object({
   comments: z.record(z.string(), z.record(z.string(), z.string()))
 });
 
 export const digestComments = async (commentsUrl: string) => {
-  const commentsPdf = await fetch(commentsUrl);
-
-  const file = new File([await commentsPdf.blob()], "comments.pdf", {
-    type: "application/pdf"
-  });
-  const fileBuffer = await file.arrayBuffer();
-  fs.writeFileSync("/tmp/comments.pdf", Buffer.from(fileBuffer));
-
-  const comments = await reader.loadData("/tmp/comments.pdf");
-
-  const jsonOutput = comments.map((doc) => doc.toJSON());
+  const commentsPdf = await fetchWithAuth(commentsUrl);
+  const pdfBuffer = Buffer.from(await commentsPdf.arrayBuffer());
 
   const result = await generateObject({
     model,
     schema: outputSchema,
-    messages: [
-      {
-        role: "system",
-        content: `You are a helpful assistant that extracts examiner feedback comments from a pdf.
+    system: `You are a helpful assistant that extracts examiner feedback comments from a pdf.
 
         The pdf will be split into sections for each question number (with the associated course name),
         under overarching paper numbers.
@@ -55,19 +34,19 @@ export const digestComments = async (commentsUrl: string) => {
         The paper number should JUST be the paper number, without any other text. e.g. "1" instead of "Part IA Paper 1".
 
         Be careful not to interpret the page number as the paper number. Each paper generally has around 10 questions,
-        and all the papers will be ordered sequentially in order (with questions ordered within each paper).
-        `
-      },
+        and all the papers will be ordered sequentially in order (with questions ordered within each paper).`,
+    messages: [
       {
         role: "user",
         content: [
           {
             type: "text",
-            text: "Extract the examiner feedback comments from the following document."
+            text: "Extract the examiner feedback comments from the following PDF document."
           },
           {
-            type: "text",
-            text: JSON.stringify(jsonOutput, null, 2)
+            type: "file",
+            data: pdfBuffer,
+            mediaType: "application/pdf"
           }
         ]
       }

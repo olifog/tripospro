@@ -8,7 +8,11 @@ import {
 } from "drizzle-orm/pg-core";
 import { courseYearTable } from "./course";
 import { paperYearTable } from "./paper";
-import { userQuestionAnswerTable, usersTable } from "./user";
+import {
+  userQuestionAnswerTable,
+  userQuestionFlagTable,
+  usersTable
+} from "./user";
 
 export const questionTable = pgTable("question", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -39,7 +43,8 @@ export const questionRelations = relations(questionTable, ({ one, many }) => ({
     references: [courseYearTable.id]
   }),
   authors: many(questionAuthorTable),
-  userQuestionAnswers: many(userQuestionAnswerTable)
+  userQuestionAnswers: many(userQuestionAnswerTable),
+  userQuestionFlags: many(userQuestionFlagTable)
 }));
 
 export const questionAuthorTable = pgTable("question_author", {

@@ -100,18 +100,21 @@ StringLiteral
   / '"' value:DoubleQuotedChar* '"' { return value.join(""); }
 
 SingleQuotedChar "single quoted char"
-  = !["'"] char:.  { return char; }
-  / '\"' { return '"'; }
-  / "\\'" { return "'"; }
+  = "\\'" { return "'"; }
   / "\\\\" { return "\\"; }
   / "\\n" { return "\n"; }
+  / "\\r" { return "\r"; }
+  / "\\" char:. { return char; }
+  / !['\\] char:.  { return char; }
 
 DoubleQuotedChar "double quoted char"
-  = !["\""] char:. { return char; }
-  / '\\"' { return '"'; }
-  / "\\'" { return "'"; }
+  = '\\"' { return '"'; }
   / "\\\\" { return "\\"; }
+  / "\\'" { return "'"; }
   / "\\n" { return "\n"; }
+  / "\\r" { return "\r"; }
+  / "\\" char:. { return char; }
+  / !["\"\\"] char:. { return char; }
 
 // Identifiers
 Identifier

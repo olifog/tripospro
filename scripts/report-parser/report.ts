@@ -1,17 +1,8 @@
-import fs from "node:fs";
-import { LlamaParseReader } from "@llamaindex/cloud/reader";
-import { generateObject } from "ai";
-import { and, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
-import { env } from "@/env";
-import { model } from "./index";
-
-const reader = new LlamaParseReader({
-  apiKey: env.LLAMA_CLOUD_API_KEY,
-  resultType: "markdown",
-  maxTimeout: 10000
-});
+import { generateObject } from "ai";
+import { and, eq } from "drizzle-orm";
+import { fetchWithAuth, model } from "./index";
 
 import { z } from "zod";
 
@@ -33,25 +24,14 @@ const outputSchema = z.object({
 });
 
 export const digestReport = async (reportUrl: string) => {
-  const reportPdf = await fetch(reportUrl);
-
-  const file = new File([await reportPdf.blob()], "report.pdf", {
-    type: "application/pdf"
-  });
-  const fileBuffer = await file.arrayBuffer();
-  fs.writeFileSync("/tmp/report.pdf", Buffer.from(fileBuffer));
-
-  const documents = await reader.loadData("/tmp/report.pdf");
+  const reportPdf = await fetchWithAuth(reportUrl);
+  const pdfBuffer = Buffer.from(await reportPdf.arrayBuffer());
   console.log("Report loaded");
-  const jsonOutput = documents.map((doc) => doc.toJSON());
 
   const result = await generateObject({
     model,
     schema: outputSchema,
-    messages: [
-      {
-        role: "system",
-        content: `You are a helpful assistant that extracts exam statistics from a Report PDF for Cambridge Computer Science.
+    system: `You are a helpful assistant that extracts exam statistics from a Report PDF for Cambridge Computer Science.
         You will be given a PDF file, and will need to extract for each Tripos Part (Part 1a, Part 1b, Part 2) the following statistics:
         - Number of candidates
         - Number of starred firsts
@@ -63,19 +43,19 @@ export const digestReport = async (reportUrl: string) => {
         - Number of withdrawn
 
         If the statistics are not present for a part in the document, don't include the entry
-        for that part in the output.
-        `
-      },
+        for that part in the output.`,
+    messages: [
       {
         role: "user",
         content: [
           {
             type: "text",
-            text: "Extract the exam statistics from the following document."
+            text: "Extract the exam statistics from the following PDF document."
           },
           {
-            type: "text",
-            text: JSON.stringify(jsonOutput, null, 2)
+            type: "file",
+            data: pdfBuffer,
+            mediaType: "application/pdf"
           }
         ]
       }

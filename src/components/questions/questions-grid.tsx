@@ -3,18 +3,21 @@
 import { Suspense, useMemo } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { usePart, useQuestionsFilter } from "@/hooks/use-params";
-import { defaultPartCode } from "@/lib/search-params";
+import { defaultPartCode, defaultQuestionsFilter } from "@/lib/search-params";
 import { trpc } from "@/trpc/client";
+import { ErrorMessage } from "../error";
 import { MuuriGrid } from "../muuri-grid";
+import { Skeleton } from "../ui/skeleton";
 import { CourseCard, type CourseCardData } from "./course-card";
 import { PaperCard, type PaperCardData } from "./paper-card";
 
 const QuestionsGridInner = () => {
   const [{ view }] = useQuestionsFilter();
+  const resolvedView = view ?? defaultQuestionsFilter.view;
 
   return (
     <div className="relative w-full">
-      {view === "course" ? <CourseGrid /> : <PaperGrid />}
+      {resolvedView === "course" ? <CourseGrid /> : <PaperGrid />}
     </div>
   );
 };
@@ -24,11 +27,11 @@ const CourseGrid = () => {
   const [questions] = trpc.triposPart.getQuestions.useSuspenseQuery({
     part: part ?? defaultPartCode
   });
+  const { data: starredIds = [] } = trpc.course.getStarredCourses.useQuery();
+  const starredSet = useMemo(() => new Set(starredIds), [starredIds]);
 
   const currentYear = useMemo(() => {
-    return questions.years.reduce((acc, year) => {
-      return Math.max(acc, year.year);
-    }, 0);
+    return questions.years.reduce((acc, year) => Math.max(acc, year.year), 0);
   }, [questions.years]);
 
   const courses = useMemo(
@@ -51,13 +54,17 @@ const CourseGrid = () => {
                   questionNumber: number;
                   paperName: string;
                   answers: number | undefined;
+                  bestMark: number | undefined;
+                  flagged: boolean;
                 }[]
               >((acc, question) => {
                 if (question.courseYearId === course.courseYearId) {
                   acc.push({
                     questionNumber: question.number,
                     paperName: paper.paperName!,
-                    answers: question.answers
+                    answers: question.answers,
+                    bestMark: question.bestMark,
+                    flagged: question.flagged
                   });
                 }
                 return acc;
@@ -81,12 +88,7 @@ const CourseGrid = () => {
                   courseId: course.courseId,
                   courseName: course.courseName,
                   courseCode: course.courseCode,
-                  years: [
-                    {
-                      year: year.year,
-                      questions: courseQuestions
-                    }
-                  ]
+                  years: [{ year: year.year, questions: courseQuestions }]
                 };
               }
             }
@@ -95,16 +97,17 @@ const CourseGrid = () => {
         },
         {} as Record<string, CourseCardData>
       ),
-    [JSON.stringify(questions)]
+    [questions]
   );
 
   return (
-    <MuuriGrid>
+    <MuuriGrid emptyMessage="No courses match your filters.">
       {Object.values(courses).map((course) => (
         <CourseCard
           key={course.courseId}
           course={course}
           currentYear={currentYear}
+          starredCourseIds={starredSet}
         />
       ))}
     </MuuriGrid>
@@ -118,9 +121,7 @@ const PaperGrid = () => {
   });
 
   const currentYear = useMemo(() => {
-    return questions.years.reduce((acc, year) => {
-      return Math.max(acc, year.year);
-    }, 0);
+    return questions.years.reduce((acc, year) => Math.max(acc, year.year), 0);
   }, [questions.years]);
 
   const papers = useMemo(() => {
@@ -131,7 +132,9 @@ const PaperGrid = () => {
 
           const paperQuestions = paper.questions.map((question) => ({
             questionNumber: question.number,
-            answers: question.answers
+            answers: question.answers,
+            bestMark: question.bestMark,
+            flagged: question.flagged
           }));
 
           if (acc[paper.paperId]) {
@@ -143,12 +146,7 @@ const PaperGrid = () => {
             acc[paper.paperId] = {
               paperId: paper.paperId,
               paperName: paper.paperName,
-              years: [
-                {
-                  year: year.year,
-                  questions: paperQuestions
-                }
-              ]
+              years: [{ year: year.year, questions: paperQuestions }]
             };
           }
         }
@@ -156,10 +154,10 @@ const PaperGrid = () => {
       },
       {}
     );
-  }, [JSON.stringify(questions)]);
+  }, [questions]);
 
   return (
-    <MuuriGrid>
+    <MuuriGrid emptyMessage="No papers match your filters.">
       {Object.values(papers).map((paper) => (
         <PaperCard
           key={paper.paperId}
@@ -171,10 +169,29 @@ const PaperGrid = () => {
   );
 };
 
+const QuestionsGridSkeleton = () => (
+  <div className="flex flex-wrap gap-2 p-1">
+    {Array.from({ length: 10 }).map((_, i) => (
+      <Skeleton
+        key={`skeleton-${i}`}
+        className="h-40"
+        style={{ width: `${90 + (i % 4) * 20}px` }}
+      />
+    ))}
+  </div>
+);
+
 export const QuestionsGrid = () => {
   return (
-    <ErrorBoundary fallback={<div>Error</div>}>
-      <Suspense fallback={<div>Loading...</div>}>
+    <ErrorBoundary
+      fallback={
+        <ErrorMessage
+          title="Failed to load questions"
+          description="Please refresh the page."
+        />
+      }
+    >
+      <Suspense fallback={<QuestionsGridSkeleton />}>
         <QuestionsGridInner />
       </Suspense>
     </ErrorBoundary>

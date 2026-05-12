@@ -1,17 +1,27 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createOpenAI } from "@ai-sdk/openai";
-import { z } from "zod";
-import { env } from "../../src/env";
-import { digestComments, uploadComments } from "./comment";
-import { digestReport, uploadReport } from "./report";
-import { digestSummary, uploadSummary } from "./summary";
+import { createAmazonBedrock } from "@ai-sdk/amazon-bedrock";
 
-const openai = createOpenAI({
-  apiKey: env.OPENAI_API_KEY
+import { digestComments } from "./comment";
+import { uploadComments } from "./comment";
+import { digestReport } from "./report";
+import { uploadReport } from "./report";
+import { digestSummary } from "./summary";
+import { uploadSummary } from "./summary";
+import { z } from "zod";
+
+const bedrock = createAmazonBedrock({
+  region: "eu-west-2"
 });
 
-export const model = openai("gpt-4o");
+export const model = bedrock("anthropic.claude-opus-4-6-v1");
+
+export const fetchWithAuth = (url: string) =>
+  fetch(url, {
+    headers: process.env.CAM_COOKIES
+      ? { Cookie: process.env.CAM_COOKIES }
+      : {}
+  });
 
 const BASE_URL = "https://www.cl.cam.ac.uk/teaching/exams/reports/";
 

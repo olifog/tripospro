@@ -53,8 +53,8 @@ const ProfilePictureInner = ({ crsid }: { crsid: string }) => {
 
 const ProfilePictureDefault = ({ crsid }: { crsid: string }) => {
   return (
-    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100">
-      <span className="text-gray-500">{crsid.slice(0, 2)}</span>
+    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-muted">
+      <span className="text-muted-foreground">{crsid.slice(0, 2)}</span>
     </div>
   );
 };

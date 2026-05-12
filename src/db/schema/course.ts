@@ -1,11 +1,6 @@
 import { relations } from "drizzle-orm";
-import {
-  boolean,
-  integer,
-  pgTable,
-  timestamp,
-  varchar
-} from "drizzle-orm/pg-core";
+import { pgTable, unique } from "drizzle-orm/pg-core";
+import { boolean, integer, timestamp, varchar } from "drizzle-orm/pg-core";
 import { paperYearTable } from "./paper";
 import { questionTable } from "./question";
 import { usersTable } from "./user";
@@ -20,7 +15,8 @@ export const courseTable = pgTable("course", {
 });
 
 export const courseRelations = relations(courseTable, ({ many }) => ({
-  courseYears: many(courseYearTable)
+  courseYears: many(courseYearTable),
+  starredBy: many(userStarredCourseTable)
 }));
 
 export const courseYearTable = pgTable("course_year", {
@@ -83,6 +79,35 @@ export const courseYearLecturerTable = pgTable("course_year_lecturer", {
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow()
 });
+
+export const userStarredCourseTable = pgTable(
+  "user_starred_course",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    userId: integer()
+      .notNull()
+      .references(() => usersTable.id),
+    courseId: integer()
+      .notNull()
+      .references(() => courseTable.id),
+    createdAt: timestamp().notNull().defaultNow()
+  },
+  (t) => [unique().on(t.userId, t.courseId)]
+);
+
+export const userStarredCourseRelations = relations(
+  userStarredCourseTable,
+  ({ one }) => ({
+    user: one(usersTable, {
+      fields: [userStarredCourseTable.userId],
+      references: [usersTable.id]
+    }),
+    course: one(courseTable, {
+      fields: [userStarredCourseTable.courseId],
+      references: [courseTable.id]
+    })
+  })
+);
 
 export const courseYearLecturerRelations = relations(
   courseYearLecturerTable,

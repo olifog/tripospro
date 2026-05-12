@@ -62,6 +62,31 @@ export const userQuestionAnswerRelations = relations(
   })
 );
 
+export const userQuestionFlagTable = pgTable("user_question_flag", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  userId: integer()
+    .notNull()
+    .references(() => usersTable.id),
+  questionId: integer()
+    .notNull()
+    .references(() => questionTable.id),
+  createdAt: timestamp().notNull().defaultNow()
+});
+
+export const userQuestionFlagRelations = relations(
+  userQuestionFlagTable,
+  ({ one }) => ({
+    user: one(usersTable, {
+      fields: [userQuestionFlagTable.userId],
+      references: [usersTable.id]
+    }),
+    question: one(questionTable, {
+      fields: [userQuestionFlagTable.questionId],
+      references: [questionTable.id]
+    })
+  })
+);
+
 export const userSettingsTable = pgTable("user_settings", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   userId: integer().references(() => usersTable.id),

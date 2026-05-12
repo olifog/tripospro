@@ -39,7 +39,7 @@ export function NavUser() {
   const { data: userData, isLoading: userDataLoading } =
     trpc.user.getUserByClerkId.useQuery(
       { clerkId: user?.id as string },
-      { enabled: isLoaded, retry: false }
+      { enabled: isLoaded && !!user?.id, retry: false }
     );
   const { signOut, openUserProfile } = useClerk();
   const [part] = usePart();
@@ -62,8 +62,17 @@ export function NavUser() {
   }
 
   if (user && !userData) {
-    throw new Error(
-      "Something super bad happened dude. contact olifog on discord"
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton size="lg">
+            <Skeleton className="h-8 w-8 rounded-lg" />
+            <span className="text-muted-foreground text-xs">
+              Failed to load user data
+            </span>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
     );
   }
 
@@ -169,9 +178,11 @@ export function NavUser() {
                     Settings
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <HelpCircle />
-                  Help
+                <DropdownMenuItem asChild>
+                  <a href="https://github.com/olifog/tripospro/issues" target="_blank" rel="noopener noreferrer">
+                    <HelpCircle />
+                    Help
+                  </a>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />

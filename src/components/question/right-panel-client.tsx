@@ -1,11 +1,14 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ChevronDown,
   ChevronRight,
   ExternalLink,
+  Flag,
   Loader2,
+  Lock,
   Trash,
   TriangleAlert
 } from "lucide-react";
@@ -104,6 +107,31 @@ export const Title = ({
   );
 };
 
+const FlagButton = ({ questionId }: { questionId: number }) => {
+  const { data, refetch } = trpc.question.getFlag.useQuery(
+    { questionId },
+    { retry: false }
+  );
+  const toggleFlag = trpc.question.toggleFlag.useMutation();
+
+  const handleToggle = async () => {
+    await toggleFlag.mutateAsync({ questionId });
+    refetch();
+  };
+
+  return (
+    <Button
+      variant={data?.flagged ? "default" : "outline"}
+      onClick={handleToggle}
+      disabled={toggleFlag.isPending}
+      className={cn(data?.flagged && "bg-warning hover:bg-warning/90")}
+    >
+      <Flag className="h-4 w-4" />
+      {data?.flagged ? "Flagged" : "Flag for review"}
+    </Button>
+  );
+};
+
 export const ActionBarInner = ({
   paperNumber,
   year,
@@ -113,17 +141,12 @@ export const ActionBarInner = ({
   year: string;
   questionNumber: string;
 }) => {
+  const { isSignedIn } = useUser();
   const [question] = trpc.question.getQuestion.useSuspenseQuery({
     paperNumber,
     year,
     questionNumber
   });
-
-  console.log(question.triposPartCode);
-  console.log(
-    covidWarnings[question.triposPartCode as keyof typeof covidWarnings]
-  );
-  console.log(Number.parseInt(year, 10));
 
   const isCovidYear = covidWarnings[
     question.triposPartCode as keyof typeof covidWarnings
@@ -132,35 +155,31 @@ export const ActionBarInner = ({
   return (
     <div className="flex w-full flex-col items-center gap-4">
       <div className="flex w-full flex-wrap items-center justify-center gap-2">
-        <Button asChild variant="outline">
-          {question.solutionUrl ? (
+        {question.solutionUrl ? (
+          <Button asChild variant="outline">
             <Link href={question.solutionUrl} target="_blank">
               Solution
               <ExternalLink className="h-4 w-4" />
             </Link>
-          ) : (
-            <Button variant="outline" disabled className="cursor-not-allowed">
-              Solution
-              <ExternalLink className="h-4 w-4" />
-            </Button>
-          )}
-        </Button>
+          </Button>
+        ) : (
+          <Button variant="outline" disabled className="cursor-not-allowed">
+            <Lock className="h-4 w-4" />
+            Solution unavailable
+          </Button>
+        )}
         <Button asChild variant="outline">
           <Link href={`${question.url}`} target="_blank">
             CST Link
             <ExternalLink className="h-4 w-4" />
           </Link>
         </Button>
-        {question.courseId && (
-          <Button asChild variant="secondary">
-            <Link href={`/course/${question.courseId}`}>Course</Link>
-          </Button>
-        )}
+        {isSignedIn && <FlagButton questionId={question.id} />}
       </div>
       {isCovidYear && (
-        <div className="flex w-full max-w-96 items-center justify-center gap-2 rounded-md border border-orange-900 bg-orange-500/60 p-1">
+        <div className="flex w-full max-w-96 items-center justify-center gap-2 rounded-md border border-warning/40 bg-warning/15 p-1">
           <div className="flex h-6 w-6 items-center justify-center">
-            <TriangleAlert className="h-5 w-5 text-orange-400" />
+            <TriangleAlert className="h-5 w-5 text-warning" />
           </div>
           <p className="text-foreground text-xs">
             {year} {question.triposPartName} was open book for COVID.
@@ -459,8 +478,24 @@ export const Attempts = ({
   year: string;
   questionNumber: string;
 }) => {
+  const { isSignedIn, isLoaded } = useUser();
+
+  if (isLoaded && !isSignedIn) {
+    return (
+      <p className="text-center text-muted-foreground text-sm">
+        Please log in to track your attempts!
+      </p>
+    );
+  }
+
   return (
-    <ErrorBoundary fallback={<div>Failed to load attempts.</div>}>
+    <ErrorBoundary
+      fallback={
+        <p className="text-center text-muted-foreground text-sm">
+          Failed to load attempts.
+        </p>
+      }
+    >
       <Suspense fallback={<AttemptsSkeleton />}>
         <AttemptsInner
           paperNumber={paperNumber}
@@ -474,8 +509,8 @@ export const Attempts = ({
 
 const AttemptsSkeleton = () => {
   return (
-    <div className="flex flex-col items-center gap-6">
-      <Skeleton className="h-10 w-full max-w-3xl px-8" />
+    <div className="flex flex-col items-center gap-4">
+      <Skeleton className="h-10 w-full max-w-3xl px-4" />
       <Card className="w-full max-w-3xl gap-1 py-2">
         <CardHeader>
           <CardTitle className="flex cursor-pointer items-center gap-1 text-sm">
@@ -557,13 +592,10 @@ const AttemptsInner = ({
   }
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-4">
       <TimerComponent
         markDone={(time) => {
-          form.setValue(
-            "timeTaken",
-            Number.parseInt((time / 60).toFixed(1), 10)
-          );
+          form.setValue("timeTaken", Math.round(time / 60));
           setModalOpen(true);
         }}
       />
@@ -714,13 +746,13 @@ const AttemptsInner = ({
                   {userAnswers.map((answer) => (
                     <div
                       key={answer.id}
-                      className="flex w-64 flex-col gap-1 rounded-md border border-slate-800 bg-slate-700 px-2 py-0.5 text-sm text-white dark:bg-slate-900"
+                      className="flex w-64 flex-col gap-1 rounded-md border bg-card px-2 py-0.5 text-card-foreground text-sm"
                     >
                       <div className="flex justify-between">
                         <h3 className="font-bold">
                           {answer.createdAt.toLocaleDateString()}
                         </h3>
-                        <div className="flex items-center gap-2 text-slate-200 dark:text-slate-300">
+                        <div className="flex items-center gap-2 text-muted-foreground">
                           <span className="text-xs">
                             {answer.createdAt.toLocaleTimeString()}
                           </span>
@@ -740,16 +772,16 @@ const AttemptsInner = ({
                         </div>
                       </div>
                       <div className="flex justify-between gap-2">
-                        <div className="flex items-center text-slate-200 text-xs dark:text-slate-300">
+                        <div className="flex items-center text-muted-foreground text-xs">
                           Marks:
-                          <span className="pl-1 font-bold text-slate-100">
+                          <span className="pl-1 font-bold text-foreground">
                             {answer.mark ?? "--"}
                           </span>
                           /20
                         </div>
-                        <div className="flex items-center text-slate-200 text-xs dark:text-slate-300">
+                        <div className="flex items-center text-muted-foreground text-xs">
                           Time Taken:
-                          <span className="pr-0.5 pl-1 font-bold text-slate-100">
+                          <span className="pr-0.5 pl-1 font-bold text-foreground">
                             {answer.timeTaken === null
                               ? "--"
                               : `${answer.timeTaken}`}
@@ -758,7 +790,7 @@ const AttemptsInner = ({
                         </div>
                       </div>
                       {answer.note && (
-                        <p className="pt-0.5 pb-1 text-slate-200 text-xs dark:text-slate-300">
+                        <p className="pt-0.5 pb-1 text-muted-foreground text-xs">
                           {answer.note}
                         </p>
                       )}

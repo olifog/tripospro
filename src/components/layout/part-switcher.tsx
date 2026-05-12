@@ -131,7 +131,7 @@ function InnerPartSwitcher() {
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Parts
             </DropdownMenuLabel>
-            {sortedParts.map((part, _index) => (
+            {sortedParts.map((part) => (
               <DropdownMenuItem
                 key={part.name}
                 onClick={() => changePart(part.code)}
