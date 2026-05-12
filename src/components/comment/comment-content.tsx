@@ -50,7 +50,7 @@ export function CommentContent({
         remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeKatex]}
         disallowedElements={["img", "table", "thead", "tbody", "tr", "th", "td", "hr", "input", "iframe"]}
-        unwrapDisallowed
+        unwrapDisallowed={true}
         components={{
           h1: ({ children }) => (
             <p><strong>{children}</strong></p>
@@ -94,7 +94,9 @@ export function CommentContent({
             );
           }
         }}
-      />
+      >
+        {processed}
+      </Markdown>
     </div>
   );
 }
