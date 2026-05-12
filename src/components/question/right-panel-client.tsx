@@ -3,7 +3,6 @@
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  ExternalLink,
   FileText,
   Flag,
   Link2,
@@ -102,44 +101,25 @@ const HeaderInner = ({
         )}
       </div>
       <div className="flex shrink-0 items-center gap-1">
-        <TooltipProvider>
           {question.solutionUrl ? (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button asChild variant="ghost" size="icon" className="h-7 w-7">
-                  <Link href={question.solutionUrl} target="_blank">
-                    <FileText className="h-3.5 w-3.5" />
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Solution</TooltipContent>
-            </Tooltip>
+            <Button asChild variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs">
+              <Link href={question.solutionUrl} target="_blank">
+                <FileText className="h-3 w-3" />
+                Soln
+              </Link>
+            </Button>
           ) : (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-7 w-7"
-                  disabled
-                >
-                  <FileText className="h-3.5 w-3.5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Solution unavailable</TooltipContent>
-            </Tooltip>
+            <Button variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs" disabled>
+              <FileText className="h-3 w-3" />
+              Soln
+            </Button>
           )}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button asChild variant="ghost" size="icon" className="h-7 w-7">
-                <Link href={question.url} target="_blank">
-                  <Link2 className="h-3.5 w-3.5" />
-                </Link>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>CST Link</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+          <Button asChild variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs">
+            <Link href={question.url} target="_blank">
+              <Link2 className="h-3 w-3" />
+              CST
+            </Link>
+          </Button>
         {isSignedIn && <FlagButton questionId={question.id} />}
       </div>
     </div>
@@ -176,12 +156,13 @@ const FlagButton = ({ questionId }: { questionId: number }) => {
   return (
     <Button
       variant="ghost"
-      size="icon"
-      className={cn("h-7 w-7", data?.flagged && "text-warning")}
+      size="sm"
+      className={cn("h-7 gap-1 px-2 text-xs", data?.flagged && "text-warning")}
       onClick={() => toggleFlag.mutate({ questionId })}
       disabled={toggleFlag.isPending}
     >
-      <Flag className={cn("h-3.5 w-3.5", data?.flagged && "fill-current")} />
+      <Flag className={cn("h-3 w-3", data?.flagged && "fill-current")} />
+      Flag
     </Button>
   );
 };
