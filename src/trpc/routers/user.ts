@@ -3,7 +3,11 @@ import { count, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { commentTable } from "@/db/schema/comment";
-import { courseTable, courseYearLecturerTable, courseYearTable } from "@/db/schema/course";
+import {
+  courseTable,
+  courseYearLecturerTable,
+  courseYearTable
+} from "@/db/schema/course";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionAuthorTable, questionTable } from "@/db/schema/question";
 import {
@@ -99,7 +103,7 @@ export const userRouter = createTRPCRouter({
       const user = await db.query.usersTable.findFirst({
         where: eq(usersTable.crsid, input.crsid)
       });
-      if (!user || !user.clerkId) throw new Error("User not found");
+      if (!user) throw new Error("User not found");
 
       const [
         clerkUser,
@@ -109,7 +113,9 @@ export const userRouter = createTRPCRouter({
         commentsCountResult,
         recentComments
       ] = await Promise.all([
-        ctx.clerkClient.users.getUser(user.clerkId),
+        user.clerkId
+          ? ctx.clerkClient.users.getUser(user.clerkId)
+          : Promise.resolve(null),
         db
           .select({
             courseId: courseTable.id,
@@ -201,7 +207,7 @@ export const userRouter = createTRPCRouter({
 
       return {
         ...user,
-        clerkUser: filterClerkUser(clerkUser),
+        clerkUser: clerkUser ? filterClerkUser(clerkUser) : null,
         isLecturer: coursesLectured.length > 0,
         coursesLectured,
         questionsAuthored,

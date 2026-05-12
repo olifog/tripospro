@@ -208,6 +208,36 @@ export const Header = ({
 
 // --- Stats + Examiner Comments side by side ---
 
+const ExaminerCommentText = ({ text }: { text: string }) => {
+  const [open, setOpen] = useState(false);
+  const isLong = text.length > 200;
+
+  return (
+    <>
+      <p className="line-clamp-4 text-xs leading-relaxed">
+        {text}
+      </p>
+      {isLong && (
+        <button
+          type="button"
+          className="mt-0.5 text-primary text-xs hover:underline"
+          onClick={() => setOpen(true)}
+        >
+          Read more
+        </button>
+      )}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Examiner Comments</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm leading-relaxed">{text}</p>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
 const StatsAndCommentsInner = ({
   paperNumber,
   year,
@@ -240,8 +270,8 @@ const StatsAndCommentsInner = ({
 
   return (
     <div className="flex flex-col gap-2">
-      {hasMarks ? (
-        <div className="grid grid-cols-[auto_1fr] gap-3">
+      {hasMarks && (
+        <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-[auto_1fr]">
           <MarkDistributionGraph
             minimum={question.minimumMark!}
             maximum={question.maximumMark!}
@@ -256,9 +286,7 @@ const StatsAndCommentsInner = ({
               Examiner Comments
             </span>
             {hasExaminerComment ? (
-              <p className="max-h-24 overflow-y-auto text-xs leading-relaxed">
-                {question.examinerComment}
-              </p>
+              <ExaminerCommentText text={question.examinerComment!} />
             ) : (
               <p className="text-muted-foreground text-xs italic">
                 No examiner comments available.
@@ -266,16 +294,18 @@ const StatsAndCommentsInner = ({
             )}
           </div>
         </div>
-      ) : hasExaminerComment ? (
+      )}
+
+      {!hasMarks && hasExaminerComment && (
         <div>
           <span className="font-medium text-muted-foreground text-xs">
             Examiner Comments
           </span>
-          <p className="mt-1 text-xs leading-relaxed">
-            {question.examinerComment}
-          </p>
+          <div className="mt-1">
+            <ExaminerCommentText text={question.examinerComment!} />
+          </div>
         </div>
-      ) : null}
+      )}
 
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
         {hasMarks && (

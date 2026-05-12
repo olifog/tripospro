@@ -1,4 +1,4 @@
-import { and, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
+import { and, asc, count, desc, eq, inArray, isNull, sql } from "drizzle-orm";
 import { z } from "zod";
 import type { db as dbInstance } from "@/db";
 import { commentTable, commentVoteTable } from "@/db/schema/comment";
@@ -202,11 +202,6 @@ async function fetchCommentsWithReplies(
   return result;
 }
 
-function hotScore(score: number, createdAt: Date): number {
-  const hoursAgo = (Date.now() - createdAt.getTime()) / (1000 * 60 * 60);
-  return score / Math.pow(hoursAgo + 2, 1.5);
-}
-
 async function resolveUserId(
   db: typeof dbInstance,
   clerkUserId: string | null
@@ -221,18 +216,24 @@ async function resolveUserId(
 async function fetchThreadPage(
   db: typeof dbInstance,
   filter: ReturnType<typeof eq>,
-  sort: "hot" | "top" | "new",
+  sort: "date_desc" | "date_asc" | "votes_desc" | "votes_asc",
   limit: number,
   cursor: number | undefined,
   currentUserId: number | null
 ) {
-  // For hot sort, fetch more from DB then sort in JS
-  const fetchLimit = sort === "hot" ? Math.min(limit * 3, 100) : limit;
-
-  const orderBy =
-    sort === "new"
-      ? [desc(commentTable.createdAt)]
-      : [desc(commentTable.score), desc(commentTable.createdAt)];
+  const orderBy = (() => {
+    switch (sort) {
+      case "date_desc":
+        return [desc(commentTable.createdAt)];
+      case "date_asc":
+        return [asc(commentTable.createdAt)];
+      case "votes_asc":
+        return [asc(commentTable.score), asc(commentTable.createdAt)];
+      case "votes_desc":
+      default:
+        return [desc(commentTable.score), desc(commentTable.createdAt)];
+    }
+  })();
 
   const topLevel = await db
     .select({
@@ -243,29 +244,14 @@ async function fetchThreadPage(
     .from(commentTable)
     .where(and(filter, isNull(commentTable.parentId)))
     .orderBy(...orderBy)
-    .limit(fetchLimit + 1)
+    .limit(limit + 1)
     .offset(cursor ?? 0);
 
-  let ids: number[];
-  let hasNextPage: boolean;
-
-  if (sort === "hot") {
-    const sorted = topLevel
-      .sort(
-        (a, b) =>
-          hotScore(b.score, b.createdAt) - hotScore(a.score, a.createdAt)
-      )
-      .slice(0, limit + 1);
-    hasNextPage = sorted.length > limit;
-    ids = sorted.slice(0, limit).map((c) => c.id);
-  } else {
-    hasNextPage = topLevel.length > limit;
-    ids = topLevel.slice(0, limit).map((c) => c.id);
-  }
+  const hasNextPage = topLevel.length > limit;
+  const ids = topLevel.slice(0, limit).map((c) => c.id);
 
   const comments = await fetchCommentsWithReplies(db, ids, currentUserId, 0);
 
-  // Maintain sort order
   const byId = new Map(comments.map((c) => [c.id, c]));
   const ordered = ids.map((id) => byId.get(id)!).filter(Boolean);
 
@@ -275,7 +261,7 @@ async function fetchThreadPage(
   };
 }
 
-const sortEnum = z.enum(["hot", "top", "new"]).default("hot");
+const sortEnum = z.enum(["date_desc", "date_asc", "votes_desc", "votes_asc"]).default("votes_desc");
 const paginationInput = {
   cursor: z.number().optional(),
   limit: z.number().min(1).max(50).default(DEFAULT_PAGE_SIZE)

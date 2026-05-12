@@ -26,7 +26,7 @@ export function CommentThreadClient({
 }
 
 function QuestionThread({ questionId }: { questionId: number }) {
-  const [sort, setSort] = useState<SortOption>("hot");
+  const [sort, setSort] = useState<SortOption>("votes_desc");
   const query = useQuestionComments(questionId, sort);
 
   return (
@@ -40,7 +40,7 @@ function QuestionThread({ questionId }: { questionId: number }) {
 }
 
 function CourseThread({ courseId }: { courseId: number }) {
-  const [sort, setSort] = useState<SortOption>("hot");
+  const [sort, setSort] = useState<SortOption>("votes_desc");
   const query = useCourseComments(courseId, sort);
 
   return (

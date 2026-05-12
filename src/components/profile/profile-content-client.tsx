@@ -1,5 +1,6 @@
 "use client";
 
+import type { inferRouterOutputs } from "@trpc/server";
 import {
   BookOpen,
   GraduationCap,
@@ -11,7 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import type { inferRouterOutputs } from "@trpc/server";
 import { trpc } from "@/trpc/client";
 import type { AppRouter } from "@/trpc/routers/_app";
 import { CommentContent } from "../comment/comment-content";
@@ -100,7 +100,7 @@ const TopSection = ({
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center bg-muted">
-          <span className="text-muted-foreground text-lg">
+          <span className="text-lg text-muted-foreground">
             {crsid.slice(0, 2).toUpperCase()}
           </span>
         </div>
@@ -109,7 +109,9 @@ const TopSection = ({
     <div className="flex flex-col gap-1">
       <div className="flex items-center gap-2">
         <h2 className="font-bold text-xl">
-          {profile.clerkUser?.firstName} {profile.clerkUser?.lastName}
+          {profile.clerkUser
+            ? `${profile.clerkUser.firstName} ${profile.clerkUser.lastName}`
+            : (profile.name ?? crsid)}
         </h2>
       </div>
       <span className="font-mono text-muted-foreground text-sm">{crsid}</span>
@@ -142,7 +144,9 @@ const StatsRow = ({ profile }: { profile: Profile }) => (
       <CardContent className="flex flex-col items-center gap-1 py-3">
         <PenTool className="h-4 w-4 text-muted-foreground" />
         <span className="font-bold text-xl">{profile.totalAnswers}</span>
-        <span className="text-muted-foreground text-xs">Questions Answered</span>
+        <span className="text-muted-foreground text-xs">
+          Questions Answered
+        </span>
       </CardContent>
     </Card>
     <Card className="min-w-[8rem]">
@@ -159,7 +163,9 @@ const StatsRow = ({ profile }: { profile: Profile }) => (
           <span className="font-bold text-xl">
             {profile.coursesLectured.length}
           </span>
-          <span className="text-muted-foreground text-xs">Courses Lectured</span>
+          <span className="text-muted-foreground text-xs">
+            Courses Lectured
+          </span>
         </CardContent>
       </Card>
     )}
@@ -230,9 +236,7 @@ const QuestionsAuthored = ({
               {q.year} P{q.paperName} Q{q.questionNumber}
             </span>
             {q.courseName && (
-              <span className="ml-1 text-muted-foreground">
-                {q.courseName}
-              </span>
+              <span className="ml-1 text-muted-foreground">{q.courseName}</span>
             )}
           </Link>
         ))}

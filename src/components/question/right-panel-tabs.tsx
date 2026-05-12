@@ -110,7 +110,7 @@ function DetailsPanel({
   onNavigateToDiscussion: () => void;
 }) {
   return (
-    <div className="flex h-full w-full flex-col gap-2 p-1.5">
+    <div className="flex w-full flex-col gap-2 p-1.5">
       <Header
         paperNumber={paperNumber}
         year={year}
@@ -198,7 +198,7 @@ function DiscussionPanelWithQuestion({
   });
 
   return (
-    <div className="flex h-full w-full flex-col gap-2 p-1.5">
+    <div className="flex w-full flex-col gap-2 p-1.5">
       <CommentThread questionId={question.id} />
     </div>
   );

@@ -49,73 +49,26 @@ export function CommentContent({
       <Markdown
         remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeKatex]}
-        allowedElements={[
-          "p",
-          "strong",
-          "em",
-          "del",
-          "u",
-          "ul",
-          "ol",
-          "li",
-          "code",
-          "pre",
-          "a",
-          "br",
-          "sup",
-          "sub",
-          "blockquote",
-          // KaTeX renders into spans/divs with MathML elements
-          "span",
-          "div",
-          "math",
-          "semantics",
-          "mrow",
-          "mi",
-          "mo",
-          "mn",
-          "msup",
-          "msub",
-          "mfrac",
-          "mover",
-          "munder",
-          "mtable",
-          "mtr",
-          "mtd",
-          "annotation",
-          "section"
-        ]}
+        disallowedElements={["img", "table", "thead", "tbody", "tr", "th", "td", "hr", "input", "iframe"]}
+        unwrapDisallowed
         components={{
-          // Downgrade headings to bold paragraphs
           h1: ({ children }) => (
-            <p>
-              <strong>{children}</strong>
-            </p>
+            <p><strong>{children}</strong></p>
           ),
           h2: ({ children }) => (
-            <p>
-              <strong>{children}</strong>
-            </p>
+            <p><strong>{children}</strong></p>
           ),
           h3: ({ children }) => (
-            <p>
-              <strong>{children}</strong>
-            </p>
+            <p><strong>{children}</strong></p>
           ),
           h4: ({ children }) => (
-            <p>
-              <strong>{children}</strong>
-            </p>
+            <p><strong>{children}</strong></p>
           ),
           h5: ({ children }) => (
-            <p>
-              <strong>{children}</strong>
-            </p>
+            <p><strong>{children}</strong></p>
           ),
           h6: ({ children }) => (
-            <p>
-              <strong>{children}</strong>
-            </p>
+            <p><strong>{children}</strong></p>
           ),
           a: ({ href, children, ...props }: ComponentPropsWithoutRef<"a">) => {
             if (href?.startsWith("/profile/")) {

@@ -29,14 +29,14 @@ export function CommentVote({
       if (questionId) {
         utils.comment.getByQuestion.invalidate({
           questionId,
-          sort: (sort as "hot" | "top" | "new") ?? undefined
+          sort: (sort as "date_desc" | "date_asc" | "votes_desc" | "votes_asc") ?? undefined
         });
         utils.comment.getTopComment.invalidate({ questionId });
       }
       if (courseId) {
         utils.comment.getByCourse.invalidate({
           courseId,
-          sort: (sort as "hot" | "top" | "new") ?? undefined
+          sort: (sort as "date_desc" | "date_asc" | "votes_desc" | "votes_asc") ?? undefined
         });
       }
     }

@@ -613,9 +613,9 @@ const ChatCore = ({
   const isThinking = status !== "ready" && lastMessageHasNoText;
 
   return (
-    <div className="flex h-full overflow-hidden">
+    <div className="flex h-full min-h-0 overflow-hidden">
       <ChatSidebar activeChatId={isNew ? null : chatId} />
-      <div className="mx-auto flex h-full w-full max-w-screen-md flex-col overflow-hidden">
+      <div className="mx-auto flex min-h-0 w-full max-w-screen-md flex-col overflow-hidden">
         <div className="flex flex-1 flex-col gap-3 overflow-y-auto pb-4">
           {messages?.map((m) => (
             <RenderMessage key={m.id} message={m} />
