@@ -73,7 +73,7 @@ const TitleInner = ({
   });
 
   return (
-    <h1 className="h-8 truncate text-center font-semibold text-lg">
+    <h1 className="h-7 truncate text-center font-semibold text-base">
       {!question
         ? "Failed to load question metadata."
         : `${year} ${question.courseName} Q${question.questionNumber}`}
@@ -82,7 +82,7 @@ const TitleInner = ({
 };
 
 const TitleSkeleton = () => {
-  return <Skeleton className="h-8 w-32" />;
+  return <Skeleton className="h-7 w-32" />;
 };
 
 export const Title = ({
@@ -129,6 +129,8 @@ const FlagButton = ({ questionId }: { questionId: number }) => {
     },
     onSettled: (_data, _err, { questionId }) => {
       utils.question.getFlag.invalidate({ questionId });
+      utils.triposPart.getQuestions.invalidate();
+      utils.question.getQuestionCourse.invalidate();
     }
   });
 
@@ -139,12 +141,13 @@ const FlagButton = ({ questionId }: { questionId: number }) => {
   return (
     <Button
       variant={data?.flagged ? "default" : "outline"}
+      size="sm"
       onClick={handleToggle}
       disabled={toggleFlag.isPending}
       className={cn(data?.flagged && "bg-warning hover:bg-warning/90")}
     >
-      <Flag className="h-4 w-4" />
-      {data?.flagged ? "Flagged" : "Flag for review"}
+      <Flag className="h-3.5 w-3.5" />
+      {data?.flagged ? "Flagged" : "Flag"}
     </Button>
   );
 };
@@ -170,34 +173,37 @@ export const ActionBarInner = ({
   ]?.includes(Number.parseInt(year, 10));
 
   return (
-    <div className="flex w-full flex-col items-center gap-4">
-      <div className="flex w-full flex-wrap items-center justify-center gap-2">
+    <div className="flex w-full flex-col items-center gap-2">
+      <div className="flex w-full flex-wrap items-center justify-center gap-1.5">
         {question.solutionUrl ? (
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" size="sm">
             <Link href={question.solutionUrl} target="_blank">
               Solution
-              <ExternalLink className="h-4 w-4" />
+              <ExternalLink className="h-3.5 w-3.5" />
             </Link>
           </Button>
         ) : (
-          <Button variant="outline" disabled className="cursor-not-allowed">
-            <Lock className="h-4 w-4" />
+          <Button
+            variant="outline"
+            size="sm"
+            disabled
+            className="cursor-not-allowed"
+          >
+            <Lock className="h-3.5 w-3.5" />
             Solution unavailable
           </Button>
         )}
-        <Button asChild variant="outline">
+        <Button asChild variant="outline" size="sm">
           <Link href={`${question.url}`} target="_blank">
             CST Link
-            <ExternalLink className="h-4 w-4" />
+            <ExternalLink className="h-3.5 w-3.5" />
           </Link>
         </Button>
         {isSignedIn && <FlagButton questionId={question.id} />}
       </div>
       {isCovidYear && (
-        <div className="flex w-full max-w-96 items-center justify-center gap-2 rounded-md border border-warning/40 bg-warning/15 p-1">
-          <div className="flex h-6 w-6 items-center justify-center">
-            <TriangleAlert className="h-5 w-5 text-warning" />
-          </div>
+        <div className="flex w-full max-w-96 items-center justify-center gap-1.5 rounded-md border border-warning/40 bg-warning/15 px-2 py-1">
+          <TriangleAlert className="h-4 w-4 shrink-0 text-warning" />
           <p className="text-foreground text-xs">
             {year} {question.triposPartName} was open book for COVID.
           </p>
@@ -526,8 +532,8 @@ export const Attempts = ({
 
 const AttemptsSkeleton = () => {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <Skeleton className="h-10 w-full max-w-3xl px-4" />
+    <div className="flex flex-col items-center gap-3">
+      <Skeleton className="h-9 w-full max-w-3xl px-2" />
       <Card className="w-full max-w-3xl gap-1 py-2">
         <CardHeader>
           <CardTitle className="flex cursor-pointer items-center gap-1 text-sm">
@@ -574,6 +580,8 @@ const AttemptsInner = ({
   const postUserAnswer = trpc.question.postUserAnswer.useMutation({
     onSettled: () => {
       utils.question.getUserAnswers.invalidate(queryKey);
+      utils.triposPart.getQuestions.invalidate();
+      utils.question.getQuestionCourse.invalidate();
     }
   });
   const deleteUserAnswer = trpc.question.deleteUserAnswer.useMutation({
@@ -592,6 +600,8 @@ const AttemptsInner = ({
     },
     onSettled: () => {
       utils.question.getUserAnswers.invalidate(queryKey);
+      utils.triposPart.getQuestions.invalidate();
+      utils.question.getQuestionCourse.invalidate();
     }
   });
   const [open, setOpen] = useState(false);
@@ -622,7 +632,7 @@ const AttemptsInner = ({
   }
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-3">
       <TimerComponent
         markDone={(time) => {
           form.setValue("timeTaken", Math.round(time / 60));

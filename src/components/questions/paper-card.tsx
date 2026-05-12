@@ -129,7 +129,7 @@ export const PaperCard = ({
                   >
                     <div
                       className={cn(
-                        "h-5 w-5 rounded-md",
+                        "h-5 w-5 rounded-sm",
                         entry.answers > 0
                           ? scoreColorStatic(entry.bestMark)
                           : "bg-score-unattempted/30 hover:bg-score-unattempted/50",

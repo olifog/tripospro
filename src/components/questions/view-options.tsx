@@ -138,9 +138,7 @@ export const ViewOptions = () => {
       <CollapsibleContent>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3 py-1">
           <div className="flex items-center gap-2">
-            <Label className="text-muted-foreground text-xs uppercase tracking-wide">
-              Group by
-            </Label>
+            <Label className="text-muted-foreground text-xs">Group by</Label>
             <Tabs
               value={filter.view ?? defaultQuestionsFilter.view}
               onValueChange={(value) => {
@@ -161,7 +159,7 @@ export const ViewOptions = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Label className="text-muted-foreground text-xs uppercase tracking-wide">
+            <Label className="text-muted-foreground text-xs">
               Only current
             </Label>
             <TooltipProvider>
@@ -186,9 +184,7 @@ export const ViewOptions = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Label className="text-muted-foreground text-xs uppercase tracking-wide">
-              From
-            </Label>
+            <Label className="text-muted-foreground text-xs">From</Label>
             <span className="w-10 text-right text-muted-foreground text-sm tabular-nums">
               {sliderValue}
             </span>
@@ -202,7 +198,7 @@ export const ViewOptions = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Label className="text-muted-foreground text-xs uppercase tracking-wide">
+            <Label className="text-muted-foreground text-xs">
               Question numbers
             </Label>
             <Switch

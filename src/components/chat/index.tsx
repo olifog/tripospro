@@ -14,7 +14,7 @@ import { Check, ChevronDown, Loader, Send } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Markdown from "react-markdown";
+import { Streamdown } from "streamdown";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { Button } from "../ui/button";
@@ -34,7 +34,7 @@ const QuestionCard = ({ questionId }: { questionId: number }) => {
 
   if (isLoading) {
     return (
-      <div className="h-12 w-44 animate-pulse rounded-md border border-border bg-muted" />
+      <div className="h-10 w-40 animate-pulse rounded-md border border-border bg-muted" />
     );
   }
 
@@ -51,7 +51,7 @@ const QuestionCard = ({ questionId }: { questionId: number }) => {
     <Link href={questionUrl} target="_blank" rel="noopener noreferrer">
       <div
         className={cn(
-          "flex h-12 w-44 items-center gap-2 rounded-md border px-2.5 text-xs transition-colors hover:bg-accent",
+          "flex h-10 w-40 items-center gap-1.5 rounded-md border px-2 text-[11px] transition-colors hover:bg-accent",
           hasAnswers
             ? "border-score-distinction/40 bg-score-distinction/10"
             : "border-border bg-card"
@@ -90,8 +90,8 @@ const UserMessage = ({ message }: { message: UIMessage }) => {
 
   return (
     <div className="flex w-full justify-end">
-      <div className="max-w-md rounded-lg bg-primary px-3 py-2 text-primary-foreground text-sm">
-        <Markdown>{text}</Markdown>
+      <div className="max-w-md rounded-lg bg-primary px-2.5 py-1.5 text-primary-foreground text-xs">
+        <Streamdown mode="static">{text}</Streamdown>
       </div>
     </div>
   );
@@ -110,12 +110,12 @@ const AssistantMessage = ({ message }: { message: UIMessage }) => {
       <Image
         src="/john2.jpg"
         alt="Tripos Pro Logo"
-        width={86}
-        height={86}
+        width={28}
+        height={28}
         className="rounded-lg"
       />
-      <div className="prose dark:prose-invert max-w-md rounded-lg bg-muted px-3 py-2 text-foreground text-sm">
-        <Markdown>{textContent}</Markdown>
+      <div className="max-w-lg rounded-lg bg-muted px-2.5 py-1.5 text-foreground text-xs">
+        <Streamdown>{textContent}</Streamdown>
       </div>
     </div>
   );
@@ -361,14 +361,14 @@ const ThinkingIndicator = () => (
     <Image
       src="/john2.jpg"
       alt="Tripos Pro Logo"
-      width={86}
-      height={86}
+      width={28}
+      height={28}
       className="rounded-lg"
     />
-    <div className="flex items-center gap-1.5 rounded-lg bg-muted px-3 py-2">
-      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-foreground" />
-      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:150ms]" />
-      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:300ms]" />
+    <div className="flex items-center gap-1 rounded-lg bg-muted px-2.5 py-1.5">
+      <span className="h-1 w-1 animate-pulse rounded-full bg-muted-foreground" />
+      <span className="h-1 w-1 animate-pulse rounded-full bg-muted-foreground [animation-delay:150ms]" />
+      <span className="h-1 w-1 animate-pulse rounded-full bg-muted-foreground [animation-delay:300ms]" />
     </div>
   </div>
 );
@@ -473,7 +473,7 @@ const ChatInner = () => {
       >
         <textarea
           ref={textareaRef}
-          className="field-sizing-content max-h-32 min-h-9 w-full resize-none rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+          className="field-sizing-content max-h-32 min-h-8 w-full resize-none rounded-md border border-input bg-background px-2.5 py-1.5 text-xs shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           value={input}
           placeholder="Ask about past papers..."
           onChange={(e) => setInput(e.target.value)}

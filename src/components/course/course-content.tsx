@@ -113,10 +113,10 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
   return (
     <div className="flex flex-col gap-4">
       {/* Header with course name and external link */}
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-3">
-          <h2 className="font-bold text-2xl">{course.name}</h2>
-          <span className="rounded bg-muted px-2 py-0.5 font-mono text-muted-foreground text-sm">
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center gap-2">
+          <h2 className="font-bold text-xl">{course.name}</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-muted-foreground text-xs">
             {course.code}
           </span>
         </div>
@@ -207,9 +207,9 @@ const LecturersDisplay = ({
   isCourseCurrentlyTaught: boolean;
 }) => {
   return (
-    <div className="flex flex-col gap-2">
-      <h3 className="font-medium text-muted-foreground text-sm">Lecturers</h3>
-      <div className="flex flex-wrap gap-x-4 gap-y-2">
+    <div className="flex flex-col gap-1">
+      <h3 className="font-medium text-muted-foreground text-xs">Lecturers</h3>
+      <div className="flex flex-wrap gap-x-3 gap-y-1">
         {lecturers.map((lecturer) => {
           // A lecturer is "current" only if the course is currently taught AND they teach in the current year
           const isCurrent =
@@ -255,13 +255,13 @@ const OverallStatsCard = ({
 }) => {
   return (
     <Card className="w-fit">
-      <CardHeader className="pb-2">
-        <CardTitle className="flex items-center gap-2 text-base">
+      <CardHeader className="pb-1">
+        <CardTitle className="flex items-center gap-1.5 text-sm">
           Overall Statistics
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Info className="h-4 w-4 cursor-help text-muted-foreground" />
+                <Info className="h-3.5 w-3.5 cursor-help text-muted-foreground" />
               </TooltipTrigger>
               <TooltipContent className="max-w-xs">
                 <p>
@@ -275,31 +275,35 @@ const OverallStatsCard = ({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Min</span>
-            <span className={cn("font-mono text-lg", getMarkColor(stats.min))}>
+            <span
+              className={cn("font-mono text-base", getMarkColor(stats.min))}
+            >
               {stats.min.toFixed(1)}
             </span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Median</span>
             <span
-              className={cn("font-mono text-lg", getMarkColor(stats.median))}
+              className={cn("font-mono text-base", getMarkColor(stats.median))}
             >
               {stats.median.toFixed(1)}
             </span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-muted-foreground text-xs">Max</span>
-            <span className={cn("font-mono text-lg", getMarkColor(stats.max))}>
+            <span
+              className={cn("font-mono text-base", getMarkColor(stats.max))}
+            >
               {stats.max.toFixed(1)}
             </span>
           </div>
           {stats.popularity !== null && (
             <div className="flex flex-col items-center">
               <span className="text-muted-foreground text-xs">Popularity</span>
-              <span className="font-mono text-foreground text-lg">
+              <span className="font-mono text-base text-foreground">
                 {stats.popularity.toFixed(0)}%
               </span>
             </div>
@@ -331,8 +335,8 @@ const CourseHistoryStats = ({
 
   return (
     <Card className="w-fit">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base">Course History</CardTitle>
+      <CardHeader className="pb-1">
+        <CardTitle className="text-sm">Course History</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-1">
@@ -389,7 +393,7 @@ const CourseHistoryStats = ({
 const TermDot = ({ active }: { active: boolean }) => {
   return (
     <div
-      className={cn("h-5 w-5 rounded-md", active ? "bg-primary" : "bg-muted")}
+      className={cn("h-5 w-5 rounded-sm", active ? "bg-primary" : "bg-muted")}
     />
   );
 };
@@ -418,8 +422,8 @@ const CourseMarksTable = ({
 
   return (
     <Card className="w-fit">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base">Mark Statistics</CardTitle>
+      <CardHeader className="pb-1">
+        <CardTitle className="text-sm">Mark Statistics</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-1">
@@ -578,8 +582,8 @@ const CourseQuestionsGrid = ({
 
   return (
     <Card className="w-fit">
-      <CardHeader className="pb-2">
-        <CardTitle className="text-base">Questions</CardTitle>
+      <CardHeader className="pb-1">
+        <CardTitle className="text-sm">Questions</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-1">
@@ -623,7 +627,7 @@ const CourseQuestionsGrid = ({
                     >
                       <div
                         className={cn(
-                          "h-5 w-5 rounded-md transition-colors",
+                          "h-5 w-5 rounded-sm transition-colors",
                           userAnswers > 0
                             ? "bg-score-done"
                             : "bg-score-unattempted/30 hover:bg-score-unattempted/50"

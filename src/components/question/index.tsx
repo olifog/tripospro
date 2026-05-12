@@ -52,8 +52,8 @@ export const RightPanel = ({
   questionNumber: string;
 }) => {
   return (
-    <div className="flex h-full w-full flex-col rounded-lg p-2">
-      <div className="mb-3 flex justify-center">
+    <div className="flex h-full w-full flex-col gap-3 rounded-lg p-2">
+      <div className="flex justify-center">
         <HydrateClient>
           <Title
             paperNumber={paperNumber}
@@ -70,8 +70,6 @@ export const RightPanel = ({
         />
       </HydrateClient>
 
-      <div className="my-2" />
-
       <HydrateClient>
         <QuestionStatistics
           paperNumber={paperNumber}
@@ -79,8 +77,6 @@ export const RightPanel = ({
           questionNumber={questionNumber}
         />
       </HydrateClient>
-
-      <div className="my-2" />
 
       <HydrateClient>
         <ExaminerComments
@@ -90,7 +86,7 @@ export const RightPanel = ({
         />
       </HydrateClient>
 
-      <Separator className="my-4" />
+      <Separator />
 
       <HydrateClient>
         <Attempts
@@ -100,7 +96,7 @@ export const RightPanel = ({
         />
       </HydrateClient>
 
-      <Separator className="my-4" />
+      <Separator />
 
       <HydrateClient>
         <QuestionCourseCard

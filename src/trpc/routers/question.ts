@@ -9,9 +9,8 @@ import {
   userQuestionFlagTable,
   usersTable
 } from "@/db/schema/user";
-import { baseProcedure, protectedProcedure } from "../init";
-import { createTRPCRouter } from "../init";
 import { calendarYearToAcademicYear } from "@/lib/utils";
+import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
 
 export const questionRouter = createTRPCRouter({
   getQuestion: baseProcedure
@@ -160,6 +159,9 @@ export const questionRouter = createTRPCRouter({
               },
               userQuestionAnswers: {
                 where: eq(userQuestionAnswerTable.userId, user?.id ?? 0)
+              },
+              userQuestionFlags: {
+                where: eq(userQuestionFlagTable.userId, user?.id ?? 0)
               }
             }
           }
@@ -172,11 +174,23 @@ export const questionRouter = createTRPCRouter({
         courseCode: course.code,
         years: courseYears.map((year) => ({
           year: year.year,
-          questions: year.questions.map((question) => ({
-            questionNumber: question.questionNumber,
-            paperName: question.paperYear?.paper?.name ?? "",
-            answers: question.userQuestionAnswers.length || undefined
-          }))
+          questions: year.questions.map((question) => {
+            const answers = question.userQuestionAnswers;
+            const marksWithValues = answers
+              .map((a) => a.mark)
+              .filter((m): m is number => m !== null);
+            const bestMark =
+              marksWithValues.length > 0
+                ? Math.max(...marksWithValues)
+                : undefined;
+            return {
+              questionNumber: question.questionNumber,
+              paperName: question.paperYear?.paper?.name ?? "",
+              answers: answers.length || undefined,
+              bestMark,
+              flagged: question.userQuestionFlags.length > 0
+            };
+          })
         }))
       };
     }),

@@ -3,12 +3,12 @@ import { ProfileDetails, ProfilePicture } from "./profile-content-client";
 
 const TopProfile = ({ crsid }: { crsid: string }) => {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-3">
       <HydrateClient>
         <ProfilePicture crsid={crsid} />
       </HydrateClient>
       <div className="flex flex-col">
-        <h1 className="font-bold text-xl">{crsid}</h1>
+        <h1 className="font-bold text-lg">{crsid}</h1>
         <HydrateClient>
           <ProfileDetails crsid={crsid} />
         </HydrateClient>

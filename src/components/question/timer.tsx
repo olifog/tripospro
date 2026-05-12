@@ -117,7 +117,7 @@ export default function TimerComponent({
   };
 
   return (
-    <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-3 px-4">
+    <div className="flex w-full max-w-3xl flex-wrap items-center justify-between gap-2 px-2">
       <div className="flex-shrink-0">
         <Input
           value={editableTime}
@@ -125,12 +125,12 @@ export default function TimerComponent({
           onBlur={handleTimeBlur}
           onFocus={handleTimeFocus}
           onKeyDown={handleTimeKeyPress}
-          className="w-28 text-center font-mono text-2xl"
+          className="h-9 w-24 text-center font-mono text-lg"
           aria-label="Timer"
         />
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-2">
         <TooltipProvider>
           <Tooltip delayDuration={300}>
             <TooltipTrigger asChild>

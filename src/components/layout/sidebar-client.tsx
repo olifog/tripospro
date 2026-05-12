@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -7,8 +8,7 @@ import {
   SidebarHeader,
   SidebarRail
 } from "@/components/ui/sidebar";
-import { loadSidebarState, saveSidebarState } from "@/lib/save-sidebar";
-import { useEffect, useRef, useState } from "react";
+import { saveSidebarState } from "@/lib/save-sidebar";
 import { SidebarProvider } from "../ui/sidebar";
 
 export function SidebarClient({
@@ -32,20 +32,13 @@ export function SidebarClient({
 }
 
 export function SavedSidebarProvider({
-  children
+  children,
+  defaultOpen = true
 }: {
   children: React.ReactNode;
+  defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(true);
-  const isInitialRender = useRef(true);
-
-  useEffect(() => {
-    const savedState = loadSidebarState();
-    if (savedState) {
-      setOpen(savedState.open);
-    }
-    isInitialRender.current = false;
-  }, []);
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <SidebarProvider
@@ -54,11 +47,6 @@ export function SavedSidebarProvider({
         setOpen(newOpen);
         saveSidebarState({ open: newOpen });
       }}
-      style={
-        isInitialRender.current
-          ? { ["--sidebar-transition-duration" as string]: "0ms" }
-          : undefined
-      }
     >
       {children}
     </SidebarProvider>

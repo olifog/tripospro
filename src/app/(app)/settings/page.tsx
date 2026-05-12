@@ -6,7 +6,7 @@ import { withParamsCache } from "@/lib/with-params-cache";
 function SettingsPage() {
   return (
     <PageLayout header={<h1>Settings</h1>}>
-      <div className="flex max-w-md flex-col gap-6 p-4">
+      <div className="flex max-w-md flex-col gap-4 p-2">
         <div className="flex items-center justify-between">
           <Label>Theme</Label>
           <ModeToggle />

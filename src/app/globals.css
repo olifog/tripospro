@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@import "streamdown/styles.css";
+
+@source "../node_modules/streamdown/dist/*.js";
 
 @custom-variant dark (&:is(.dark *));
 
 @plugin "tailwindcss-animate";
-@plugin "@tailwindcss/typography";
 
 :root {
   --background: oklch(0.985 0.002 220);
