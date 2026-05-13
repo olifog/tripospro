@@ -17,7 +17,7 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
-    "@ai-sdk/amazon-bedrock": "^4.0.104",
+    "@ai-sdk/amazon-bedrock": "^4.0.105",
     "@ai-sdk/openai": "^3.0.63",
     "@ai-sdk/react": "^3.0.179",
     "@clerk/nextjs": "^7.3.3",
