@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
+import { gradientCss } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import {
   Collapsible,
@@ -31,10 +32,7 @@ const ScoreLegend = () => (
         <div className="flex cursor-default items-center gap-1">
           <div
             className="h-3 w-16 rounded-sm"
-            style={{
-              background:
-                "linear-gradient(to right, oklch(0.55 0.17 0), oklch(0.55 0.17 40), oklch(0.55 0.17 80), oklch(0.55 0.17 120))"
-            }}
+            style={{ background: gradientCss }}
           />
           <div className="h-3 w-3 rounded-sm bg-score-unattempted/30" />
           <Info className="ml-0.5 h-3 w-3 text-muted-foreground" />
@@ -45,10 +43,7 @@ const ScoreLegend = () => (
         <div className="flex items-center gap-2">
           <div
             className="h-3 w-24 shrink-0 rounded-sm"
-            style={{
-              background:
-                "linear-gradient(to right, oklch(0.55 0.17 0), oklch(0.55 0.17 40), oklch(0.55 0.17 80), oklch(0.55 0.17 120))"
-            }}
+            style={{ background: gradientCss }}
           />
         </div>
         <div className="flex justify-between text-[10px] text-muted-foreground" style={{ width: "6rem" }}>
