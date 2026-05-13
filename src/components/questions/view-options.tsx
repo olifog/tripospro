@@ -3,7 +3,7 @@
 import { useUser } from "@clerk/nextjs";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { ChevronDown, Info, Star } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useQuestionsFilter } from "@/hooks/use-params";
 import { defaultQuestionsFilter } from "@/lib/search-params";
@@ -71,6 +71,7 @@ export const ViewOptions = () => {
     filter.yearCutoff ?? defaultQuestionsFilter.yearCutoff
   );
   const debouncedSliderValue = useDebounce(sliderValue, 300);
+  const sliderInitialized = useRef(false);
   const { isSignedIn } = useUser();
 
   useEffect(() => {
@@ -78,6 +79,10 @@ export const ViewOptions = () => {
   }, [filter.yearCutoff]);
 
   useEffect(() => {
+    if (!sliderInitialized.current) {
+      sliderInitialized.current = true;
+      return;
+    }
     setFilter((prev) => ({ ...prev, yearCutoff: debouncedSliderValue }));
   }, [debouncedSliderValue, setFilter]);
 
