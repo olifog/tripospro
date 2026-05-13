@@ -2,7 +2,7 @@ import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
-import { questionTable } from "@/db/schema/question";
+import { questionAuthorTable, questionTable } from "@/db/schema/question";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import {
   userQuestionAnswerTable,
@@ -72,6 +72,15 @@ export const questionRouter = createTRPCRouter({
       const triposPartCode = questionResponse[0].tripos_part?.code;
       const triposPartName = questionResponse[0].tripos_part?.name;
 
+      const authors = await ctx.db
+        .select({
+          crsid: usersTable.crsid,
+          name: usersTable.name
+        })
+        .from(questionAuthorTable)
+        .innerJoin(usersTable, eq(questionAuthorTable.authorId, usersTable.id))
+        .where(eq(questionAuthorTable.questionId, question.id));
+
       if (ctx.userId) {
         return {
           ...question,
@@ -80,7 +89,8 @@ export const questionRouter = createTRPCRouter({
           courseUrl,
           paperCandidates,
           triposPartCode,
-          triposPartName
+          triposPartName,
+          authors
         };
       }
 
@@ -97,7 +107,8 @@ export const questionRouter = createTRPCRouter({
         courseId,
         courseUrl,
         triposPartCode,
-        triposPartName
+        triposPartName,
+        authors
       };
     }),
   getQuestionCourse: baseProcedure

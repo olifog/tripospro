@@ -80,27 +80,40 @@ const HeaderInner = ({
     ]?.includes(Number.parseInt(year, 10));
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="flex min-w-0 flex-1 items-center gap-1.5">
-        <span className="truncate font-medium text-sm">
-          {year} {question.courseName} Q{question.questionNumber}
-        </span>
-        {isCovidYear && (
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <TriangleAlert className="h-3.5 w-3.5 shrink-0 text-warning" />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p className="text-xs">
-                  {year} {question.triposPartName} was open book for COVID.
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        )}
-      </div>
-      <div className="flex shrink-0 items-center gap-1">
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-2">
+        <div className="flex min-w-0 flex-1 items-center gap-1.5">
+          <span className="truncate font-medium text-sm">
+            {year} Q{question.questionNumber}
+          </span>
+          {question.courseId ? (
+            <Link
+              href={`/course/${question.courseId}`}
+              className="truncate text-muted-foreground text-xs hover:text-foreground hover:underline"
+            >
+              {question.courseName}
+            </Link>
+          ) : (
+            <span className="truncate text-muted-foreground text-xs">
+              {question.courseName}
+            </span>
+          )}
+          {isCovidYear && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <TriangleAlert className="h-3.5 w-3.5 shrink-0 text-warning" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-xs">
+                    {year} {question.triposPartName} was open book for COVID.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+        </div>
+        <div className="flex shrink-0 items-center gap-1">
           {question.solutionUrl ? (
             <Button asChild variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs">
               <Link href={question.solutionUrl} target="_blank">
@@ -121,7 +134,28 @@ const HeaderInner = ({
             </Link>
           </Button>
         {isSignedIn && <FlagButton questionId={question.id} />}
+        </div>
       </div>
+      {question.authors && question.authors.length > 0 && (
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
+          <span>by</span>
+          {question.authors.map((a, i) => (
+            <span key={a.crsid}>
+              {i > 0 && ", "}
+              {a.crsid ? (
+                <Link
+                  href={`/profile/${a.crsid}`}
+                  className="hover:text-foreground hover:underline"
+                >
+                  {a.name ?? a.crsid}
+                </Link>
+              ) : (
+                a.name ?? "Unknown"
+              )}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

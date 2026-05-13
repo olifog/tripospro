@@ -171,9 +171,17 @@ export const userRouter = createTRPCRouter({
             isDeleted: commentTable.isDeleted,
             createdAt: commentTable.createdAt,
             questionId: commentTable.questionId,
-            courseId: commentTable.courseId
+            courseId: commentTable.courseId,
+            questionNumber: questionTable.questionNumber,
+            paperName: paperTable.name,
+            paperYear: paperYearTable.year,
+            courseName: courseTable.name
           })
           .from(commentTable)
+          .leftJoin(questionTable, eq(commentTable.questionId, questionTable.id))
+          .leftJoin(paperYearTable, eq(questionTable.paperYearId, paperYearTable.id))
+          .leftJoin(paperTable, eq(paperYearTable.paperId, paperTable.id))
+          .leftJoin(courseTable, eq(commentTable.courseId, courseTable.id))
           .where(eq(commentTable.authorId, user.id))
           .orderBy(desc(commentTable.createdAt))
           .limit(20)

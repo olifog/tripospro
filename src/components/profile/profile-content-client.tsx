@@ -3,6 +3,7 @@
 import type { inferRouterOutputs } from "@trpc/server";
 import {
   BookOpen,
+  ExternalLink,
   GraduationCap,
   MessageSquare,
   PenTool,
@@ -132,6 +133,16 @@ const TopSection = ({
             <Star className="h-3 w-3" />
             {profile.karma} karma
           </span>
+        )}
+        {profile.isLecturer && (
+          <Link
+            href={`https://www.cst.cam.ac.uk/people/${crsid}`}
+            target="_blank"
+            className="flex items-center gap-1 text-muted-foreground text-xs hover:text-foreground hover:underline"
+          >
+            CST Page
+            <ExternalLink className="h-3 w-3" />
+          </Link>
         )}
       </div>
     </div>
@@ -267,11 +278,22 @@ const ActivitySection = ({ profile }: { profile: Profile }) => (
                 className="flex flex-col gap-1 rounded-md border p-3"
               >
                 <div className="flex items-center gap-2 text-xs">
-                  {comment.questionId && (
-                    <span className="text-muted-foreground">on a question</span>
-                  )}
-                  {comment.courseId && (
-                    <span className="text-muted-foreground">on a course</span>
+                  {comment.questionId && comment.paperName && comment.paperYear && comment.questionNumber ? (
+                    <Link
+                      href={`/p/${comment.paperName}/${comment.paperYear}/${comment.questionNumber}`}
+                      className="text-primary hover:underline"
+                    >
+                      {comment.paperYear} P{comment.paperName} Q{comment.questionNumber}
+                    </Link>
+                  ) : comment.courseId && comment.courseName ? (
+                    <Link
+                      href={`/course/${comment.courseId}`}
+                      className="text-primary hover:underline"
+                    >
+                      {comment.courseName}
+                    </Link>
+                  ) : (
+                    <span className="text-muted-foreground">comment</span>
                   )}
                   <span className="text-muted-foreground">
                     {comment.createdAt.toLocaleDateString()}
@@ -280,7 +302,7 @@ const ActivitySection = ({ profile }: { profile: Profile }) => (
                     +{comment.score}
                   </span>
                 </div>
-                <div className="line-clamp-3 text-sm">
+                <div className="line-clamp-3 text-xs">
                   <CommentContent content={comment.content} />
                 </div>
               </div>
