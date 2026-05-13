@@ -15,7 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./chat.css";
-import { Streamdown } from "streamdown";
+import { type Components, Streamdown } from "streamdown";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { Button } from "../ui/button";
@@ -25,6 +25,24 @@ import {
   CollapsibleTrigger
 } from "../ui/collapsible";
 import { ChatSidebar } from "./chat-sidebar";
+
+const chatComponents: Components = {
+  h1: ({ children }) => <h1 className="mt-2 mb-0 font-semibold text-sm">{children}</h1>,
+  h2: ({ children }) => <h2 className="mt-2 mb-0 font-semibold text-sm">{children}</h2>,
+  h3: ({ children }) => <h3 className="mt-2 mb-0 font-semibold text-sm">{children}</h3>,
+  h4: ({ children }) => <h4 className="mt-1.5 mb-0 font-semibold text-sm">{children}</h4>,
+  h5: ({ children }) => <h5 className="mt-1.5 mb-0 font-semibold text-sm">{children}</h5>,
+  h6: ({ children }) => <h6 className="mt-1.5 mb-0 font-semibold text-sm">{children}</h6>,
+  ul: ({ children }) => <ul className="my-0.5 list-outside list-disc pl-5">{children}</ul>,
+  ol: ({ children }) => <ol className="my-0.5 list-outside list-decimal pl-5">{children}</ol>,
+  li: ({ children }) => <li className="py-0 pl-0.5 [&>p]:inline">{children}</li>,
+  blockquote: ({ children }) => (
+    <blockquote className="my-1 border-muted-foreground/30 border-l-4 pl-4 text-muted-foreground italic">
+      {children}
+    </blockquote>
+  ),
+  hr: () => <hr className="my-1.5 border-border" />,
+};
 
 const GREETING_MESSAGE: UIMessage = {
   id: "0",
@@ -104,7 +122,7 @@ const UserMessage = ({ message }: { message: UIMessage }) => {
   return (
     <div className="flex w-full justify-end">
       <div className="max-w-md rounded-lg bg-primary px-3 py-1.5 text-primary-foreground text-sm">
-        <Streamdown mode="static">{text}</Streamdown>
+        <Streamdown mode="static" className="space-y-1" components={chatComponents}>{text}</Streamdown>
       </div>
     </div>
   );
@@ -127,8 +145,8 @@ const AssistantMessage = ({ message }: { message: UIMessage }) => {
         height={36}
         className="rounded-lg"
       />
-      <div className="chat-message max-w-lg rounded-lg bg-muted px-3 py-1.5 text-foreground text-sm">
-        <Streamdown>{textContent}</Streamdown>
+      <div className="min-w-0 flex-1 rounded-lg bg-muted px-3 py-1.5 text-foreground text-sm">
+        <Streamdown className="chat-message space-y-1" components={chatComponents}>{textContent}</Streamdown>
       </div>
     </div>
   );
@@ -615,48 +633,52 @@ const ChatCore = ({
   return (
     <div className="flex h-full min-h-0 overflow-hidden">
       <ChatSidebar activeChatId={isNew ? null : chatId} />
-      <div className="mx-auto flex min-h-0 w-full max-w-screen-md flex-col overflow-hidden">
-        <div className="flex flex-1 flex-col gap-3 overflow-y-auto pb-4">
-          {messages?.map((m) => (
-            <RenderMessage key={m.id} message={m} />
-          ))}
-          {isThinking && <ThinkingIndicator />}
-          <div ref={messagesEndRef} />
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-6 pb-4">
+          <div className="mx-auto flex w-full max-w-screen-sm flex-col gap-3">
+            {messages?.map((m) => (
+              <RenderMessage key={m.id} message={m} />
+            ))}
+            {isThinking && <ThinkingIndicator />}
+            <div ref={messagesEndRef} />
+          </div>
         </div>
 
-        <form
-          className="sticky bottom-0 flex items-end gap-2 bg-background pt-3 pb-4"
-          onSubmit={handleSubmit}
-        >
-          <textarea
-            ref={textareaRef}
-            className="max-h-32 min-h-9 w-full resize-none overflow-y-auto rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-            value={input}
-            placeholder="Ask about past papers..."
-            onChange={(e) => {
-              setInput(e.target.value);
-              const el = e.target;
-              el.style.height = "auto";
-              el.style.height = `${Math.min(el.scrollHeight, 128)}px`;
-            }}
-            onKeyDown={handleKeyDown}
-            disabled={status !== "ready"}
-            rows={1}
-          />
-          <Button
-            type="submit"
-            size="icon"
-            variant="ghost"
-            disabled={status !== "ready" || !input.trim()}
-            className="shrink-0"
+        <div className="mx-auto w-full max-w-screen-sm px-6 pt-3 pb-4">
+          <form
+            className="flex items-end gap-2"
+            onSubmit={handleSubmit}
           >
-            {status !== "ready" ? (
-              <Loader className="h-4 w-4 animate-spin" />
-            ) : (
-              <Send className="h-4 w-4" />
-            )}
-          </Button>
-        </form>
+            <textarea
+              ref={textareaRef}
+              className="max-h-32 min-h-9 w-full resize-none overflow-y-auto rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+              value={input}
+              placeholder="Ask about past papers..."
+              onChange={(e) => {
+                setInput(e.target.value);
+                const el = e.target;
+                el.style.height = "auto";
+                el.style.height = `${Math.min(el.scrollHeight, 128)}px`;
+              }}
+              onKeyDown={handleKeyDown}
+              disabled={status !== "ready"}
+              rows={1}
+            />
+            <Button
+              type="submit"
+              size="icon"
+              variant="ghost"
+              disabled={status !== "ready" || !input.trim()}
+              className="shrink-0"
+            >
+              {status !== "ready" ? (
+                <Loader className="h-4 w-4 animate-spin" />
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );
