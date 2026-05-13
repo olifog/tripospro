@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@ai-sdk/amazon-bedrock':
         specifier: ^4.0.104
-        version: 4.0.104(zod@3.25.76)
+        version: 4.0.104(zod@4.4.3)
       '@ai-sdk/openai':
         specifier: ^3.0.63
-        version: 3.0.63(zod@3.25.76)
+        version: 3.0.63(zod@4.4.3)
       '@ai-sdk/react':
         specifier: ^3.0.179
-        version: 3.0.179(react@19.2.6)(zod@3.25.76)
+        version: 3.0.179(react@19.2.6)(zod@4.4.3)
       '@clerk/nextjs':
         specifier: ^7.3.3
         version: 7.3.3(next@16.2.6(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -67,7 +67,7 @@ importers:
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@t3-oss/env-nextjs':
         specifier: ^0.13.11
-        version: 0.13.11(typescript@6.0.3)(zod@3.25.76)
+        version: 0.13.11(typescript@6.0.3)(zod@4.4.3)
       '@tailwindcss/typography':
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@4.3.0)
@@ -88,7 +88,7 @@ importers:
         version: 2.0.1(next@16.2.6(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       ai:
         specifier: ^6.0.177
-        version: 6.0.177(zod@3.25.76)
+        version: 6.0.177(zod@4.4.3)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -127,7 +127,7 @@ importers:
         version: 2.8.9(next@16.2.6(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
       openai:
         specifier: ^6.37.0
-        version: 6.37.0(zod@3.25.76)
+        version: 6.37.0(zod@4.4.3)
       peggy:
         specifier: ^5.1.0
         version: 5.1.0
@@ -186,8 +186,8 @@ importers:
         specifier: ^14.0.0
         version: 14.0.0
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@biomejs/biome':
         specifier: 2.4.15
@@ -1092,8 +1092,8 @@ packages:
     resolution: {integrity: sha512-LLlgtfXIaeYXoOYovOI0spLM8ZXaqkAlmcRRrLzHJzLMqkU6Sw0R4KMoCoHx1PjaP815pSCBlS+BN6aD8t1Jgg==}
     engines: {node: '>=20.8'}
 
-  '@petamoriken/float16@3.9.2':
-    resolution: {integrity: sha512-VgffxawQde93xKxT3qap3OH+meZf7VaSB5Sqd4Rqc+FP5alWbpOyan/7tRbOAvynjpG3GpdtAuGU/NdhQpmrog==}
+  '@petamoriken/float16@3.9.3':
+    resolution: {integrity: sha512-8awtpHXCx/bNpFt4mt2xdkgtgVvKqty8VbjHI/WWWQuEw+KLzFot3f4+LkQY9YmOtq7A5GdOnqoIC8Pdygjk2g==}
 
   '@pinecone-database/pinecone@7.2.0':
     resolution: {integrity: sha512-urGsnNDWSSqSaWdyEF2P6V5bTNtRA6yMQTheFYAKKwk7mkloRBBETtT2ADF5Y8gJTr88pW5D8NTcCCLe+f0e2Q==}
@@ -2770,9 +2770,9 @@ packages:
     resolution: {integrity: sha512-oG7cgbmg5kLYae2N5IVd3jm2s+vldjxJzK1pcu9LfpGuQ93MQSzo0okvRna+7y5ifrD+20FE8FvjusyGaz14fw==}
     engines: {node: '>=18'}
 
-  isexe@3.1.1:
-    resolution: {integrity: sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ==}
-    engines: {node: '>=16'}
+  isexe@3.1.5:
+    resolution: {integrity: sha512-6B3tLtFqtQS4ekarvLVMZ+X+VlvQekbe4taUkf/rhVO3d/h0M2rfARm/pXLcPEsjjMsFgrFgSrhQIxcSVrBz8w==}
+    engines: {node: '>=18'}
 
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
@@ -3285,8 +3285,8 @@ packages:
     resolution: {integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
 
-  shell-quote@1.8.2:
-    resolution: {integrity: sha512-AzqKpGKjrj7EM6rKVQEPpB288oCfnrEIuyoT9cyF4nmGa7V8Zk6f7RRqYisX8X9m+Q7bd632aZW4ky7EhbQztA==}
+  shell-quote@1.8.3:
+    resolution: {integrity: sha512-ObmnIF4hXNg1BqhnHmgbDETF8dLPCggZWBjkQfhZpbszZnYur5DUljTcCHii5LC3J5E0yeO/1LIMyH+UvHQgyw==}
     engines: {node: '>= 0.4'}
 
   sonner@2.0.7:
@@ -3489,58 +3489,58 @@ packages:
     engines: {node: ^16.13.0 || >=18.0.0}
     hasBin: true
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
 
-  '@ai-sdk/amazon-bedrock@4.0.104(zod@3.25.76)':
+  '@ai-sdk/amazon-bedrock@4.0.104(zod@4.4.3)':
     dependencies:
-      '@ai-sdk/anthropic': 3.0.76(zod@3.25.76)
+      '@ai-sdk/anthropic': 3.0.76(zod@4.4.3)
       '@ai-sdk/provider': 3.0.10
-      '@ai-sdk/provider-utils': 4.0.27(zod@3.25.76)
+      '@ai-sdk/provider-utils': 4.0.27(zod@4.4.3)
       '@smithy/eventstream-codec': 4.3.1
       '@smithy/util-utf8': 4.3.1
       aws4fetch: 1.0.20
-      zod: 3.25.76
+      zod: 4.4.3
 
-  '@ai-sdk/anthropic@3.0.76(zod@3.25.76)':
+  '@ai-sdk/anthropic@3.0.76(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 3.0.10
-      '@ai-sdk/provider-utils': 4.0.27(zod@3.25.76)
-      zod: 3.25.76
+      '@ai-sdk/provider-utils': 4.0.27(zod@4.4.3)
+      zod: 4.4.3
 
-  '@ai-sdk/gateway@3.0.112(zod@3.25.76)':
+  '@ai-sdk/gateway@3.0.112(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 3.0.10
-      '@ai-sdk/provider-utils': 4.0.27(zod@3.25.76)
+      '@ai-sdk/provider-utils': 4.0.27(zod@4.4.3)
       '@vercel/oidc': 3.2.0
-      zod: 3.25.76
+      zod: 4.4.3
 
-  '@ai-sdk/openai@3.0.63(zod@3.25.76)':
+  '@ai-sdk/openai@3.0.63(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 3.0.10
-      '@ai-sdk/provider-utils': 4.0.27(zod@3.25.76)
-      zod: 3.25.76
+      '@ai-sdk/provider-utils': 4.0.27(zod@4.4.3)
+      zod: 4.4.3
 
-  '@ai-sdk/provider-utils@4.0.27(zod@3.25.76)':
+  '@ai-sdk/provider-utils@4.0.27(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 3.0.10
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.0.8
-      zod: 3.25.76
+      zod: 4.4.3
 
   '@ai-sdk/provider@3.0.10':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@3.0.179(react@19.2.6)(zod@3.25.76)':
+  '@ai-sdk/react@3.0.179(react@19.2.6)(zod@4.4.3)':
     dependencies:
-      '@ai-sdk/provider-utils': 4.0.27(zod@3.25.76)
-      ai: 6.0.177(zod@3.25.76)
+      '@ai-sdk/provider-utils': 4.0.27(zod@4.4.3)
+      ai: 6.0.177(zod@4.4.3)
       react: 19.2.6
       swr: 2.4.1(react@19.2.6)
       throttleit: 2.1.0
@@ -4091,7 +4091,7 @@ snapshots:
     dependencies:
       semver: 7.7.4
 
-  '@petamoriken/float16@3.9.2':
+  '@petamoriken/float16@3.9.3':
     optional: true
 
   '@pinecone-database/pinecone@7.2.0': {}
@@ -4942,17 +4942,17 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.11(typescript@6.0.3)(zod@3.25.76)':
+  '@t3-oss/env-core@0.13.11(typescript@6.0.3)(zod@4.4.3)':
     optionalDependencies:
       typescript: 6.0.3
-      zod: 3.25.76
+      zod: 4.4.3
 
-  '@t3-oss/env-nextjs@0.13.11(typescript@6.0.3)(zod@3.25.76)':
+  '@t3-oss/env-nextjs@0.13.11(typescript@6.0.3)(zod@4.4.3)':
     dependencies:
-      '@t3-oss/env-core': 0.13.11(typescript@6.0.3)(zod@3.25.76)
+      '@t3-oss/env-core': 0.13.11(typescript@6.0.3)(zod@4.4.3)
     optionalDependencies:
       typescript: 6.0.3
-      zod: 3.25.76
+      zod: 4.4.3
 
   '@tailwindcss/node@4.3.0':
     dependencies:
@@ -5226,13 +5226,13 @@ snapshots:
 
   '@vercel/oidc@3.2.0': {}
 
-  ai@6.0.177(zod@3.25.76):
+  ai@6.0.177(zod@4.4.3):
     dependencies:
-      '@ai-sdk/gateway': 3.0.112(zod@3.25.76)
+      '@ai-sdk/gateway': 3.0.112(zod@4.4.3)
       '@ai-sdk/provider': 3.0.10
-      '@ai-sdk/provider-utils': 4.0.27(zod@3.25.76)
+      '@ai-sdk/provider-utils': 4.0.27(zod@4.4.3)
       '@opentelemetry/api': 1.9.0
-      zod: 3.25.76
+      zod: 4.4.3
 
   aria-hidden@1.2.6:
     dependencies:
@@ -5629,11 +5629,11 @@ snapshots:
 
   gel@2.0.1:
     dependencies:
-      '@petamoriken/float16': 3.9.2
+      '@petamoriken/float16': 3.9.3
       debug: 4.4.3
       env-paths: 3.0.0
       semver: 7.8.0
-      shell-quote: 1.8.2
+      shell-quote: 1.8.3
       which: 4.0.0
     transitivePeerDependencies:
       - supports-color
@@ -5794,7 +5794,7 @@ snapshots:
 
   is-what@5.5.0: {}
 
-  isexe@3.1.1:
+  isexe@3.1.5:
     optional: true
 
   jiti@2.7.0: {}
@@ -6313,9 +6313,9 @@ snapshots:
     optionalDependencies:
       next: 16.2.6(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
 
-  openai@6.37.0(zod@3.25.76):
+  openai@6.37.0(zod@4.4.3):
     optionalDependencies:
-      zod: 3.25.76
+      zod: 4.4.3
 
   package-manager-detector@1.6.0: {}
 
@@ -6623,7 +6623,7 @@ snapshots:
       '@img/sharp-win32-x64': 0.34.5
     optional: true
 
-  shell-quote@1.8.2:
+  shell-quote@1.8.3:
     optional: true
 
   sonner@2.0.7(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
@@ -6832,9 +6832,9 @@ snapshots:
 
   which@4.0.0:
     dependencies:
-      isexe: 3.1.1
+      isexe: 3.1.5
     optional: true
 
-  zod@3.25.76: {}
+  zod@4.4.3: {}
 
   zwitch@2.0.4: {}
