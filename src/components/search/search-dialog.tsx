@@ -266,24 +266,23 @@ export function SearchDialog({
                 >
                   {typeIcon(result.type)}
                   <div className="flex flex-1 flex-col gap-0.5 overflow-hidden">
-                    <span className="truncate">{result.title}</span>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="truncate font-medium">{result.title}</span>
                       {result.subtitle && (
-                        <span className="text-xs text-muted-foreground truncate">
+                        <span className="shrink-0 text-xs text-muted-foreground">
                           {result.subtitle}
                         </span>
                       )}
-                      {result.meta?.topics && result.meta.topics.length > 0 && (
-                        <>
-                          <span className="text-muted-foreground text-[10px]">·</span>
-                          {result.meta.topics.map((t) => (
-                            <span key={t} className="rounded bg-muted px-1 py-0 text-[10px] text-muted-foreground">
-                              {t}
-                            </span>
-                          ))}
-                        </>
-                      )}
                     </div>
+                    {result.meta?.topics && result.meta.topics.length > 0 && (
+                      <div className="flex items-center gap-1 overflow-hidden">
+                        {result.meta.topics.slice(0, 2).map((t) => (
+                          <span key={t} className="truncate rounded bg-muted px-1.5 py-0 text-[10px] text-muted-foreground">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
                     {result.meta?.medianMark != null && (
@@ -294,7 +293,7 @@ export function SearchDialog({
                     {result.source === "semantic" && (
                       <Badge
                         variant="outline"
-                        className="text-[10px] px-1 py-0"
+                        className="px-1 py-0 text-[10px]"
                       >
                         semantic
                       </Badge>
