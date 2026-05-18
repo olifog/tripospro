@@ -643,8 +643,8 @@ const CourseInsights = ({ courseId }: { courseId: number }) => {
   if (!insight) return null;
 
   return (
-    <Card className="max-h-[500px] max-w-lg overflow-y-auto">
-      <CardHeader className="pb-2">
+    <Card className="relative max-h-[500px] max-w-lg overflow-hidden">
+      <CardHeader className="relative z-10 bg-card pb-2">
         <CardTitle className="flex items-center gap-2 text-sm">
           <Lightbulb className="h-4 w-4" />
           Examiner Insights
@@ -653,11 +653,15 @@ const CourseInsights = ({ courseId }: { courseId: number }) => {
           Generated from {insight.yearsAnalyzed} years of examiner reports
         </p>
       </CardHeader>
-      <CardContent>
-        <div className="prose prose-sm dark:prose-invert max-w-none text-xs leading-relaxed [&_h2]:mt-3 [&_h2]:mb-1 [&_h2]:font-semibold [&_h2]:text-xs [&_li]:my-0.5 [&_ul]:my-1">
-          <Markdown>{insight.content}</Markdown>
-        </div>
-      </CardContent>
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-4 bg-gradient-to-b from-card to-transparent" />
+        <CardContent className="max-h-[400px] overflow-y-auto">
+          <div className="prose prose-sm dark:prose-invert max-w-none text-xs leading-relaxed [&_h2]:mt-3 [&_h2]:mb-1 [&_h2]:font-semibold [&_h2]:text-xs [&_li]:my-0.5 [&_ul]:my-1">
+            <Markdown>{insight.content}</Markdown>
+          </div>
+        </CardContent>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-6 bg-gradient-to-t from-card to-transparent" />
+      </div>
     </Card>
   );
 };
