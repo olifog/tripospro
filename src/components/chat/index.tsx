@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./chat.css";
 import { type Components, Streamdown } from "streamdown";
+import { markTextColorStyle } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { Button } from "../ui/button";
@@ -65,7 +66,7 @@ const QuestionCard = ({ questionId }: { questionId: number }) => {
 
   if (isLoading) {
     return (
-      <div className="h-10 w-40 animate-pulse rounded-md border border-border bg-muted" />
+      <div className="h-12 w-48 animate-pulse rounded-md border border-border bg-muted" />
     );
   }
 
@@ -76,41 +77,58 @@ const QuestionCard = ({ questionId }: { questionId: number }) => {
   }
 
   const questionUrl = `/p/${question.paperYear?.paper?.name}/${question.paperYear?.year}/${question.questionNumber}`;
-  const hasAnswers = answers && answers.length > 0;
+  const bestMark = answers
+    ?.map((a) => a.mark)
+    .filter((m): m is number => m !== null)
+    .reduce((max, m) => Math.max(max, m), -1);
+  const hasMark = bestMark !== undefined && bestMark >= 0;
 
   return (
     <Link href={questionUrl} target="_blank" rel="noopener noreferrer">
       <div
         className={cn(
-          "flex h-10 w-40 items-center gap-1.5 rounded-md border px-2 text-[11px] transition-colors hover:bg-accent",
-          hasAnswers
-            ? "border-score-distinction/40 bg-score-distinction/10"
+          "flex w-48 flex-col gap-0.5 rounded-md border px-2 py-1.5 text-[11px] transition-colors hover:bg-accent",
+          hasMark
+            ? "border-green-500/40 bg-green-500/5"
             : "border-border bg-card"
         )}
       >
-        <div className="flex flex-1 flex-col gap-0.5">
-          <span className="text-muted-foreground leading-tight">
-            {question.paperYear?.triposPartYear?.triposPart?.name}{" "}
-            {question.courseYear?.course?.code}
-          </span>
-          <span className="font-medium text-foreground leading-tight">
+        <div className="flex items-center justify-between">
+          <span className="font-medium text-foreground">
             {question.paperYear?.year} P{question.paperYear?.paper?.name} Q
             {question.questionNumber}
           </span>
-        </div>
-        {hasAnswers && (
-          <div className="flex items-center gap-0.5">
-            <Check className="h-3.5 w-3.5 text-score-distinction" />
-            {answers.length > 1 && (
-              <span className="text-[10px] text-muted-foreground">
-                {answers.length}x
+          {hasMark && (
+            <div className="flex items-center gap-0.5">
+              <Check className="h-3 w-3 text-green-500" />
+              <span className="font-mono" style={markTextColorStyle(bestMark)}>
+                {bestMark}
               </span>
-            )}
-          </div>
-        )}
+            </div>
+          )}
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-muted-foreground">
+            {question.courseYear?.course?.code}
+          </span>
+          {(question.minimumMark != null || question.medianMark != null || question.maximumMark != null) && (
+            <span className="flex gap-0.5 font-mono text-[10px]">
+              <MarkVal value={question.minimumMark} />
+              <span className="text-muted-foreground">/</span>
+              <MarkVal value={question.medianMark} />
+              <span className="text-muted-foreground">/</span>
+              <MarkVal value={question.maximumMark} />
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   );
+};
+
+const MarkVal = ({ value }: { value?: number | null }) => {
+  if (value == null) return <span className="text-muted-foreground">-</span>;
+  return <span style={markTextColorStyle(value)}>{value}</span>;
 };
 
 const UserMessage = ({ message }: { message: UIMessage }) => {

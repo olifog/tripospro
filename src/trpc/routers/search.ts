@@ -34,7 +34,9 @@ type SearchResult = {
     paperNumber?: string;
     questionNumber?: number;
     courseName?: string;
+    minimumMark?: number | null;
     medianMark?: number | null;
+    maximumMark?: number | null;
     topics?: string[];
   };
 };
@@ -242,7 +244,9 @@ async function getStructuredResults(
         paperName: paperTable.name,
         year: paperYearTable.year,
         courseName: courseTable.name,
-        medianMark: questionTable.medianMark
+        minimumMark: questionTable.minimumMark,
+        medianMark: questionTable.medianMark,
+        maximumMark: questionTable.maximumMark
       })
       .from(questionTable)
       .innerJoin(paperYearTable, eq(questionTable.paperYearId, paperYearTable.id))
@@ -266,7 +270,9 @@ async function getStructuredResults(
           paperNumber: q.paperName,
           questionNumber: q.questionNumber,
           courseName: q.courseName ?? undefined,
-          medianMark: q.medianMark
+          minimumMark: q.minimumMark,
+          medianMark: q.medianMark,
+          maximumMark: q.maximumMark
         }
       });
     }
@@ -414,7 +420,9 @@ async function getSemanticResults(query: string): Promise<SearchResult[]> {
             paperName: paperTable.name,
             year: paperYearTable.year,
             courseName: courseTable.name,
-            medianMark: questionTable.medianMark
+            minimumMark: questionTable.minimumMark,
+            medianMark: questionTable.medianMark,
+            maximumMark: questionTable.maximumMark
           })
           .from(questionTable)
           .innerJoin(
@@ -448,7 +456,9 @@ async function getSemanticResults(query: string): Promise<SearchResult[]> {
               paperNumber: q.paperName,
               questionNumber: q.questionNumber,
               courseName: q.courseName ?? undefined,
-              medianMark: q.medianMark
+              minimumMark: q.minimumMark,
+              medianMark: q.medianMark,
+              maximumMark: q.maximumMark
             }
           });
         }

@@ -10,6 +10,7 @@ import {
   Loader2,
   Search
 } from "lucide-react";
+import { markTextColorStyle } from "@/lib/score-colors";
 import {
   CommandDialog,
   CommandEmpty,
@@ -111,7 +112,9 @@ export function SearchDialog({
       paperNumber?: string;
       questionNumber?: number;
       courseName?: string;
+      minimumMark?: number | null;
       medianMark?: number | null;
+      maximumMark?: number | null;
       topics?: string[];
     };
   };
@@ -284,11 +287,27 @@ export function SearchDialog({
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    {result.meta?.medianMark != null && (
-                      <span className="text-xs text-muted-foreground">
-                        {result.meta.medianMark}/20
+                  <div className="flex items-center gap-1.5 shrink-0 font-mono text-[11px]">
+                    {result.meta?.minimumMark != null && (
+                      <span style={markTextColorStyle(result.meta.minimumMark)}>
+                        {result.meta.minimumMark}
                       </span>
+                    )}
+                    {result.meta?.medianMark != null && (
+                      <>
+                        <span className="text-muted-foreground">/</span>
+                        <span style={markTextColorStyle(result.meta.medianMark)}>
+                          {result.meta.medianMark}
+                        </span>
+                      </>
+                    )}
+                    {result.meta?.maximumMark != null && (
+                      <>
+                        <span className="text-muted-foreground">/</span>
+                        <span style={markTextColorStyle(result.meta.maximumMark)}>
+                          {result.meta.maximumMark}
+                        </span>
+                      </>
                     )}
                     {result.source === "semantic" && (
                       <Badge

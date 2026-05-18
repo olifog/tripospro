@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { CommentThread } from "../comment";
 import { ErrorMessage } from "../error";
+import { QuestionEntryRow } from "../question-entry";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
@@ -581,53 +582,18 @@ const QuestionRows = ({
             prefetch={false}
             className="flex items-center gap-2 rounded px-2 py-1 text-xs transition-colors hover:bg-muted"
           >
-            <span className="w-10 shrink-0 font-mono text-muted-foreground">
-              {q.year}
-            </span>
-            <span className="w-14 shrink-0 font-medium">
-              P{q.paperName}Q{q.questionNumber}
-            </span>
-            {/* Min / Med / Max marks */}
-            <div className="flex w-24 shrink-0 gap-1 font-mono text-[11px]">
-              {q.minimumMark !== null ? (
-                <span style={getMarkStyle(q.minimumMark)}>{q.minimumMark}</span>
-              ) : (
-                <span className="text-muted-foreground">-</span>
-              )}
-              <span className="text-muted-foreground">/</span>
-              {q.medianMark !== null ? (
-                <span style={getMarkStyle(q.medianMark)}>{q.medianMark}</span>
-              ) : (
-                <span className="text-muted-foreground">-</span>
-              )}
-              <span className="text-muted-foreground">/</span>
-              {q.maximumMark !== null ? (
-                <span style={getMarkStyle(q.maximumMark)}>{q.maximumMark}</span>
-              ) : (
-                <span className="text-muted-foreground">-</span>
-              )}
-            </div>
-            {/* User's best mark */}
-            <span className="w-8 shrink-0 font-mono text-[11px]">
-              {q.bestMark !== undefined ? (
-                <span style={getMarkStyle(q.bestMark)}>{q.bestMark}/20</span>
-              ) : (
-                <span className="text-muted-foreground">—</span>
-              )}
-            </span>
-            {/* Topic badges */}
-            {qTopics && qTopics.length > 0 && (
-              <div className="flex min-w-0 flex-1 gap-1 overflow-hidden">
-                {qTopics.slice(0, 2).map((t) => (
-                  <span
-                    key={t.slug}
-                    className="truncate rounded bg-muted px-1.5 py-0.5 text-[9px] text-muted-foreground"
-                  >
-                    {t.name}
-                  </span>
-                ))}
-              </div>
-            )}
+            <QuestionEntryRow
+              q={{
+                year: q.year,
+                paperName: q.paperName,
+                questionNumber: q.questionNumber,
+                minimumMark: q.minimumMark,
+                medianMark: q.medianMark,
+                maximumMark: q.maximumMark,
+                bestMark: q.bestMark,
+                topics: qTopics?.map((t) => t.name)
+              }}
+            />
           </Link>
         );
       })}

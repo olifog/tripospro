@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { markTextColorStyle } from "@/lib/score-colors";
 import { trpc } from "@/trpc/client";
 import { Badge } from "../ui/badge";
 import { Skeleton } from "../ui/skeleton";
+import { QuestionEntryRow } from "../question-entry";
 
 function SimilarQuestionsInner({ questionId }: { questionId: number }) {
   const { data: results, isLoading } =
@@ -45,48 +45,18 @@ function SimilarQuestionsInner({ questionId }: { questionId: number }) {
             href={`/p/${r.paperName}/${r.year}/${r.questionNumber}`}
             className="flex items-center gap-2 rounded px-2 py-1.5 text-xs transition-colors hover:bg-muted"
           >
-            <span className="w-10 shrink-0 font-mono text-muted-foreground">
-              {r.year}
-            </span>
-            <span className="w-14 shrink-0 font-medium">
-              P{r.paperName}Q{r.questionNumber}
-            </span>
-            {/* Min / Med / Max */}
-            <div className="flex w-20 shrink-0 gap-0.5 font-mono text-[11px]">
-              {r.minimumMark !== null ? (
-                <span style={markTextColorStyle(r.minimumMark)}>{r.minimumMark}</span>
-              ) : <span className="text-muted-foreground">-</span>}
-              <span className="text-muted-foreground">/</span>
-              {r.medianMark !== null ? (
-                <span style={markTextColorStyle(r.medianMark)}>{r.medianMark}</span>
-              ) : <span className="text-muted-foreground">-</span>}
-              <span className="text-muted-foreground">/</span>
-              {r.maximumMark !== null ? (
-                <span style={markTextColorStyle(r.maximumMark)}>{r.maximumMark}</span>
-              ) : <span className="text-muted-foreground">-</span>}
-            </div>
-            {/* User's best mark */}
-            <span className="w-8 shrink-0 font-mono text-[11px]">
-              {r.bestMark !== null ? (
-                <span style={markTextColorStyle(r.bestMark)}>{r.bestMark}/20</span>
-              ) : (
-                <span className="text-muted-foreground">—</span>
-              )}
-            </span>
-            {/* Topics */}
-            {r.topics.length > 0 && (
-              <div className="flex min-w-0 flex-1 gap-1 overflow-hidden">
-                {r.topics.map((t) => (
-                  <span
-                    key={t}
-                    className="truncate rounded bg-muted px-1.5 py-0.5 text-[9px] text-muted-foreground"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )}
-            {/* Similarity score */}
+            <QuestionEntryRow
+              q={{
+                year: r.year,
+                paperName: r.paperName,
+                questionNumber: r.questionNumber,
+                minimumMark: r.minimumMark,
+                medianMark: r.medianMark,
+                maximumMark: r.maximumMark,
+                bestMark: r.bestMark,
+                topics: r.topics
+              }}
+            />
             <Badge variant="secondary" className="ml-auto shrink-0 px-1.5 py-0 text-[10px]">
               {Math.round(r.score * 100)}%
             </Badge>
