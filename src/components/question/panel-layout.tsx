@@ -7,11 +7,16 @@ import {
   usePanelRef
 } from "react-resizable-panels";
 
-import { EllipsisVertical } from "lucide-react";
-import { useEffect } from "react";
+import { ChevronsLeft, EllipsisVertical } from "lucide-react";
+import { createContext, useContext, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useSidebar } from "../ui/sidebar";
-import { useLockIn } from "./lock-in-context";
+import { Button } from "../ui/button";
+
+const CollapseRightPanelContext = createContext<(() => void) | null>(null);
+
+export function useCollapseRightPanel() {
+  return useContext(CollapseRightPanelContext);
+}
 
 export const SplitQuestionLayout = ({
   left,
@@ -21,24 +26,14 @@ export const SplitQuestionLayout = ({
   right: React.ReactNode;
 }) => {
   const mobile = useIsMobile();
-  const { lockedIn } = useLockIn();
-  const { setOpen } = useSidebar();
   const rightPanelRef = usePanelRef();
-
-  useEffect(() => {
-    if (lockedIn) {
-      setOpen(false);
-      rightPanelRef.current?.collapse();
-    } else {
-      rightPanelRef.current?.expand();
-    }
-  }, [lockedIn, setOpen, rightPanelRef]);
+  const [collapsed, setCollapsed] = useState(false);
 
   if (mobile) {
     return (
       <div className="flex h-full w-full flex-col gap-4">
         {left}
-        {!lockedIn && right}
+        {right}
       </div>
     );
   }
@@ -47,15 +42,43 @@ export const SplitQuestionLayout = ({
     <div className="relative flex h-full max-h-[calc(100vh-4rem)] w-full">
       <PanelGroup orientation="horizontal" className="flex-1">
         <Panel defaultSize={50} minSize={30}>
-          {left}
+          <div className="relative h-full">
+            {left}
+            {collapsed && (
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute top-2 right-2 z-10 h-7 w-7"
+                onClick={() => {
+                  rightPanelRef.current?.expand();
+                  setCollapsed(false);
+                }}
+              >
+                <ChevronsLeft className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
         </Panel>
         <PanelResizeHandle className="ml-1 flex w-2 items-center justify-center rounded-md bg-border">
           <EllipsisVertical className="absolute h-4 w-4 text-muted-foreground" />
         </PanelResizeHandle>
-        <Panel defaultSize={50} minSize={20} collapsible panelRef={rightPanelRef}>
-          <div className="ml-1 h-full overflow-x-hidden overflow-y-scroll bg-muted/30">
-            {right}
-          </div>
+        <Panel
+          defaultSize={50}
+          minSize={20}
+          collapsible
+          panelRef={rightPanelRef}
+          onResize={(size) => setCollapsed(size.asPercentage === 0)}
+        >
+          <CollapseRightPanelContext.Provider
+            value={() => {
+              rightPanelRef.current?.collapse();
+              setCollapsed(true);
+            }}
+          >
+            <div className="ml-1 h-full overflow-x-hidden overflow-y-scroll bg-muted/30">
+              {right}
+            </div>
+          </CollapseRightPanelContext.Provider>
         </Panel>
       </PanelGroup>
     </div>

@@ -3,8 +3,6 @@ import { SplitQuestionLayout } from "./panel-layout";
 import PdfViewer from "./question-renderer";
 import { RightPanelTabs } from "./right-panel-tabs";
 
-export { LockInProvider } from "./lock-in-context";
-
 export const Question = async ({
   paperNumber,
   year,

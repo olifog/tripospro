@@ -1,12 +1,13 @@
 "use client";
 
+import { ChevronsRight } from "lucide-react";
 import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { CommentPreview, CommentThread } from "../comment";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { useLockIn } from "./lock-in-context";
+import { useCollapseRightPanel } from "./panel-layout";
 import { QuestionCourseCard } from "./question-course-card";
 import { Attempts, Header, StatsAndComments } from "./right-panel-client";
 import { SimilarQuestions } from "./similar-questions";
@@ -50,7 +51,7 @@ export function RightPanelTabs({
   questionNumber: string;
 }) {
   const [tab, setTab] = useState("details");
-  const { setLockedIn } = useLockIn();
+  const collapseRightPanel = useCollapseRightPanel();
 
   return (
     <Tabs
@@ -79,14 +80,16 @@ export function RightPanelTabs({
             Similar
           </TabsTrigger>
         </TabsList>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="ml-auto h-7 px-2 text-xs font-bold"
-          onClick={() => setLockedIn(true)}
-        >
-          LOCK IN!!!
-        </Button>
+        {collapseRightPanel && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="ml-auto h-7 w-7"
+            onClick={collapseRightPanel}
+          >
+            <ChevronsRight className="h-4 w-4" />
+          </Button>
+        )}
       </div>
       <TabsContent value="details" className="mt-0 flex-1 overflow-y-auto">
         <DetailsPanel
