@@ -444,7 +444,9 @@ export const questionRouter = createTRPCRouter({
           year: paperYearTable.year,
           courseName: courseTable.name,
           courseId: courseTable.id,
-          medianMark: questionTable.medianMark
+          minimumMark: questionTable.minimumMark,
+          medianMark: questionTable.medianMark,
+          maximumMark: questionTable.maximumMark
         })
         .from(questionTable)
         .innerJoin(
@@ -459,6 +461,53 @@ export const questionRouter = createTRPCRouter({
         .leftJoin(courseTable, eq(courseYearTable.courseId, courseTable.id))
         .where(inArray(questionTable.id, dbIds));
 
+      // Fetch topics for these questions
+      const { questionTopicTable, topicTable } = await import("@/db/schema/topic");
+      const topicRows = await ctx.db
+        .select({
+          questionId: questionTopicTable.questionId,
+          topicName: topicTable.name
+        })
+        .from(questionTopicTable)
+        .innerJoin(topicTable, eq(questionTopicTable.topicId, topicTable.id))
+        .where(inArray(questionTopicTable.questionId, dbIds));
+
+      const topicsByQuestion = new Map<number, string[]>();
+      for (const row of topicRows) {
+        if (!topicsByQuestion.has(row.questionId)) {
+          topicsByQuestion.set(row.questionId, []);
+        }
+        topicsByQuestion.get(row.questionId)!.push(row.topicName);
+      }
+
+      // Fetch user's best marks if logged in
+      let userBestMarks = new Map<number, number>();
+      if (ctx.userId) {
+        const user = await ctx.db.query.usersTable.findFirst({
+          where: eq(usersTable.clerkId, ctx.userId)
+        });
+        if (user) {
+          const answers = await ctx.db
+            .select({
+              questionId: userQuestionAnswerTable.questionId,
+              mark: userQuestionAnswerTable.mark
+            })
+            .from(userQuestionAnswerTable)
+            .where(
+              and(
+                eq(userQuestionAnswerTable.userId, user.id),
+                inArray(userQuestionAnswerTable.questionId, dbIds)
+              )
+            );
+          for (const a of answers) {
+            if (a.mark !== null && a.questionId !== null) {
+              const current = userBestMarks.get(a.questionId) ?? -1;
+              if (a.mark > current) userBestMarks.set(a.questionId, a.mark);
+            }
+          }
+        }
+      }
+
       return matches
         .map((m) => {
           const q = questions.find((q) => q.questionId === parseInt(m.id));
@@ -470,7 +519,11 @@ export const questionRouter = createTRPCRouter({
             questionNumber: q.questionNumber,
             courseName: q.courseName ?? "",
             courseId: q.courseId ?? null,
+            minimumMark: q.minimumMark,
             medianMark: q.medianMark,
+            maximumMark: q.maximumMark,
+            topics: topicsByQuestion.get(q.questionId)?.slice(0, 2) ?? [],
+            bestMark: userBestMarks.get(q.questionId) ?? null,
             score: m.score!
           };
         })
