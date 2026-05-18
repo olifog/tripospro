@@ -6,7 +6,7 @@ import { db } from "@/db";
 import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
-import { topicTable } from "@/db/schema/topic";
+import { questionTopicTable, topicTable } from "@/db/schema/topic";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { env } from "@/env";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
@@ -35,6 +35,7 @@ type SearchResult = {
     questionNumber?: number;
     courseName?: string;
     medianMark?: number | null;
+    topics?: string[];
   };
 };
 
@@ -135,7 +136,45 @@ export const searchRouter = createTRPCRouter({
 
       results.sort((a, b) => b.score - a.score);
 
-      return results.slice(0, 15);
+      const finalResults = results.slice(0, 15);
+
+      // Enrich question results with topics
+      const questionIds = finalResults
+        .filter((r) => r.type === "question")
+        .map((r) => parseInt(r.id.replace("question-", ""), 10))
+        .filter((id) => !isNaN(id));
+
+      if (questionIds.length > 0) {
+        const topicRows = await db
+          .select({
+            questionId: questionTopicTable.questionId,
+            topicName: topicTable.name
+          })
+          .from(questionTopicTable)
+          .innerJoin(topicTable, eq(questionTopicTable.topicId, topicTable.id))
+          .where(inArray(questionTopicTable.questionId, questionIds));
+
+        const topicsByQuestion = new Map<number, string[]>();
+        for (const row of topicRows) {
+          if (!topicsByQuestion.has(row.questionId)) {
+            topicsByQuestion.set(row.questionId, []);
+          }
+          topicsByQuestion.get(row.questionId)!.push(row.topicName);
+        }
+
+        for (const r of finalResults) {
+          if (r.type === "question") {
+            const qId = parseInt(r.id.replace("question-", ""), 10);
+            const topics = topicsByQuestion.get(qId);
+            if (topics && topics.length > 0) {
+              if (!r.meta) r.meta = {};
+              r.meta.topics = topics.slice(0, 3);
+            }
+          }
+        }
+      }
+
+      return finalResults;
     })
 });
 

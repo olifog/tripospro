@@ -8,8 +8,7 @@ import {
   FileText,
   HelpCircle,
   Loader2,
-  Search,
-  Tag
+  Search
 } from "lucide-react";
 import {
   CommandDialog,
@@ -113,6 +112,7 @@ export function SearchDialog({
       questionNumber?: number;
       courseName?: string;
       medianMark?: number | null;
+      topics?: string[];
     };
   };
 
@@ -154,8 +154,7 @@ export function SearchDialog({
     return [...merged.values()].sort((a, b) => b.score - a.score);
   }, [query, serverResults, clientResults]);
 
-  const courseResults = displayResults.filter((r) => r.type === "course");
-  const topicResults = displayResults.filter((r) => r.type === "topic");
+  const courseResults = displayResults.filter((r) => r.type === "course" || r.type === "topic");
   const questionResults = displayResults.filter((r) => r.type === "question");
   const paperResults = displayResults.filter((r) => r.type === "paper");
 
@@ -176,9 +175,8 @@ export function SearchDialog({
   const typeIcon = (type: string) => {
     switch (type) {
       case "course":
-        return <BookOpen className="text-muted-foreground" />;
       case "topic":
-        return <Tag className="text-muted-foreground" />;
+        return <BookOpen className="text-muted-foreground" />;
       case "question":
         return <HelpCircle className="text-muted-foreground" />;
       case "paper":
@@ -191,7 +189,6 @@ export function SearchDialog({
   const hasQuery = query.length >= 2;
   const hasResults =
     courseResults.length > 0 ||
-    topicResults.length > 0 ||
     questionResults.length > 0 ||
     paperResults.length > 0;
   const showLoading = hasQuery && isFetching && !hasResults;
@@ -257,32 +254,9 @@ export function SearchDialog({
           </CommandGroup>
         )}
 
-        {topicResults.length > 0 && (
-          <>
-            {courseResults.length > 0 && <CommandSeparator />}
-            <CommandGroup heading="Topics">
-              {topicResults.map((result) => (
-                <CommandItem
-                  key={result.id}
-                  value={result.id}
-                  onSelect={() => handleSelect(result)}
-                >
-                  {typeIcon(result.type)}
-                  <span className="flex-1 truncate">{result.title}</span>
-                  {result.subtitle && (
-                    <span className="text-xs text-muted-foreground">
-                      {result.subtitle}
-                    </span>
-                  )}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </>
-        )}
-
         {questionResults.length > 0 && (
           <>
-            {(courseResults.length > 0 || topicResults.length > 0) && <CommandSeparator />}
+            {courseResults.length > 0 && <CommandSeparator />}
             <CommandGroup heading="Questions">
               {questionResults.map((result) => (
                 <CommandItem
@@ -293,16 +267,28 @@ export function SearchDialog({
                   {typeIcon(result.type)}
                   <div className="flex flex-1 flex-col gap-0.5 overflow-hidden">
                     <span className="truncate">{result.title}</span>
-                    {result.subtitle && (
-                      <span className="text-xs text-muted-foreground truncate">
-                        {result.subtitle}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-1">
+                      {result.subtitle && (
+                        <span className="text-xs text-muted-foreground truncate">
+                          {result.subtitle}
+                        </span>
+                      )}
+                      {result.meta?.topics && result.meta.topics.length > 0 && (
+                        <>
+                          <span className="text-muted-foreground text-[10px]">·</span>
+                          {result.meta.topics.map((t) => (
+                            <span key={t} className="rounded bg-muted px-1 py-0 text-[10px] text-muted-foreground">
+                              {t}
+                            </span>
+                          ))}
+                        </>
+                      )}
+                    </div>
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
                     {result.meta?.medianMark != null && (
                       <span className="text-xs text-muted-foreground">
-                        median: {result.meta.medianMark}/20
+                        {result.meta.medianMark}/20
                       </span>
                     )}
                     {result.source === "semantic" && (
@@ -322,7 +308,7 @@ export function SearchDialog({
 
         {paperResults.length > 0 && (
           <>
-            {(courseResults.length > 0 || topicResults.length > 0 || questionResults.length > 0) && (
+            {(courseResults.length > 0 || questionResults.length > 0) && (
               <CommandSeparator />
             )}
             <CommandGroup heading="Papers">

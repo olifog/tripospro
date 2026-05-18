@@ -191,8 +191,8 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
       {/* All content cards flex-wrap together */}
       <div className="flex flex-wrap items-start gap-4">
         <UnifiedYearTable years={course.years} />
-        <CourseInsights courseId={courseId} />
         <CourseQuestionsList courseId={courseId} years={course.years} />
+        <CourseInsights courseId={courseId} />
       </div>
 
       {/* Discussion */}
@@ -643,7 +643,7 @@ const CourseInsights = ({ courseId }: { courseId: number }) => {
   if (!insight) return null;
 
   return (
-    <Card className="max-w-lg">
+    <Card className="max-h-[500px] max-w-lg overflow-y-auto">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-sm">
           <Lightbulb className="h-4 w-4" />

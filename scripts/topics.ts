@@ -240,16 +240,25 @@ async function processCourseTopic(
     console.log(`    - ${topic.name} (${topic.slug})`);
   }
 
+  // Deduplicate topics by slug (LLM sometimes generates duplicates)
+  const seenSlugs = new Set<string>();
+  const dedupedTopics = topics.filter((t) => {
+    if (seenSlugs.has(t.slug)) return false;
+    seenSlugs.add(t.slug);
+    return true;
+  });
+
   // Insert topics into DB
   const insertedTopics = await db
     .insert(topicTable)
     .values(
-      topics.map((t) => ({
+      dedupedTopics.map((t) => ({
         courseId: course.id,
         name: t.name,
         slug: t.slug
       }))
     )
+    .onConflictDoNothing()
     .returning({ id: topicTable.id, slug: topicTable.slug });
 
   const topicSlugToId = new Map(insertedTopics.map((t) => [t.slug, t.id]));
