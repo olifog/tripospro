@@ -9,6 +9,7 @@ import {
 import { courseYearTable } from "./course";
 import { paperYearTable } from "./paper";
 import { commentTable } from "./comment";
+import { questionTopicTable } from "./topic";
 import {
   userQuestionAnswerTable,
   userQuestionFlagTable,
@@ -46,7 +47,8 @@ export const questionRelations = relations(questionTable, ({ one, many }) => ({
   authors: many(questionAuthorTable),
   userQuestionAnswers: many(userQuestionAnswerTable),
   userQuestionFlags: many(userQuestionFlagTable),
-  comments: many(commentTable)
+  comments: many(commentTable),
+  questionTopics: many(questionTopicTable)
 }));
 
 export const questionAuthorTable = pgTable("question_author", {

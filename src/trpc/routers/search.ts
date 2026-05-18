@@ -6,6 +6,7 @@ import { db } from "@/db";
 import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
+import { topicTable } from "@/db/schema/topic";
 import { triposPartTable, triposPartYearTable } from "@/db/schema/tripos";
 import { env } from "@/env";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
@@ -22,7 +23,7 @@ const index = pinecone.Index("questions", env.PINECONE_HOST);
 
 type SearchResult = {
   id: string;
-  type: "course" | "question" | "paper";
+  type: "course" | "question" | "paper" | "topic";
   title: string;
   subtitle?: string;
   href: string;
@@ -306,6 +307,30 @@ async function getFuzzyResults(query: string): Promise<SearchResult[]> {
       subtitle: course.code,
       href: `/course/${course.id}`,
       score,
+      source: "fuzzy"
+    });
+  }
+
+  const topics = await db
+    .select({
+      topicId: topicTable.id,
+      topicName: topicTable.name,
+      courseId: topicTable.courseId,
+      courseName: courseTable.name
+    })
+    .from(topicTable)
+    .innerJoin(courseTable, eq(topicTable.courseId, courseTable.id))
+    .where(ilike(topicTable.name, `%${sanitized}%`))
+    .limit(5);
+
+  for (const topic of topics) {
+    results.push({
+      id: `topic-${topic.topicId}`,
+      type: "topic",
+      title: topic.topicName,
+      subtitle: topic.courseName,
+      href: `/course/${topic.courseId}`,
+      score: 0.7,
       source: "fuzzy"
     });
   }

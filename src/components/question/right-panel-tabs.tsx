@@ -6,11 +6,8 @@ import { trpc } from "@/trpc/client";
 import { CommentPreview, CommentThread } from "../comment";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { QuestionCourseCard } from "./question-course-card";
-import {
-  Attempts,
-  Header,
-  StatsAndComments
-} from "./right-panel-client";
+import { Attempts, Header, StatsAndComments } from "./right-panel-client";
+import { SimilarQuestions } from "./similar-questions";
 
 function CommentCountBadge({
   paperNumber,
@@ -74,6 +71,9 @@ export function RightPanelTabs({
             </Suspense>
           </ErrorBoundary>
         </TabsTrigger>
+        <TabsTrigger value="similar" className="text-xs">
+          Similar
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="details" className="mt-0 flex-1 overflow-y-auto">
         <DetailsPanel
@@ -87,6 +87,17 @@ export function RightPanelTabs({
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <DiscussionPanelWithQuestion
+              paperNumber={paperNumber}
+              year={year}
+              questionNumber={questionNumber}
+            />
+          </Suspense>
+        </ErrorBoundary>
+      </TabsContent>
+      <TabsContent value="similar" className="mt-0 flex-1 overflow-y-auto">
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <SimilarQuestionsWithQuestion
               paperNumber={paperNumber}
               year={year}
               questionNumber={questionNumber}
@@ -178,6 +189,28 @@ function CommentPreviewWithQuestion({
         questionId={question.id}
         onNavigateToDiscussion={onNavigateToDiscussion}
       />
+    </div>
+  );
+}
+
+function SimilarQuestionsWithQuestion({
+  paperNumber,
+  year,
+  questionNumber
+}: {
+  paperNumber: string;
+  year: string;
+  questionNumber: string;
+}) {
+  const [question] = trpc.question.getQuestion.useSuspenseQuery({
+    paperNumber,
+    year,
+    questionNumber
+  });
+
+  return (
+    <div className="flex w-full flex-col gap-2 p-1.5">
+      <SimilarQuestions questionId={question.id} />
     </div>
   );
 }

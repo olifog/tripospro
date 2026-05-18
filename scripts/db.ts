@@ -9,6 +9,7 @@ import { courseTable } from "@/db/schema/course";
 import { seed } from "@/db/seed";
 import { calendarYearToAcademicYear } from "@/lib/utils";
 import { type CourseDBSchema, parseCourseDB } from "./coursedb-parser/parse";
+import { insightsCommand } from "./insights";
 import { linkOldPapers } from "./link-old";
 import {
   parseQuestions,
@@ -16,6 +17,7 @@ import {
   QuestionsSchema
 } from "./questions-parser";
 import { ingestYear } from "./report-parser";
+import { topicsCommand } from "./topics";
 import { getOrPatchQuestion, resetDatabase } from "./upload";
 
 const dbCommand = new Command("db").description("Database operations");
@@ -440,5 +442,7 @@ const seedCommand = new Command("seed")
   });
 
 dbCommand.addCommand(seedCommand);
+dbCommand.addCommand(topicsCommand);
+dbCommand.addCommand(insightsCommand);
 
 export { dbCommand };

@@ -1,9 +1,10 @@
 "use client";
 
-import { ExternalLink, Info } from "lucide-react";
+import { ExternalLink, Info, Lightbulb, Search } from "lucide-react";
 import Link from "next/link";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import Markdown from "react-markdown";
 import { markTextColorStyle } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
@@ -11,6 +12,7 @@ import { CommentThread } from "../comment";
 import { ErrorMessage } from "../error";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Input } from "../ui/input";
 import { Skeleton } from "../ui/skeleton";
 import {
   Tooltip,
@@ -19,7 +21,6 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
-// Main content wrapper
 export const CourseContent = ({ courseId }: { courseId: number }) => {
   return (
     <ErrorBoundary
@@ -32,24 +33,19 @@ export const CourseContent = ({ courseId }: { courseId: number }) => {
   );
 };
 
-const CourseContentSkeleton = () => {
-  return (
-    <div className="flex flex-col gap-4">
-      <Skeleton className="h-12 w-64" />
-      <Skeleton className="h-32 w-full" />
-      <Skeleton className="h-64 w-full" />
-      <Skeleton className="h-48 w-full" />
-    </div>
-  );
-};
+const CourseContentSkeleton = () => (
+  <div className="flex flex-col gap-4">
+    <Skeleton className="h-10 w-64" />
+    <Skeleton className="h-40 w-full" />
+    <Skeleton className="h-64 w-full" />
+  </div>
+);
 
 const CourseContentInner = ({ courseId }: { courseId: number }) => {
   const [course] = trpc.course.getCourse.useSuspenseQuery({ courseId });
 
-  // Use globalCurrentYear from the database (max year across all tripos parts)
   const globalCurrentYear = course.globalCurrentYear;
 
-  // Check if this course is currently being taught
   const isCourseCurrentlyTaught = useMemo(() => {
     return (
       globalCurrentYear !== null &&
@@ -61,15 +57,11 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
     return course.years.length > 0 ? course.years[0] : null;
   }, [course.years]);
 
-  // Calculate exponentially weighted overall stats (last 5 years weighted more heavily)
   const weightedOverallStats = useMemo(() => {
     const yearsWithStats = course.years.filter((y) => y.marksStats !== null);
     if (yearsWithStats.length === 0) return null;
 
-    // Sort by year descending
     const sorted = [...yearsWithStats].sort((a, b) => b.year - a.year);
-
-    // Exponential decay: weight = e^(-lambda * yearsAgo), lambda = 0.3
     const lambda = 0.3;
     let totalWeight = 0;
     let weightedMin = 0;
@@ -84,7 +76,6 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
       weightedMax += year.marksStats!.avgMaxMark * weight;
     });
 
-    // Calculate weighted popularity separately (only for years with popularity data)
     const yearsWithPopularity = course.years.filter(
       (y) => y.popularity !== null
     );
@@ -113,49 +104,102 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Header with course name and external link */}
-      <div className="flex flex-col gap-1.5">
-        <div className="flex items-center gap-2">
-          <h2 className="font-bold text-xl">{course.name}</h2>
-          <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-muted-foreground text-xs">
-            {course.code}
-          </span>
+      {/* Header row: name, code, overall stats inline, CST link */}
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <h2 className="font-bold text-xl">{course.name}</h2>
+            <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-muted-foreground text-xs">
+              {course.code}
+            </span>
+            {latestYearData && (
+              <Button
+                asChild
+                variant="ghost"
+                size="sm"
+                className="h-6 gap-1 px-2 text-xs"
+              >
+                <Link href={latestYearData.url} target="_blank">
+                  <ExternalLink className="h-3 w-3" />
+                  CST
+                </Link>
+              </Button>
+            )}
+          </div>
+          {/* Lecturers inline */}
+          {course.lecturers.length > 0 && (
+            <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+              {course.lecturers.map((lecturer) => {
+                const isCurrent =
+                  isCourseCurrentlyTaught &&
+                  globalCurrentYear !== null &&
+                  lecturer.years.includes(globalCurrentYear);
+                return (
+                  <Link
+                    key={lecturer.id}
+                    href={`/profile/${lecturer.crsid}`}
+                    className={cn(
+                      "text-xs transition-colors hover:underline",
+                      isCurrent
+                        ? "font-medium text-foreground"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    {lecturer.name ?? lecturer.crsid}
+                    <span className="ml-1 text-[10px] text-muted-foreground/60">
+                      {formatYearRanges(
+                        lecturer.years,
+                        isCourseCurrentlyTaught ? globalCurrentYear : null
+                      )}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
-        {latestYearData && (
-          <Button asChild variant="outline" size="sm" className="w-fit">
-            <Link href={latestYearData.url} target="_blank">
-              CST Course Page
-              <ExternalLink className="ml-1 h-3 w-3" />
-            </Link>
-          </Button>
+
+        {/* Overall stats compact display */}
+        {weightedOverallStats && (
+          <div className="flex items-center gap-3 rounded-md border px-3 py-1.5">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Info className="h-3 w-3 cursor-help text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Exponentially weighted average (decay: 0.3/year)</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <StatValue label="Min" value={weightedOverallStats.min} colored />
+            <StatValue
+              label="Med"
+              value={weightedOverallStats.median}
+              colored
+            />
+            <StatValue label="Max" value={weightedOverallStats.max} colored />
+            {weightedOverallStats.popularity !== null && (
+              <StatValue
+                label="Pop"
+                value={weightedOverallStats.popularity}
+                suffix="%"
+              />
+            )}
+          </div>
         )}
       </div>
 
-      {/* Lecturers - no card, inline display */}
-      {course.lecturers.length > 0 && (
-        <LecturersDisplay
-          lecturers={course.lecturers}
-          globalCurrentYear={globalCurrentYear}
-          isCourseCurrentlyTaught={isCourseCurrentlyTaught}
-        />
-      )}
+      {/* Unified year-by-year table */}
+      <UnifiedYearTable years={course.years} />
 
-      {/* Overall Stats Card */}
-      {weightedOverallStats && (
-        <OverallStatsCard stats={weightedOverallStats} />
-      )}
-
-      {/* Flex row for history and marks */}
-      <div className="flex flex-wrap gap-4">
-        {/* Course History Stats */}
-        <CourseHistoryStats years={course.years} />
-
-        {/* Marks Statistics Table */}
-        <CourseMarksTable years={course.years} />
+      {/* Two-column layout: questions (left) + insights (right) */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_350px]">
+        <CourseQuestionsList courseId={courseId} years={course.years} />
+        <div className="flex flex-col gap-4">
+          <CourseInsights courseId={courseId} />
+        </div>
       </div>
-
-      {/* Questions Grid */}
-      <CourseQuestionsGrid years={course.years} />
 
       {/* Discussion */}
       <div className="mt-2">
@@ -165,7 +209,29 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
   );
 };
 
-// Helper to format year ranges like "2012-2014, 2016, 2019-Current"
+const StatValue = ({
+  label,
+  value,
+  colored,
+  suffix
+}: {
+  label: string;
+  value: number;
+  colored?: boolean;
+  suffix?: string;
+}) => (
+  <div className="flex flex-col items-center">
+    <span className="text-[10px] text-muted-foreground">{label}</span>
+    <span
+      className="font-medium font-mono text-sm"
+      style={colored ? markTextColorStyle(value) : undefined}
+    >
+      {value.toFixed(1)}
+      {suffix ?? ""}
+    </span>
+  </div>
+);
+
 function formatYearRanges(years: number[], currentYear: number | null): string {
   if (years.length === 0) return "";
 
@@ -179,7 +245,6 @@ function formatYearRanges(years: number[], currentYear: number | null): string {
     if (year === rangeEnd + 1) {
       rangeEnd = year;
     } else {
-      // Close current range
       if (rangeStart === rangeEnd) {
         ranges.push(
           rangeEnd === currentYear ? "Current" : rangeStart.toString()
@@ -197,136 +262,11 @@ function formatYearRanges(years: number[], currentYear: number | null): string {
   return ranges.join(", ");
 }
 
-// Lecturers display - no card, highlights current
-const LecturersDisplay = ({
-  lecturers,
-  globalCurrentYear,
-  isCourseCurrentlyTaught
-}: {
-  lecturers: {
-    id: number;
-    name: string | null;
-    crsid: string | null;
-    years: number[];
-  }[];
-  globalCurrentYear: number | null;
-  isCourseCurrentlyTaught: boolean;
-}) => {
-  return (
-    <div className="flex flex-col gap-1">
-      <h3 className="font-medium text-muted-foreground text-xs">Lecturers</h3>
-      <div className="flex flex-wrap gap-x-3 gap-y-1">
-        {lecturers.map((lecturer) => {
-          // A lecturer is "current" only if the course is currently taught AND they teach in the current year
-          const isCurrent =
-            isCourseCurrentlyTaught &&
-            globalCurrentYear !== null &&
-            lecturer.years.includes(globalCurrentYear);
-          return (
-            <Link
-              key={lecturer.id}
-              href={`/profile/${lecturer.crsid}`}
-              className={cn(
-                "text-sm transition-colors hover:underline",
-                isCurrent
-                  ? "font-medium text-foreground"
-                  : "text-muted-foreground"
-              )}
-            >
-              {lecturer.name ?? lecturer.crsid}
-              <span className="ml-1 text-muted-foreground/70 text-xs">
-                {formatYearRanges(
-                  lecturer.years,
-                  isCourseCurrentlyTaught ? globalCurrentYear : null
-                )}
-              </span>
-            </Link>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-// Overall stats card with exponential decay explanation
-const OverallStatsCard = ({
-  stats
-}: {
-  stats: {
-    min: number;
-    median: number;
-    max: number;
-    popularity: number | null;
-  };
-}) => {
-  return (
-    <Card className="w-fit">
-      <CardHeader className="pb-1">
-        <CardTitle className="flex items-center gap-1.5 text-sm">
-          Overall Statistics
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Info className="h-3.5 w-3.5 cursor-help text-muted-foreground" />
-              </TooltipTrigger>
-              <TooltipContent className="max-w-xs">
-                <p>
-                  Weighted average using exponential decay. Recent years are
-                  weighted more heavily than older years (decay factor: 0.3 per
-                  year).
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex gap-3">
-          <div className="flex flex-col items-center">
-            <span className="text-muted-foreground text-xs">Min</span>
-            <span
-              className="font-mono text-base"
-              style={getMarkStyle(stats.min)}
-            >
-              {stats.min.toFixed(1)}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-muted-foreground text-xs">Median</span>
-            <span
-              className="font-mono text-base"
-              style={getMarkStyle(stats.median)}
-            >
-              {stats.median.toFixed(1)}
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="text-muted-foreground text-xs">Max</span>
-            <span
-              className="font-mono text-base"
-              style={getMarkStyle(stats.max)}
-            >
-              {stats.max.toFixed(1)}
-            </span>
-          </div>
-          {stats.popularity !== null && (
-            <div className="flex flex-col items-center">
-              <span className="text-muted-foreground text-xs">Popularity</span>
-              <span className="font-mono text-base text-foreground">
-                {stats.popularity.toFixed(0)}%
-              </span>
-            </div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
 const getMarkStyle = markTextColorStyle;
 
-// Course history - horizontal years, vertical terms
-const CourseHistoryStats = ({
+// --- Unified year table: marks + course info in one card ---
+
+const UnifiedYearTable = ({
   years
 }: {
   years: {
@@ -336,58 +276,77 @@ const CourseHistoryStats = ({
     easter: boolean;
     lectures: number | null;
     suggestedSupervisions: number | null;
+    marksStats: {
+      minMark: number;
+      maxMark: number;
+      avgMinMark: number;
+      avgMaxMark: number;
+      avgMedianMark: number;
+    } | null;
+    popularity: number | null;
   }[];
 }) => {
-  if (years.length === 0) return null;
+  const displayYears = years.slice(0, 20);
 
-  const displayYears = years.slice(0, 15);
+  if (displayYears.length === 0) return null;
 
   return (
-    <Card className="w-fit">
+    <Card>
       <CardHeader className="pb-1">
-        <CardTitle className="text-sm">Course History</CardTitle>
+        <CardTitle className="text-sm">Year-by-Year</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="overflow-x-auto">
         <div className="flex gap-1">
           {/* Row labels */}
           <div className="flex flex-col gap-1 pt-[44px]">
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              M
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              L
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              E
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              Lecs
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              Supos
-            </span>
+            <RowLabel>Min</RowLabel>
+            <RowLabel>Med</RowLabel>
+            <RowLabel>Max</RowLabel>
+            <RowLabel>Pop%</RowLabel>
+            <div className="h-1" />
+            <RowLabel>M</RowLabel>
+            <RowLabel>L</RowLabel>
+            <RowLabel>E</RowLabel>
+            <RowLabel>Lecs</RowLabel>
+            <RowLabel>Supos</RowLabel>
           </div>
 
           {/* Year columns */}
           <div className="flex gap-1">
             {displayYears.map((year) => (
               <div key={year.year} className="flex flex-col items-center gap-1">
-                {/* Year label rotated */}
-                <div className="relative h-10 w-5">
-                  <span className="absolute top-3 -left-1.5 -rotate-90 text-foreground text-sm">
+                <div className="relative h-10 w-6">
+                  <span className="absolute top-3 -left-1 -rotate-90 text-foreground text-xs">
                     {year.year}
                   </span>
                 </div>
-                {/* Terms stacked vertically */}
+                {/* Marks */}
+                <MarkCell value={year.marksStats?.avgMinMark} />
+                <MarkCell value={year.marksStats?.avgMedianMark} />
+                <MarkCell value={year.marksStats?.avgMaxMark} />
+                <div className="flex h-5 w-6 items-center justify-center">
+                  {year.popularity !== null ? (
+                    <span className="font-mono text-[10px] text-foreground">
+                      {year.popularity.toFixed(0)}
+                    </span>
+                  ) : (
+                    <span className="font-mono text-[10px] text-muted-foreground">
+                      -
+                    </span>
+                  )}
+                </div>
+                {/* Spacer */}
+                <div className="h-1" />
+                {/* Terms */}
                 <TermDot active={year.michaelmas} />
                 <TermDot active={year.lent} />
                 <TermDot active={year.easter} />
                 {/* Lectures */}
-                <div className="flex h-5 w-5 items-center justify-center font-mono text-xs">
+                <div className="flex h-5 w-6 items-center justify-center font-mono text-[10px]">
                   {year.lectures ?? "-"}
                 </div>
                 {/* Supervisions */}
-                <div className="flex h-5 w-5 items-center justify-center font-mono text-xs">
+                <div className="flex h-5 w-6 items-center justify-center font-mono text-[10px]">
                   {year.suggestedSupervisions ?? "-"}
                 </div>
               </div>
@@ -399,139 +358,37 @@ const CourseHistoryStats = ({
   );
 };
 
-const TermDot = ({ active }: { active: boolean }) => {
-  return (
-    <div
-      className={cn("h-5 w-5 rounded-sm", active ? "bg-primary" : "bg-muted")}
-    />
-  );
-};
+const RowLabel = ({ children }: { children: React.ReactNode }) => (
+  <span className="flex h-5 w-10 items-center text-muted-foreground text-xs">
+    {children}
+  </span>
+);
 
-// Marks statistics table - horizontal years
-const CourseMarksTable = ({
+const MarkCell = ({ value }: { value?: number }) => (
+  <div className="flex h-5 w-6 items-center justify-center">
+    {value != null ? (
+      <span className="font-mono text-[10px]" style={getMarkStyle(value)}>
+        {value.toFixed(0)}
+      </span>
+    ) : (
+      <span className="font-mono text-[10px] text-muted-foreground">-</span>
+    )}
+  </div>
+);
+
+const TermDot = ({ active }: { active: boolean }) => (
+  <div
+    className={cn("h-5 w-5 rounded-sm", active ? "bg-primary" : "bg-muted")}
+  />
+);
+
+// --- Questions list with topic filtering and search ---
+
+const CourseQuestionsList = ({
+  courseId,
   years
 }: {
-  years: {
-    year: number;
-    marksStats: {
-      minMark: number;
-      maxMark: number;
-      avgMinMark: number;
-      avgMaxMark: number;
-      avgMedianMark: number;
-    } | null;
-    popularity: number | null;
-  }[];
-}) => {
-  const yearsWithStats = years
-    .filter((y) => y.marksStats !== null || y.popularity !== null)
-    .slice(0, 15);
-
-  if (yearsWithStats.length === 0) return null;
-
-  return (
-    <Card className="w-fit">
-      <CardHeader className="pb-1">
-        <CardTitle className="text-sm">Mark Statistics</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex gap-1">
-          {/* Row labels */}
-          <div className="flex flex-col gap-1 pt-[44px]">
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              Min
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              Med
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              Max
-            </span>
-            <span className="flex h-5 items-center text-muted-foreground text-xs">
-              Pop%
-            </span>
-          </div>
-
-          {/* Year columns */}
-          <div className="flex gap-1">
-            {yearsWithStats.map((year) => (
-              <div key={year.year} className="flex flex-col items-center gap-1">
-                {/* Year label rotated */}
-                <div className="relative h-10 w-6">
-                  <span className="absolute top-3 -left-1 -rotate-90 text-foreground text-sm">
-                    {year.year}
-                  </span>
-                </div>
-                {/* Min */}
-                <div className="flex h-5 w-6 items-center justify-center">
-                  {year.marksStats ? (
-                    <span
-                      className="font-mono text-xs"
-                      style={getMarkStyle(year.marksStats.avgMinMark)}
-                    >
-                      {year.marksStats.avgMinMark.toFixed(0)}
-                    </span>
-                  ) : (
-                    <span className="font-mono text-muted-foreground text-xs">
-                      -
-                    </span>
-                  )}
-                </div>
-                {/* Median */}
-                <div className="flex h-5 w-6 items-center justify-center">
-                  {year.marksStats ? (
-                    <span
-                      className="font-mono text-xs"
-                      style={getMarkStyle(year.marksStats.avgMedianMark)}
-                    >
-                      {year.marksStats.avgMedianMark.toFixed(0)}
-                    </span>
-                  ) : (
-                    <span className="font-mono text-muted-foreground text-xs">
-                      -
-                    </span>
-                  )}
-                </div>
-                {/* Max */}
-                <div className="flex h-5 w-6 items-center justify-center">
-                  {year.marksStats ? (
-                    <span
-                      className="font-mono text-xs"
-                      style={getMarkStyle(year.marksStats.avgMaxMark)}
-                    >
-                      {year.marksStats.avgMaxMark.toFixed(0)}
-                    </span>
-                  ) : (
-                    <span className="font-mono text-muted-foreground text-xs">
-                      -
-                    </span>
-                  )}
-                </div>
-                {/* Popularity */}
-                <div className="flex h-5 w-6 items-center justify-center">
-                  {year.popularity !== null ? (
-                    <span className="font-mono text-foreground text-xs">
-                      {year.popularity.toFixed(0)}
-                    </span>
-                  ) : (
-                    <span className="font-mono text-muted-foreground text-xs">
-                      -
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
-
-// Questions grid showing all questions for the course
-const CourseQuestionsGrid = ({
-  years
-}: {
+  courseId: number;
   years: {
     year: number;
     questions: {
@@ -539,109 +396,234 @@ const CourseQuestionsGrid = ({
       questionNumber: number;
       paperName: string;
       year: number;
+      minimumMark: number | null;
+      maximumMark: number | null;
+      medianMark: number | null;
+      attempts: number | null;
       userAnswers: number;
     }[];
   }[];
 }) => {
-  // Build a map of all unique paper+question combinations
-  const sortedQuestions = useMemo(() => {
-    const questionSet = new Map<
-      string,
-      { paperName: string; questionNumber: number }
-    >();
+  const { data: topics } = trpc.course.getTopics.useQuery({ courseId });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
 
-    for (const year of years) {
-      for (const q of year.questions) {
-        const key = `${q.paperName}-${q.questionNumber}`;
-        if (!questionSet.has(key)) {
-          questionSet.set(key, {
-            paperName: q.paperName,
-            questionNumber: q.questionNumber
-          });
-        }
+  const allQuestions = useMemo(() => {
+    const questions: {
+      id: number;
+      year: number;
+      paperName: string;
+      questionNumber: number;
+      medianMark: number | null;
+      userAnswers: number;
+    }[] = [];
+
+    for (const yearData of years) {
+      for (const q of yearData.questions) {
+        questions.push({
+          id: q.id,
+          year: q.year,
+          paperName: q.paperName,
+          questionNumber: q.questionNumber,
+          medianMark: q.medianMark,
+          userAnswers: q.userAnswers
+        });
       }
     }
 
-    return Array.from(questionSet.values()).sort(
+    return questions.sort(
       (a, b) =>
+        b.year - a.year ||
         a.paperName.localeCompare(b.paperName) ||
         a.questionNumber - b.questionNumber
     );
   }, [years]);
 
-  // Build a lookup for quick access
-  const questionMap = useMemo(() => {
-    const map: Record<number, Record<string, number>> = {};
-    for (const year of years) {
-      map[year.year] = {};
-      for (const q of year.questions) {
-        map[year.year][`${q.paperName}-${q.questionNumber}`] = q.userAnswers;
-      }
-    }
-    return map;
-  }, [years]);
+  const filteredQuestions = useMemo(() => {
+    let results = allQuestions;
 
-  if (years.length === 0 || sortedQuestions.length === 0) return null;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      results = results.filter(
+        (question) =>
+          `p${question.paperName}q${question.questionNumber}`.includes(q) ||
+          `${question.year}`.includes(q) ||
+          `paper ${question.paperName}`.includes(q)
+      );
+    }
+
+    return results;
+  }, [allQuestions, searchQuery]);
+
+  const toggleTopic = (slug: string) => {
+    setSelectedTopics((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) {
+        next.delete(slug);
+      } else {
+        next.add(slug);
+      }
+      return next;
+    });
+  };
 
   return (
-    <Card className="w-fit">
-      <CardHeader className="pb-1">
-        <CardTitle className="text-sm">Questions</CardTitle>
+    <Card>
+      <CardHeader className="pb-2">
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-sm">
+            Questions ({allQuestions.length})
+          </CardTitle>
+          <div className="relative w-48">
+            <Search className="absolute top-1/2 left-2 h-3 w-3 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              placeholder="Filter (e.g. p8q2, 2023)"
+              className="h-7 pl-7 text-xs"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* Topic filter chips */}
+        {topics && topics.length > 0 && (
+          <div className="flex flex-wrap gap-1 pt-1">
+            {topics.map((topic) => (
+              <button
+                key={topic.id}
+                type="button"
+                onClick={() => toggleTopic(topic.slug)}
+                className={cn(
+                  "rounded-full border px-2 py-0.5 text-[10px] transition-colors",
+                  selectedTopics.has(topic.slug)
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border text-muted-foreground hover:border-primary/50"
+                )}
+              >
+                {topic.name}
+                <span className="ml-1 opacity-60">{topic.questionCount}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </CardHeader>
       <CardContent>
-        <div className="flex gap-1">
-          {/* Question number labels column */}
-          <div className="flex flex-col gap-1 pt-[44px]">
-            {sortedQuestions.map((q) => (
+        <QuestionRows
+          questions={filteredQuestions}
+          selectedTopics={selectedTopics}
+        />
+      </CardContent>
+    </Card>
+  );
+};
+
+const QuestionRows = ({
+  questions,
+  selectedTopics
+}: {
+  questions: {
+    id: number;
+    year: number;
+    paperName: string;
+    questionNumber: number;
+    medianMark: number | null;
+    userAnswers: number;
+  }[];
+  selectedTopics: Set<string>;
+}) => {
+  const { data: topicAssignments } = trpc.course.getQuestionTopics.useQuery(
+    { questionIds: questions.map((q) => q.id) },
+    { enabled: questions.length > 0 }
+  );
+
+  const filteredByTopics = useMemo(() => {
+    if (selectedTopics.size === 0) return questions;
+    if (!topicAssignments) return questions;
+
+    return questions.filter((q) => {
+      const qTopics = topicAssignments[q.id];
+      if (!qTopics) return false;
+      return qTopics.some((t) => selectedTopics.has(t.slug));
+    });
+  }, [questions, selectedTopics, topicAssignments]);
+
+  if (filteredByTopics.length === 0) {
+    return (
+      <p className="py-4 text-center text-muted-foreground text-xs">
+        No questions match filters.
+      </p>
+    );
+  }
+
+  return (
+    <div className="flex max-h-[500px] flex-col gap-0.5 overflow-y-auto">
+      {filteredByTopics.map((q) => {
+        const qTopics = topicAssignments?.[q.id];
+        return (
+          <Link
+            key={q.id}
+            href={`/p/${q.paperName}/${q.year}/${q.questionNumber}`}
+            prefetch={false}
+            className="flex items-center gap-2 rounded px-2 py-1 text-xs transition-colors hover:bg-muted"
+          >
+            <span className="w-10 shrink-0 font-mono text-muted-foreground">
+              {q.year}
+            </span>
+            <span className="w-12 shrink-0 font-medium">
+              P{q.paperName}Q{q.questionNumber}
+            </span>
+            {q.medianMark !== null && (
               <span
-                key={`${q.paperName}-${q.questionNumber}`}
-                className="flex h-5 w-10 items-center justify-end text-sm"
+                className="w-8 shrink-0 font-mono text-[11px]"
+                style={getMarkStyle(q.medianMark)}
               >
-                <span className="text-muted-foreground">p</span>
-                {q.paperName}
-                <span className="text-muted-foreground">q</span>
-                {q.questionNumber}
+                {q.medianMark}/20
               </span>
-            ))}
-          </div>
-
-          {/* Year columns */}
-          <div className="flex gap-1">
-            {years.map((year) => (
-              <div key={year.year} className="flex flex-col gap-1">
-                <div className="relative h-10 w-5">
-                  <span className="absolute top-3 -left-1.5 -rotate-90 text-foreground text-sm">
-                    {year.year}
+            )}
+            {q.userAnswers > 0 && (
+              <div className="h-2 w-2 shrink-0 rounded-full bg-score-done" />
+            )}
+            {/* Topic badges */}
+            {qTopics && qTopics.length > 0 && (
+              <div className="flex min-w-0 flex-1 gap-1 overflow-hidden">
+                {qTopics.slice(0, 2).map((t) => (
+                  <span
+                    key={t.slug}
+                    className="truncate rounded bg-muted px-1.5 py-0.5 text-[9px] text-muted-foreground"
+                  >
+                    {t.name}
                   </span>
-                </div>
-                {sortedQuestions.map((q) => {
-                  const key = `${q.paperName}-${q.questionNumber}`;
-                  const userAnswers = questionMap[year.year]?.[key];
-
-                  if (typeof userAnswers !== "number") {
-                    return <div key={key} className="h-5 w-5" />;
-                  }
-
-                  return (
-                    <Link
-                      key={key}
-                      href={`/p/${q.paperName}/${year.year}/${q.questionNumber}`}
-                      prefetch={false}
-                    >
-                      <div
-                        className={cn(
-                          "h-5 w-5 rounded-sm transition-colors",
-                          userAnswers > 0
-                            ? "bg-score-done"
-                            : "bg-score-unattempted/30 hover:bg-score-unattempted/50"
-                        )}
-                      />
-                    </Link>
-                  );
-                })}
+                ))}
               </div>
-            ))}
-          </div>
+            )}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
+
+// --- Examiner Insights ---
+
+const CourseInsights = ({ courseId }: { courseId: number }) => {
+  const { data: insight } = trpc.course.getInsight.useQuery({ courseId });
+
+  if (!insight) return null;
+
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardTitle className="flex items-center gap-2 text-sm">
+          <Lightbulb className="h-4 w-4" />
+          Examiner Insights
+        </CardTitle>
+        <p className="text-[10px] text-muted-foreground">
+          Generated from {insight.yearsAnalyzed} years of examiner reports
+        </p>
+      </CardHeader>
+      <CardContent>
+        <div className="prose prose-sm dark:prose-invert max-w-none text-xs leading-relaxed [&_h2]:mt-3 [&_h2]:mb-1 [&_h2]:font-semibold [&_h2]:text-xs [&_li]:my-0.5 [&_ul]:my-1">
+          <Markdown>{insight.content}</Markdown>
         </div>
       </CardContent>
     </Card>

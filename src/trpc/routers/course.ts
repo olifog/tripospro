@@ -1,10 +1,15 @@
-import { and, desc, eq } from "drizzle-orm";
+import { and, count, desc, eq, inArray } from "drizzle-orm";
 import { z } from "zod";
 import {
   courseTable,
   courseYearTable,
   userStarredCourseTable
 } from "@/db/schema/course";
+import {
+  courseInsightTable,
+  questionTopicTable,
+  topicTable
+} from "@/db/schema/topic";
 import { triposPartYearTable } from "@/db/schema/tripos";
 import { userQuestionAnswerTable, usersTable } from "@/db/schema/user";
 import { calendarYearToAcademicYear } from "@/lib/utils";
@@ -251,5 +256,73 @@ export const courseRouter = createTRPCRouter({
         courseId: input.courseId
       });
       return { starred: true };
+    }),
+
+  getTopics: baseProcedure
+    .input(z.object({ courseId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const topics = await ctx.db
+        .select({
+          id: topicTable.id,
+          name: topicTable.name,
+          slug: topicTable.slug,
+          questionCount: count(questionTopicTable.id)
+        })
+        .from(topicTable)
+        .leftJoin(
+          questionTopicTable,
+          eq(questionTopicTable.topicId, topicTable.id)
+        )
+        .where(eq(topicTable.courseId, input.courseId))
+        .groupBy(topicTable.id, topicTable.name, topicTable.slug)
+        .orderBy(desc(count(questionTopicTable.id)));
+
+      return topics;
+    }),
+
+  getInsight: baseProcedure
+    .input(z.object({ courseId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const insight = await ctx.db.query.courseInsightTable.findFirst({
+        where: eq(courseInsightTable.courseId, input.courseId)
+      });
+
+      if (!insight) return null;
+
+      return {
+        content: insight.content,
+        generatedAt: insight.generatedAt,
+        modelUsed: insight.modelUsed,
+        yearsAnalyzed: insight.yearsAnalyzed
+      };
+    }),
+
+  getQuestionTopics: baseProcedure
+    .input(z.object({ questionIds: z.array(z.number()) }))
+    .query(async ({ ctx, input }) => {
+      if (input.questionIds.length === 0) return {};
+
+      const rows = await ctx.db
+        .select({
+          questionId: questionTopicTable.questionId,
+          topicName: topicTable.name,
+          topicSlug: topicTable.slug
+        })
+        .from(questionTopicTable)
+        .innerJoin(topicTable, eq(questionTopicTable.topicId, topicTable.id))
+        .where(inArray(questionTopicTable.questionId, input.questionIds));
+
+      const result: Record<number, { name: string; slug: string }[]> = {};
+      for (const row of rows) {
+        if (!result[row.questionId]) {
+          result[row.questionId] = [];
+        }
+        result[row.questionId].push({
+          name: row.topicName,
+          slug: row.topicSlug
+        });
+      }
+
+      return result;
     })
 });

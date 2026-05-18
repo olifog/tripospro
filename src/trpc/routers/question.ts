@@ -1,4 +1,5 @@
-import { and, eq } from "drizzle-orm";
+import { Pinecone } from "@pinecone-database/pinecone";
+import { and, eq, inArray } from "drizzle-orm";
 import { z } from "zod";
 import { courseTable, courseYearTable } from "@/db/schema/course";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
@@ -9,8 +10,12 @@ import {
   userQuestionFlagTable,
   usersTable
 } from "@/db/schema/user";
+import { env } from "@/env";
 import { calendarYearToAcademicYear } from "@/lib/utils";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "../init";
+
+const pinecone = new Pinecone({ apiKey: env.PINECONE_API_KEY });
+const index = pinecone.Index("questions", env.PINECONE_HOST);
 
 export const questionRouter = createTRPCRouter({
   getQuestion: baseProcedure
@@ -396,5 +401,79 @@ export const questionRouter = createTRPCRouter({
         )
       });
       return { flagged: !!flag };
+    }),
+  getSimilarQuestions: baseProcedure
+    .input(z.object({ questionId: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const fetchResult = await index.fetch({
+        ids: [input.questionId.toString()]
+      });
+      const record = fetchResult.records[input.questionId.toString()];
+      if (!record || !record.values) {
+        return [];
+      }
+
+      const queryResult = await index.query({
+        vector: record.values,
+        topK: 6,
+        includeMetadata: false
+      });
+
+      const matches = queryResult.matches
+        .filter(
+          (m) =>
+            m.id !== input.questionId.toString() &&
+            m.score !== undefined &&
+            m.score > 0.5
+        )
+        .slice(0, 5);
+
+      if (matches.length === 0) return [];
+
+      const dbIds = matches
+        .map((m) => parseInt(m.id))
+        .filter((id) => !isNaN(id));
+
+      if (dbIds.length === 0) return [];
+
+      const questions = await ctx.db
+        .select({
+          questionId: questionTable.id,
+          questionNumber: questionTable.questionNumber,
+          paperName: paperTable.name,
+          year: paperYearTable.year,
+          courseName: courseTable.name,
+          courseId: courseTable.id,
+          medianMark: questionTable.medianMark
+        })
+        .from(questionTable)
+        .innerJoin(
+          paperYearTable,
+          eq(questionTable.paperYearId, paperYearTable.id)
+        )
+        .innerJoin(paperTable, eq(paperYearTable.paperId, paperTable.id))
+        .leftJoin(
+          courseYearTable,
+          eq(questionTable.courseYearId, courseYearTable.id)
+        )
+        .leftJoin(courseTable, eq(courseYearTable.courseId, courseTable.id))
+        .where(inArray(questionTable.id, dbIds));
+
+      return matches
+        .map((m) => {
+          const q = questions.find((q) => q.questionId === parseInt(m.id));
+          if (!q) return null;
+          return {
+            questionId: q.questionId,
+            year: q.year,
+            paperName: q.paperName,
+            questionNumber: q.questionNumber,
+            courseName: q.courseName ?? "",
+            courseId: q.courseId ?? null,
+            medianMark: q.medianMark,
+            score: m.score!
+          };
+        })
+        .filter((r): r is NonNullable<typeof r> => r !== null);
     })
 });

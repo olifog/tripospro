@@ -36,6 +36,13 @@
       "when": 1778611026933,
       "tag": "0004_material_bedlam",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1779100891558,
+      "tag": "0005_good_shotgun",
+      "breakpoints": true
     }
   ]
 }

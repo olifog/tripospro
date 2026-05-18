@@ -12,6 +12,7 @@ import * as commentSchema from "./schema/comment";
 import * as courseSchema from "./schema/course";
 import * as paperSchema from "./schema/paper";
 import * as questionSchema from "./schema/question";
+import * as topicSchema from "./schema/topic";
 import * as triposSchema from "./schema/tripos";
 import * as userSchema from "./schema/user";
 
@@ -21,6 +22,7 @@ const schema = {
   ...courseSchema,
   ...paperSchema,
   ...questionSchema,
+  ...topicSchema,
   ...userSchema,
   ...triposSchema
 };

@@ -8,7 +8,8 @@ import {
   FileText,
   HelpCircle,
   Loader2,
-  Search
+  Search,
+  Tag
 } from "lucide-react";
 import {
   CommandDialog,
@@ -30,7 +31,7 @@ type RecentItem = {
   id: string;
   title: string;
   href: string;
-  type: "course" | "question" | "paper";
+  type: "course" | "question" | "paper" | "topic";
 };
 
 function getRecentSearches(): RecentItem[] {
@@ -100,7 +101,7 @@ export function SearchDialog({
 
   type Result = {
     id: string;
-    type: "course" | "question" | "paper";
+    type: "course" | "question" | "paper" | "topic";
     title: string;
     subtitle?: string;
     href: string;
@@ -154,6 +155,7 @@ export function SearchDialog({
   }, [query, serverResults, clientResults]);
 
   const courseResults = displayResults.filter((r) => r.type === "course");
+  const topicResults = displayResults.filter((r) => r.type === "topic");
   const questionResults = displayResults.filter((r) => r.type === "question");
   const paperResults = displayResults.filter((r) => r.type === "paper");
 
@@ -175,6 +177,8 @@ export function SearchDialog({
     switch (type) {
       case "course":
         return <BookOpen className="text-muted-foreground" />;
+      case "topic":
+        return <Tag className="text-muted-foreground" />;
       case "question":
         return <HelpCircle className="text-muted-foreground" />;
       case "paper":
@@ -187,6 +191,7 @@ export function SearchDialog({
   const hasQuery = query.length >= 2;
   const hasResults =
     courseResults.length > 0 ||
+    topicResults.length > 0 ||
     questionResults.length > 0 ||
     paperResults.length > 0;
   const showLoading = hasQuery && isFetching && !hasResults;
@@ -252,9 +257,32 @@ export function SearchDialog({
           </CommandGroup>
         )}
 
-        {questionResults.length > 0 && (
+        {topicResults.length > 0 && (
           <>
             {courseResults.length > 0 && <CommandSeparator />}
+            <CommandGroup heading="Topics">
+              {topicResults.map((result) => (
+                <CommandItem
+                  key={result.id}
+                  value={result.id}
+                  onSelect={() => handleSelect(result)}
+                >
+                  {typeIcon(result.type)}
+                  <span className="flex-1 truncate">{result.title}</span>
+                  {result.subtitle && (
+                    <span className="text-xs text-muted-foreground">
+                      {result.subtitle}
+                    </span>
+                  )}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </>
+        )}
+
+        {questionResults.length > 0 && (
+          <>
+            {(courseResults.length > 0 || topicResults.length > 0) && <CommandSeparator />}
             <CommandGroup heading="Questions">
               {questionResults.map((result) => (
                 <CommandItem
@@ -294,7 +322,7 @@ export function SearchDialog({
 
         {paperResults.length > 0 && (
           <>
-            {(courseResults.length > 0 || questionResults.length > 0) && (
+            {(courseResults.length > 0 || topicResults.length > 0 || questionResults.length > 0) && (
               <CommandSeparator />
             )}
             <CommandGroup heading="Papers">
@@ -359,6 +387,7 @@ export function SearchDialog({
 function TypeBadge({ type }: { type: string }) {
   const colors = {
     course: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    topic: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
     question: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
     paper: "bg-green-500/10 text-green-600 dark:text-green-400"
   };
