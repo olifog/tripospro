@@ -133,17 +133,28 @@ export const courseRouter = createTRPCRouter({
             name: cyl.lecturer?.name,
             crsid: cyl.lecturer?.crsid
           })),
-          questions: cy.questions.map((q) => ({
-            id: q.id,
-            questionNumber: q.questionNumber,
-            paperName: q.paperYear?.paper?.name ?? "",
-            year: q.paperYear?.year ?? cy.year,
-            minimumMark: q.minimumMark,
-            maximumMark: q.maximumMark,
-            medianMark: q.medianMark,
-            attempts: q.attempts,
-            userAnswers: q.userQuestionAnswers?.length ?? 0
-          })),
+          questions: cy.questions.map((q) => {
+            const answers = q.userQuestionAnswers ?? [];
+            const marksWithValues = answers
+              .map((a) => a.mark)
+              .filter((m): m is number => m !== null);
+            const bestMark =
+              marksWithValues.length > 0
+                ? Math.max(...marksWithValues)
+                : undefined;
+            return {
+              id: q.id,
+              questionNumber: q.questionNumber,
+              paperName: q.paperYear?.paper?.name ?? "",
+              year: q.paperYear?.year ?? cy.year,
+              minimumMark: q.minimumMark,
+              maximumMark: q.maximumMark,
+              medianMark: q.medianMark,
+              attempts: q.attempts,
+              userAnswers: answers.length,
+              bestMark
+            };
+          }),
           marksStats,
           popularity
         };

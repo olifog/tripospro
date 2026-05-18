@@ -2,7 +2,8 @@
 
 import { ExternalLink, Info, Lightbulb, Search } from "lucide-react";
 import Link from "next/link";
-import { Suspense, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import Markdown from "react-markdown";
 import { markTextColorStyle } from "@/lib/score-colors";
@@ -104,74 +105,61 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Header row: name, code, overall stats inline, CST link */}
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <h2 className="font-bold text-xl">{course.name}</h2>
-            <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-muted-foreground text-xs">
-              {course.code}
-            </span>
-            {latestYearData && (
-              <Button
-                asChild
-                variant="ghost"
-                size="sm"
-                className="h-6 gap-1 px-2 text-xs"
-              >
-                <Link href={latestYearData.url} target="_blank">
-                  <ExternalLink className="h-3 w-3" />
-                  CST
-                </Link>
-              </Button>
-            )}
-          </div>
-          {/* Lecturers inline */}
-          {course.lecturers.length > 0 && (
-            <div className="flex flex-wrap gap-x-3 gap-y-0.5">
-              {course.lecturers.map((lecturer) => {
-                const isCurrent =
-                  isCourseCurrentlyTaught &&
-                  globalCurrentYear !== null &&
-                  lecturer.years.includes(globalCurrentYear);
-                return (
-                  <Link
-                    key={lecturer.id}
-                    href={`/profile/${lecturer.crsid}`}
-                    className={cn(
-                      "text-xs transition-colors hover:underline",
-                      isCurrent
-                        ? "font-medium text-foreground"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    {lecturer.name ?? lecturer.crsid}
-                    <span className="ml-1 text-[10px] text-muted-foreground/60">
-                      {formatYearRanges(
-                        lecturer.years,
-                        isCourseCurrentlyTaught ? globalCurrentYear : null
-                      )}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
+      {/* Header row: name, code, CST link */}
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center gap-2">
+          <h2 className="font-bold text-xl">{course.name}</h2>
+          <span className="rounded bg-muted px-1.5 py-0.5 font-mono text-muted-foreground text-xs">
+            {course.code}
+          </span>
+          {latestYearData && (
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="h-6 gap-1 px-2 text-xs"
+            >
+              <Link href={latestYearData.url} target="_blank">
+                <ExternalLink className="h-3 w-3" />
+                CST
+              </Link>
+            </Button>
           )}
         </div>
-
-        {/* Overall stats compact display */}
+        {/* Lecturers inline */}
+        {course.lecturers.length > 0 && (
+          <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+            {course.lecturers.map((lecturer) => {
+              const isCurrent =
+                isCourseCurrentlyTaught &&
+                globalCurrentYear !== null &&
+                lecturer.years.includes(globalCurrentYear);
+              return (
+                <Link
+                  key={lecturer.id}
+                  href={`/profile/${lecturer.crsid}`}
+                  className={cn(
+                    "text-xs transition-colors hover:underline",
+                    isCurrent
+                      ? "font-medium text-foreground"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  {lecturer.name ?? lecturer.crsid}
+                  <span className="ml-1 text-[10px] text-muted-foreground/60">
+                    {formatYearRanges(
+                      lecturer.years,
+                      isCourseCurrentlyTaught ? globalCurrentYear : null
+                    )}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+        {/* Overall stats — prominent, left-aligned */}
         {weightedOverallStats && (
-          <div className="flex items-center gap-3 rounded-md border px-3 py-1.5">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="h-3 w-3 cursor-help text-muted-foreground" />
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs">
-                  <p>Exponentially weighted average (decay: 0.3/year)</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+          <div className="flex items-center gap-4 pt-1">
             <StatValue label="Min" value={weightedOverallStats.min} colored />
             <StatValue
               label="Med"
@@ -186,20 +174,28 @@ const CourseContentInner = ({ courseId }: { courseId: number }) => {
                 suffix="%"
               />
             )}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Info className="h-3 w-3 cursor-help text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Exponentially weighted average (decay: 0.3/year)</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         )}
       </div>
 
-      {/* Unified year-by-year table */}
-      <UnifiedYearTable years={course.years} />
-
-      {/* Two-column layout: questions (left) + insights (right) */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_350px]">
-        <CourseQuestionsList courseId={courseId} years={course.years} />
-        <div className="flex flex-col gap-4">
-          <CourseInsights courseId={courseId} />
-        </div>
+      {/* Cards flex-wrap: each takes only the space it needs */}
+      <div className="flex flex-wrap gap-4">
+        <UnifiedYearTable years={course.years} />
+        <CourseInsights courseId={courseId} />
       </div>
+
+      {/* Questions list — full width below */}
+      <CourseQuestionsList courseId={courseId} years={course.years} />
 
       {/* Discussion */}
       <div className="mt-2">
@@ -220,10 +216,10 @@ const StatValue = ({
   colored?: boolean;
   suffix?: string;
 }) => (
-  <div className="flex flex-col items-center">
-    <span className="text-[10px] text-muted-foreground">{label}</span>
+  <div className="flex items-baseline gap-1">
+    <span className="text-muted-foreground text-xs">{label}</span>
     <span
-      className="font-medium font-mono text-sm"
+      className="font-medium font-mono text-base"
       style={colored ? markTextColorStyle(value) : undefined}
     >
       {value.toFixed(1)}
@@ -291,7 +287,7 @@ const UnifiedYearTable = ({
   if (displayYears.length === 0) return null;
 
   return (
-    <Card>
+    <Card className="w-fit">
       <CardHeader className="pb-1">
         <CardTitle className="text-sm">Year-by-Year</CardTitle>
       </CardHeader>
@@ -401,12 +397,24 @@ const CourseQuestionsList = ({
       medianMark: number | null;
       attempts: number | null;
       userAnswers: number;
+      bestMark?: number;
     }[];
   }[];
 }) => {
+  const searchParams = useSearchParams();
   const { data: topics } = trpc.course.getTopics.useQuery({ courseId });
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
+  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(() => {
+    const topicParam = searchParams.get("topic");
+    return topicParam ? new Set([topicParam]) : new Set();
+  });
+
+  useEffect(() => {
+    const topicParam = searchParams.get("topic");
+    if (topicParam) {
+      setSelectedTopics(new Set([topicParam]));
+    }
+  }, [searchParams]);
 
   const allQuestions = useMemo(() => {
     const questions: {
@@ -414,8 +422,11 @@ const CourseQuestionsList = ({
       year: number;
       paperName: string;
       questionNumber: number;
+      minimumMark: number | null;
       medianMark: number | null;
+      maximumMark: number | null;
       userAnswers: number;
+      bestMark?: number;
     }[] = [];
 
     for (const yearData of years) {
@@ -425,8 +436,11 @@ const CourseQuestionsList = ({
           year: q.year,
           paperName: q.paperName,
           questionNumber: q.questionNumber,
+          minimumMark: q.minimumMark,
           medianMark: q.medianMark,
-          userAnswers: q.userAnswers
+          maximumMark: q.maximumMark,
+          userAnswers: q.userAnswers,
+          bestMark: q.bestMark
         });
       }
     }
@@ -526,8 +540,11 @@ const QuestionRows = ({
     year: number;
     paperName: string;
     questionNumber: number;
+    minimumMark: number | null;
     medianMark: number | null;
+    maximumMark: number | null;
     userAnswers: number;
+    bestMark?: number;
   }[];
   selectedTopics: Set<string>;
 }) => {
@@ -569,20 +586,37 @@ const QuestionRows = ({
             <span className="w-10 shrink-0 font-mono text-muted-foreground">
               {q.year}
             </span>
-            <span className="w-12 shrink-0 font-medium">
+            <span className="w-14 shrink-0 font-medium">
               P{q.paperName}Q{q.questionNumber}
             </span>
-            {q.medianMark !== null && (
-              <span
-                className="w-8 shrink-0 font-mono text-[11px]"
-                style={getMarkStyle(q.medianMark)}
-              >
-                {q.medianMark}/20
-              </span>
-            )}
-            {q.userAnswers > 0 && (
-              <div className="h-2 w-2 shrink-0 rounded-full bg-score-done" />
-            )}
+            {/* Min / Med / Max marks */}
+            <div className="flex w-24 shrink-0 gap-1 font-mono text-[11px]">
+              {q.minimumMark !== null ? (
+                <span style={getMarkStyle(q.minimumMark)}>{q.minimumMark}</span>
+              ) : (
+                <span className="text-muted-foreground">-</span>
+              )}
+              <span className="text-muted-foreground">/</span>
+              {q.medianMark !== null ? (
+                <span style={getMarkStyle(q.medianMark)}>{q.medianMark}</span>
+              ) : (
+                <span className="text-muted-foreground">-</span>
+              )}
+              <span className="text-muted-foreground">/</span>
+              {q.maximumMark !== null ? (
+                <span style={getMarkStyle(q.maximumMark)}>{q.maximumMark}</span>
+              ) : (
+                <span className="text-muted-foreground">-</span>
+              )}
+            </div>
+            {/* User's best mark */}
+            <span className="w-8 shrink-0 font-mono text-[11px]">
+              {q.bestMark !== undefined ? (
+                <span style={getMarkStyle(q.bestMark)}>{q.bestMark}/20</span>
+              ) : (
+                <span className="text-muted-foreground">—</span>
+              )}
+            </span>
             {/* Topic badges */}
             {qTopics && qTopics.length > 0 && (
               <div className="flex min-w-0 flex-1 gap-1 overflow-hidden">

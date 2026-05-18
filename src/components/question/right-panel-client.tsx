@@ -74,10 +74,9 @@ const HeaderInner = ({
 
   if (!question) return null;
 
-  const isCovidYear =
-    covidWarnings[
-      question.triposPartCode as keyof typeof covidWarnings
-    ]?.includes(Number.parseInt(year, 10));
+  const isCovidYear = covidWarnings[
+    question.triposPartCode as keyof typeof covidWarnings
+  ]?.includes(Number.parseInt(year, 10));
 
   return (
     <div className="flex flex-col gap-1">
@@ -115,25 +114,40 @@ const HeaderInner = ({
         </div>
         <div className="flex shrink-0 items-center gap-1">
           {question.solutionUrl ? (
-            <Button asChild variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className="h-7 gap-1 px-2 text-xs"
+            >
               <Link href={question.solutionUrl} target="_blank">
                 <FileText className="h-3 w-3" />
                 Soln
               </Link>
             </Button>
           ) : (
-            <Button variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs" disabled>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-7 gap-1 px-2 text-xs"
+              disabled
+            >
               <FileText className="h-3 w-3" />
               Soln
             </Button>
           )}
-          <Button asChild variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs">
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="h-7 gap-1 px-2 text-xs"
+          >
             <Link href={question.url} target="_blank">
               <Link2 className="h-3 w-3" />
               CST
             </Link>
           </Button>
-        {isSignedIn && <FlagButton questionId={question.id} />}
+          {isSignedIn && <FlagButton questionId={question.id} />}
         </div>
       </div>
       {question.authors && question.authors.length > 0 && (
@@ -150,11 +164,51 @@ const HeaderInner = ({
                   {a.name ?? a.crsid}
                 </Link>
               ) : (
-                a.name ?? "Unknown"
+                (a.name ?? "Unknown")
               )}
             </span>
           ))}
         </div>
+      )}
+      <QuestionTopics questionId={question.id} courseId={question.courseId} />
+    </div>
+  );
+};
+
+const QuestionTopics = ({
+  questionId,
+  courseId
+}: {
+  questionId: number;
+  courseId?: number | null;
+}) => {
+  const { data } = trpc.course.getQuestionTopics.useQuery(
+    { questionIds: [questionId] },
+    { enabled: !!questionId }
+  );
+
+  const topics = data?.[questionId];
+  if (!topics || topics.length === 0) return null;
+
+  return (
+    <div className="flex flex-wrap gap-1">
+      {topics.map((t) =>
+        courseId ? (
+          <Link
+            key={t.slug}
+            href={`/course/${courseId}?topic=${t.slug}`}
+            className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+          >
+            {t.name}
+          </Link>
+        ) : (
+          <span
+            key={t.slug}
+            className="rounded-full border border-border px-2 py-0.5 text-[10px] text-muted-foreground"
+          >
+            {t.name}
+          </span>
+        )
       )}
     </div>
   );
@@ -294,7 +348,7 @@ const StatsAndCommentsInner = ({
   return (
     <div className="@container flex flex-col gap-2">
       {hasMarks && (
-        <div className="grid grid-cols-1 gap-3 @md:grid-cols-[auto_1fr]">
+        <div className="grid @md:grid-cols-[auto_1fr] grid-cols-1 gap-3">
           <MarkDistributionGraph
             minimum={question.minimumMark!}
             maximum={question.maximumMark!}
@@ -339,9 +393,7 @@ const StatsAndCommentsInner = ({
             </span>
             <span>
               <span className="text-muted-foreground">Med</span>{" "}
-              <span className="font-medium">
-                {question.medianMark ?? "—"}
-              </span>
+              <span className="font-medium">{question.medianMark ?? "—"}</span>
             </span>
             <span>
               <span className="text-muted-foreground">Max</span>{" "}
@@ -587,13 +639,11 @@ const AttemptsInner = ({
                 >
                   Cancel
                 </Button>
-                <Button
-                  type="submit"
-                  disabled={form.formState.isSubmitting}
-                >
+                <Button type="submit" disabled={form.formState.isSubmitting}>
                   {form.formState.isSubmitting ? (
                     <>
-                      Submitting <Loader2 className="ml-1 h-4 w-4 animate-spin" />
+                      Submitting{" "}
+                      <Loader2 className="ml-1 h-4 w-4 animate-spin" />
                     </>
                   ) : (
                     "Submit"
@@ -700,11 +750,7 @@ export const Attempts = ({
         </p>
       }
     >
-      <Suspense
-        fallback={
-          <Skeleton className="h-9 w-full" />
-        }
-      >
+      <Suspense fallback={<Skeleton className="h-9 w-full" />}>
         <AttemptsInner
           paperNumber={paperNumber}
           year={year}
@@ -714,4 +760,3 @@ export const Attempts = ({
     </ErrorBoundary>
   );
 };
-

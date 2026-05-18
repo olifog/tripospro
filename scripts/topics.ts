@@ -269,7 +269,9 @@ async function processCourseTopic(
     confidence: number;
   }[] = [];
 
+  const validQuestionIds = new Set(questionIds);
   for (const assignment of assignments) {
+    if (!validQuestionIds.has(assignment.questionId)) continue;
     for (const topicAssignment of assignment.topics) {
       const topicId = topicSlugToId.get(topicAssignment.slug);
       if (topicId) {
