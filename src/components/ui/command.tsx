@@ -29,7 +29,7 @@ function CommandDialog({
 }: React.ComponentProps<typeof Dialog>) {
   return (
     <Dialog {...props}>
-      <DialogContent className="overflow-hidden p-0 shadow-lg sm:max-w-xl">
+      <DialogContent className="top-[20%] translate-y-0 overflow-hidden p-0 shadow-lg sm:max-w-xl">
         <DialogTitle className="sr-only">Search</DialogTitle>
         <Command
           shouldFilter={false}
