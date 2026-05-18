@@ -4,7 +4,9 @@ import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { trpc } from "@/trpc/client";
 import { CommentPreview, CommentThread } from "../comment";
+import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { useLockIn } from "./lock-in-context";
 import { QuestionCourseCard } from "./question-course-card";
 import { Attempts, Header, StatsAndComments } from "./right-panel-client";
 import { SimilarQuestions } from "./similar-questions";
@@ -48,6 +50,7 @@ export function RightPanelTabs({
   questionNumber: string;
 }) {
   const [tab, setTab] = useState("details");
+  const { setLockedIn } = useLockIn();
 
   return (
     <Tabs
@@ -55,26 +58,36 @@ export function RightPanelTabs({
       onValueChange={setTab}
       className="flex h-full w-full flex-col"
     >
-      <TabsList className="mx-1.5 mt-1 shrink-0">
-        <TabsTrigger value="details" className="text-xs">
-          Details
-        </TabsTrigger>
-        <TabsTrigger value="discussion" className="text-xs">
-          Discussion
-          <ErrorBoundary fallback={null}>
-            <Suspense fallback={null}>
-              <CommentCountBadge
-                paperNumber={paperNumber}
-                year={year}
-                questionNumber={questionNumber}
-              />
-            </Suspense>
-          </ErrorBoundary>
-        </TabsTrigger>
-        <TabsTrigger value="similar" className="text-xs">
-          Similar
-        </TabsTrigger>
-      </TabsList>
+      <div className="mx-1.5 mt-1 flex shrink-0 items-center gap-1.5">
+        <TabsList>
+          <TabsTrigger value="details" className="text-xs">
+            Details
+          </TabsTrigger>
+          <TabsTrigger value="discussion" className="text-xs">
+            Discussion
+            <ErrorBoundary fallback={null}>
+              <Suspense fallback={null}>
+                <CommentCountBadge
+                  paperNumber={paperNumber}
+                  year={year}
+                  questionNumber={questionNumber}
+                />
+              </Suspense>
+            </ErrorBoundary>
+          </TabsTrigger>
+          <TabsTrigger value="similar" className="text-xs">
+            Similar
+          </TabsTrigger>
+        </TabsList>
+        <Button
+          variant="secondary"
+          size="sm"
+          className="ml-auto h-7 px-2 text-xs font-bold"
+          onClick={() => setLockedIn(true)}
+        >
+          LOCK IN!!!
+        </Button>
+      </div>
       <TabsContent value="details" className="mt-0 flex-1 overflow-y-auto">
         <DetailsPanel
           paperNumber={paperNumber}

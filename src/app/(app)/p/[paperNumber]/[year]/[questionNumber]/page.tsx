@@ -1,5 +1,6 @@
 import { PageLayout } from "@/components/layout/page-layout";
-import { Question } from "@/components/question";
+import { Question, LockInProvider } from "@/components/question";
+import { LockInExit } from "@/components/question/lock-in-exit";
 import { withParamsCache } from "@/lib/with-params-cache";
 import { trpc } from "@/trpc/server";
 
@@ -53,19 +54,24 @@ async function QuestionPage({
   );
 
   return (
-    <PageLayout
-      header={
-        <h1>
-          {year} Paper {paperNumber} Question {questionNumber}
-        </h1>
-      }
-    >
-      <Question
-        paperNumber={paperNumber}
-        year={year}
-        questionNumber={questionNumber}
-      />
-    </PageLayout>
+    <LockInProvider>
+      <PageLayout
+        header={
+          <>
+            <h1>
+              {year} Paper {paperNumber} Question {questionNumber}
+            </h1>
+            <LockInExit />
+          </>
+        }
+      >
+        <Question
+          paperNumber={paperNumber}
+          year={year}
+          questionNumber={questionNumber}
+        />
+      </PageLayout>
+    </LockInProvider>
   );
 }
 
