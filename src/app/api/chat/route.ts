@@ -15,6 +15,7 @@ import { db } from "@/db";
 import { paperTable, paperYearTable } from "@/db/schema/paper";
 import { questionTable } from "@/db/schema/question";
 import { env } from "@/env";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 const pinecone = new Pinecone({
   apiKey: env.PINECONE_API_KEY
@@ -35,6 +36,16 @@ export async function POST(request: Request) {
   }
 
   const { messages }: { messages: UIMessage[] } = await request.json();
+
+  const posthog = getPostHogClient();
+  posthog.capture({
+    distinctId: userId,
+    event: "chat_message_sent",
+    properties: {
+      conversation_length: messages.filter((m) => m.role === "user").length
+    }
+  });
+  await posthog.flush();
 
   const result = streamText({
     model: openai("gpt-5.5"),

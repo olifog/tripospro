@@ -10,6 +10,7 @@ import {
   Loader2,
   Search
 } from "lucide-react";
+import posthog from "posthog-js";
 import { markTextColorStyle } from "@/lib/score-colors";
 import {
   CommandDialog,
@@ -99,6 +100,17 @@ export function SearchDialog({
     { enabled: debouncedQuery.length >= 2, staleTime: 30000 }
   );
 
+  const lastTrackedQuery = useRef("");
+  useEffect(() => {
+    if (serverResults && debouncedQuery && debouncedQuery !== lastTrackedQuery.current) {
+      lastTrackedQuery.current = debouncedQuery;
+      posthog.capture("search_performed", {
+        query: debouncedQuery,
+        results_count: serverResults.length
+      });
+    }
+  }, [serverResults, debouncedQuery]);
+
   type Result = {
     id: string;
     type: "course" | "question" | "paper" | "topic";
@@ -163,6 +175,11 @@ export function SearchDialog({
 
   const handleSelect = useCallback(
     (result: { id: string; title: string; href: string; type: string }) => {
+      posthog.capture("search_result_clicked", {
+        query: debouncedQuery,
+        result_type: result.type,
+        result_id: result.id
+      });
       addRecentSearch({
         id: result.id,
         title: result.title,
@@ -172,7 +189,7 @@ export function SearchDialog({
       onOpenChange(false);
       router.push(getHref(result.href));
     },
-    [router, getHref, onOpenChange]
+    [router, getHref, onOpenChange, debouncedQuery]
   );
 
   const typeIcon = (type: string) => {

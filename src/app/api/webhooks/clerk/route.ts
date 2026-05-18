@@ -5,6 +5,7 @@ import { Webhook } from "svix";
 import { db } from "@/db";
 import { userSettingsTable, usersTable } from "@/db/schema/user";
 import { env } from "@/env";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 export async function POST(req: Request) {
   const SIGNING_SECRET = env.CLERK_SIGNING_SECRET;
@@ -90,6 +91,22 @@ export async function POST(req: Request) {
     await db.insert(userSettingsTable).values({
       userId: user.id
     });
+
+    const posthog = getPostHogClient();
+    posthog.identify({
+      distinctId: evt.data.id,
+      properties: {
+        email,
+        name: `${evt.data.first_name} ${evt.data.last_name}`,
+        crsid
+      }
+    });
+    posthog.capture({
+      distinctId: evt.data.id,
+      event: "user_signed_up",
+      properties: { email, crsid }
+    });
+    await posthog.flush();
   }
 
   return new Response("Webhook received", { status: 200 });

@@ -3,6 +3,7 @@
 import { useUser } from "@clerk/nextjs";
 import { Star } from "lucide-react";
 import { useRouter } from "next/navigation";
+import posthog from "posthog-js";
 import { useMemo, useRef } from "react";
 import {
   Tooltip,
@@ -84,6 +85,12 @@ export const CourseCard = ({
           : [...old, courseId];
       });
       return { previous };
+    },
+    onSuccess: (data, { courseId }) => {
+      posthog.capture("course_starred", {
+        course_id: courseId,
+        starred: data.starred
+      });
     },
     onError: (_err, _vars, context) => {
       if (context?.previous) {
@@ -263,7 +270,7 @@ export const CourseCard = ({
           {sortedYears.map((year) => (
             <div key={year.year} className="flex flex-col gap-1">
               <div className="relative h-10 w-5">
-                <span className="absolute top-3 -left-1.5 -rotate-90 text-foreground text-sm">
+                <span className="-left-1.5 -rotate-90 absolute top-3 text-foreground text-sm">
                   {year.year}
                 </span>
               </div>

@@ -3,6 +3,7 @@
 import { MessageSquarePlus, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import posthog from "posthog-js";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { Button } from "../ui/button";
@@ -25,6 +26,7 @@ export function ChatSidebar({ activeChatId }: { activeChatId: string | null }) {
   const utils = trpc.useUtils();
   const deleteChat = trpc.chat.delete.useMutation({
     onSuccess: (_data, variables) => {
+      posthog.capture("chat_deleted", { chat_id: variables.chatId });
       utils.chat.list.invalidate();
       if (variables.chatId === activeChatId) {
         router.push("/chat");

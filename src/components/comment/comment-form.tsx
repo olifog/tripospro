@@ -2,7 +2,8 @@
 
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import posthog from "posthog-js";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -54,6 +55,11 @@ export function CommentForm({
 
   const createComment = trpc.comment.create.useMutation({
     onSuccess: () => {
+      posthog.capture("comment_posted", {
+        question_id: questionId,
+        course_id: courseId,
+        is_reply: !!parentId
+      });
       form.reset();
       setShowPreview(false);
       if (questionId) {
@@ -109,7 +115,9 @@ export function CommentForm({
               <FormControl>
                 {showPreview ? (
                   <div className="min-h-[4rem] rounded-md border p-3">
-                    <CommentContent content={content || "*Nothing to preview*"} />
+                    <CommentContent
+                      content={content || "*Nothing to preview*"}
+                    />
                   </div>
                 ) : (
                   <Textarea
@@ -170,8 +178,10 @@ export function CommentForm({
             >
               {createComment.isPending ? (
                 <Loader2 className="h-3 w-3 animate-spin" />
+              ) : parentId ? (
+                "Reply"
               ) : (
-                parentId ? "Reply" : "Comment"
+                "Comment"
               )}
             </Button>
           </div>

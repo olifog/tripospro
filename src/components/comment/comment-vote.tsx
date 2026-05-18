@@ -2,6 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import posthog from "posthog-js";
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
@@ -56,17 +57,20 @@ export function CommentVote({
   });
 
   const handleVote = (direction: 1 | -1) => {
-    // Use local state for toggle logic, not stale props
     const currentVote = local.current.vote;
     const newValue = currentVote === direction ? 0 : direction;
     const delta = newValue - currentVote;
 
-    // Update local state immediately
     local.current = {
       vote: newValue,
       score: local.current.score + delta,
       synced: false
     };
+
+    posthog.capture("comment_voted", {
+      comment_id: commentId,
+      direction: newValue === 0 ? "removed" : newValue === 1 ? "up" : "down"
+    });
 
     voteMutation.mutate({ commentId, value: newValue });
   };

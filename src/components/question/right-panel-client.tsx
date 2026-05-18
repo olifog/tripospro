@@ -11,6 +11,7 @@ import {
   TriangleAlert
 } from "lucide-react";
 import Link from "next/link";
+import posthog from "posthog-js";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { useForm } from "react-hook-form";
@@ -19,7 +20,6 @@ import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
 import { ErrorMessage } from "../error";
-import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -120,7 +120,18 @@ const HeaderInner = ({
               size="sm"
               className="h-7 gap-1 px-2 text-xs"
             >
-              <Link href={question.solutionUrl} target="_blank">
+              <Link
+                href={question.solutionUrl}
+                target="_blank"
+                onClick={() =>
+                  posthog.capture("solution_viewed", {
+                    question_id: question.id,
+                    paper_number: paperNumber,
+                    year,
+                    question_number: questionNumber
+                  })
+                }
+              >
                 <FileText className="h-3 w-3" />
                 Soln
               </Link>
@@ -228,6 +239,12 @@ const FlagButton = ({ questionId }: { questionId: number }) => {
         old ? { flagged: !old.flagged } : old
       );
       return { previous };
+    },
+    onSuccess: (data, { questionId }) => {
+      posthog.capture("question_flagged", {
+        question_id: questionId,
+        flagged: data.flagged
+      });
     },
     onError: (_err, { questionId }, context) => {
       if (context?.previous) {
@@ -536,6 +553,15 @@ const AttemptsInner = ({
         timeTaken: values.timeTaken,
         mark: values.mark,
         note: values.note
+      });
+      posthog.capture("question_answered", {
+        question_id: question.id,
+        paper_number: paperNumber,
+        year,
+        question_number: questionNumber,
+        time_taken_minutes: values.timeTaken,
+        mark: values.mark,
+        has_note: !!values.note
       });
       toast.success("Attempt submitted!");
     } catch {
