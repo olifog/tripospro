@@ -39,7 +39,7 @@ export function PatchNotesToast() {
         <div className="flex-1 space-y-1">
           <p className="font-medium text-sm">What&apos;s New</p>
           <p className="text-muted-foreground text-xs leading-relaxed">
-            Course pages, discussions, MCP & more.
+            Topics, similar questions, discussions & more
           </p>
           <button
             type="button"
