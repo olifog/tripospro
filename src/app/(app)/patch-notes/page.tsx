@@ -65,26 +65,20 @@ const patches = [
 export default function PatchNotesPage() {
   return (
     <PageLayout header={<h1>What&apos;s New</h1>}>
-      <div className="max-w-2xl">
-        <div className="relative border-l border-border pl-8">
-          {patches.map((patch) => (
-            <div key={patch.date} className="relative pb-8 last:pb-0">
-              <div className="absolute -left-1.5 top-1 h-2.5 w-2.5 rounded-full border-2 border-border bg-background" />
-              <p className="text-muted-foreground text-xs">{patch.date}</p>
-              <h2 className="mt-0.5 font-semibold text-sm">{patch.title}</h2>
-              <ul className="mt-2 space-y-1">
-                {patch.items.map((item) => (
-                  <li
-                    key={item}
-                    className="text-muted-foreground text-sm leading-relaxed"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+      <div className="max-w-xl space-y-6">
+        {patches.map((patch) => (
+          <div key={patch.date}>
+            <div className="flex items-baseline gap-3">
+              <h2 className="font-medium text-sm">{patch.title}</h2>
+              <span className="text-muted-foreground text-xs">{patch.date}</span>
             </div>
-          ))}
-        </div>
+            <ul className="mt-1.5 list-inside list-disc text-muted-foreground text-xs leading-relaxed">
+              {patch.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </PageLayout>
   );
