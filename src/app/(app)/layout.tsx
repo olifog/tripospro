@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { SavedSidebarProvider } from "@/components/layout/sidebar-client";
+import { PatchNotesToast } from "@/components/patch-notes-toast";
 import { SidebarInset } from "@/components/ui/sidebar";
 
 export default async function AppLayout({
@@ -16,6 +17,7 @@ export default async function AppLayout({
     <SavedSidebarProvider defaultOpen={defaultOpen}>
       <AppSidebar />
       <SidebarInset>{children}</SidebarInset>
+      <PatchNotesToast />
     </SavedSidebarProvider>
   );
 }

@@ -5,7 +5,8 @@ import {
   ChevronRight,
   Info,
   type LucideIcon,
-  ScrollText
+  ScrollText,
+  Sparkles
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
@@ -45,6 +46,11 @@ const navMain: NavMainItem[] = [
     title: "RAG Bot",
     url: "/chat",
     icon: Bot
+  },
+  {
+    title: "What's New",
+    url: "/patch-notes",
+    icon: Sparkles
   },
   {
     title: "About",
