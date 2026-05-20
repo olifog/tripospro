@@ -66,10 +66,10 @@ export default function PatchNotesPage() {
   return (
     <PageLayout header={<h1>What&apos;s New</h1>}>
       <div className="max-w-2xl">
-        <div className="relative border-l border-border pl-6">
+        <div className="relative border-l border-border pl-8">
           {patches.map((patch) => (
             <div key={patch.date} className="relative pb-8 last:pb-0">
-              <div className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full border-2 border-border bg-background" />
+              <div className="absolute -left-1.5 top-1 h-2.5 w-2.5 rounded-full border-2 border-border bg-background" />
               <p className="text-muted-foreground text-xs">{patch.date}</p>
               <h2 className="mt-0.5 font-semibold text-sm">{patch.title}</h2>
               <ul className="mt-2 space-y-1">
