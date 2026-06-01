@@ -1,5 +1,7 @@
 "use client";
 
+import "katex/dist/katex.min.css";
+
 import { useChat } from "@ai-sdk/react";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import {
@@ -16,6 +18,9 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./chat.css";
 import { type Components, Streamdown } from "streamdown";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import { markTextColorStyle } from "@/lib/score-colors";
 import { cn } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
@@ -164,7 +169,13 @@ const AssistantMessage = ({ message }: { message: UIMessage }) => {
         className="rounded-lg"
       />
       <div className="min-w-0 flex-1 rounded-lg bg-muted px-3 py-1.5 text-foreground text-sm">
-        <Streamdown className="chat-message space-y-1" components={chatComponents}>{textContent}</Streamdown>
+        <Streamdown
+          className="chat-message space-y-1"
+          remarkPlugins={[remarkMath, remarkGfm]}
+          rehypePlugins={[rehypeKatex]}
+          components={chatComponents}>
+            {textContent}
+        </Streamdown>
       </div>
     </div>
   );
